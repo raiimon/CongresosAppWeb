@@ -1,5 +1,5 @@
-export interface Sinaptico {
-  idCongreso?: string;
+export interface SinapticoInterface {
+  idSinaptico?: string;
   nombreSinaptico?: string;
   imgSinaptico?: string;
 

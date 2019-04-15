@@ -3,7 +3,6 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {CongresoInterface} from '../models/congreso';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {BookInterface} from '../models/book';
 
 
 @Injectable({
@@ -15,7 +14,7 @@ export class CongresoApiService {
 
   // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
   private congresosCollection: AngularFirestoreCollection<CongresoInterface>;
-  private congresos: Observable<BookInterface[]>;
+  private congresos: Observable<CongresoInterface[]>;
 
   // Para obtener un sólo congreso.
   private congresoDoc: AngularFirestoreDocument<CongresoInterface>;
@@ -23,7 +22,7 @@ export class CongresoApiService {
 
   public selectedCongreso: CongresoInterface = {
     // Debemos como en todos, definir la ID como nula para no tener problemas a la hora de almacenar o actualizar una entrada.
-    id: null
+    idCongreso: null
   };
 
   // Método para obtener todos los congresos.
@@ -36,7 +35,7 @@ export class CongresoApiService {
       .pipe(map( changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as CongresoInterface;
-          data.id = action.payload.doc.id;
+          data.idCongreso = action.payload.doc.id;
           return data;
         });
       }));
@@ -53,7 +52,7 @@ export class CongresoApiService {
         return null;
       } else {
         const data = action.payload.data() as CongresoInterface;
-        data.id = action.payload.id;
+        data.idCongreso = action.payload.id;
         return data;
       }
     }));
@@ -67,7 +66,7 @@ export class CongresoApiService {
   // Método para actualizar un congreso.
   updateCongress(congreso: CongresoInterface): void {
 
-    const idCongreso = congreso.id;
+    const idCongreso = congreso.idCongreso;
     this.congresoDoc = this.afs.doc<CongresoInterface>(`congreso/${idCongreso}`);
     this.congresoDoc.update(congreso);
   }

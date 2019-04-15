@@ -1,4 +1,4 @@
-export interface InvitadoService {
+export interface InvitadoInterface {
   idInvitado?: string;
   nombre?: string;
   apellidos?: string;

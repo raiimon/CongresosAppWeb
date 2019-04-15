@@ -1,5 +1,5 @@
 export interface SesionInterface {
-  id?: string;
+  idSesion?: string;
   nombreSesion?: string;
   horaInicioSesion?: string;
   horaFinalizacionSesion?: string;
