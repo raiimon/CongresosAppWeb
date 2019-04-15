@@ -10,7 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class NavbarComponent implements OnInit {
 
   // Definimos en el navbar el nombre de la aplicación.
-  public appName: string = 'Control Accesos SoftmediaPlanner';
+  public appName: string = 'SoftmediaPlanner';
 
   // Variable para comprobar si estamos loggeados.
   public isLogged: boolean = false;

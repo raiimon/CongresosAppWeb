@@ -1,0 +1,12 @@
+export interface InvitadoService {
+  idInvitado?: string;
+  nombre?: string;
+  apellidos?: string;
+  dni?: string;
+  telefono?: string;
+  precio?: string;
+  correo?: string;
+
+  // Uso necesario para la parte de roles.
+  userUid?: string;
+}

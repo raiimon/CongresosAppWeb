@@ -64,5 +64,4 @@ export class DataApiService {
     this.bookDoc = this.afs.doc<BookInterface>(`books/${idBook}`);
     this.bookDoc.delete();
   }
-
 }

@@ -11,6 +11,10 @@ import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
+/* Servicio para la autenticación  de los usuarios, donde tenemos el login-registro-registro con Facebook y Google -
+Logout - Actualización del perfil y la comprobación del tipo de rol. */
+
 export class AuthService {
 
   constructor(private afsAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) { }
