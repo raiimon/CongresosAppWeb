@@ -12,11 +12,11 @@ export class InvitadoApiService {
   constructor(private afs: AngularFirestore) {
   }
 
-  // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
+  // Obtener las colecciones de los Invitados que tenemos almacenado en Firebase.
   private invitadosCollection: AngularFirestoreCollection<InvitadoInterface>;
   private invitados: Observable<InvitadoInterface[]>;
 
-  // Para obtener un sólo congreso.
+  // Para obtener un sólo invitado.
   private invitadoDoc: AngularFirestoreDocument<InvitadoInterface>;
   private invitado: Observable<InvitadoInterface>;
 
@@ -25,10 +25,10 @@ export class InvitadoApiService {
     idInvitado: null
   };
 
-  // Método para obtener todos los congresos.
+  // Método para obtener todos los invitados.
   getAllGuests() {
 
-    // Obtenemos todos los congresos almacenados en la tabla 'congreso' en Firebase.
+    // Obtenemos todos los congresos almacenados en la tabla 'invitado' en Firebase.
     this.invitadosCollection = this.afs.collection<InvitadoInterface>('invitado');
 
     return this.invitados = this.invitadosCollection.snapshotChanges()
@@ -41,10 +41,9 @@ export class InvitadoApiService {
       }));
   }
 
-  // Método para obtener un único congreso.
+  // Método para obtener un único invitado.
   getOneGuest(idInvitado: string) {
 
-    // Por ahora sale error, porque no esta declarado en el routing.
     this.invitadoDoc = this.afs.doc<InvitadoInterface>(`invitado/${idInvitado}`);
 
     return this.invitado = this.invitadoDoc.snapshotChanges().pipe(map(action => {
@@ -55,24 +54,31 @@ export class InvitadoApiService {
         data.idInvitado = action.payload.id;
         return data;
       }
+
     }));
   }
 
-  // Método para añadir un congreso.
+  // Método para añadir un invitado.
   addGuest(invitado: InvitadoInterface): void {
+
     this.invitadosCollection.add(invitado);
+
   }
 
-  // Método para actualizar un congreso.
+  // Método para actualizar un invitado.
   updateGuest(invitado: InvitadoInterface): void {
 
     const idInvitado = invitado.idInvitado;
     this.invitadoDoc = this.afs.doc<InvitadoInterface>(`invitado/${idInvitado}`);
     this.invitadoDoc.update(invitado);
+
   }
 
+  // Método para eliminar un invitado.
   deleteGuest(idInvitado: string): void {
+
     this.invitadoDoc = this.afs.doc<InvitadoInterface>(`invitado/${idInvitado}`);
     this.invitadoDoc.delete();
+
   }
 }

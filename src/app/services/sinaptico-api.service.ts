@@ -12,11 +12,11 @@ export class SinapticoApiService {
   constructor(private afs: AngularFirestore) {
   }
 
-  // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
+  // Obtener las colecciones de los Sinápticos que tenemos almacenado en Firebase.
   private sinapticsCollection: AngularFirestoreCollection<SinapticoInterface>;
   private sinaptics: Observable<SinapticoInterface[]>;
 
-  // Para obtener un sólo congreso.
+  // Para obtener un sólo sináptico.
   private sinapticDoc: AngularFirestoreDocument<SinapticoInterface>;
   private sinaptic: Observable<SinapticoInterface>;
 
@@ -25,11 +25,11 @@ export class SinapticoApiService {
     idSinaptico: null
   };
 
-  // Método para obtener todos los congresos.
+  // Método para obtener todos los sinápticos.
   getAllSinaptics() {
 
-    // Obtenemos todos los congresos almacenados en la tabla 'congreso' en Firebase.
-    this.sinapticsCollection = this.afs.collection<SinapticoInterface>('sesion');
+    // Obtenemos todos los sinápticos almacenados en la tabla 'sinaptico' en Firebase.
+    this.sinapticsCollection = this.afs.collection<SinapticoInterface>('sinaptico');
 
     return this.sinaptics = this.sinapticsCollection.snapshotChanges()
       .pipe(map(changes => {
@@ -41,7 +41,7 @@ export class SinapticoApiService {
       }));
   }
 
-  // Método para obtener un único congreso.
+  // Método para obtener un único sinaptico.
   getOneSinaptic(idSinaptico: string) {
 
     // Por ahora sale error, porque no esta declarado en el routing.
@@ -58,21 +58,21 @@ export class SinapticoApiService {
     }));
   }
 
-  // Método para añadir un congreso.
+  // Método para añadir un sináptico.
   addSinaptic(sinaptico: SinapticoInterface): void {
     this.sinapticsCollection.add(sinaptico);
   }
 
-  // Método para actualizar un congreso.
+  // Método para actualizar un sináptico.
   updateSinaptic(sinaptico: SinapticoInterface): void {
 
     const idSinaptico = sinaptico.idSinaptico;
-    this.sinapticDoc = this.afs.doc<SinapticoInterface>(`sesion/${idSinaptico}`);
+    this.sinapticDoc = this.afs.doc<SinapticoInterface>(`sinaptico/${idSinaptico}`);
     this.sinapticDoc.update(sinaptico);
   }
 
   deleteSinaptic(idSinaptico: string): void {
-    this.sinapticDoc = this.afs.doc<SinapticoInterface>(`sesion/${idSinaptico}`);
+    this.sinapticDoc = this.afs.doc<SinapticoInterface>(`sinaptico/${idSinaptico}`);
     this.sinapticDoc.delete();
   }
 }

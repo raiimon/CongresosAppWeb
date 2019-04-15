@@ -44,7 +44,6 @@ export class CongresoApiService {
   // Método para obtener un único congreso.
   getOneCongress(idCongreso: string) {
 
-    // Por ahora sale error, porque no esta declarado en el routing.
     this.congresoDoc = this.afs.doc<CongresoInterface>(`congreso/${idCongreso}`);
 
     return this.congreso = this.congresoDoc.snapshotChanges().pipe(map (action => {

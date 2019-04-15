@@ -22,7 +22,9 @@ export class AuthGuard  implements CanActivate {
       .pipe(take(1))
       .pipe(map(authState => !!authState))
       .pipe(tap(auth => {
+        // En caso de que no este autenticado, que 'auth' no tenga nada almacenado. Le reenviará a la página de Login.
           if (!auth) {
+            // Enviamos a la página de 'Login'.
             this.router.navigate(['/user/login']);
           }
       }));

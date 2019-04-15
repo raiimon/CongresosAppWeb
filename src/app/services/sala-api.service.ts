@@ -12,23 +12,22 @@ export class SalaApiService {
   constructor(private afs: AngularFirestore) {
   }
 
-  // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
+  // Obtener las colecciones de las Salas que tenemos almacenado en Firebase.
   private salasCollection: AngularFirestoreCollection<SalaInterface>;
   private salas: Observable<SalaInterface[]>;
 
-  // Para obtener un sólo congreso.
+  // Para obtener una sola sala.
   private salaDoc: AngularFirestoreDocument<SalaInterface>;
   private sala: Observable<SalaInterface>;
 
-  public selectedCongreso: SalaInterface = {
+  public selectedSala: SalaInterface = {
     // Debemos como en todos, definir la ID como nula para no tener problemas a la hora de almacenar o actualizar una entrada.
     idSala: null
   };
 
-  // Método para obtener todos los congresos.
-  getAllCongress() {
+  // Método para obtener todas las salas.
+  getAllRooms() {
 
-    // Obtenemos todos los congresos almacenados en la tabla 'congreso' en Firebase.
     this.salasCollection = this.afs.collection<SalaInterface>('sala');
 
     return this.salas = this.salasCollection.snapshotChanges()
@@ -41,11 +40,11 @@ export class SalaApiService {
       }));
   }
 
-  // Método para obtener un único congreso.
-  getOneCongress(idCongreso: string) {
+  // Método para obtener una única sala.
+  getOneRoom(idSala: string) {
 
     // Por ahora sale error, porque no esta declarado en el routing.
-    this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idCongreso}`);
+    this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
 
     return this.sala = this.salaDoc.snapshotChanges().pipe(map(action => {
       if (action.payload.exists === false) {
@@ -58,21 +57,27 @@ export class SalaApiService {
     }));
   }
 
-  // Método para añadir un congreso.
-  addCongress(invitado: SalaInterface): void {
-    this.salasCollection.add(invitado);
+  // Método para añadir una sala.
+  addRoom(sala: SalaInterface): void {
+
+    this.salasCollection.add(sala);
+
   }
 
-  // Método para actualizar un congreso.
-  updateCongress(sala: SalaInterface): void {
+  // Método para actualizar una sala.
+  updateRoom(sala: SalaInterface): void {
 
     const idSala = sala.idSala;
     this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
     this.salaDoc.update(sala);
+
   }
 
-  deleteCongress(idSala: string): void {
+  // Método para eliminar una sala.
+  deleteRoom(idSala: string): void {
+
     this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
     this.salaDoc.delete();
+
   }
 }

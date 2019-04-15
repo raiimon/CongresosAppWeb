@@ -13,11 +13,11 @@ export class SesionApiService {
   constructor(private afs: AngularFirestore) {
   }
 
-  // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
+  // Obtener las colecciones de las Sesiones que tenemos almacenado en Firebase.
   private sessionsCollection: AngularFirestoreCollection<SesionInterface>;
   private sessions: Observable<SesionInterface[]>;
 
-  // Para obtener un sólo congreso.
+  // Para obtener una sola sesión.
   private sessionDoc: AngularFirestoreDocument<SesionInterface>;
   private session: Observable<SesionInterface>;
 
@@ -26,10 +26,10 @@ export class SesionApiService {
     idSesion: null
   };
 
-  // Método para obtener todos los congresos.
+  // Método para obtener todos las sesiones.
   getAllSessions() {
 
-    // Obtenemos todos los congresos almacenados en la tabla 'congreso' en Firebase.
+    // Obtenemos todos los sesiones almacenados en la tabla 'sesion' en Firebase.
     this.sessionsCollection = this.afs.collection<SesionInterface>('sesion');
 
     return this.sessions = this.sessionsCollection.snapshotChanges()
@@ -42,7 +42,7 @@ export class SesionApiService {
       }));
   }
 
-  // Método para obtener un único congreso.
+  // Método para obtener una única sesión.
   getOneSession(idSesion: string) {
 
     // Por ahora sale error, porque no esta declarado en el routing.
@@ -59,16 +59,16 @@ export class SesionApiService {
     }));
   }
 
-  // Método para añadir un congreso.
+  // Método para añadir una sesión.
   addSession(sesion: SesionInterface): void {
     this.sessionsCollection.add(sesion);
   }
 
-  // Método para actualizar un congreso.
+  // Método para actualizar una sesión.
   updateSession(sesion: SesionInterface): void {
 
-    const idSala = sesion.idSesion;
-    this.sessionDoc = this.afs.doc<SesionInterface>(`sesion/${idSala}`);
+    const idSesion = sesion.idSesion;
+    this.sessionDoc = this.afs.doc<SesionInterface>(`sesion/${idSesion}`);
     this.sessionDoc.update(sesion);
   }
 
