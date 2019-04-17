@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <a class="navbar-brand" routerLink="">{{appName}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
       </li>
 
 
-      <!-- Cargamos las rutas de los nuevas rutas que usaremos -->
+       Cargamos las rutas de los nuevas rutas que usaremos
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link" routerLink="/admin/list-congress">Listar Congresos</a>
       </li>
@@ -33,7 +33,7 @@
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link" routerLink="/admin/list-sinaptic">Listar Sinaptico</a>
       </li>
-      <!-- Final de las etiquetas que si usaremos -->
+      Final de las etiquetas que si usaremos 
 
       <li class="nav-item" *ngIf="!isLogged">
         <a class="nav-link" routerLink="/user/login">Login</a>
@@ -44,3 +44,22 @@
     </ul>
   </div>
 </nav>
+-->
+
+<link rel="stylesheet" href="assets/css/stylesnav.min.css">
+<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
+    <div class="container"><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav flex-grow-1 justify-content-between">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="fa fa-apple"></i></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Profile</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Congresos</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Invitados</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Salas</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Sinaptico</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="fa fa-user"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
