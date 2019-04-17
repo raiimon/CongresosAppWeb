@@ -1,61 +1,40 @@
-<section id="register" class="mb-5 mt-5">
-  <div class="container">
-    <div class="row">
+<section>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+          <h5 class="card-title text-center">Register</h5>       
+             
+          <form class="form-signin"  #myForm="ngForm" (ngSubmit)="onAddUser(); myForm.reset()" >
+            <div class="form-label-group text-center ">
+              <input type="email" name="email" id="email" class="form-control" placeholder="email" #emil="ngModel" [(ngModel)]="email"  minlength="8" maxlength="20"  required>
+              <label for="email">Email address</label>
 
-      <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-        <div class="card_register">
-          <div class="card">
-            <div class="card-body text-center">
-              <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
-                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-                <div class="alert alert-danger" role="alert" *ngIf="isError">
-                  {{msgError}}
-                </div>
-                <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" required
-                         minlength="8">
-                </div>
-                <div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
-                  <div *ngIf="email.errors.required">Email is required</div>
-                  <div *ngIf="email.errors.minlength">Email must be at least 5 characters</div>
-                </div>
-                <div class="form-group">
-                  <input type="password"  name="password" class="form-control" placeholder="Password" [(ngModel)]="password"
-                         required minlength="5" maxlength="10">
-                </div>
-                <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">Password must be at least 5 characters</div>
-                </div>
-
-                <hr>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="onUpload($event)">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                  </div>
-                </div>
-                <br>
-
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'"></div>
-                </div>
-                <br>
-                <input type="hidden" #imageUser [value]="urlImage | async"><!-- URL en Firebase de la imagen que se almacena -->
-
-                <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
-
-                <ng-template #btnDisable>
-                  <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
-                </ng-template>
-                <div class="form-group">
-                  <a routerLink="/user/login" class="form-control login-user">Do you have account?</a>
-                </div>
-              </form>
+              <!-- Con el #emil=ngModel recogemos el valor y hacemos la verificaciones necesarias -->
+              <div class="colorError" *ngIf="emil.touched && !emil.valid">
+                <!-- Cuando salga el campo saltara el *ngIf cuando detecto el errors -->
+                <div *ngIf="emil.errors.required">Email es requerido</div>
+                <div *ngIf="emil.errors.minlength">Email tiene que tener más de 8 characteres</div>
+              </div> 
             </div>
-          </div>
+            <hr>
+            <div class="form-label-group text-center">
+              <input type="password"  name="password" id="password" class="form-control" placeholder="password" #pass="ngModel" [(ngModel)]="password"  minlength="5"
+              required >
+              <label for="password">Password</label>           
+              <div class="colorError" *ngIf="pass.touched && !pass.valid">  
+                  <div *ngIf="pass.errors.required">Contraseña es requerido</div>
+                  <div *ngIf="pass.errors.minlength">Contraseña tiene que tener más de 5 characteres</div>
+                </div>
+              </div>                 
+            <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" >Register</button>
+           </form>
+           <a class="d-block text-center mt-2 medium" routerLink="/user/login" >¿Inicia Sesión?</a>
         </div>
       </div>
     </div>
   </div>
+</div>
 </section>

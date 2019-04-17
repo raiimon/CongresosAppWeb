@@ -6,7 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 
 // Importamos finalize para luego guardar la ruta de la imagen y recogerla en la base de datos.
 import { finalize } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {Observable, from} from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService,
-              private storage: AngularFireStorage) { }
+              private storage: AngularFireStorage)
+              { }
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
 
@@ -29,6 +30,12 @@ export class RegisterComponent implements OnInit {
 
   // Variable para obtener la url de la imagen.
   urlImage: Observable<string>;
+
+  // Traduccion de los errores de firebase
+  errores: string;
+  erroresEs: string= "The email address is badly formatted.";
+  erroresE: string= "The email address is already in use by another account.";
+  vacio : string;
 
   ngOnInit() {
   }
@@ -70,10 +77,22 @@ export class RegisterComponent implements OnInit {
             }).then( () => {
               this.router.navigate(['admin/list-books']);
             }).catch((error) => {
-              console.log('error', error);
             });
           }
         });
-      }).catch(error => console.log('err', error.message));
+      }).catch(error => {
+        // hacemos un if para cuando entre el error en ingles lo traduzca en español
+        if (error.message == this.erroresEs){
+         this.errores = "El correo no está bien formateado";
+         this.vacio = this.errores;
+         // con el alert mostramos el error
+         alert(this.vacio);
+        }
+        else{
+          this.errores = "El correo ya existe"
+          this.vacio = this.errores;
+          alert(this.vacio);
+        }
+        });
   }
 }
