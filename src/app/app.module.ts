@@ -53,9 +53,9 @@ import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sin
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FormsModule, // Importamos el módulos de los formularios.
+    AngularFireStorageModule, // Importamos en el app 'AngularFireStorageModule' para la subida de imágenes.
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Importamos la API de Firebase con los datos necesarios.
     AngularFireDatabaseModule
   ],
   providers: [AngularFireAuth, AngularFirestore],

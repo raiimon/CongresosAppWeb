@@ -20,6 +20,7 @@ export class SinapticoApiService {
   private sinapticDoc: AngularFirestoreDocument<SinapticoInterface>;
   private sinaptic: Observable<SinapticoInterface>;
 
+  // Cuando se realice un 'update', para obtener los datos directamente.
   public selectedSinaptic: SinapticoInterface = {
     // Debemos como en todos, definir la ID como nula para no tener problemas a la hora de almacenar o actualizar una entrada.
     idSinaptico: null
@@ -34,8 +35,10 @@ export class SinapticoApiService {
     return this.sinaptics = this.sinapticsCollection.snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
+          // Se obtiene los datos, como están en el modelo.
           const data = action.payload.doc.data() as SinapticoInterface;
           data.idSinaptico = action.payload.doc.id;
+          // Devolvemos los valores para poder mostrarlos más adelante.
           return data;
         });
       }));
@@ -60,19 +63,32 @@ export class SinapticoApiService {
 
   // Método para añadir un sináptico.
   addSinaptic(sinaptico: SinapticoInterface): void {
+
+    // Añadimos con el método add la información.
     this.sinapticsCollection.add(sinaptico);
+
   }
 
   // Método para actualizar un sináptico.
   updateSinaptic(sinaptico: SinapticoInterface): void {
 
+    // Obtenemos la ID desde lo obtenido.
     const idSinaptico = sinaptico.idSinaptico;
+
+    // Mapeamos los datos y la ruta donde se dirigirá los datos a actualizar.
     this.sinapticDoc = this.afs.doc<SinapticoInterface>(`sinaptico/${idSinaptico}`);
+
+    // Llamamos al método en Firebase para actualizar la entrada.
     this.sinapticDoc.update(sinaptico);
   }
 
   deleteSinaptic(idSinaptico: string): void {
+
+    // Mediante la ID obtenida, en Firebase indicamos la ruta en la base de datos.
     this.sinapticDoc = this.afs.doc<SinapticoInterface>(`sinaptico/${idSinaptico}`);
+
+    // Llamamos al método en Firebase para eliminar la entrada.
     this.sinapticDoc.delete();
+
   }
 }

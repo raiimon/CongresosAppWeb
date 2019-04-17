@@ -1,10 +1,10 @@
 <!-- Modal para el congreso -->
 
-<div class="modal fade" id="modalCongress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCongress" tabindex="-1" role="dialog" aria-labelledby="modalCongress" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">
+        <h5 class="modal-title" id="tituloModalCongreso">
           {{ !this.dataCongress.selectedCongreso.idCongreso ? 'Nuevo Congreso' : 'Actualizar Congreso'}}
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,7 +12,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #congressForm="ngForm" (ngSubmit)="onSaveCongress(congressForm)">
+        <form #congressForm="ngForm" (ngSubmit)="onSaveCongress(congressForm, 'congreso')">
 
           <input type="hidden" name="idCongreso" [(ngModel)]="this.dataCongress.selectedCongreso.idCongreso"><!-- Almacenar la ID del libro. -->
 
@@ -43,7 +43,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseCongreso>Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar Congreso</button>
+            <button type="submit" class="btn btn-primary">Guardar Sala</button>
           </div>
 
         </form>
@@ -54,11 +54,11 @@
 
 <!-- Modal para el invitado -->
 
-<div class="modal fade" id="modalGuest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalGuest" tabindex="-1" role="dialog" aria-labelledby="modalGuest" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">
+        <h5 class="modal-title" id="tituloModalInvitado">
           {{ !this.dataGuest.selectedInvitado.idInvitado ? 'Nuevo Invitado' : 'Actualizar Invitado'}}
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -66,7 +66,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #guestForm="ngForm" (ngSubmit)="onSaveGuest(guestForm)">
+        <form #guestForm="ngForm" (ngSubmit)="onSaveCongress(guestForm, 'invitado')">
 
           <input type="hidden" name="idInvitado" [(ngModel)]="this.dataGuest.selectedInvitado.idInvitado"><!-- Almacenar la ID del libro. -->
 
@@ -102,7 +102,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseInvitado>Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar Congreso</button>
+            <button type="submit" class="btn btn-primary">Guardar Invitado</button>
           </div>
 
         </form>
@@ -112,11 +112,12 @@
 </div>
 
 <!-- Modal de las Salas -->
-<div class="modal fade" id="modalRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="modalRoom" tabindex="-1" role="dialog" aria-labelledby="modalRoom" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel4">
+        <h5 class="modal-title" id="tituloModalSala">
           {{ !this.dataRoom.selectedSala.idSala ? 'Nueva Sala' : 'Actualizar Sala'}}
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -124,7 +125,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #roomForm="ngForm" (ngSubmit)="onSaveRoom(roomForm)">
+        <form #roomForm="ngForm" (ngSubmit)="onSaveCongress(roomForm, 'sala')">
 
           <input type="hidden" name="idSala" [(ngModel)]="this.dataRoom.selectedSala.idSala"><!-- Almacenar la ID del libro. -->
 
@@ -170,7 +171,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseRoom>Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar Congreso</button>
+            <button type="submit" class="btn btn-primary">Guardar Sala</button>
           </div>
 
         </form>
@@ -181,11 +182,11 @@
 
 <!-- Modal Sinaptico -->
 
-<div class="modal fade" id="modalSinaptics" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalSinaptics" tabindex="-1" role="dialog" aria-labelledby="modalSinaptics" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel5">
+        <h5 class="modal-title" id="tituloModalSinoptico">
           {{ !this.sinaptic.selectedSinaptic.idSinaptico ? 'Nuevo Sináptico' : 'Actualizar Sináptico'}}
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -193,7 +194,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #sinapticForm="ngForm" (ngSubmit)="onSaveSinaptic(sinapticForm)">
+        <form #sinopticForm="ngForm" (ngSubmit)="onSaveCongress(sinopticForm, 'sinoptico')">
 
           <input type="hidden" name="idSala" [(ngModel)]="this.sinaptic.selectedSinaptic.idSinaptico"><!-- Almacenar la ID del libro. -->
 
@@ -212,7 +213,7 @@
           <hr>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="onUpload($event)" >
+              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="subirImagenSinoptico($event)" >
               <label class="custom-file-label" for="inputGroupFile01">Sube el sináptico</label>
             </div>
           </div>
