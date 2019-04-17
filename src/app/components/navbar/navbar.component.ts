@@ -10,9 +10,6 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  // Definimos en el navbar el nombre de la aplicación.
-  public appName: string = 'SoftmediaPlanner';
-
   // Variable para comprobar si estamos loggeados.
   public isLogged: boolean = false;
 

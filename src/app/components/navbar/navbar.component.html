@@ -1,65 +1,18 @@
-<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-  <a class="navbar-brand" routerLink="">{{appName}}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar"
-          aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="mainNavbar">
-
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item" *ngIf="!isLogged">
-        <a class="nav-link" routerLink="/user/register">Register
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/user/profile">Profile</a>
-      </li>
-
-
-       Cargamos las rutas de los nuevas rutas que usaremos
-      <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/admin/list-congress">Listar Congresos</a>
-      </li>
-
-      <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/admin/list-guest">Listar Invitados</a>
-      </li>
-
-      <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/admin/list-room"> Listar Salas</a>
-      </li>
-
-      <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/admin/list-sinaptic">Listar Sinaptico</a>
-      </li>
-      Final de las etiquetas que si usaremos 
-
-      <li class="nav-item" *ngIf="!isLogged">
-        <a class="nav-link" routerLink="/user/login">Login</a>
-      </li>
-      <li class="nav-item" *ngIf="isLogged">
-        <a href="#" class="nav-link" (click)="onLogout()">Logout</a>
-      </li>
-    </ul>
-  </div>d
-</nav>
--->
-
 <link rel="stylesheet" href="assets/css/stylesnav.min.css">
 <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
     <div class="container"><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav flex-grow-1 justify-content-between">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="fa fa-apple"></i></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Profile</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Congresos</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Invitados</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Salas</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Listar Sinaptico</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i class="fa fa-user"></i></a></li>
+                <li class="nav-item"  role="presentation"><a class="nav-link" href="/"><i class="fa fa-bandcamp"></i></a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" role="presentation"><a class="nav-link" >Profile</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-congress" role="presentation"><a class="nav-link" >Listar Congresos</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link" >Listar Invitados</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link" >Listar Salas</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link" >Listar Sinaptico</a></li>
+                <li class="nav-item" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link" >Login</a></li>
+                <li class="nav-item" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link" >Registro</a></li>
+              <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" (click)="onLogout()" role="presentation"><a class="nav-link"><i class="fa fa-user"></i></a></li>
             </ul>
         </div>
     </div>
 </nav>
-
