@@ -66,95 +66,80 @@ export class ModalComponent implements OnInit {
     this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
 
   }
+  onSaveCongress(congressForm: NgForm, modal): void {
 
-  onSaveCongress(congressForm: NgForm): void {
-    // Comprobamos si existe el id, en caso de existir realizar un PUT de todo.
+    switch (modal) {
+      case 'congreso':
 
-    if (congressForm.value.idCongreso == null) {
-      // POST
-      // Obtenemos y almacenamos el id del usuario.
-      congressForm.value.userUid = this.userUid;
-      this.dataCongress.addCongress(congressForm.value);
+        if (congressForm.value.idCongreso == null) {
 
-    } else {
-      // PUT
-      this.dataCongress.updateCongress(congressForm.value);
+          congressForm.value.userUid = this.userUid;
+          this.dataCongress.addCongress(congressForm.value);
+
+        } else {
+
+          this.dataCongress.updateCongress(congressForm.value);
+
+        }
+        break;
+
+      case 'sinoptico':
+        congressForm.value.imgSinaptico = this.inputImageUser.nativeElement.value;
+
+        if (congressForm.value.idInvitado == null) {
+          // POST
+          // Obtenemos y almacenamos el id del usuario.
+          congressForm.value.userUid = this.userUid;
+          this.sinaptic.addSinaptic(congressForm.value);
+
+        } else {
+          // PUT
+          this.sinaptic.updateSinaptic(congressForm.value);
+        }
+        break;
+
+      case 'invitado':
+
+        if (congressForm.value.idInvitado == null) {
+
+          congressForm.value.userUid = this.userUid;
+          this.dataGuest.addGuest(congressForm.value);
+
+        } else {
+
+          this.dataGuest.updateGuest(congressForm.value);
+
+        }
+        break;
+
+      case 'sala':
+
+        congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+
+        if (congressForm.value.idSala == null) {
+          // POST
+          // Obtenemos y almacenamos el id del usuario.
+          congressForm.value.userUid = this.userUid;
+          this.dataRoom.addRoom(congressForm.value);
+
+        } else {
+          // PUT
+          this.dataRoom.updateRoom(congressForm.value);
+        }
+        break;
     }
+
     // Limpiamos el formulario.
     congressForm.resetForm();
     this.btnCloseCongreso.nativeElement.click();
   }
 
-  onSaveGuest(guestForm: NgForm): void {
-    // Comprobamos si existe el id, en caso de existir realizar un PUT de todo.
-
-    if (guestForm.value.idInvitado == null) {
-      // POST
-      // Obtenemos y almacenamos el id del usuario.
-      guestForm.value.userUid = this.userUid;
-      this.dataGuest.addGuest(guestForm.value);
-
-    } else {
-      // PUT
-      this.dataGuest.updateGuest(guestForm.value);
-    }
-    // Limpiamos el formulario.
-    guestForm.resetForm();
-    this.btnCloseInvitado.nativeElement.click();
-  }
-
-
-
-
-
-  onSaveRoom(guestForm: NgForm): void {
-    // Comprobamos si existe el id, en caso de existir realizar un PUT de todo.
-
-    guestForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
-
-    if (guestForm.value.idSala == null) {
-      // POST
-      // Obtenemos y almacenamos el id del usuario.
-      guestForm.value.userUid = this.userUid;
-      this.dataRoom.addRoom(guestForm.value);
-
-    } else {
-      // PUT
-      this.dataRoom.updateRoom(guestForm.value);
-    }
-    // Limpiamos el formulario.
-    guestForm.resetForm();
-    this.btnCloseCongreso.nativeElement.click();
-  }
-
-
-  onSaveSinaptic(sessionSinaptic: NgForm): void {
-    // Comprobamos si existe el id, en caso de existir realizar un PUT de todo.
-
-    // Almacenamos URL del sinaptico
-    sessionSinaptic.value.imgSinaptico = this.inputImageUser.nativeElement.value;
-
-    if (sessionSinaptic.value.idInvitado == null) {
-      // POST
-      // Obtenemos y almacenamos el id del usuario.
-      sessionSinaptic.value.userUid = this.userUid;
-      this.sinaptic.addSinaptic(sessionSinaptic.value);
-
-    } else {
-      // PUT
-      this.sinaptic.updateSinaptic(sessionSinaptic.value);
-    }
-    // Limpiamos el formulario.
-    sessionSinaptic.resetForm();
-    this.btnCloseRoom.nativeElement.click();
-  }
-
-  onUpload(e) {
+  subirImagenSinoptico(imagen) {
     // Generamos una ID aleatoria para las imágenes.
     const id = Math.random().toString(36).substring(2);
 
     // Obtenemos por array el primer indicio de imagen (el único que hay).
-    const file = e.target.files[0];
+    const file = imagen.target.files[0];
 
     // Ruta del fichero, donde almacenar las imágenes con 'profile_id' de ejemplo.
     const filePath = `sinaptico/profile_${id}`;

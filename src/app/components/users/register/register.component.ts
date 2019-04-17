@@ -33,9 +33,9 @@ export class RegisterComponent implements OnInit {
 
   // Traduccion de los errores de firebase
   errores: string;
-  erroresEs: string= "The email address is badly formatted.";
-  erroresE: string= "The email address is already in use by another account.";
-  vacio : string;
+  erroresEs: string = 'The email address is badly formatted.';
+  erroresE: string = 'The email address is already in use by another account.';
+  vacio: string;
 
   ngOnInit() {
   }
@@ -75,21 +75,21 @@ export class RegisterComponent implements OnInit {
               displayName: '',
               photoURL: this.inputImageUser.nativeElement.value
             }).then( () => {
-              this.router.navigate(['admin/list-books']);
+              this.router.navigate(['sinaptic']);
             }).catch((error) => {
             });
           }
         });
       }).catch(error => {
         // hacemos un if para cuando entre el error en ingles lo traduzca en español
-        if (error.message == this.erroresEs){
-         this.errores = "El correo no está bien formateado";
+        if (error.message === this.erroresEs){
+         this.errores = 'El correo no está bien formateado';
          this.vacio = this.errores;
          // con el alert mostramos el error
          alert(this.vacio);
         }
         else{
-          this.errores = "El correo ya existe"
+          this.errores = 'El correo ya existe'
           this.vacio = this.errores;
           alert(this.vacio);
         }

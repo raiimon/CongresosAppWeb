@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
-import {auth, User} from 'firebase/app';
+import {auth} from 'firebase/app';
 
 // Sección Roles Firebase.
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {UserInterface} from '../models/user';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ Logout - Actualización del perfil y la comprobación del tipo de rol. */
 
 export class AuthService {
 
-  constructor(private afsAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) { }
+  constructor(private afsAuth: AngularFireAuth, private afs: AngularFirestore) { }
 
   registerUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
@@ -49,7 +48,6 @@ export class AuthService {
 
   logoutUser() {
     return this.afsAuth.auth.signOut();
-    this.router.navigate(['/user/login']);
   }
 
 

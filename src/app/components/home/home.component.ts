@@ -9,14 +9,8 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  public books = [];
-  public book = '';
-
   ngOnInit() {
-    /*this.dataApi.getAllBooks().subscribe(books => {
-      console.log('BOOKS', books);
-      this.books = books;
-    });*/
+
   }
 
 }

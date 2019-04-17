@@ -20,6 +20,7 @@ export class SalaApiService {
   private salaDoc: AngularFirestoreDocument<SalaInterface>;
   private sala: Observable<SalaInterface>;
 
+  // Cuando se realice un 'update', para obtener los datos directamente.
   public selectedSala: SalaInterface = {
     // Debemos como en todos, definir la ID como nula para no tener problemas a la hora de almacenar o actualizar una entrada.
     idSala: null
@@ -33,8 +34,10 @@ export class SalaApiService {
     return this.salas = this.salasCollection.snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
+          // Se obtiene los datos, como están en el modelo.
           const data = action.payload.doc.data() as SalaInterface;
           data.idSala = action.payload.doc.id;
+          // Devolvemos los valores para poder mostrarlos más adelante.
           return data;
         });
       }));
@@ -59,24 +62,29 @@ export class SalaApiService {
 
   // Método para añadir una sala.
   addRoom(sala: SalaInterface): void {
-
+    // Añadimos con el método add la información.
     this.salasCollection.add(sala);
-
   }
 
   // Método para actualizar una sala.
   updateRoom(sala: SalaInterface): void {
 
+    // Obtenemos la ID desde lo obtenido.
     const idSala = sala.idSala;
+
+    // Mapeamos los datos y la ruta donde se dirigirá los datos a actualizar.
     this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
+
+    // Llamamos al método en Firebase para actualizar la entrada.
     this.salaDoc.update(sala);
 
   }
 
   // Método para eliminar una sala.
   deleteRoom(idSala: string): void {
-
+    // Mediante la ID obtenida, en Firebase indicamos la ruta en la base de datos.
     this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
+    // Llamamos al método en Firebase para eliminar la entrada.
     this.salaDoc.delete();
 
   }

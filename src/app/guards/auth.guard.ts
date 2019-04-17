@@ -11,11 +11,12 @@ import {take, map, tap} from 'rxjs/operators';
 })
 export class AuthGuard  implements CanActivate {
 
-  constructor(private afsAuth: AngularFireAuth, private router: Router) {
+  constructor(private afsAuth: AngularFireAuth,
+              private router: Router) {
 
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean  {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)  {
 
     // Comprobamos si el usuario esta loggeado.
     return this.afsAuth.authState
