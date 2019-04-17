@@ -13,12 +13,12 @@
     position:relative;
     margin:0
  }
-        
+
 #particles-js{
     position:absolute;
     width:100%;
     height:100vh;
-    background-image:url(../../assets/img/pexels-photo-160107.jpeg);
+    background-image:url(../../assets/img/error404.gif);
     background-repeat:no-repeat;
     background-size:cover;
     background-position:50% 50%
@@ -49,6 +49,7 @@
 }#hero-btn{
     margin-top:73px;
     font-size:16px;
+    color: whitesmoke;
     background-color:#ff5c00;
     padding:8px 20px;
     opacity: inherit;
