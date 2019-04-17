@@ -1,0 +1,14 @@
+<section id="books" class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="card" style="width: 18rem;" *ngFor="let sinaptic of sinaptics">
+        <img class="card-img-top" src="{{sinaptic.imgSinaptico}}" alt="{{sinaptic.nombreSinaptico}}">
+        <div class="card-body">
+          <h5 class="card-title">{{sinaptic.nombreSinaptico}}</h5>
+          <p class="card-text">{{sinaptic.descripcionSinaptico}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
