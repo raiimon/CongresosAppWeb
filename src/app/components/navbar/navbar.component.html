@@ -15,15 +15,23 @@
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link" routerLink="/user/profile">Profile</a>
       </li>
+
+
+      <!-- Cargamos las rutas de los nuevas rutas que usaremos -->
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/admin/list-books">List Books</a>
+        <a class="nav-link" routerLink="/admin/list-congress">Listar Congresos</a>
       </li>
 
-
-
-      <!-- Cargamos las rutas de los nuevos usuarios -->
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="/admin/list-books">Congresos</a>
+        <a class="nav-link" routerLink="/admin/list-guest">Listar Invitados</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLogged">
+        <a class="nav-link" routerLink="/admin/list-room"> Listar Salas</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLogged">
+        <a class="nav-link" routerLink="/admin/list-sinaptic">Listar Sinaptico</a>
       </li>
       <!-- Final de las etiquetas que si usaremos -->
 

@@ -1,76 +1,237 @@
-<!-- Modal para añadir o actualizar las entradas de libros -->
-<div class="modal fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal para el congreso -->
+
+<div class="modal fade" id="modalCongress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          {{ !this.dataApi.selectedBook.id ? 'New Book' : 'Update Book'}}
+        <h5 class="modal-title" id="exampleModalLabel1">
+          {{ !this.dataCongress.selectedCongreso.idCongreso ? 'Nuevo Congreso' : 'Actualizar Congreso'}}
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form #formBook="ngForm" (ngSubmit)="onSaveBook(formBook)">
+        <form #congressForm="ngForm" (ngSubmit)="onSaveCongress(congressForm)">
 
-          <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedBook.id"><!-- Almacenar la ID del libro. -->
+          <input type="hidden" name="idCongreso" [(ngModel)]="this.dataCongress.selectedCongreso.idCongreso"><!-- Almacenar la ID del libro. -->
 
           <input type="hidden" name="userUid" [value]="userUid">
 
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Titulo:</label>
-            <input type="text" class="form-control" name="titulo" [(ngModel)]="this.dataApi.selectedBook.titulo"> <!-- Para cuando realicemos un update -->
+            <label for="nombreCongreso" class="col-form-label">Nombre del Congreso:</label>
+            <input type="text" class="form-control" name="nombreCongreso" [(ngModel)]="this.dataCongress.selectedCongreso.nombreCongreso" placeholder="30 Enfermeras..."> <!-- Para cuando realicemos un update -->
+          </div>
+
+
+          <div class="form-group">
+            <label for="direccion">Dirección del congreso</label>
+            <input type="text" name="direccion" class="form-control" placeholder="C/ Blasco Ibañez..." [(ngModel)]="this.dataCongress.selectedCongreso.direccion">
+          </div>
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="fechaInicioCongreso">Fecha Inicio Congreso</label>
+              <input type="date" name="fechaInicioCongreso" class="form-control" placeholder="19/04/2019" [(ngModel)]="this.dataCongress.selectedCongreso.fechaInicioCongreso">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="fechaSalidaCongreso">Fecha Finalización Congreso</label>
+              <input type="date" name="fechaSalidaCongreso" class="form-control" placeholder="20/04/2019" [(ngModel)]="this.dataCongress.selectedCongreso.fechaSalidaCongreso">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseCongreso>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Congreso</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para el invitado -->
+
+<div class="modal fade" id="modalGuest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">
+          {{ !this.dataGuest.selectedInvitado.idInvitado ? 'Nuevo Invitado' : 'Actualizar Invitado'}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #guestForm="ngForm" (ngSubmit)="onSaveGuest(guestForm)">
+
+          <input type="hidden" name="idInvitado" [(ngModel)]="this.dataGuest.selectedInvitado.idInvitado"><!-- Almacenar la ID del libro. -->
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="dni" class="col-form-label">DNI (Documento Nacional de Identidad)</label>
+            <input type="text" class="form-control" name="dni" [(ngModel)]="this.dataGuest.selectedInvitado.dni" placeholder="30 Enfermeras..."> <!-- Para cuando realicemos un update -->
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="idioma">idioma</label>
-              <select name="idioma" class="form-control" [(ngModel)]="this.dataApi.selectedBook.idioma">
-                <option value="Inglés">Inglés</option>
-                <option value="Castellano">Castellano</option>
+              <label for="nombre">Nombre</label>
+              <input type="date" name="nombre" class="form-control" placeholder="Marío" [(ngModel)]="this.dataGuest.selectedInvitado.nombre">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="apellidos">Apellidos</label>
+              <input type="date" name="apellidos" class="form-control" placeholder="Luna" [(ngModel)]="this.dataGuest.selectedInvitado.apellidos">
+            </div>
+          </div>
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="telefono">Teléfono</label>
+              <input type="number" name="telefono" class="form-control" placeholder="96-157-05-12" [(ngModel)]="this.dataGuest.selectedInvitado.telefono">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="correo">Correo</label>
+              <input type="email" name="correo" class="form-control" placeholder="example@example.com" [(ngModel)]="this.dataGuest.selectedInvitado.correo">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseInvitado>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Congreso</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de las Salas -->
+<div class="modal fade" id="modalRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel4">
+          {{ !this.dataRoom.selectedSala.idSala ? 'Nueva Sala' : 'Actualizar Sala'}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #roomForm="ngForm" (ngSubmit)="onSaveRoom(roomForm)">
+
+          <input type="hidden" name="idSala" [(ngModel)]="this.dataRoom.selectedSala.idSala"><!-- Almacenar la ID del libro. -->
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="nombreSala" class="col-form-label">Nombre de Sala</label>
+            <input type="text" class="form-control" name="nombreSala" [(ngModel)]="this.dataRoom.selectedSala.nombreSala" placeholder="Sala Plenaria">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="fechaCongreso">Fecha del Congreso</label>
+              <input type="date" name="fechaCongreso" class="form-control" placeholder="27/09/2019" [(ngModel)]="this.dataRoom.selectedSala.fechaCongreso">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="nombreCongreso">Nombre del Congreso</label>
+
+              <select class="form-control select"  (change)="obtenerNombreCongreso($event)">
+                <option value="">Seleccione el congreso</option>
+                <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
               </select>
-            </div>
-          </div>
-
-          <div class="form-group col-md-">
-            <label for="precio">precio</label>
-            <input type="text" name="precio" class="form-control" placeholder="0,00€" [(ngModel)]="this.dataApi.selectedBook.precio">
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="autor">Autor</label>
-              <input type="text" name="autor" class="form-control" placeholder="Autor" [(ngModel)]="this.dataApi.selectedBook.autor">
-            </div>
-
-          <div class="form-group col-md-6">
-              <label for="oferta">Oferta</label>
-              <select name="oferta" class="form-control" [(ngModel)]="this.dataApi.selectedBook.oferta">
-                <option value="1">Sí</option>
-                <option value="0">No</option>
-              </select>
-          </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="portada">Portada</label>
-              <input type="text" name="portada" class="form-control" placeholder="Portada" [(ngModel)]="this.dataApi.selectedBook.portada">
-            </div>
-            <div class="form-group col-md-6">
-               <label for="link_amazon">Link Amazon</label>
-              <input type="text" name="link_amazon" class="form-control" placeholder="Link Amazon" [(ngModel)]="this.dataApi.selectedBook.link_amazon">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="descripcion" class="col-form-label">Descripcion:</label>
-            <textarea class="form-control" name="descripcion" [(ngModel)]="this.dataApi.selectedBook.descripcion"></textarea>
+            <label for="nombreSesion" class="col-form-label">Nombre de la sesión</label>
+            <input type="text" class="form-control" name="nombreSesion" [(ngModel)]="this.dataRoom.selectedSala.nombreSesion" placeholder="Acto Inaugural">
           </div>
 
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="fechaInicioEvento">Fecha del Congreso</label>
+              <input type="time" name="fechaInicioEvento" class="form-control" placeholder="09:30" [(ngModel)]="this.dataRoom.selectedSala.fechaInicioEvento">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="fechaFinalizacionEvento">Nombre del Congreso</label>
+              <input type="time" name="fechaFinalizacionEvento" class="form-control" placeholder="10:00" [(ngModel)]="this.dataRoom.selectedSala.fechaFinalizacionEvento">
+            </div>
+          </div>
+
+
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnClose>Close</button>
-            <button type="submit" class="btn btn-primary">Save Book</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseRoom>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Congreso</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sinaptico -->
+
+<div class="modal fade" id="modalSinaptics" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel5">
+          {{ !this.sinaptic.selectedSinaptic.idSinaptico ? 'Nuevo Sináptico' : 'Actualizar Sináptico'}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #sinapticForm="ngForm" (ngSubmit)="onSaveSinaptic(sinapticForm)">
+
+          <input type="hidden" name="idSala" [(ngModel)]="this.sinaptic.selectedSinaptic.idSinaptico"><!-- Almacenar la ID del libro. -->
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="nombreSinaptico" class="col-form-label">Nombre del Sináptico</label>
+            <input type="text" class="form-control" name="nombreSinaptico" [(ngModel)]="this.sinaptic.selectedSinaptic.nombreSinaptico" placeholder="Programa Sináptico 30 Enfermeras">
+          </div>
+
+          <div class="form-group">
+            <label for="descripcionSinaptico" class="col-form-label">Descripción</label>
+            <input type="text" class="form-control" name="descripcionSinaptico" [(ngModel)]="this.sinaptic.selectedSinaptic.descripcionSinaptico" placeholder="Congreso del 27 al 29 de marzo">
+          </div>
+
+          <hr>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="onUpload($event)" >
+              <label class="custom-file-label" for="inputGroupFile01">Sube el sináptico</label>
+            </div>
+          </div>
+          <br>
+
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'"></div>
+          </div>
+          <br>
+          <input type="hidden" #imageUser [value]="urlImage | async"><!-- URL en Firebase de la imagen que se almacena -->
+
+
+          <ng-template #btnDisable>
+            <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Guardar Sináptico</button>
+          </ng-template>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseSinaptic>Cerrar</button>
+            <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Sináptico</button>
           </div>
 
         </form>

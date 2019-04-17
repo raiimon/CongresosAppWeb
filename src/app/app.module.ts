@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListBooksComponent } from './components/admin/list-books/list-books.component';
-import { DetailsBookComponent } from './components/details-book/details-book.component';
 import { HomeComponent } from './components/home/home.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,19 +28,27 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
 
 // Importamos otro modulos...
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ListCongressComponent } from './components/admin/list-congress/list-congress.component';
+import { ListGuestComponent } from './components/admin/list-guest/list-guest.component';
+import { ListRoomComponent } from './components/admin/list-room/list-room.component';
+import { SinapticComponent } from './components/sinaptic/sinaptic.component';
+import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sinaptic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListBooksComponent,
-    DetailsBookComponent,
     HomeComponent,
     ModalComponent,
     NavbarComponent,
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    Page404Component
+    Page404Component,
+    ListCongressComponent,
+    ListGuestComponent,
+    ListRoomComponent,
+    SinapticComponent,
+    ListSinapticComponent
   ],
   imports: [
     BrowserModule,
