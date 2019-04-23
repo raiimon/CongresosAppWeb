@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-
+<!--
 <section class="row mt-5">
   <h1>Invitados Disponibles</h1>
   <div class="col">
@@ -28,7 +28,7 @@
 
 
         <td *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
-          <button class="btn btn-primary" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest">Update</button><!-- Cargamos el modal para poder verlo y actualizar -->
+          <button class="btn btn-primary" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest">Update</button><!-- Cargamos el modal para poder verlo y actualizar 
         </td>
 
         <ng-template #noOwner>
@@ -37,11 +37,11 @@
           </td>
         </ng-template>
 
-        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón -->
+        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón 
           <button class="btn btn-danger" (click)="onDeleteCongress(guest.idInvitado)">Delete</button>
         </td>
 
-        <!-- Cualquier usuario que no sea admin, no podrá usar este botón -->
+        <!-- Cualquier usuario que no sea admin, no podrá usar este botón 
         <ng-template #noAdmin>
           <td>
             <button class="btn btn-danger" (click)="onDeleteCongress(guest.idInvitado)" disabled="true">Delete</button>
@@ -52,4 +52,58 @@
     </table>
   </div>
 </section>
+-->
+
+<link rel="stylesheet" href="assets/css/stylesIn.min.css">
+    <div id="promo">
+        <div class="jumbotron">
+            <h1>Invitados</h1>
+            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <p></p>
+        </div>
+    </div>
+    <div id="promo2">
+        <form class="search-form">
+            <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text" style="background-color:rgb(174,180,186);"><i class="fa fa-search"></i></span></div><input class="form-control" type="text" placeholder="I am looking for..">
+                <div class="input-group-append"><button class="btn btn-light" type="button" style="background-color:rgb(128,132,136);">Buscar</button></div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th><strong>Apellidos</strong></th>
+                        <th>Dni</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button">Nuevo Invitado</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        <td>Cell 2</td>
+                        <td>Cell 4</td>
+                        <td>Cell 4</td>
+                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Cell 3</td>
+                        <td>Cell 2</td>
+                        <td>Cell 4</td>
+                        <td>Cell 4</td>
+                        <td>Cell 4</td>
+                        <td class="justify-content-between" id="botones2"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scriptIn.min.js"></script>
+
 <app-modal [userUid]="userUid"></app-modal>
