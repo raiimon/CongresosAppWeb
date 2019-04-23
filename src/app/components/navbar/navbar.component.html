@@ -4,13 +4,13 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav flex-grow-1 justify-content-between">
                 <li class="nav-item"  role="presentation"><a class="nav-link" href="/"><i class="fa fa-bandcamp"></i></a></li>
-                <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" role="presentation"><a class="nav-link" >Profile</a></li>
-                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-congress" role="presentation"><a class="nav-link" >Listar Congresos</a></li>
-                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link" >Listar Invitados</a></li>
-                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link" >Listar Salas</a></li>
-                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link" >Listar Sinaptico</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-congress" role="presentation"><a class="nav-link" >Congresos</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link" >Invitados</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link" >Salas</a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link" >Sinaptico</a></li>
                 <li class="nav-item" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link" >Login</a></li>
                 <li class="nav-item" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link" >Registro</a></li>
+              <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" role="presentation"><a class="nav-link"><i class="fa fa-id-card"></i></a></li>
               <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" (click)="onLogout()" role="presentation"><a class="nav-link"><i class="fa fa-user"></i></a></li>
             </ul>
         </div>
