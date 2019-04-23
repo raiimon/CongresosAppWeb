@@ -10,8 +10,8 @@
                 <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link" >Sinaptico</a></li>
                 <li class="nav-item" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link" >Login</a></li>
                 <li class="nav-item" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link" >Registro</a></li>
-              <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" role="presentation"><a class="nav-link"><i class="fa fa-id-card"></i></a></li>
-              <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" (click)="onLogout()" role="presentation"><a class="nav-link"><i class="fa fa-user"></i></a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" role="presentation"><a class="nav-link"><img src="{{user.photoUrl}}" class="rounded-circle fotoPerfil" alt="profile"></a></li>
+                <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" (click)="onLogout()" role="presentation"><a class="nav-link"><i class="fa fa-user"></i></a></li>
             </ul>
         </div>
     </div>
