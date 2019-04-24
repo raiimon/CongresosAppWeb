@@ -59,11 +59,20 @@ export class ListSinapticComponent implements OnInit {
   search() {
     if (this.nombreSinoptico !== '') {
       this.sinaptics = this.sinaptics.filter(search => {
-        return search.nombreSinaptico.toLocaleLowerCase().match(this.nombreSinoptico.toLocaleLowerCase());
+        return this.removeAccents(search.nombreSinaptico.toLocaleLowerCase()).match(this.removeAccents(this.nombreSinoptico.toLocaleLowerCase()));
       });
     } else if (this.nombreSinoptico === '') {
       this.ngOnInit();
     }
   }
 
+  // Función para eliminar acentos
+   removeAccents(value) {
+    return value
+      .replace(/á/g, 'a')
+      .replace(/é/g, 'e')
+      .replace(/í/g, 'i')
+      .replace(/ó/g, 'o')
+      .replace(/ú/g, 'u');
+  }
 }

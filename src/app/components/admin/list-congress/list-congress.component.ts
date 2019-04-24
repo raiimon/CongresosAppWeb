@@ -11,7 +11,9 @@ import {CongresoApiService} from '../../../services/congreso-api.service';
 export class ListCongressComponent implements OnInit {
 
 
-  constructor(private dataApi: CongresoApiService, private authService: AuthService) { }
+  constructor(private dataApi: CongresoApiService, private authService: AuthService) {
+  }
+
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private congress: CongresoInterface[];
   private nombreCongreso: string;
@@ -26,7 +28,7 @@ export class ListCongressComponent implements OnInit {
   }
 
   getListCongress() {
-    this.dataApi.getAllCongress().subscribe( congreso => {
+    this.dataApi.getAllCongress().subscribe(congreso => {
       this.congress = congreso;
     });
   }
@@ -34,7 +36,7 @@ export class ListCongressComponent implements OnInit {
   onDeleteCongress(idCongreso: string): void {
     const confirmacion = confirm('¿Deseas eliminar este congreso?');
 
-    if(confirmacion) {
+    if (confirmacion) {
       this.dataApi.deleteCongress(idCongreso);
     }
 
@@ -59,11 +61,19 @@ export class ListCongressComponent implements OnInit {
   search() {
     if (this.nombreCongreso !== '') {
       this.congress = this.congress.filter(search => {
-        return search.nombreCongreso.toLocaleLowerCase().match(this.nombreCongreso.toLocaleLowerCase());
+        return this.removeAccents(search.nombreCongreso.toLocaleLowerCase()).match(this.removeAccents(this.nombreCongreso.toLocaleLowerCase()));
       });
     } else if (this.nombreCongreso === '') {
       this.ngOnInit();
     }
   }
 
+  // Función para eliminar acentos
+  removeAccents(value) {
+    return value
+      .replace(/á/g, 'a')
+      .replace(/é/g, 'e')
+      .replace(/í/g, 'i')
+      .replace(/ó/g, 'o')
+  }
 }

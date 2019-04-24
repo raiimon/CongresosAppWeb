@@ -60,11 +60,20 @@ export class ListRoomComponent implements OnInit {
   search() {
     if (this.nombreSala !== '') {
       this.rooms = this.rooms.filter(search => {
-        return search.nombreSesion.toLocaleLowerCase().match(this.nombreSala.toLocaleLowerCase());
+        return this.removeAccents(search.nombreSala.toLocaleLowerCase()).match(this.removeAccents(this.nombreSala.toLocaleLowerCase()));
       });
     } else if (this.nombreSala === '') {
       this.ngOnInit();
     }
+  }
+
+  // Función para eliminar acentos
+  removeAccents(value) {
+    return value
+      .replace(/á/g, 'a')
+      .replace(/é/g, 'e')
+      .replace(/í/g, 'i')
+      .replace(/ó/g, 'o')
   }
 
 }
