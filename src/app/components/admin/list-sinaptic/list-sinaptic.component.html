@@ -1,52 +1,4 @@
 <app-navbar></app-navbar>
-<!--
-<section class="row mt-5">
-  <div class="col">
-    <h1>Sinápticos Disponibles</h1>
-    <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalSinaptics">Nuevo Sináptico</button>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Sinaptico</th>
-        <th scope="col">Descripcion</th>
-        <th scope="col">URL IMAGEN</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let sinaptic of sinaptics; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{sinaptic.nombreSinaptico}}</td>
-        <td>{{sinaptic.descripcionSinaptico}}</td>
-        <td>{{sinaptic.imgSinaptico}}</td>
-
-        <td *ngIf="sinaptic.userUid == userUid || isAdmin == true; else noOwner">
-          <button class="btn btn-primary" (click)="onPreUpdateCongress(sinaptic)" data-toggle="modal" data-target="#modalSinaptics">Update</button><!-- Cargamos el modal para poder verlo y actualizar 
-        </td>
-
-        <ng-template #noOwner>
-          <td>
-            <button class="btn btn-secondary" (click)="onPreUpdateCongress(sinaptic)" disabled="true">Update</button>
-          </td>
-        </ng-template>
-
-        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón 
-          <button class="btn btn-danger" (click)="onDeleteCongress(sinaptic.idSinaptico)">Delete</button>
-        </td>
-
-        <!-- Cualquier usuario que no sea admin, no podrá usar este botón 
-        <ng-template #noAdmin>
-          <td>
-            <button class="btn btn-danger" (click)="onDeleteCongress(sinaptic.idSinaptico)" disabled="true">Delete</button>
-          </td>
-        </ng-template>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
--->
 <link rel="stylesheet" href="assets/css/stylesSi.min.css">
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
@@ -70,22 +22,34 @@
                     <tr>
                         <th>Sináptico</th>
                         <th><strong>Descripción</strong></th>
-                        <th>URL Imagen</th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button">Nuevo&nbsp;Sinápticos</button></th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalSinaptics">Nuevo&nbsp;Sinápticos</button></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
-                        <td id="botones" style="color:rgba(33,37,41,0);"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
-                    </tr>
-                    <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 2</td>
-                        <td>Cell 4</td>
-                        <td class="justify-content-between" id="botones2"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    <tr *ngFor="let sinaptic of sinaptics">
+                      <td>{{sinaptic.nombreSinaptico}}</td>
+                      <td>{{sinaptic.descripcionSinaptico}}</td>
+                        <td id="botones" style="color:rgba(33,37,41,0);">
+
+                          <div *ngIf="sinaptic.userUid == userUid || isAdmin == true; else noOwner">
+                            <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(sinaptic)" data-toggle="modal" data-target="#modalSinaptics">Actualizar</button>
+                          </div>
+
+
+                          <ng-template #noOwner>
+                            <button class="btn btn-secondary" (click)="onPreUpdateCongress(sinaptic)" disabled="true">Actualizar</button>
+                          </ng-template>
+
+
+                          <div *ngIf="isAdmin == true; else noAdmin">
+                            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(sinaptic.idSinaptico)">Borrar</button>
+                          </div>
+
+
+                          <ng-template #noAdmin>
+                            <button class="btn btn-danger" type="button" (click)="onDeleteCongress(sinaptic.idSinaptico)" disabled="true">Borrar</button>
+                          </ng-template>
+                        </td>
                     </tr>
                 </tbody>
             </table>
