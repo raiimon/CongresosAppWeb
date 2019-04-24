@@ -4,50 +4,54 @@
 
     <div id="promo">
         <div class="jumbotron">
-            <h1>Sinápticos</h1>
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <h1>Sinópticos</h1>
+            <p>En esta sección, usted podrá añadir editar o eliminar un sinóptico.</p>
             <p></p>
         </div>
     </div>
     <div id="promo2">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text" style="background-color:rgb(174,180,186);"><i class="fa fa-search"></i></span></div><input class="form-control" type="text" placeholder="Buscar..">
-                <div class="input-group-append"><button class="btn btn-light" type="button" style="background-color:rgb(128,132,136);">Buscar</button></div>
-            </div>
-        </form>
+      <form class="search-form">
+        <div class="input-group">
+          <div class="input-group-prepend">
+                  <span class="input-group-text" style="background-color:rgb(174,180,186);">
+                    <i class="fa fa-search"></i>
+                  </span>
+          </div>
+          <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSinoptico" (input)="search()" placeholder="Busque por la sala"><!-- Arreglar para que se quede más centrado -->
+        </div>
+      </form>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Sináptico</th>
+                        <th>Sinópticos</th>
                         <th><strong>Descripción</strong></th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalSinaptics">Nuevo&nbsp;Sinápticos</button></th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalSinaptics">Nuevo&nbsp;Sinóptico</button></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let sinaptic of sinaptics">
-                      <td>{{sinaptic.nombreSinaptico}}</td>
-                      <td>{{sinaptic.descripcionSinaptico}}</td>
+                    <tr *ngFor="let sinoptic of sinaptics">
+                      <td>{{sinoptic.nombreSinaptico}}</td>
+                      <td>{{sinoptic.descripcionSinaptico}}</td>
                         <td id="botones" style="color:rgba(33,37,41,0);">
 
-                          <div *ngIf="sinaptic.userUid == userUid || isAdmin == true; else noOwner">
-                            <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(sinaptic)" data-toggle="modal" data-target="#modalSinaptics">Actualizar</button>
+                          <div *ngIf="sinoptic.userUid == userUid || isAdmin == true; else noOwner">
+                            <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(sinoptic)" data-toggle="modal" data-target="#modalSinaptics">Actualizar</button>
                           </div>
 
 
                           <ng-template #noOwner>
-                            <button class="btn btn-secondary" (click)="onPreUpdateCongress(sinaptic)" disabled="true">Actualizar</button>
+                            <button class="btn btn-secondary" (click)="onPreUpdateCongress(sinoptic)" disabled="true">Actualizar</button>
                           </ng-template>
 
 
                           <div *ngIf="isAdmin == true; else noAdmin">
-                            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(sinaptic.idSinaptico)">Borrar</button>
+                            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(sinoptic.idSinaptico)">Borrar</button>
                           </div>
 
 
                           <ng-template #noAdmin>
-                            <button class="btn btn-danger" type="button" (click)="onDeleteCongress(sinaptic.idSinaptico)" disabled="true">Borrar</button>
+                            <button class="btn btn-danger" type="button" (click)="onDeleteCongress(sinoptic.idSinaptico)" disabled="true">Borrar</button>
                           </ng-template>
                         </td>
                     </tr>

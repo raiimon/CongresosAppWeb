@@ -6,12 +6,17 @@
             <p>En este apartado, usted puede añadir, actualizar o eliminar los congresos que usted tenga almacenados.</p>
             <p></p>
         </div>
+
     </div>
     <div id="promo2">
         <form class="search-form">
             <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text" style="background-color:rgb(174,180,186);"><i class="fa fa-search"></i></span></div><input class="form-control" type="text" placeholder="Busque un congreso">
-                <div class="input-group-append"><button class="btn btn-light" type="button" style="background-color:rgb(128,132,136);">Buscar</button></div>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="background-color:rgb(174,180,186);">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+                <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreCongreso" (input)="search()" placeholder="Busque un congreso"><!-- Arreglar para que se quede más centrado -->
             </div>
         </form>
         <div class="table-responsive">
@@ -56,5 +61,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/scriptcon.min.js"></script>
+
+
+
 
 <app-modal [userUid]="userUid"></app-modal>

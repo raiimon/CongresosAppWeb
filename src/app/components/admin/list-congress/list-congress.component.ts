@@ -14,6 +14,7 @@ export class ListCongressComponent implements OnInit {
   constructor(private dataApi: CongresoApiService, private authService: AuthService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private congress: CongresoInterface[];
+  private nombreCongreso: string;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -53,6 +54,16 @@ export class ListCongressComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedCongreso = Object.assign({}, congres);
+  }
+
+  search() {
+    if (this.nombreCongreso !== '') {
+      this.congress = this.congress.filter(search => {
+        return search.nombreCongreso.toLocaleLowerCase().match(this.nombreCongreso.toLocaleLowerCase());
+      });
+    } else if (this.nombreCongreso === '') {
+      this.ngOnInit();
+    }
   }
 
 }

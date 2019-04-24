@@ -15,6 +15,7 @@ export class ListGuestComponent implements OnInit {
   constructor(private dataApi: InvitadoApiService, private authService: AuthService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private guests: InvitadoInterface[];
+  private nombre: string;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -54,6 +55,16 @@ export class ListGuestComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedInvitado = Object.assign({}, congres);
+  }
+
+  search() {
+    if (this.nombre !== '') {
+      this.guests = this.guests.filter(search => {
+        return search.nombre.toLocaleLowerCase().match(this.nombre.toLocaleLowerCase());
+      });
+    } else if (this.nombre === '') {
+      this.ngOnInit();
+    }
   }
 
 

@@ -14,6 +14,8 @@ export class ListRoomComponent implements OnInit {
   constructor(private dataApi: SalaApiService, private authService: AuthService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private rooms: SalaInterface[];
+  private nombreSala: string;
+
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -53,6 +55,16 @@ export class ListRoomComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedSala = Object.assign({}, congres);
+  }
+
+  search() {
+    if (this.nombreSala !== '') {
+      this.rooms = this.rooms.filter(search => {
+        return search.nombreSesion.toLocaleLowerCase().match(this.nombreSala.toLocaleLowerCase());
+      });
+    } else if (this.nombreSala === '') {
+      this.ngOnInit();
+    }
   }
 
 }

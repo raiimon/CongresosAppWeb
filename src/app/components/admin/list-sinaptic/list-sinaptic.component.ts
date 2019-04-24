@@ -14,6 +14,7 @@ export class ListSinapticComponent implements OnInit {
   constructor(private dataApi: SinapticoApiService, private authService: AuthService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private sinaptics: SinapticoInterface[];
+  private nombreSinoptico: string;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -53,6 +54,16 @@ export class ListSinapticComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedSinaptic = Object.assign({}, congres);
+  }
+
+  search() {
+    if (this.nombreSinoptico !== '') {
+      this.sinaptics = this.sinaptics.filter(search => {
+        return search.nombreSinaptico.toLocaleLowerCase().match(this.nombreSinoptico.toLocaleLowerCase());
+      });
+    } else if (this.nombreSinoptico === '') {
+      this.ngOnInit();
+    }
   }
 
 }

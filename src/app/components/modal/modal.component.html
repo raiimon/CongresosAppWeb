@@ -74,7 +74,7 @@
 
           <div class="form-group">
             <label for="dni" class="col-form-label">DNI (Documento Nacional de Identidad)</label>
-            <input type="text" class="form-control" name="dni" [(ngModel)]="this.dataGuest.selectedInvitado.dni" placeholder="30 Enfermeras..."> <!-- Para cuando realicemos un update -->
+            <input type="text" class="form-control" name="dni" [(ngModel)]="this.dataGuest.selectedInvitado.dni" placeholder="XXXXXXXX-[A-Z]"> <!-- Para cuando realicemos un update -->
           </div>
 
           <div class="form-row">
@@ -187,7 +187,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="tituloModalSinoptico">
-          {{ !this.sinaptic.selectedSinaptic.idSinaptico ? 'Nuevo Sináptico' : 'Actualizar Sináptico'}}
+          {{ !this.sinaptic.selectedSinaptic.idSinaptico ? 'Nuevo Sinóptico' : 'Actualizar Sinóptico'}}
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -201,8 +201,8 @@
           <input type="hidden" name="userUid" [value]="userUid">
 
           <div class="form-group">
-            <label for="nombreSinaptico" class="col-form-label">Nombre del Sináptico</label>
-            <input type="text" class="form-control" name="nombreSinaptico" [(ngModel)]="this.sinaptic.selectedSinaptic.nombreSinaptico" placeholder="Programa Sináptico 30 Enfermeras">
+            <label for="nombreSinaptico" class="col-form-label">Nombre del Sinóptico</label>
+            <input type="text" class="form-control" name="nombreSinaptico" [(ngModel)]="this.sinaptic.selectedSinaptic.nombreSinaptico" placeholder="Programa Sinóptico 30 Enfermeras">
           </div>
 
           <div class="form-group">
@@ -214,7 +214,7 @@
           <div class="input-group">
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="subirImagenSinoptico($event)" >
-              <label class="custom-file-label" for="inputGroupFile01">Sube el sináptico</label>
+              <label class="custom-file-label" for="inputGroupFile01">Subir imagen</label>
             </div>
           </div>
           <br>
@@ -227,12 +227,12 @@
 
 
           <ng-template #btnDisable>
-            <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Guardar Sináptico</button>
+            <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Guardar Sinóptico</button>
           </ng-template>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseSinaptic>Cerrar</button>
-            <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Sináptico</button>
+            <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Sinóptico</button>
           </div>
 
         </form>
