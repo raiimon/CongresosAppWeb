@@ -15,7 +15,7 @@
                     <i class="fa fa-search"></i>
                   </span>
           </div>
-          <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombre" (input)="search()" placeholder="Busque un invitado"><!-- Arreglar para que se quede más centrado -->
+          <input class="form-control" type="text" name="busqueda" [(ngModel)]="filterGuest" placeholder="Busque un invitado"><!-- Arreglar para que se quede más centrado -->
         </div>
       </form>
         <div class="table-responsive">
@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let guest of guests">
+                    <tr *ngFor="let guest of guests | filterGuest: filterGuest">
                       <td>{{guest.nombre}}</td>
                       <td>{{guest.apellidos}}</td>
                       <td>{{guest.dni}}</td>

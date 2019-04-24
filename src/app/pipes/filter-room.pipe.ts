@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'filterRoom'
 })
-export class FilterPipe implements PipeTransform {
+export class FilterRoomPipe implements PipeTransform {
 
   transform(value: any, arg: any): any {
+
     // Condicional que comprueba que el valor, tenga 2 carácteres mínimo.
     if (arg === '' || arg.length < 2) {
       return value;
@@ -13,7 +14,7 @@ export class FilterPipe implements PipeTransform {
       const resultPosts = [];
 
       for (const post of value) {
-        if (this.removeAccents(post.nombreCongreso.toLocaleLowerCase()).indexOf(this.removeAccents(arg.toLowerCase())) > -1) {
+        if (this.removeAccents(post.nombreSala.toLocaleLowerCase()).indexOf(this.removeAccents(arg.toLowerCase())) > -1) {
           resultPosts.push(post);
         }
       }
@@ -29,4 +30,5 @@ export class FilterPipe implements PipeTransform {
       .replace(/í/g, 'i')
       .replace(/ó/g, 'o')
   }
+
 }

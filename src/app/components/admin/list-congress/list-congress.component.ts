@@ -13,37 +13,9 @@ export class ListCongressComponent implements OnInit {
   constructor(public dataApi: CongresoApiService, public authService: AuthService) {
   }
 
-  posts = [
-    {
-      "id": 1,
-      "title": "Post One",
-      "date": "02/04/2019"
-    },
-    {
-      "id": 2,
-      "title": "Post Two",
-      "date": "11/04/2019"
-    },
-    {
-      "id": 3,
-      "title": "asdd Three",
-      "date": "30/01/2019"
-    },
-    {
-      "id": 4,
-      "title": "Postater Four",
-      "date": "30/05/2019"
-    },
-    {
-      "id": 5,
-      "title": "Posterter Five",
-      "date": "30/04/2019"
-    }
-  ];
-
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];
-  filterPost = '';
+  filterCongress = '';
 
   // Usuarios de los roles.
   public isAdmin: any = null;

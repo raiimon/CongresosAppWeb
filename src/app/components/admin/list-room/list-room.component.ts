@@ -15,7 +15,7 @@ export class ListRoomComponent implements OnInit {
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private rooms: SalaInterface[];
   private nombreSala: string;
-
+  nombreSalaFiltro = '';
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -56,24 +56,4 @@ export class ListRoomComponent implements OnInit {
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedSala = Object.assign({}, congres);
   }
-
-  search() {
-    if (this.nombreSala !== '') {
-      this.rooms = this.rooms.filter(search => {
-        return this.removeAccents(search.nombreSala.toLocaleLowerCase()).match(this.removeAccents(this.nombreSala.toLocaleLowerCase()));
-      });
-    } else if (this.nombreSala === '') {
-      this.ngOnInit();
-    }
-  }
-
-  // Función para eliminar acentos
-  removeAccents(value) {
-    return value
-      .replace(/á/g, 'a')
-      .replace(/é/g, 'e')
-      .replace(/í/g, 'i')
-      .replace(/ó/g, 'o')
-  }
-
 }

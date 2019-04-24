@@ -16,7 +16,7 @@
                     <i class="fa fa-search"></i>
                   </span>
                 </div>
-                <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterPost"  autocomplete="off" placeholder="Busque un congreso"><!-- Arreglar para que se quede más centrado -->
+                <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress"  autocomplete="off" placeholder="Busque un congreso"><!-- Arreglar para que se quede más centrado -->
             </div>
         </form>
         <div class="table-responsive">
@@ -29,9 +29,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let post of congress | filter:filterPost">
-                        <td>{{post.nombreCongreso}}</td>
-                        <td>{{post.nombreCongreso}}</td>
+                    <tr *ngFor="let congres of congress | filterCongress:filterCongress">
+                        <td>{{congres.nombreCongreso}}</td>
+                        <td>{{congres.direccion}}</td>
+
+                      <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
+
+                        <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
+                          <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">Actualizar</button>
+                        </div>
+
+
+                        <ng-template #noOwner>
+                          <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true">Actualizar</button>
+                        </ng-template>
+
+
+                        <div *ngIf="isAdmin == true; else noAdmin">
+                          <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(congres.idCongreso)">Borrar</button>
+                        </div>
+
+
+                        <ng-template #noAdmin>
+                          <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true">Delete</button>
+                        </ng-template>
+
+                      </td>
                     </tr>
                 </tbody>
             </table>

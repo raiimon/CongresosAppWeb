@@ -17,7 +17,7 @@
                     <i class="fa fa-search"></i>
                   </span>
           </div>
-          <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSinoptico" (input)="search()" placeholder="Busque por la sala"><!-- Arreglar para que se quede más centrado -->
+          <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSinopticoFiltro" placeholder="Busque por la sala"><!-- Arreglar para que se quede más centrado -->
         </div>
       </form>
         <div class="table-responsive">
@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let sinoptic of sinaptics">
+                    <tr *ngFor="let sinoptic of sinaptics | filterSinaptic:nombreSinopticoFiltro">
                       <td>{{sinoptic.nombreSinaptico}}</td>
                       <td>{{sinoptic.descripcionSinaptico}}</td>
                         <td id="botones" style="color:rgba(33,37,41,0);">

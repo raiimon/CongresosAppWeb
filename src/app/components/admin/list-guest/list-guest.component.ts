@@ -16,6 +16,7 @@ export class ListGuestComponent implements OnInit {
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private guests: InvitadoInterface[];
   private nombre: string;
+  private filterGuest = '';
 
   // Usuarios de los roles.
   public isAdmin: any = null;

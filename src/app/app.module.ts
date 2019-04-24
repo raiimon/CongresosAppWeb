@@ -43,7 +43,10 @@ import { ControlComponent } from './components/control/control.component';
 import { CheckComponent } from './components/check/check.component';
 
 // Importamos nuestro filtro personalizado.
-import { FilterPipe } from './pipes/filter.pipe';
+import { FilterCongressPipe } from './pipes/filter-congress.pipe';
+import { FilterGuestPipe } from './pipes/filter-guest.pipe';
+import { FilterRoomPipe } from './pipes/filter-room.pipe';
+import { FilterSinapticPipe } from './pipes/filter-sinaptic.pipe';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     SinapticComponent,
     ListSinapticComponent,
     CheckComponent,
-    FilterPipe
+    FilterCongressPipe,
+    FilterGuestPipe,
+    FilterRoomPipe,
+    FilterSinapticPipe
   ],
   imports: [
     DayPilotModule,
