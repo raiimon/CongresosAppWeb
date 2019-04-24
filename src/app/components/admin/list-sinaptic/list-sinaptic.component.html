@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-
+<!--
 <section class="row mt-5">
   <div class="col">
     <h1>Sinápticos Disponibles</h1>
@@ -22,7 +22,7 @@
         <td>{{sinaptic.imgSinaptico}}</td>
 
         <td *ngIf="sinaptic.userUid == userUid || isAdmin == true; else noOwner">
-          <button class="btn btn-primary" (click)="onPreUpdateCongress(sinaptic)" data-toggle="modal" data-target="#modalSinaptics">Update</button><!-- Cargamos el modal para poder verlo y actualizar -->
+          <button class="btn btn-primary" (click)="onPreUpdateCongress(sinaptic)" data-toggle="modal" data-target="#modalSinaptics">Update</button><!-- Cargamos el modal para poder verlo y actualizar 
         </td>
 
         <ng-template #noOwner>
@@ -31,11 +31,11 @@
           </td>
         </ng-template>
 
-        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón -->
+        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón 
           <button class="btn btn-danger" (click)="onDeleteCongress(sinaptic.idSinaptico)">Delete</button>
         </td>
 
-        <!-- Cualquier usuario que no sea admin, no podrá usar este botón -->
+        <!-- Cualquier usuario que no sea admin, no podrá usar este botón 
         <ng-template #noAdmin>
           <td>
             <button class="btn btn-danger" (click)="onDeleteCongress(sinaptic.idSinaptico)" disabled="true">Delete</button>
@@ -46,4 +46,53 @@
     </table>
   </div>
 </section>
+-->
+<link rel="stylesheet" href="assets/css/stylesSi.min.css">
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
+    <div id="promo">
+        <div class="jumbotron">
+            <h1>Sinápticos</h1>
+            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <p></p>
+        </div>
+    </div>
+    <div id="promo2">
+        <form class="search-form">
+            <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text" style="background-color:rgb(174,180,186);"><i class="fa fa-search"></i></span></div><input class="form-control" type="text" placeholder="Buscar..">
+                <div class="input-group-append"><button class="btn btn-light" type="button" style="background-color:rgb(128,132,136);">Buscar</button></div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sináptico</th>
+                        <th><strong>Descripción</strong></th>
+                        <th>URL Imagen</th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button">Nuevo&nbsp;Sinápticos</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        <td>Cell 2</td>
+                        <td id="botones" style="color:rgba(33,37,41,0);"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Cell 3</td>
+                        <td>Cell 2</td>
+                        <td>Cell 4</td>
+                        <td class="justify-content-between" id="botones2"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scriptSi.min.js"></script>
+
 <app-modal [userUid]="userUid"></app-modal>
