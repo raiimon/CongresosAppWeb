@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {CongresoApiService} from '../../../services/congreso-api.service';
@@ -10,13 +10,40 @@ import {CongresoApiService} from '../../../services/congreso-api.service';
 })
 export class ListCongressComponent implements OnInit {
 
-
-  constructor(private dataApi: CongresoApiService, private authService: AuthService) {
+  constructor(public dataApi: CongresoApiService, public authService: AuthService) {
   }
 
+  posts = [
+    {
+      "id": 1,
+      "title": "Post One",
+      "date": "02/04/2019"
+    },
+    {
+      "id": 2,
+      "title": "Post Two",
+      "date": "11/04/2019"
+    },
+    {
+      "id": 3,
+      "title": "asdd Three",
+      "date": "30/01/2019"
+    },
+    {
+      "id": 4,
+      "title": "Postater Four",
+      "date": "30/05/2019"
+    },
+    {
+      "id": 5,
+      "title": "Posterter Five",
+      "date": "30/04/2019"
+    }
+  ];
+
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
-  private congress: CongresoInterface[];
-  private nombreCongreso: string;
+  public congress: CongresoInterface[];
+  filterPost = '';
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -56,24 +83,5 @@ export class ListCongressComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedCongreso = Object.assign({}, congres);
-  }
-
-  search() {
-    if (this.nombreCongreso !== '') {
-      this.congress = this.congress.filter(search => {
-        return this.removeAccents(search.nombreCongreso.toLocaleLowerCase()).match(this.removeAccents(this.nombreCongreso.toLocaleLowerCase()));
-      });
-    } else if (this.nombreCongreso === '') {
-      this.ngOnInit();
-    }
-  }
-
-  // Función para eliminar acentos
-  removeAccents(value) {
-    return value
-      .replace(/á/g, 'a')
-      .replace(/é/g, 'e')
-      .replace(/í/g, 'i')
-      .replace(/ó/g, 'o')
   }
 }

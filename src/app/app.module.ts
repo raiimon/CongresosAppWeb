@@ -12,12 +12,10 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { Page404Component } from './components/page404/page404.component';
 
 // Chart
-// @ts-ignore
 import { ChartsModule } from 'ng2-charts';
 
 // Módulo de formularios.
 import {FormsModule} from '@angular/forms';
-
 
 // Importar API Firebase.
 import {environment} from '../environments/environment';
@@ -44,6 +42,9 @@ import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sin
 import { ControlComponent } from './components/control/control.component';
 import { CheckComponent } from './components/check/check.component';
 
+// Importamos nuestro filtro personalizado.
+import { FilterPipe } from './pipes/filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,8 @@ import { CheckComponent } from './components/check/check.component';
     ListRoomComponent,
     SinapticComponent,
     ListSinapticComponent,
-    CheckComponent
+    CheckComponent,
+    FilterPipe
   ],
   imports: [
     DayPilotModule,

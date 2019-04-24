@@ -56,25 +56,4 @@ export class ListGuestComponent implements OnInit {
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedInvitado = Object.assign({}, congres);
   }
-
-  search() {
-    if (this.nombre !== '') {
-      this.guests = this.guests.filter(search => {
-        return this.removeAccents(search.nombre.toLocaleLowerCase()).match(this.removeAccents(this.nombre.toLocaleLowerCase()));
-      });
-    } else if (this.nombre === '') {
-      this.ngOnInit();
-    }
-  }
-
-  // Función para eliminar acentos
-  removeAccents(value) {
-    return value
-      .replace(/á/g, 'a')
-      .replace(/é/g, 'e')
-      .replace(/í/g, 'i')
-      .replace(/ó/g, 'o')
-  }
-
-
 }
