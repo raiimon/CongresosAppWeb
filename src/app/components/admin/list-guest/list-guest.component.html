@@ -1,71 +1,16 @@
 <app-navbar></app-navbar>
-<!--
-<section class="row mt-5">
-  <h1>Invitados Disponibles</h1>
-  <div class="col">
-    <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellidos</th>
-        <th scope="col">DNI</th>
-        <th scope="col">Teléfono</th>
-        <th scope="col">Correo</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let guest of guests; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{guest.nombre}}</td>
-        <td>{{guest.apellidos}}</td>
-        <td>{{guest.dni}}</td>
-        <td>{{guest.telefono}}</td>
-        <td>{{guest.correo}}</td>
-
-
-        <td *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
-          <button class="btn btn-primary" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest">Update</button><!-- Cargamos el modal para poder verlo y actualizar 
-        </td>
-
-        <ng-template #noOwner>
-          <td>
-            <button class="btn btn-secondary" (click)="onPreUpdateCongress(guest)" disabled="true">Update</button>
-          </td>
-        </ng-template>
-
-        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón 
-          <button class="btn btn-danger" (click)="onDeleteCongress(guest.idInvitado)">Delete</button>
-        </td>
-
-        <!-- Cualquier usuario que no sea admin, no podrá usar este botón 
-        <ng-template #noAdmin>
-          <td>
-            <button class="btn btn-danger" (click)="onDeleteCongress(guest.idInvitado)" disabled="true">Delete</button>
-          </td>
-        </ng-template>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
--->
-
 <link rel="stylesheet" href="assets/css/stylesIn.min.css">
     <div id="promo">
         <div class="jumbotron">
             <h1>Invitados</h1>
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <p>En esta sección usted puede añadir, actualizar o eliminar los invitados que asistirán al congreso.</p>
             <p></p>
         </div>
     </div>
     <div id="promo2">
         <form class="search-form">
             <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text" style="background-color:rgb(174,180,186);"><i class="fa fa-search"></i></span></div><input class="form-control" type="text" placeholder="I am looking for..">
+                <div class="input-group-prepend"><span class="input-group-text" style="background-color:rgb(174,180,186);"><i class="fa fa-search"></i></span></div><input class="form-control" type="text" placeholder="Busque un invitado...">
                 <div class="input-group-append"><button class="btn btn-light" type="button" style="background-color:rgb(128,132,136);">Buscar</button></div>
             </div>
         </form>
@@ -78,25 +23,38 @@
                         <th>Dni</th>
                         <th>Teléfono</th>
                         <th>Correo</th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button">Nuevo Invitado</button></th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
-                    </tr>
-                    <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 2</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td class="justify-content-between" id="botones2"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    <tr *ngFor="let guest of guests">
+                      <td>{{guest.nombre}}</td>
+                      <td>{{guest.apellidos}}</td>
+                      <td>{{guest.dni}}</td>
+                      <td>{{guest.telefono}}</td>
+                      <td>{{guest.correo}}</td>
+                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
+
+                          <div *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
+                            <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest">Actualizar</button>
+                          </div>
+
+
+                            <ng-template #noOwner>
+                              <button class="btn btn-secondary" (click)="onPreUpdateCongress(guest)" disabled="true">Actualizar</button>
+                            </ng-template>
+
+
+                          <div *ngIf="isAdmin == true; else noAdmin">
+                            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(guest.idInvitado)">Borrar</button>
+                          </div>
+
+
+                            <ng-template #noAdmin>
+                            <button class="btn btn-danger" type="button" (click)="onDeleteCongress(guest.idInvitado)" disabled="true">Delete</button>
+                            </ng-template>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>

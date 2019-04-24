@@ -11,6 +11,10 @@ import { ProfileComponent } from './components/users/profile/profile.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
 
+// Chart
+// @ts-ignore
+import { ChartsModule } from 'ng2-charts';
+
 // Módulo de formularios.
 import {FormsModule} from '@angular/forms';
 
@@ -26,6 +30,10 @@ import {AngularFireAuth} from '@angular/fire/auth';
 // Importar el FileStorage para las imagenes.
 import { AngularFireStorageModule} from '@angular/fire/storage';
 
+// Importamos las librerías necesarias para el calendario.
+import {DayPilotModule} from 'daypilot-pro-angular';
+
+
 // Importamos otro modulos...
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ListCongressComponent } from './components/admin/list-congress/list-congress.component';
@@ -33,6 +41,8 @@ import { ListGuestComponent } from './components/admin/list-guest/list-guest.com
 import { ListRoomComponent } from './components/admin/list-room/list-room.component';
 import { SinapticComponent } from './components/sinaptic/sinaptic.component';
 import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sinaptic.component';
+import { ControlComponent } from './components/control/control.component';
+import { CheckComponent } from './components/check/check.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +50,7 @@ import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sin
     HomeComponent,
     ModalComponent,
     NavbarComponent,
+    ControlComponent,
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
@@ -48,10 +59,13 @@ import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sin
     ListGuestComponent,
     ListRoomComponent,
     SinapticComponent,
-    ListSinapticComponent
+    ListSinapticComponent,
+    CheckComponent
   ],
   imports: [
+    DayPilotModule,
     BrowserModule,
+    ChartsModule,
     AppRoutingModule,
     FormsModule, // Importamos el módulos de los formularios.
     AngularFireStorageModule, // Importamos en el app 'AngularFireStorageModule' para la subida de imágenes.

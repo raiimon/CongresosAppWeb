@@ -14,6 +14,8 @@ import {ListGuestComponent} from './components/admin/list-guest/list-guest.compo
 import {ListRoomComponent} from './components/admin/list-room/list-room.component';
 import {ListSinapticComponent} from './components/admin/list-sinaptic/list-sinaptic.component';
 import {SinapticComponent} from './components/sinaptic/sinaptic.component';
+import {ControlComponent} from './components/control/control.component';
+import {CheckComponent} from './components/check/check.component';
 
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
@@ -22,10 +24,12 @@ const routes: Routes = [
   { path: '', component: SinapticComponent, canActivate: [AuthGuard]},
   { path: 'admin/list-congress', component: ListCongressComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },
+  { path: 'check', component: CheckComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-room', component: ListRoomComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-sinaptic', component: ListSinapticComponent, canActivate: [AuthGuard] },
   { path: 'home', component: ListSinapticComponent, canActivate: [AuthGuard] },
   { path: 'sinaptic', component: SinapticComponent, canActivate: [AuthGuard] },
+  { path: 'control', component: ControlComponent, canActivate: [AuthGuard] },
   { path: 'user/login', component: LoginComponent },
   { path: 'user/register', component: RegisterComponent },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},

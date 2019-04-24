@@ -1,66 +1,11 @@
 <app-navbar></app-navbar>
-<!--
-<section class="row mt-5">
-  <div class="col">
-    <h1>Salas Disponibles</h1>
-    <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalRoom">Nueva Sala</button>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre Sala</th>
-        <th scope="col">Fecha Congreso</th>
-        <th scope="col">Nombre Congreso</th>
-        <th scope="col">Nombre Sesión</th>
-        <th scope="col">Fecha Inicio Evento</th>
-        <th scope="col">Fecha Finalización Evento</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let room of rooms; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{room.nombreSala}}</td>
-        <td>{{room.fechaCongreso}}</td>
-        <td>{{room.nombreCongreso}}</td>
-        <td>{{room.nombreSesion}}</td>
-        <td>{{room.fechaInicioEvento}}</td>
-        <td>{{room.fechaFinalizacionEvento}}</td>
-
-        <td *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
-          <button class="btn btn-primary" (click)="onPreUpdateCongress(room)" data-toggle="modal" data-target="#modalRoom">Update</button><!-- Cargamos el modal para poder verlo y actualizar 
-        </td>
-
-        <ng-template #noOwner>
-          <td>
-            <button class="btn btn-secondary" (click)="onPreUpdateCongress(room)" disabled="true">Update</button>
-          </td>
-        </ng-template>
-
-        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón 
-          <button class="btn btn-danger" (click)="onDeleteCongress(room.idSala)">Delete</button>
-        </td>
-
-        <!-- Cualquier usuario que no sea admin, no podrá usar este botón 
-        <ng-template #noAdmin>
-          <td>
-            <button class="btn btn-danger" (click)="onDeleteCongress(room.idSala)" disabled="true">Delete</button>
-          </td>
-        </ng-template>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
--->
 <link rel="stylesheet" href="assets/css/stylesSal.min.css">
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
     <div id="promo">
         <div class="jumbotron">
             <h1>Salas</h1>
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <p>En esta sección usted puede añadir, actualizar o eliminar las salas del congreso en croncreto.</p>
             <p></p>
         </div>
     </div>
@@ -81,27 +26,38 @@
                         <th>Nombre Sessión</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Final</th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button" id="new">Nueva Sala</button></th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button" id="new" data-toggle="modal" data-target="#modalRoom">Nueva Sala</button></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td>Cell 6</td>
-                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
-                    </tr>
-                    <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 2</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td>Cell 6</td>
-                        <td class="justify-content-between" id="botones2"><button class="btn btn-primary" type="button">Actualizar</button><button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);">Borrar</button></td>
+                    <tr *ngFor="let room of rooms">
+                      <td>{{room.nombreSala}}</td>
+                      <td>{{room.fechaCongreso}}</td>
+                      <td>{{room.nombreCongreso}}</td>
+                      <td>{{room.nombreSesion}}</td>
+                      <td>{{room.fechaInicioEvento}}</td>
+                      <td>{{room.fechaFinalizacionEvento}}</td>
+                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
+
+                          <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
+                            <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(room)" data-toggle="modal" data-target="#modalRoom">Actualizar</button>
+                          </div>
+
+
+                          <ng-template #noOwner>
+                            <button class="btn btn-secondary" (click)="onPreUpdateCongress(room)" disabled="true">Actualizar</button>
+                          </ng-template>
+
+
+                          <div *ngIf="isAdmin == true; else noAdmin">
+                            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(room.idSala)">Borrar</button>
+                          </div>
+
+
+                          <ng-template #noAdmin>
+                            <button class="btn btn-danger" type="button" (click)="onDeleteCongress(room.idSala)" disabled="true">Borrar</button>
+                          </ng-template>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -15,7 +15,6 @@ import {AngularFireStorage} from '@angular/fire/storage';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  private selectedStatus: any;
 
   constructor(private storage: AngularFireStorage,
               private dataCongress: CongresoApiService,
@@ -131,7 +130,12 @@ export class ModalComponent implements OnInit {
 
     // Limpiamos el formulario.
     congressForm.resetForm();
+
+    // Eventos de cerrar el botón cuando guarde.
     this.btnCloseCongreso.nativeElement.click();
+    this.btnCloseInvitado.nativeElement.click();
+    this.btnCloseSinaptic.nativeElement.click();
+    this.btnCloseRoom.nativeElement.click();
   }
 
   subirImagenSinoptico(imagen) {
