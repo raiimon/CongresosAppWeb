@@ -1,8 +1,23 @@
-.fotoPerfil{
-  width: 30px;
-  height: 30px;
+.fotoPerfil {
+    width: 30px;
+    height: 30px;
 }
-.fotoLogo{
-  width: 30%;
-  height: 50px;
+
+.fondo {
+    background: linear-gradient(to right, rgb(60, 116, 166), rgb(73, 136, 191), rgb(86, 151, 191), rgb(113, 177, 217), rgb(133, 200, 242));
+}
+
+.baj {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5%;
+}
+
+.centro {
+    display: flex;
+    justify-content: center;
+}
+
+.colorLe {
+    color: black;
 }

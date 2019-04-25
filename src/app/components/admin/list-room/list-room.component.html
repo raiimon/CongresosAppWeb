@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
-<link rel="stylesheet" href="assets/css/stylesSal.min.css">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<section>
+    <link rel="stylesheet" href="assets/css/stylesSal.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
     <div id="promo">
         <div class="jumbotron">
@@ -10,16 +11,17 @@
         </div>
     </div>
     <div id="promo2">
-      <form class="search-form">
-        <div class="input-group">
-          <div class="input-group-prepend">
-                  <span class="input-group-text" style="background-color:rgb(174,180,186);">
+        <form class="search-form">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="background-color:rgb(174,180,186);">
                     <i class="fa fa-search"></i>
                   </span>
-          </div>
-          <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSalaFiltro" placeholder="Busque por la sala"><!-- Arreglar para que se quede más centrado -->
-        </div>
-      </form>
+                </div>
+                <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSalaFiltro" placeholder="Busque por la sala">
+                <!-- Arreglar para que se quede más centrado -->
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -35,32 +37,32 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let room of rooms | filterRoom:nombreSalaFiltro">
-                      <td>{{room.nombreSala}}</td>
-                      <td>{{room.fechaCongreso}}</td>
-                      <td>{{room.nombreCongreso}}</td>
-                      <td>{{room.nombreSesion}}</td>
-                      <td>{{room.fechaInicioEvento}}</td>
-                      <td>{{room.fechaFinalizacionEvento}}</td>
+                        <td>{{room.nombreSala}}</td>
+                        <td>{{room.fechaCongreso}}</td>
+                        <td>{{room.nombreCongreso}}</td>
+                        <td>{{room.nombreSesion}}</td>
+                        <td>{{room.fechaInicioEvento}}</td>
+                        <td>{{room.fechaFinalizacionEvento}}</td>
                         <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
 
-                          <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
-                            <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(room)" data-toggle="modal" data-target="#modalRoom">Actualizar</button>
-                          </div>
+                            <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
+                                <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(room)" data-toggle="modal" data-target="#modalRoom">Actualizar</button>
+                            </div>
 
 
-                          <ng-template #noOwner>
-                            <button class="btn btn-secondary" (click)="onPreUpdateCongress(room)" disabled="true">Actualizar</button>
-                          </ng-template>
+                            <ng-template #noOwner>
+                                <button class="btn btn-secondary" (click)="onPreUpdateCongress(room)" disabled="true">Actualizar</button>
+                            </ng-template>
 
 
-                          <div *ngIf="isAdmin == true; else noAdmin">
-                            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(room.idSala)">Borrar</button>
-                          </div>
+                            <div *ngIf="isAdmin == true; else noAdmin">
+                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(room.idSala)">Borrar</button>
+                            </div>
 
 
-                          <ng-template #noAdmin>
-                            <button class="btn btn-danger" type="button" (click)="onDeleteCongress(room.idSala)" disabled="true">Borrar</button>
-                          </ng-template>
+                            <ng-template #noAdmin>
+                                <button class="btn btn-danger" type="button" (click)="onDeleteCongress(room.idSala)" disabled="true">Borrar</button>
+                            </ng-template>
                         </td>
                     </tr>
                 </tbody>
@@ -70,4 +72,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/scriptSal.min.js"></script>
+</section>
 <app-modal [userUid]="userUid"></app-modal>
