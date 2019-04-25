@@ -1,23 +1,22 @@
 <app-navbar></app-navbar>
-<section>
-    <link rel="stylesheet" href="assets/css/stylescon.min.css">
+<link rel="stylesheet" href="assets/css/stylescon.min.css">
     <div id="promo">
         <div class="jumbotron">
             <h1>Congresos</h1>
             <p>En este apartado, usted puede añadir, actualizar o eliminar los congresos que usted tenga almacenados.</p>
             <p></p>
         </div>
+
     </div>
     <div id="promo2">
         <form class="search-form">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" style="background-color:rgb(174,180,186);">
+                  <span class="input-group-text" style="background-color:rgb(174,180,186);">
                     <i class="fa fa-search"></i>
                   </span>
                 </div>
-                <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso">
-                <!-- Arreglar para que se quede más centrado -->
+                <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress"  autocomplete="off" placeholder="Busque un congreso"><!-- Arreglar para que se quede más centrado -->
             </div>
         </form>
         <div class="table-responsive">
@@ -26,7 +25,7 @@
                     <tr>
                         <th>Nombre del Congreso</th>
                         <th>Dirección del Congreso</th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo</button></th>
+                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,27 +33,28 @@
                         <td>{{congres.nombreCongreso}}</td>
                         <td>{{congres.direccion}}</td>
 
-                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
+                      <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
 
-                            <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
-                                <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">Actualizar</button>
-                            </div>
-
-
-                            <ng-template #noOwner>
-                                <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true">Actualizar</button>
-                            </ng-template>
+                        <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
+                          <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">Actualizar</button>
+                        </div>
 
 
-                            <div *ngIf="isAdmin == true; else noAdmin">
-                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(congres.idCongreso)">Borrar</button>
-                            </div>
+                        <ng-template #noOwner>
+                          <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true">Actualizar</button>
+                        </ng-template>
 
 
-                            <ng-template #noAdmin>
-                                <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true">Delete</button>
-                            </ng-template>
-                        </td>
+                        <div *ngIf="isAdmin == true; else noAdmin">
+                          <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(congres.idCongreso)">Borrar</button>
+                        </div>
+
+
+                        <ng-template #noAdmin>
+                          <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true">Delete</button>
+                        </ng-template>
+
+                      </td>
                     </tr>
                 </tbody>
             </table>
@@ -63,6 +63,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/scriptcon.min.js"></script>
-</section>
 
 <app-modal [userUid]="userUid"></app-modal>

@@ -23,93 +23,111 @@
   </div>
 </section>
 -->
-<section>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrapPro.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/stylesPro.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+<link rel="stylesheet" href="assets/css/stylesPro.min.css">
 
-    <div id="promo">
-        <div class="jumbotron">
-            <h1>Perfil</h1>
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-            <p></p>
-        </div>
+<div id="promo">
+    <div class="jumbotron">
+        <h1>Perfil</h1>
+        <p>En esta sección, usted puede actualizar o editar su foto de perfil como la contraseña y datos personales.</p>
+        <p></p>
     </div>
-    <div id="cuarto">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
-                    <div class="card-imagia">
-                        <div class="front-imagia">
-                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                            <div class="user-imagia"><img src="assets/img/default-user.png" class="img-circle" alt=""></div>
-                            <div class="content-imagia">
-                                <h3 id="fotoPer" class="name-imagia">Foto Perfil</h3>
-                                <p id="InfoTama" class="subtitle-imagia">Tamaño maximo 20Mb</p>
-                                <p id="InfoTama2" class="subtitle-imagia">Asegurate de la foto antes de subirla</p>
+</div>
+<div id="cuarto">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
+                <div class="card-imagia">
+                    <div class="front-imagia">
+                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                        <div class="user-imagia"><img src="{{user.photoUrl}}" class="img-circle" alt=""></div>
+                        <div class="content-imagia">
+                            <h3 id="fotoPer" class="name-imagia">Foto Perfil</h3>
+                            <p id="InfoTama" class="subtitle-imagia">Tamaño maximo 20Mb</p>
+
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="subirImagenPerfil($event)" >
+                              <label class="custom-file-label" for="inputGroupFile01">Subir imagen</label>
                             </div>
-                            <div class="d-xl-flex justify-content-xl-center footer-imagia" style="height: 60px;width: 95%;"><button class="btn btn-primary d-xl-flex" type="button">Enviar</button></div>
+                          <br>
+
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'"></div>
+                          </div>
+                          <br>
+                          <input type="hidden" #imageUser [value]="urlImage | async"><!-- URL en Firebase de la imagen que se almacena -->
+
+
+                          <ng-template #btnDisable>
+                            <button type="button" disabled=true class="btn btn-primary d-xl-flex">Enviar</button>
+                          </ng-template>
+
+                        </div>
+                        <div class="d-xl-flex justify-content-xl-center footer-imagia" style="height: 60px;width: 95%;">
+                          <button *ngIf="urlImage | async; else btnDisable" type="button" class="btn btn-primary d-xl-flex" (click)="updateImageUser()">Enviar</button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card-imagia">
-                        <div class="front-imagia">
-                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                            <h3 id="Cambiar" class="name-imagia">Cambiar la contraseña</h3>
-                            <div class="input-group" id="PassWord">
-                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-lock"></i></span></div><input class="form-control" type="text">
-                                <div class="input-group-append"></div>
-                            </div>
-                            <div class="input-group" id="imput1">
-                                <div class="input-group-prepend"></div>
-                                <div class="input-group-append"></div>
-                            </div>
-                            <p id="PassWord" class="subtitle-imagia">Esegurate de que esta bien la contraseña</p>
-                            <div class="footer-imagia" style="width: 95%;"><button class="btn btn-primary" type="button">Enviar</button></div>
+            </div>
+            <div class="col">
+                <div class="card-imagia">
+                    <div class="front-imagia">
+                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                        <h3 id="Cambiar" class="name-imagia">Cambiar la contraseña</h3>
+                        <div class="input-group" id="PassWord">
+                            <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-lock"></i></span></div><input class="form-control" type="text">
+                            <div class="input-group-append"></div>
                         </div>
+                        <div class="input-group" id="imput1">
+                            <div class="input-group-prepend"></div>
+                            <div class="input-group-append"></div>
+                        </div>
+                        <p id="PassWord" class="subtitle-imagia">Comprueba que has escrito correctamente la contraseña</p>
+                        <div class="footer-imagia" style="width: 95%;"><button class="btn btn-primary" type="button">Enviar</button></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="tercero">
-        <div class="container">
-            <div class="row" id="tama">
-                <div class="col">
-                    <div id="card" class="card-imagia">
-                        <div class="front-imagia">
-                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                            <h3 id="texto2" class="name-imagia">Datos Personales</h3>
-                            <p id="InfoTama" class="subtitle-imagia">Rellena los campos para modificar tus datos personales</p>
-                            <div class="col d-flex justify-content-around">
-                                <div class="input-group" id="imputinf" style="width: 450px;">
-                                    <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-user-tie"></i></span></div><input class="form-control" type="text">
-                                    <div class="input-group-append"></div>
-                                </div>
-                                <div class="input-group" id="imputinf" style="width: 450px;">
-                                    <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-user-tie"></i></span></div><input class="form-control" type="text">
-                                    <div class="input-group-append"></div>
-                                </div>
+</div>
+<div id="tercero">
+    <div class="container">
+        <div class="row" id="tama">
+            <div class="col">
+                <div id="card" class="card-imagia">
+                    <div class="front-imagia">
+                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                        <h3 id="texto2" class="name-imagia">Datos Personales</h3>
+                        <p id="InfoTama" class="subtitle-imagia">Rellena los campos para modificar tus datos personales</p>
+                        <div class="col d-flex justify-content-around">
+                            <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-user-tie"></i></span></div><input class="form-control" type="text">
+                                <div class="input-group-append"></div>
                             </div>
-                            <div class="col d-flex justify-content-around">
-                                <div class="input-group" id="imputinf" style="width: 450px;">
-                                    <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-id-card"></i></span></div><input class="form-control" type="text">
-                                    <div class="input-group-append"></div>
-                                </div>
-                                <div class="input-group" id="imputinf" style="width: 450px;">
-                                    <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-phone"></i></span></div><input class="form-control" type="text">
-                                    <div class="input-group-append"></div>
-                                </div>
+                            <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-user-tie"></i></span></div><input class="form-control" type="text">
+                                <div class="input-group-append"></div>
                             </div>
-                            <div class="footer-imagia" style="width: 97%;"><button class="btn btn-primary" type="button">Enviar</button></div>
                         </div>
+                        <div class="col d-flex justify-content-around">
+                            <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-id-card"></i></span></div><input class="form-control" type="text">
+                                <div class="input-group-append"></div>
+                            </div>
+                            <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-phone"></i></span></div><input class="form-control" type="text">
+                                <div class="input-group-append"></div>
+                            </div>
+                        </div>
+                        <div class="footer-imagia" style="width: 97%;"><button class="btn btn-primary" type="button">Enviar</button></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="assets/js/scriptPro.min.js"></script>
-</section>
+</div>
+
+<script src="assets/js/scriptPro.min.js"></script>
