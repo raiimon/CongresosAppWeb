@@ -1,4 +1,8 @@
-.fotoPerfil{
-  width: 30px;
-  height: 30px;
+.fotoPerfil {
+    width: 30px;
+    height: 30px;
+}
+
+.fondo {
+    background: linear-gradient(to right, #db6459ce, #FF4824, #CC3A1D);
 }
