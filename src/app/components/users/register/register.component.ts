@@ -16,53 +16,19 @@ import {Observable, from} from 'rxjs';
 export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
-              private authService: AuthService,
-              private storage: AngularFireStorage)
-              { }
+              private authService: AuthService) { }
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
 
   public email: string = '';
   public password: string = '';
 
-  // Variable para cargar el porcentage de subida de una imagen.
-  uploadPercent: Observable<number>;
-
-  // Variable para obtener la url de la imagen.
-  urlImage: Observable<string>;
-
   // Traduccion de los errores de firebase
   errores: string;
   erroresEs: string = 'The email address is badly formatted.';
-  erroresE: string = 'The email address is already in use by another account.';
   vacio: string;
 
   ngOnInit() {
-  }
-
-  // Método para subir archivos.
-  onUpload(e) {
-    // Generamos una ID aleatoria para las imágenes.
-    const id = Math.random().toString(36).substring(2);
-
-    // Obtenemos por array el primer indicio de imagen (el único que hay).
-    const file = e.target.files[0];
-
-    // Ruta del fichero, donde almacenar las imágenes con 'profile_id' de ejemplo.
-    const filePath = `upload/profile_${id}`;
-
-    // Ruta de la imagen donde enviar.
-    const ref = this.storage.ref(filePath);
-
-    // Variable donde se realiza la subida del fichero y la ruta.
-    const task = this.storage.upload(filePath, file);
-
-    // Cargamos el porcentaje de carga del fichero.
-    this.uploadPercent = task.percentageChanges();
-
-    // Para obtener la ruta del fichero.
-    task.snapshotChanges().pipe( finalize(() => this.urlImage = ref.getDownloadURL()))
-      .subscribe();
   }
 
   // Método para añadir usuario a Firebase.
@@ -75,7 +41,7 @@ export class RegisterComponent implements OnInit {
               displayName: '',
               photoURL: this.inputImageUser.nativeElement.value
             }).then( () => {
-              this.router.navigate(['sinaptic']);
+              this.router.navigate(['home']);
             }).catch((error) => {
             });
           }
