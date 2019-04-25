@@ -7,7 +7,6 @@ import { AngularFireStorage } from '@angular/fire/storage';
 // Importamos finalize para luego guardar la ruta de la imagen y recogerla en la base de datos.
 import { finalize } from 'rxjs/operators';
 import {Observable, from} from 'rxjs';
-import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +16,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
-              private authService: AuthService,
-              public  afAuth: AngularFireAuth) { }
+              private authService: AuthService) { }
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
 
@@ -41,9 +39,9 @@ export class RegisterComponent implements OnInit {
           if (user) {
             user.updateProfile({
               displayName: '',
-              photoURL: ''
+              photoURL: this.inputImageUser.nativeElement.value
             }).then( () => {
-              this.sendEmailVerification();
+              this.router.navigate(['home']);
             }).catch((error) => {
             });
           }
@@ -61,9 +59,5 @@ export class RegisterComponent implements OnInit {
           alert(this.vacio);
         }
         });
-  }
-  async sendEmailVerification() {
-    await this.afAuth.auth.currentUser.sendEmailVerification()
-    this.router.navigate(['user/login']);
   }
 }
