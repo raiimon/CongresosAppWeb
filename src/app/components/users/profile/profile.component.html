@@ -1,5 +1,28 @@
 <app-navbar></app-navbar>
 
+<!--
+<section id="profile" class="container">
+  <div class="row mt-5">
+    <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center card">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+      </div>
+      <div class="row user-details">
+        <div class="col-12">
+          <img src="{{user.photoUrl}}" class="rounded-circle img-thumbnail" alt="profile">
+          <h5 *ngIf="provideId != 'password'">{{user.name}}</h5>
+          <p>
+            {{user.email}}
+          </p>
+
+          <hr>
+          <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores suscipit itaque minima quae.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrapPro.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
@@ -54,22 +77,22 @@
                     <div class="front-imagia">
                         <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
                         <h3 id="Cambiar" class="name-imagia">Cambiar la contraseña</h3>
-
+                        <div class="input-group" id="PassWord">
+                            <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-lock"></i></span></div><input class="form-control" type="text">
+                            <div class="input-group-append"></div>
+                        </div>
                         <div class="input-group" id="imput1">
                             <div class="input-group-prepend"></div>
                             <div class="input-group-append"></div>
                         </div>
                         <p id="PassWord" class="subtitle-imagia">Comprueba que has escrito correctamente la contraseña</p>
-                        <div class="footer-imagia" style="width: 95%;">
-                          <button class="btn btn-primary" type="button" (click)="resetPassword()">Enviar</button>
-                        </div>
+                        <div class="footer-imagia" style="width: 95%;"><button class="btn btn-primary" type="button">Enviar</button></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div id="tercero">
     <div class="container">
         <div class="row" id="tama">
@@ -79,30 +102,27 @@
                         <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
                         <h3 id="texto2" class="name-imagia">Datos Personales</h3>
                         <p id="InfoTama" class="subtitle-imagia">Rellena los campos para modificar tus datos personales</p>
-                        <div class="col d-flex justify-content-around" >
+                        <div class="col d-flex justify-content-around">
                             <div class="input-group" id="imputinf" style="width: 450px;">
-                                <div class="input-group-prepend">
-                                  <span class="border rounded input-group-text">
-                                    <i class="fas fa-user-tie"></i>
-                                  </span>
-                                </div>
-                              <input class="form-control" type="email" name="name" placeholder="{{user.email}}" [(ngModel)]="correo">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-user-tie"></i></span></div><input class="form-control" type="text">
                                 <div class="input-group-append"></div>
                             </div>
                             <div class="input-group" id="imputinf" style="width: 450px;">
-                                <div class="input-group-prepend">
-                                  <span class="border rounded input-group-text">
-                                    <i class="fas fa-user-tie"></i>
-                                  </span>
-                                </div>
-                              <input class="form-control" type="text" placeholder="{{!user.name ? 'Introduzca su nombre' : user.name}}" name="email" [(ngModel)]="nombre">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-user-tie"></i></span></div><input class="form-control" type="text">
                                 <div class="input-group-append"></div>
                             </div>
                         </div>
-
-                        <div class="footer-imagia" style="width: 97%;">
-                          <button class="btn btn-primary" type="button" (click)="updateName()">Enviar</button>
+                        <div class="col d-flex justify-content-around">
+                            <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-id-card"></i></span></div><input class="form-control" type="text">
+                                <div class="input-group-append"></div>
+                            </div>
+                            <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="input-group-prepend"><span class="border rounded input-group-text"><i class="fas fa-phone"></i></span></div><input class="form-control" type="text">
+                                <div class="input-group-append"></div>
+                            </div>
                         </div>
+                        <div class="footer-imagia" style="width: 97%;"><button class="btn btn-primary" type="button">Enviar</button></div>
                     </div>
                 </div>
             </div>
