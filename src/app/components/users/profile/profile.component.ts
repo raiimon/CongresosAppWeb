@@ -9,7 +9,7 @@ import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 
-import {NavigationEnd, Router, RouterModule, Routes} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
