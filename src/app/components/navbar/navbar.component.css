@@ -4,5 +4,5 @@
 }
 
 .fondo {
-    background: linear-gradient(to right, #db6459ce, #FF4824, #CC3A1D);
+    background: linear-gradient(to right, rgb(60, 116, 166), rgb(73, 136, 191), rgb(86, 151, 191), rgb(113, 177, 217), rgb(133, 200, 242));
 }
