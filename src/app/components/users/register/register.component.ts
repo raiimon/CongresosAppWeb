@@ -82,13 +82,12 @@ export class RegisterComponent implements OnInit {
         });
       }).catch(error => {
         // hacemos un if para cuando entre el error en ingles lo traduzca en español
-        if (error.message === this.erroresEs){
+        if (error.message === this.erroresEs) {
          this.errores = 'El correo no está bien formateado';
          this.vacio = this.errores;
          // con el alert mostramos el error
          alert(this.vacio);
-        }
-        else{
+        } else {
           this.errores = 'El correo ya existe'
           this.vacio = this.errores;
           alert(this.vacio);
