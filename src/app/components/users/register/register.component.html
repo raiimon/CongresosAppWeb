@@ -5,11 +5,11 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="card card-signin my-5">
             <div class="card-body">
-          <h5 class="card-title text-center">Register</h5>       
-             
+          <h5 class="card-title text-center">Register</h5>
+
           <form class="form-signin"  #myForm="ngForm" (ngSubmit)="onAddUser(); myForm.reset()" >
             <div class="form-label-group text-center ">
-              <input type="email" name="email" id="email" class="form-control" placeholder="email" #emil="ngModel" [(ngModel)]="email"  minlength="8" maxlength="20"  required>
+              <input type="email" name="email" id="email" class="form-control" placeholder="email" #emil="ngModel" [(ngModel)]="email"  minlength="8" maxlength="50"  required>
               <label for="email">Email address</label>
 
               <!-- Con el #emil=ngModel recogemos el valor y hacemos la verificaciones necesarias -->
@@ -17,18 +17,18 @@
                 <!-- Cuando salga el campo saltara el *ngIf cuando detecto el errors -->
                 <div *ngIf="emil.errors.required">Email es requerido</div>
                 <div *ngIf="emil.errors.minlength">Email tiene que tener más de 8 characteres</div>
-              </div> 
+              </div>
             </div>
             <hr>
             <div class="form-label-group text-center">
               <input type="password"  name="password" id="password" class="form-control" placeholder="password" #pass="ngModel" [(ngModel)]="password"  minlength="5"
               required >
-              <label for="password">Password</label>           
-              <div class="colorError" *ngIf="pass.touched && !pass.valid">  
+              <label for="password">Password</label>
+              <div class="colorError" *ngIf="pass.touched && !pass.valid">
                   <div *ngIf="pass.errors.required">Contraseña es requerido</div>
                   <div *ngIf="pass.errors.minlength">Contraseña tiene que tener más de 5 characteres</div>
                 </div>
-              </div>                 
+              </div>
             <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" >Register</button>
            </form>
            <a class="d-block text-center mt-2 medium" routerLink="/user/login" >¿Inicia Sesión?</a>
