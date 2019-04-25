@@ -9,7 +9,6 @@
                 <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link" >Invitados</a></li>
                 <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link" >Salas</a></li>
                 <li class="nav-item" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link" >Sinóptico</a></li>
-                <li class="nav-item" *ngIf="isLogged" routerLink="/control/" role="presentation"><a class="nav-link" >Control</a></li>
                 <li class="nav-item" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link" >Login</a></li>
                 <li class="nav-item" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link" >Registro</a></li>
                 <li class="nav-item" *ngIf="isLogged" routerLink="/user/profile" role="presentation"><a class="nav-link"><img src="{{user.photoUrl}}" class="rounded-circle fotoPerfil" alt="profile"></a></li>
