@@ -1,46 +1,48 @@
 <app-navbar></app-navbar>
 
 <section class="row mt-5">
-  <div class="col">
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Nombre del Congreso</th>
-        <th scope="col">Dirección del congreso</th>
-        <th scope="col">&nbsp;</th>
-        <th scope="col">&nbsp;</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let congres of congress; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{congres.nombreCongreso}}</td>
-        <td>{{congres.direccion}}</td>
+    <div class="col">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre del Congreso</th>
+                    <th scope="col">Dirección del congreso</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let congres of congress; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{congres.nombreCongreso}}</td>
+                    <td>{{congres.direccion}}</td>
 
-        <td *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
-          <button class="btn btn-primary" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">Update</button><!-- Cargamos el modal para poder verlo y actualizar -->
-        </td>
+                    <td *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
+                        <button class="btn btn-primary" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">Update</button>
+                        <!-- Cargamos el modal para poder verlo y actualizar -->
+                    </td>
 
-        <ng-template #noOwner>
-          <td>
-            <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true">Update</button>
-          </td>
-        </ng-template>
+                    <ng-template #noOwner>
+                        <td>
+                            <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true">Update</button>
+                        </td>
+                    </ng-template>
 
-        <td *ngIf="isAdmin == true; else noAdmin"> <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón -->
-          <button class="btn btn-danger" (click)="onDeleteCongress(congres.idCongreso)">Delete</button>
-        </td>
+                    <td *ngIf="isAdmin == true; else noAdmin">
+                        <!-- Comprobamos si es admin o no, en caso de que no deshabilita el botón -->
+                        <button class="btn btn-danger" (click)="onDeleteCongress(congres.idCongreso)">Delete</button>
+                    </td>
 
-        <!-- Cualquier usuario que no sea admin, no podrá usar este botón -->
-        <ng-template #noAdmin>
-          <td>
-            <button class="btn btn-danger" (click)="onDeleteCongress(congres.idCongreso)" disabled="true">Delete</button>
-          </td>
-        </ng-template>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+                    <!-- Cualquier usuario que no sea admin, no podrá usar este botón -->
+                    <ng-template #noAdmin>
+                        <td>
+                            <button class="btn btn-danger" (click)="onDeleteCongress(congres.idCongreso)" disabled="true">Delete</button>
+                        </td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <app-modal [userUid]="userUid"></app-modal>
