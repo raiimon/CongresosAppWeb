@@ -9,8 +9,7 @@ import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 
-import {Router} from '@angular/router';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {NavigationEnd, Router, RouterModule, Routes} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -26,18 +25,13 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private storage: AngularFireStorage,
-              private router: Router,
-              public  afAuth: AngularFireAuth) { }
+              private router: Router) { }
 
   user: UserInterface = {
     name: '',
     email: '',
     photoUrl: ''
   };
-
-  // Obtener los valores.
-  contrasenya;
-  nombre;
 
   // Variable para cargar el porcentage de subida de una imagen.
   uploadPercent: Observable<number>;
@@ -96,25 +90,6 @@ export class ProfileComponent implements OnInit {
         });
       }
     });
-  }
-
-  updateName() {
-    this.authService.isAuth().subscribe(user => {
-      if (user) {
-        user.updateProfile({
-          displayName: this.nombre,
-          photoURL: this.user.photoUrl
-        }).then(() => {
-          this.redirectTo('user/profile');
-        }).catch((error) => {
-          console.log('error', error);
-        });
-      }
-    });
-  }
-
-  async resetPassword() {
-    return await this.afAuth.auth.sendPasswordResetEmail(this.user.email);
   }
 
   // Método que 'actualiza' la página actual engañando al router.
