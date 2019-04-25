@@ -1,10 +1,11 @@
+<section>
 <link rel="stylesheet" href="assets/css/stylesnav.min.css">
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrapPro.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 <nav class="navbar navbar-light navbar-expand-md fixed-top fondo">
     <div class="container">
         <button class="navbar-toggler  " data-toggle="collapse" data-target="#navcol-1">
-            
+
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navcol-1">
@@ -16,7 +17,6 @@
                 <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link ">Invitados</a></li>
                 <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link ">Salas</a></li>
                 <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link ">Sinóptico</a></li>
-                <li class="nav-item baj" *ngIf="isLogged" routerLink="/control/" role="presentation"><a class="nav-link ">Control</a></li>
                 <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link ">Login</a></li>
                 <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link ">Registro</a></li>
                 <li class="nav-item baj" *ngIf="isLogged" routerLink="/user/profile" role="presentation">
@@ -27,3 +27,4 @@
         </div>
     </div>
 </nav>
+</section>
