@@ -5,7 +5,10 @@
 <nav class="navbar navbar-light navbar-expand-md fixed-top fondo">
     <div class="container">
         <button class="navbar-toggler  " data-toggle="collapse" data-target="#navcol-1">
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navcol-1">
@@ -14,16 +17,26 @@
                 <li class="nav-item centro" role="presentation">
                     <a class="nav-link " href="/"><img src="https://softmediaplanner.com/wp-content/uploads/2018/04/SOFTMEDIAPLANNER.png" width="100" height="35"></a>
                 </li>
-                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-congress" role="presentation"><a class="nav-link" style="color: ghostwhite;">Congresos</a></li>
-                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link " style="color: ghostwhite;">Invitados</a></li>
-                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link " style="color: ghostwhite;">Salas</a></li>
-                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link " style="color: ghostwhite;">Sinóptico</a></li>
-                <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link " style="color: ghostwhite;">Login</a></li>
-                <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link " style="color: ghostwhite;">Registro</a></li>
+<<<<<<< HEAD
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-congress" role="presentation"><a class="nav-link " style="color:white">Congresos</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link" style="color:white">Invitados</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link " style="color:white">Salas</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link " style="color:white">Sinóptico</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/control/" role="presentation"><a class="nav-link " style="color:white">Control</a></li>
+                <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link " style="color:white">Login</a></li>
+                <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link " style="color:white">Registro</a></li>
+=======
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-congress" role="presentation"><a class="nav-link ">Congresos</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-guest" role="presentation"><a class="nav-link ">Invitados</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-room" role="presentation"><a class="nav-link ">Salas</a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/admin/list-sinaptic" role="presentation"><a class="nav-link ">Sinóptico</a></li>
+                <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/login" role="presentation"><a class="nav-link ">Login</a></li>
+                <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link ">Registro</a></li>
+>>>>>>> master
                 <li class="nav-item baj" *ngIf="isLogged" routerLink="/user/profile" role="presentation">
                     <a class="nav-link "><img src="{{user.photoUrl}}" class="rounded-circle fotoPerfil" alt="profile"></a>
                 </li>
-                <li class="nav-item baj" *ngIf="isLogged" routerLink="/user/profile" (click)="onLogout()" role="presentation"><a class="nav-link " style="color: ghostwhite;"><i class="fa fa-user-times"></i></a></li>
+                <li class="nav-item baj" *ngIf="isLogged" routerLink="/user/profile" (click)="onLogout()" role="presentation"><a class="nav-link "><i class="fa fa-user-times" style="color:white"></i></a></li>
             </ul>
         </div>
     </div>
