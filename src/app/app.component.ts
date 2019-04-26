@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoadingSpinnersService} from 'ngx-loading-spinners';
+import { LoadingSpinnersService } from 'ngx-loading-spinners';
 
 @Component({
   selector: 'app-root',
