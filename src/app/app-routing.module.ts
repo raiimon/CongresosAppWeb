@@ -17,6 +17,8 @@ import {SinapticComponent} from './components/sinaptic/sinaptic.component';
 import {ControlComponent} from './components/control/control.component';
 import {CheckComponent} from './components/check/check.component';
 
+import { LoaderComponent } from './components/loader/loader.component';
+
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
 
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: '**', component: Page404Component },
+
+  { path: 'loader', component: LoaderComponent },
 ];
 
 @NgModule({
