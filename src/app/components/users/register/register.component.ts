@@ -2,11 +2,9 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 // Importamos el servicio y el router.
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { AngularFireStorage } from '@angular/fire/storage';
 
 // Importamos finalize para luego guardar la ruta de la imagen y recogerla en la base de datos.
-import { finalize } from 'rxjs/operators';
-import {Observable, from} from 'rxjs';
+import {LoadingSpinnersService} from 'ngx-loading-spinners';
 
 @Component({
   selector: 'app-register',
@@ -15,13 +13,18 @@ import {Observable, from} from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
+  // Loader
+  public loaderUniqeName: string;
+
   constructor(private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              public spinnersService: LoadingSpinnersService) { this.loaderUniqeName = spinnersService.getUniqueName();  }
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
 
   public email: string = '';
   public password: string = '';
+
 
   // Traduccion de los errores de firebase
   errores: string;
@@ -39,9 +42,9 @@ export class RegisterComponent implements OnInit {
           if (user) {
             user.updateProfile({
               displayName: '',
-              photoURL: this.inputImageUser.nativeElement.value
+              photoURL: ''
             }).then( () => {
-              this.router.navigate(['home']);
+              this.cargarSpinner();
             }).catch((error) => {
             });
           }
@@ -59,5 +62,10 @@ export class RegisterComponent implements OnInit {
           alert(this.vacio);
         }
         });
+  }
+
+  cargarSpinner() {
+    this.spinnersService.show(this.loaderUniqeName);
+    this.router.navigate(['']);
   }
 }
