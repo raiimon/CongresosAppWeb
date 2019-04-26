@@ -16,7 +16,6 @@ import {ListSinapticComponent} from './components/admin/list-sinaptic/list-sinap
 import {SinapticComponent} from './components/sinaptic/sinaptic.component';
 import {ControlComponent} from './components/control/control.component';
 import {CheckComponent} from './components/check/check.component';
-import {HomeComponent} from './components/home/home.component';
 
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
@@ -25,7 +24,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: SinapticComponent, canActivate: [AuthGuard]},
   { path: 'loader', component: LoaderComponent },
   { path: 'admin/list-congress', component: ListCongressComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },

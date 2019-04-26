@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {LoadingSpinnersService} from 'ngx-loading-spinners';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CongresosApp2019';
-}
+
+  constructor(
+    private spinnersService: LoadingSpinnersService
+  ) {
+    spinnersService.defaultSpinnerFilePath = '/assets/img/error404.gif';
+  }}
