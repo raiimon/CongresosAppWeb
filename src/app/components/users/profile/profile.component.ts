@@ -27,16 +27,16 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService,
               private storage: AngularFireStorage,
               private router: Router,
-              public  afAuth: AngularFireAuth) { }
+              private  afAuth: AngularFireAuth) { }
 
   user: UserInterface = {
+    id: '',
     name: '',
     email: '',
     photoUrl: ''
   };
 
   // Obtener los valores.
-  contrasenya;
   nombre;
 
   // Variable para cargar el porcentage de subida de una imagen.
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.isAuth().subscribe(user => {
       if (user) {
+        this.user.id = user.uid;
         this.user.name = user.displayName;
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
@@ -121,5 +122,14 @@ export class ProfileComponent implements OnInit {
   redirectTo(uri: string) {
     this.router.navigateByUrl('/GhostComponent', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
+  }
+
+  deleteUser() {
+    this.authService.isAuth().subscribe(user => {
+      if (user) {
+        user.delete();
+        this.authService.deleteUserData(this.user.id);
+      }
+    });
   }
 }

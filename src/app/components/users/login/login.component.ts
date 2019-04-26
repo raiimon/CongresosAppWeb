@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
   public password: string = '';
 
 
-  constructor(public afAuth: AngularFireAuth,
-              private router: Router,
+  constructor(private router: Router,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -54,13 +53,9 @@ export class LoginComponent implements OnInit {
       }).catch( err => this.onError(err));
   }
 
-  onLogout() {
-    this.authService.logoutUser();
-  }
-
   // Método para redireccionar a la ruta de admin.
   onLoginRedirect(): void {
-    this.router.navigate(['home']);
+    this.router.navigate(['']);
   }
   // Método para mostrar los errores obtenidos por Firebase.
   onError(error) {
