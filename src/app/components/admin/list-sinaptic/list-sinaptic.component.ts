@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {SinapticoApiService} from '../../../services/sinaptico-api.service';
@@ -37,7 +37,6 @@ export class ListSinapticComponent implements OnInit {
     if (confirmacion) {
       this.dataApi.deleteSinaptic(idCongreso);
     }
-
   }
 
   getCurrentUser() {
@@ -45,8 +44,7 @@ export class ListSinapticComponent implements OnInit {
       if (auth) {
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
-          this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
-
+            this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
         });
       }
     });

@@ -47,6 +47,10 @@ import { FilterCongressPipe } from './pipes/filter-congress.pipe';
 import { FilterGuestPipe } from './pipes/filter-guest.pipe';
 import { FilterRoomPipe } from './pipes/filter-room.pipe';
 import { FilterSinapticPipe } from './pipes/filter-sinaptic.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
+
+// Librerías de Spinner.
+import { LoadingSpinnersModule } from 'ngx-loading-spinners';
 
 @NgModule({
   declarations: [
@@ -68,9 +72,11 @@ import { FilterSinapticPipe } from './pipes/filter-sinaptic.pipe';
     FilterCongressPipe,
     FilterGuestPipe,
     FilterRoomPipe,
-    FilterSinapticPipe
+    FilterSinapticPipe,
+    LoaderComponent
   ],
   imports: [
+    LoadingSpinnersModule,
     DayPilotModule,
     BrowserModule,
     ChartsModule,
