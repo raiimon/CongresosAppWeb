@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {CongresoApiService} from '../../../services/congreso-api.service';
@@ -10,8 +10,7 @@ import {CongresoApiService} from '../../../services/congreso-api.service';
 })
 export class ListCongressComponent implements OnInit {
 
-  constructor(public dataApi: CongresoApiService, public authService: AuthService) {
-  }
+  constructor(public dataApi: CongresoApiService, public authService: AuthService) { }
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];
@@ -38,7 +37,6 @@ export class ListCongressComponent implements OnInit {
     if (confirmacion) {
       this.dataApi.deleteCongress(idCongreso);
     }
-
   }
 
   getCurrentUser() {
@@ -46,8 +44,7 @@ export class ListCongressComponent implements OnInit {
       if (auth) {
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
-          this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
-
+            this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
         });
       }
     });
