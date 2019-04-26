@@ -18,6 +18,8 @@ Logout - Actualización del perfil y la comprobación del tipo de rol. */
 
 export class AuthService {
 
+  private userDoc: AngularFirestoreDocument<UserInterface>;
+
   constructor(private afsAuth: AngularFireAuth, private afs: AngularFirestore) { }
 
   registerUser(email: string, password: string) {
@@ -70,6 +72,13 @@ export class AuthService {
       }
     };
     return userRef.set(data, {merge: true});
+  }
+
+   deleteUserData(id: string) {
+
+    this.userDoc = this.afs.doc<UserInterface>(`users/${id}`);
+
+    this.userDoc.delete();
   }
 
   isUserAdmin(userId) {
