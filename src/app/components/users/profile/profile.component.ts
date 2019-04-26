@@ -129,6 +129,7 @@ export class ProfileComponent implements OnInit {
       if (user) {
         user.delete();
         this.authService.deleteUserData(this.user.id);
+        this.redirectTo('user/login');
       }
     });
   }
