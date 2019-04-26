@@ -12,5 +12,5 @@ export class AppComponent {
   constructor(
     private spinnersService: LoadingSpinnersService
   ) {
-    spinnersService.defaultSpinnerFilePath = '/assets/img/error404.gif';
+    spinnersService.defaultSpinnerFilePath = '/assets/img/carga.gif';
   }}
