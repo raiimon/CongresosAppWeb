@@ -125,7 +125,7 @@
 }
 
 #Cambiar {
-    margin-top: 7%
+    margin-top: 8%
 }
 
 body,
@@ -396,7 +396,7 @@ html {
 .card-imagia .user-imagia {
     border-radius: 39%;
     display: block;
-    height: 130px;
+    height: 90px;
     margin: -65px auto 0;
     overflow: hidden;
     width: 120px
