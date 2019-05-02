@@ -22,12 +22,13 @@ import {CheckComponent} from './components/check/check.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import {VerifyEmailComponent} from './components/users/verify-email/verify-email.component';
 import {ForgotPasswordComponent} from './components/users/forgot-password/forgot-password.component';
+import {HomeComponent} from './components/home/home.component';
 
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
 
 const routes: Routes = [
-  { path: '', component: SinapticComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'loader', component: LoaderComponent },
   { path: 'admin/list-congress', component: ListCongressComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },
