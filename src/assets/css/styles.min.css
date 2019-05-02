@@ -18,7 +18,7 @@
     position:absolute;
     width:100%;
     height:100vh;
-    background-image:url(../../assets/img/error404.gif);
+    background-image:url(../../assets/img/error404.png);
     background-repeat:no-repeat;
     background-size:cover;
     background-position:50% 50%
@@ -49,8 +49,8 @@
 }#hero-btn{
     margin-top:73px;
     font-size:16px;
-    background-color:1px 3px 5px #111;
+    background: linear-gradient(to right, rgb(60, 116, 166), rgb(73, 136, 191), rgb(60, 115, 165), rgb(60, 115, 165), rgb(60, 116, 166));
     padding:8px 20px;
     opacity: inherit;
-    color: red;
+    color: whitesmoke;
 }
