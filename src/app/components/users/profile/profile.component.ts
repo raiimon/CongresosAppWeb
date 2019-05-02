@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
     id: '',
     name: '',
     email: '',
+    emailVerified: true,
     photoUrl: ''
   };
 
@@ -88,7 +89,7 @@ export class ProfileComponent implements OnInit {
     this.authService.isAuth().subscribe(user => {
       if (user) {
         user.updateProfile({
-          displayName: '',
+          displayName: this.nombre,
           photoURL: this.inputImageUser.nativeElement.value
         }).then(() => {
             this.redirectTo('user/profile');

@@ -16,18 +16,22 @@ export class NavbarComponent implements OnInit {
 
   public provideId: string = 'null';
 
-
   constructor(private authService: AuthService,
               private router: Router,
               private afsAuth: AngularFireAuth) { }
 
   user: UserInterface = {
+    emailVerified: true,
     photoUrl: ''
-  }
+  };
+
+  public datos = JSON.parse(localStorage.getItem('user'));
 
   ngOnInit() {
     // Llamamos al método nada más se inicie el Navbar.
     this.getCurrentUser();
+
+    console.log(this.datos);
 
     this.authService.isAuth().subscribe(user => {
       if (user) {

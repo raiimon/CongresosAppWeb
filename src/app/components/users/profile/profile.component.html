@@ -13,20 +13,20 @@
         <p></p>
     </div>
 </div>
-<div id="cuarto">
+<div id="cuarto" *ngIf="authService.userData as user">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
                 <div class="card-imagia">
                     <div class="front-imagia">
                         <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                        <div class="user-imagia"><img src="{{user.photoUrl}}" class="logo" alt=""></div>
+                        <div class="user-imagia"><img src="{{user.photoURL}}" class="logo" alt=""></div>
                         <div class="content-imagia">
                             <h3 id="fotoPer" class="name-imagia">Foto Perfil</h3>
                             <p id="InfoTama" class="subtitle-imagia">Tamaño maximo 20Mb</p>
 
                             <div class="image-upload">
-                                <label class="d-flex justify-content-center" for="file-input">  
+                                <label class="d-flex justify-content-center" for="file-input">
                                   <img  class="image-upload " src="assets/img/subir.png">
                                   </label>
                                 <input type="file" id="file-input" (change)="subirImagenPerfil($event)">
@@ -73,7 +73,7 @@
     </div>
 </div>
 
-<div id="cuarto">
+<div id="cuarto" *ngIf="authService.userData as user">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
@@ -100,7 +100,7 @@
                                     <i class="fas fa-user-tie"></i>
                                   </span>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{!user.name ? 'Introduzca su nombre' : user.name}}" name="email" [(ngModel)]="nombre">
+                                <input class="form-control" type="text" placeholder="{{!user.displayName ? 'Introduzca su nombre' : user.displayName}}" name="email" [(ngModel)]="nombre">
                                 <div class="input-group-append"></div>
                             </div>
                         </div>
