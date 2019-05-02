@@ -51,6 +51,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 
 // Librerías de Spinner.
 import { LoadingSpinnersModule } from 'ngx-loading-spinners';
+import { VerifyEmailComponent } from './components/users/verify-email/verify-email.component';
+import { ForgotPasswordComponent } from './components/users/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { LoadingSpinnersModule } from 'ngx-loading-spinners';
     FilterGuestPipe,
     FilterRoomPipe,
     FilterSinapticPipe,
-    LoaderComponent
+    LoaderComponent,
+    VerifyEmailComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     LoadingSpinnersModule,

@@ -66,6 +66,6 @@ export class RegisterComponent implements OnInit {
 
   cargarSpinner() {
     this.spinnersService.show(this.loaderUniqeName);
-    this.router.navigate(['']);
+    this.router.navigate(['user/login']);
   }
 }
