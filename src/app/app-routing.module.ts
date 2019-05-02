@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Importamos proteccion de rutas.
-import { AuthGuard} from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 
 // Componentes que vamos a importar.
 import {LoginComponent} from './components/users/login/login.component';
@@ -36,11 +37,11 @@ const routes: Routes = [
   { path: 'home', component: ListSinapticComponent, canActivate: [AuthGuard] },
   { path: 'sinaptic', component: SinapticComponent, canActivate: [AuthGuard] },
   { path: 'control', component: ControlComponent, canActivate: [AuthGuard] },
-  { path: 'user/login', component: LoginComponent },
-  { path: 'user/register', component: RegisterComponent },
+  { path: 'user/login', component: LoginComponent, canActivate: [SecureInnerPagesGuard] },
+  { path: 'user/register', component: RegisterComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  { path: 'user/verify-email', component: VerifyEmailComponent},
-  { path: 'user/forgot-password', component: ForgotPasswordComponent},
+  { path: 'user/verify-email', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: 'user/forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard]},
   { path: '**', component: Page404Component },
 ];
 
