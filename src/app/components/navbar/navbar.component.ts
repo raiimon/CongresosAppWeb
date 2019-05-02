@@ -28,8 +28,6 @@ export class NavbarComponent implements OnInit {
   public datos = JSON.parse(localStorage.getItem('user'));
 
   ngOnInit() {
-    // Llamamos al método nada más se inicie el Navbar.
-    this.getCurrentUser();
 
     console.log(this.datos);
 
@@ -43,20 +41,5 @@ export class NavbarComponent implements OnInit {
         this.provideId = user.providerData[0].providerId;
       }
     });
-  }
-
-  // Comprobar que el usuario esta autenticado.
-  getCurrentUser() {
-    this.authService.isAuth().subscribe( auth => {
-      if (auth) {
-        // El usuario ha iniciado la sesión.
-        this.isLogged = true;
-      }
-    });
-  }
-
-  // Método para cerrar la sesión.
-  onLogout() {
-    this.afsAuth.auth.signOut();
   }
 }
