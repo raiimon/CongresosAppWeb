@@ -1,13 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
+import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map } from 'rxjs/operators';
-import {auth} from 'firebase/app';
-
-// Sección Roles Firebase.
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import {UserInterface} from '../models/user';
-import {CongresoInterface} from '../models/congreso';
-import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +17,22 @@ export class AuthService {
 
   private userDoc: AngularFirestoreDocument<UserInterface>;
 
-  constructor(private afsAuth: AngularFireAuth, private afs: AngularFirestore) { }
+  userData: any; // Save logged in user data
+
+  constructor(public afsAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router, public ngZone: NgZone) {
+
+    this.afsAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user'));
+      } else {
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
+      }
+    });
+  }
+
 
   registerUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
@@ -28,7 +40,13 @@ export class AuthService {
         .then(userData => {
           resolve(userData),
             this.updateUserData(userData.user);
-        }).catch(err => console.log(reject(err)));
+        }).catch(err => console.log(reject(err)))
+        .then(() => this.afsAuth.auth.currentUser.sendEmailVerification()
+          .then(() => {
+            alert('Verifique su buzón de correo electrónico.');
+          })).catch((error) => {
+            console.log('Error: ' + error);
+      });
     });
   }
 
