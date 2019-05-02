@@ -8,7 +8,7 @@
 
             <span class="navbar-toggler-icon"></span>
         </button>
-            <div class="collapse navbar-collapse " id="navcol-1">
+            <div class="collapse navbar-collapse " id="navcol-1" *ngIf="authService.userData as user">
                 <ul class="nav navbar-nav flex-grow-1 justify-content-between">
 
                     <li class="nav-item centro" role="presentation">
@@ -23,7 +23,7 @@
                     <li class="nav-item baj" *ngIf="!isLogged" routerLink="/user/register" role="presentation"><a class="nav-link " style="color:white">Registro</a></li>
 
                     <li class="nav-item baj" *ngIf="isLogged" routerLink="/user/profile" role="presentation">
-                        <a class="nav-link "><img src="{{user.photoUrl}}" class="rounded-circle fotoPerfil" alt="profile"></a>
+                        <a class="nav-link "><img src="{{datos.photoURL}}" class="rounded-circle fotoPerfil" alt="profile"></a>
                     </li>
                     <li class="nav-item baj" *ngIf="isLogged" (click)="authService.signOut()" role="presentation"><a class="nav-link "><i class="fa fa-user-times" style="color:white"></i></a></li>
                 </ul>
