@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-
-// Importamos las librerías necesarias.
-import {AngularFireAuth} from '@angular/fire/auth';
-import {take, map, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import { Observable } from 'rxjs';
 import {AuthService} from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard  implements CanActivate {
-
+export class SecureInnerPagesGuard implements  CanActivate{
   constructor(private authService: AuthService,
               private router: Router) {
 
@@ -21,9 +16,9 @@ export class AuthGuard  implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise <boolean> | boolean {
-      if ( this.authService.isLoggedIn !== true) {
-        this.router.navigate(['']);
-      }
-      return true;
+    if ( this.authService.isLoggedIn ) {
+      this.router.navigate(['user/login']);
+    }
+    return true;
   }
 }
