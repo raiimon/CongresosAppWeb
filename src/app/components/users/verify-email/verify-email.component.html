@@ -1,3 +1,27 @@
-<p>
-  verify-email works!
-</p>
+<div class="displayTable">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3>Gracias por registrarse, por favor siga los pasos indicados por correo.</h3>
+
+      <div class="formGroup" *ngIf="authService.userData as user">
+        <p class="text-center">Hemos enviado un correo de confirmación al correo <strong>{{user.email}}</strong>.</p>
+        <p class="text-center">Compruebe el enlace de su correo y siga los pasos.</p>
+      </div>
+
+      <!-- Calling SendVerificationMail() method using authService Api -->
+      <div class="formGroup">
+        <button type="button" class="btn btnPrimary" (click)="authService.sendVerificationEmail()">
+          <i class="fas fa-redo-alt"></i>
+          Reenviar la confirmación de correo.
+        </button>
+      </div>
+
+    </div>
+
+    <div class="redirectToLogin">
+      <span>Volver atras ?<span  routerLink="user/login"> Iniciar sesión</span></span>
+    </div>
+
+  </div>
+</div>

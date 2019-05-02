@@ -40,22 +40,34 @@ export class AuthService {
         .then(userData => {
           resolve(userData),
             this.updateUserData(userData.user);
-        }).catch(err => console.log(reject(err)))
-        .then(() => this.afsAuth.auth.currentUser.sendEmailVerification()
-          .then(() => {
-            alert('Verifique su buzón de correo electrónico.');
-          })).catch((error) => {
-            console.log('Error: ' + error);
-      });
+          this.sendVerificationEmail();
+        }).catch(err => console.log(reject(err)));
+    });
+  }
+
+  sendVerificationEmail() {
+    return this.afsAuth.auth.currentUser.sendEmailVerification()
+    .then( () => {
+      this.router.navigate(['/user/verify-email']);
     });
   }
 
   loginEmailUser(email: string, password: string) {
-    return new Promise((resolve, reject) => {
-      this.afsAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(userData => resolve(userData),
-        err => reject(err));
-    });
+    return this.afsAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['']);
+        });
+        this.updateUserData(result.user);
+      }).catch((error) => {
+        window.alert(error.message);
+      });
+  }
+
+  // Returns true when user is looged in and email is verified
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
   loginFacebookUser() {
@@ -68,9 +80,11 @@ export class AuthService {
       .then(credential => this.updateUserData(credential.user));
   }
 
-  logoutUser() {
-    return this.afsAuth.auth.signOut();
-  }
+  signOut() {
+    return this.afsAuth.auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['user/login']);
+    });  }
 
 
   // Método para la comprobación del Navbar.
@@ -85,6 +99,9 @@ export class AuthService {
     const data: UserInterface = {
       id: user.uid,
       email: user.email,
+      name: user.displayName,
+      photoUrl: user.photoURL,
+      emailVerified: user.emailVerified,
       roles: {
         editor : true
       }
@@ -101,6 +118,15 @@ export class AuthService {
 
   isUserAdmin(userId) {
     return this.afs.doc<UserInterface>(`users/${userId}`).valueChanges();
+  }
+
+  recoverPassword(passwordResetEmail) {
+    return this.afsAuth.auth.sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('Comprueba tu correo y sigue los pasos.');
+      }).catch((error) => {
+        window.alert(error);
+      });
   }
 }
 

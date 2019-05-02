@@ -19,6 +19,8 @@ import {CheckComponent} from './components/check/check.component';
 
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
+import {VerifyEmailComponent} from './components/users/verify-email/verify-email.component';
+import {ForgotPasswordComponent} from './components/users/forgot-password/forgot-password.component';
 
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
@@ -37,6 +39,8 @@ const routes: Routes = [
   { path: 'user/login', component: LoginComponent },
   { path: 'user/register', component: RegisterComponent },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'user/verify-email', component: VerifyEmailComponent},
+  { path: 'user/forgot-password', component: ForgotPasswordComponent},
   { path: '**', component: Page404Component },
 ];
 
