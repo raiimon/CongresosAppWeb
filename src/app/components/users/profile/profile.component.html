@@ -1,139 +1,135 @@
 <app-navbar></app-navbar>
+<section>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrapPro.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrapPro.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/stylesPro.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-<link rel="stylesheet" href="assets/css/stylesPro.min.css">
-
-<div id="promo">
-    <div class="jumbotron">
-        <h1>Perfil</h1>
-        <p>En esta sección, usted puede actualizar o editar su foto de perfil como la contraseña y datos personales.</p>
-        <p></p>
+    <div id="promo">
+        <div class="jumbotron">
+            <h1>Perfil</h1>
+            <p>En esta sección, usted puede actualizar o editar su foto de perfil como la contraseña y datos personales.</p>
+            <p></p>
+        </div>
     </div>
-</div>
-<div id="cuarto" *ngIf="authService.userData as user">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
-                <div class="card-imagia">
-                    <div class="front-imagia">
-                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                        <div class="user-imagia"><img src="{{user.photoURL}}" class="logo" alt=""></div>
-                        <div class="content-imagia">
-                            <h3 id="fotoPer" class="name-imagia">Foto Perfil</h3>
-                            <p id="InfoTama" class="subtitle-imagia">Tamaño maximo 20Mb</p>
+    <div id="cuarto" *ngIf="authService.userData as user">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
+                    <div class="card-imagia">
+                        <div class="front-imagia">
+                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                            <div class="user-imagia"><img src="{{user.photoURL}}" class="logo" alt=""></div>
+                            <div class="content-imagia">
+                                <h3 id="fotoPer" class="name-imagia">Foto Perfil</h3>
+                                <p id="InfoTama" class="subtitle-imagia">Tamaño maximo 20Mb</p>
 
-                            <div class="image-upload">
-                                <label class="d-flex justify-content-center" for="file-input">
+                                <div class="image-upload">
+                                    <label class="d-flex justify-content-center" for="file-input">
                                   <img  class="image-upload " src="assets/img/subir.png">
                                   </label>
-                                <input type="file" id="file-input" (change)="subirImagenPerfil($event)">
+                                    <input type="file" id="file-input" (change)="subirImagenPerfil($event)">
+                                </div>
+                                <br>
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-info " role="progressbar" [style.width]="(uploadPercent | async) + '%'"></div>
+                                </div>
+                                <br>
+                                <input type="hidden" #imageUser [value]="urlImage | async">
+                                <!-- URL en Firebase de la imagen que se almacena -->
+
+                                <ng-template #btnDisable>
+                                    <button type="button" disabled=true class="btn btn-primary d-xl-flex">Enviar</button>
+                                </ng-template>
+
                             </div>
-                            <br>
-
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-info " role="progressbar" [style.width]="(uploadPercent | async) + '%'"></div>
+                            <div class="d-xl-flex justify-content-xl-center footer-imagia" style="height: 60px;width: 95%;">
+                                <button *ngIf="urlImage | async; else btnDisable" type="button" class="btn btn-primary d-xl-flex" (click)="updateImageUser()">Enviar</button>
                             </div>
-                            <br>
-                            <input type="hidden" #imageUser [value]="urlImage | async">
-                            <!-- URL en Firebase de la imagen que se almacena -->
-
-                            <ng-template #btnDisable>
-                                <button type="button" disabled=true class="btn btn-primary d-xl-flex">Enviar</button>
-                            </ng-template>
-
-                        </div>
-                        <div class="d-xl-flex justify-content-xl-center footer-imagia" style="height: 60px;width: 95%;">
-                            <button *ngIf="urlImage | async; else btnDisable" type="button" class="btn btn-primary d-xl-flex" (click)="updateImageUser()">Enviar</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="card-imagia">
-                    <div class="front-imagia">
-                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                        <h3 id="Cambiar" class="name-imagia">Cambiar la contraseña</h3>
+                <div class="col">
+                    <div class="card-imagia">
+                        <div class="front-imagia">
+                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                            <h3 id="Cambiar" class="name-imagia">Cambiar la contraseña</h3>
 
-                        <div class="input-group" id="imput1">
-                            <div class="input-group-prepend"></div>
-                            <div class="input-group-append"></div>
-                        </div>
-                        <p id="PassWord" class="subtitle-imagia">Comprueba que has escrito correctamente la contraseña</p>
-                        <div class="footer-imagia" style="width: 95%;">
-                            <button class="btn btn-primary" type="button" (click)="resetPassword()">Enviar</button>
+                            <div class="input-group" id="imput1">
+                                <div class="input-group-prepend"></div>
+                                <div class="input-group-append"></div>
+                            </div>
+                            <p id="PassWord" class="subtitle-imagia">Comprueba que has escrito correctamente la contraseña</p>
+                            <div class="footer-imagia" style="width: 95%;">
+                                <button class="btn btn-primary" type="button" (click)="resetPassword()">Enviar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div id="cuarto" *ngIf="authService.userData as user">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
-                <div class="card-imagia">
-                    <div class="front-imagia">
-                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                        <h3 id="Cambiar" class="name-imagia">Datos Personales</h3>
-                        <p id="PassWord" class="subtitle-imagia">Rellena los campos para modificar tus datos personales</p>
-                        <div class="col d-flex justify-content-around">
+    <div id="cuarto" *ngIf="authService.userData as user">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
+                    <div class="card-imagia">
+                        <div class="front-imagia">
+                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                            <h3 id="Cambiar" class="name-imagia">Datos Personales</h3>
+                            <p id="PassWord" class="subtitle-imagia">Rellena los campos para modificar tus datos personales</p>
+                            <div class="col d-flex justify-content-around">
 
-                            <div class="input-group" id="imputinf" style="width: 450px;">
-                                <div class="input-group-prepend">
-                                    <span class="border rounded input-group-text">
+                                <div class="input-group" id="imputinf" style="width: 450px;">
+                                    <div class="input-group-prepend">
+                                        <span class="border rounded input-group-text">
                                     <i class="fas fa-envelope"></i>
                                   </span>
+                                    </div>
+                                    <input class="form-control" type="email" name="name" placeholder="{{user.email}}" [(ngModel)]="correo">
+                                    <div class="input-group-append"></div>
                                 </div>
-                                <input class="form-control" type="email" name="name" placeholder="{{user.email}}" [(ngModel)]="correo">
-                                <div class="input-group-append"></div>
-                            </div>
 
-                            <div class="input-group" id="imputinf" style="width: 450px;">
-                                <div class="input-group-append">
-                                    <span class="border rounded input-group-text">
+                                <div class="input-group" id="imputinf" style="width: 450px;">
+                                    <div class="input-group-append">
+                                        <span class="border rounded input-group-text">
                                     <i class="fas fa-user-tie"></i>
                                   </span>
+                                    </div>
+                                    <input class="form-control" type="text" placeholder="{{!user.displayName ? 'Introduzca su nombre' : user.displayName}}" name="email" [(ngModel)]="nombre">
+                                    <div class="input-group-append"></div>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{!user.displayName ? 'Introduzca su nombre' : user.displayName}}" name="email" [(ngModel)]="nombre">
-                                <div class="input-group-append"></div>
                             </div>
-                        </div>
-                        <div class="footer-imagia" style="width: 97%;">
-                            <button class="btn btn-primary" type="button" (click)="updateName()">Enviar</button>
+                            <div class="footer-imagia" style="width: 97%;">
+                                <button class="btn btn-primary" type="button" (click)="updateName()">Enviar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="card-imagia">
-                    <div class="front-imagia">
-                        <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
-                        <h3 id="Cambiar" class="name-imagia">¿Quieres eliminar tu cuenta?</h3>
+                <div class="col">
+                    <div class="card-imagia">
+                        <div class="front-imagia">
+                            <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
+                            <h3 id="Cambiar" class="name-imagia">¿Quieres eliminar tu cuenta?</h3>
 
-                        <div class="input-group" id="imput1">
-                            <div class="input-group-prepend"></div>
-                            <div class="input-group-append"></div>
-                        </div>
-                        <p id="PassWord" class="subtitle-imagia">Si borras esta cuenta ya no pordes acceder a ella</p>
-                        <div class="footer-imagia" style="width: 95%;">
-                            <button class="btn btn-danger" type="button" (click)="deleteUser()">Eliminar Usuario</button>
+                            <div class="input-group" id="imput1">
+                                <div class="input-group-prepend"></div>
+                                <div class="input-group-append"></div>
+                            </div>
+                            <p id="PassWord" class="subtitle-imagia">Si borras esta cuenta ya no pordes acceder a ella</p>
+                            <div class="footer-imagia" style="width: 95%;">
+                                <button class="btn btn-danger" type="button" (click)="deleteUser()">Eliminar Usuario</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div id="tercero">
-
-</div>
-
-<script src="assets/js/scriptPro.min.js"></script>
+    <script src="assets/js/scriptPro.min.js"></script>
+</section>
