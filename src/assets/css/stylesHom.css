@@ -1,5 +1,5 @@
 #titulo {
-    margin-top: 3%;
+    background: linear-gradient(to right, rgb(60, 116, 166), rgb(73, 136, 191), rgb(86, 151, 191), rgb(113, 177, 217), rgb(133, 200, 242));
 }
 
 #descrip {
@@ -8,8 +8,28 @@
 
 #diseno {
     margin: 19px;
+    -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
 }
 
 .borde {
     margin-top: 5%
+}
+
+.borImg {
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+}
+
+.bordetabla {
+    margin: 2%;
+}
+
+table {
+    -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
 }
