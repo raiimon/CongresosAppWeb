@@ -1,16 +1,17 @@
-<app-navbar></app-navbar>
 
-<section id="books" class="mt-5">
-  <div class="container">
-    <div class="row">
-      <div class="card" style="width: 18rem;" *ngFor="let sinaptic of sinaptics">
-        <img class="card-img-top" src="{{sinaptic.imgSinaptico}}" alt="{{sinaptic.nombreSinaptico}}">
-        <div class="card-body">
-          <h5 class="card-title">{{sinaptic.nombreSinaptico}}</h5>
-          <p class="card-text">{{sinaptic.descripcionSinaptico}}</p>
-        </div>
-      </div>
-    </div>
+<div *ngIf="auth.user$ | async as user">
+  <h3>Logged in as {{ user.displayName }}</h3>
+  <img src="{{ user.photoURL }}" width="50px">
+  <button (click)="auth.logout()">Logout</button>
+
+  <button (click)="auth.getCalendar()">Get Google Calendar</button>
+  <button (click)="auth.insertEvent()">Add Event</button>
+
+  <div *ngFor="let item of auth.calendarItems">
+    <h3>{{ item.summary }} - {{ item.status }}</h3>
+    <p><em>Created {{ item.created }}</em></p>
+    <p>{{ item.description }}</p>
   </div>
-</section>
+</div>
 
+<button (click)="auth.login()">Login with Google</button>

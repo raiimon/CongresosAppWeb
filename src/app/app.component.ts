@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingSpinnersService } from 'ngx-loading-spinners';
+import {CalendarService} from './services/calendar.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,7 @@ import { LoadingSpinnersService } from 'ngx-loading-spinners';
 export class AppComponent {
   title = 'CongresosApp2019';
 
-  constructor(
-    private spinnersService: LoadingSpinnersService
+  constructor(private auth: CalendarService
   ) {
-    spinnersService.defaultSpinnerFilePath = '/assets/img/imgError.jpeg';
   }
 }

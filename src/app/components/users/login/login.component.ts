@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     // LLamamos el servicio.
     this.authService.loginGoogleUser()
       .then((res) => {
+        console.log(res);
         this.onLoginRedirect();
     }).catch( err => this.onError(err));
   }

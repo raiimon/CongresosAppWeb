@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SinapticoApiService} from '../../services/sinaptico-api.service';
+import {CalendarService} from '../../services/calendar.service';
 
 @Component({
   selector: 'app-sinaptic',
@@ -8,15 +9,9 @@ import {SinapticoApiService} from '../../services/sinaptico-api.service';
 })
 export class SinapticComponent implements OnInit {
 
-  constructor(private dataApi: SinapticoApiService) { }
-
-  public sinaptics = [];
-  public sinaptic = '';
+  constructor(private auth: CalendarService) { }
 
   ngOnInit() {
-    this.dataApi.getAllSinaptics().subscribe(sinaptico => {
-      this.sinaptics = sinaptico;
-    });
   }
 
 }
