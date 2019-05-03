@@ -9,3 +9,19 @@
     background-size: cover;
     background-position: 50% 50%
 }
+
+#titulo {
+    margin-top: 6%;
+}
+
+#descrip {
+    margin-top: 2%;
+}
+
+#InText {
+    margin-top: 2%;
+}
+
+#Volver {
+    margin-top: 1%;
+}
