@@ -247,3 +247,56 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Modal Eventos -->
+
+<div class="modal fade" id="modalEvents" tabindex="-1" role="dialog" aria-labelledby="modalEvents" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloModalEvento">
+          {{ !this.dataEvent.selectedEvent.idEvent ? 'Nuevo Evento' : 'Actualizar Evento'}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #eventForm="ngForm" (ngSubmit)="onSaveCongress(eventForm, 'evento')">
+
+          <input type="hidden" name="idSala" [(ngModel)]="this.dataEvent.selectedEvent.idEvent">
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="title" class="col-form-label">Nombre Evento</label>
+            <input type="text" class="form-control" name="title" [(ngModel)]="this.dataEvent.selectedEvent.title" placeholder="Inaguración Evento">
+          </div>
+
+          <div class="form-group">
+            <label for="color" class="col-form-label">Escoge un color</label>
+            <input type="color" class="form-control" name="color" [(ngModel)]="this.dataEvent.selectedEvent.color" placeholder="2019-06-12T19:30">
+          </div>
+
+          <div class="form-group">
+            <label for="start" class="col-form-label">Hora Inicio Sesión (Si usas Safari, deberás escribirlo a mano)</label>
+            <input type="datetime-local" class="form-control" name="start" [(ngModel)]="this.dataEvent.selectedEvent.start" placeholder="2019-06-12T19:30">
+          </div>
+
+          <div class="form-group">
+            <label for="end" class="col-form-label">Hora Fin Sesión (Si usas Safari, deberás escribirlo a mano)</label>
+            <input type="datetime-local" class="form-control" name="end" [(ngModel)]="this.dataEvent.selectedEvent.end" placeholder="2019-06-13T19:30">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseEvents>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

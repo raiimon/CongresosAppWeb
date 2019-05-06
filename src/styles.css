@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*Librerías del CSS del Calendario*/
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+
 #books {
   border-radius: 0.25rem;
   background: #f9f9f9 !important;

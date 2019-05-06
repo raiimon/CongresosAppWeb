@@ -1,100 +1,74 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-
-declare var gapi: any;
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {EventInterface} from '../models/events';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarService {
 
-  user$: Observable<firebase.User>;
-  calendarItems: any[];
+  // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
+  private eventsCollection: AngularFirestoreCollection<EventInterface>;
+  private events: Observable<EventInterface[]>;
 
-  constructor(public afAuth: AngularFireAuth) {
-    this.initClient();
-    this.user$ = afAuth.authState;
+  // Para obtener un sólo congreso.
+  private eventDoc: AngularFirestoreDocument<EventInterface>;
+
+  // Cuando se realice un 'update', para obtener los datos directamente.
+  public selectedEvent: EventInterface = {
+    // Debemos como en todos, definir la ID como nula para no tener problemas a la hora de almacenar o actualizar una entrada.
+    idEvent: null
+  };
+
+  constructor(private afs: AngularFirestore) { }
+
+  getAllCongress() {
+
+    this.eventsCollection = this.afs.collection<EventInterface>('events');
+
+    return this.events = this.eventsCollection.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map( action => {
+          const data = action.payload.doc.data() as EventInterface;
+          data.idEvent = action.payload.doc.id;
+          // Formateamos las fechas para poderlas mostrar.
+          data.start = data.start.toDate();
+          data.end = data.end.toDate();
+          return data;
+        });
+      }));
   }
 
-  // Initialize the Google API client with desired scopes
-  initClient() {
-    gapi.load('client', () => {
-      console.log('loaded client')
+  // Método para añadir un congreso.
+  addEvent(event: EventInterface): void {
 
-      // It's OK to expose these credentials, they are client safe.
-      gapi.client.init({
-        apiKey: 'AIzaSyDm0pPLoYGEtK-ZrQvwTQp8kdNBUgKs7sw',
-        clientId: '564342182045-ecm35eddbp3qonkfqmtm1vug30dm051p.apps.googleusercontent.com',
-        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
-        scope: 'https://www.googleapis.com/auth/calendar'
-      })
-
-      gapi.client.load('calendar', 'v3', () => console.log('loaded calendar'));
-
-    });
+    // Añadimos con el método add la información.
+    this.eventsCollection.add(event);
   }
 
+  // Método para actualizar un congreso.
+  updateEvent(event: EventInterface): void {
 
-  async login() {
-    const googleAuth = gapi.auth2.getAuthInstance()
-    const googleUser = await googleAuth.signIn();
+    // Obtenemos la ID desde lo obtenido.
+    const idEvent = event.idEvent;
 
-    const token = googleUser.getAuthResponse().id_token;
+    // Mapeamos los datos y la ruta donde se dirigirá los datos a actualizar.
+    this.eventDoc = this.afs.doc<EventInterface>(`events/${idEvent}`);
 
-    console.log(googleUser)
-
-    const credential = auth.GoogleAuthProvider.credential(token);
-
-    await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
-
-
-    // Alternative approach, use the Firebase login with scopes and make RESTful API calls
-    // const provider = new auth.GoogleAuthProvider()
-    // provider.addScope('https://www.googleapis.com/auth/calendar');
-    // this.afAuth.auth.signInWithPopup(provider)
-
+    // Llamamos al método en Firebase para actualizar la entrada.
+    this.eventDoc.update(event);
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
-  }
+  // Método para eliminar un congreso.
+  deleteEvent(idEvent: string): void {
 
-  async getCalendar() {
-    const events = await gapi.client.calendar.events.list({
-      calendarId: 'primary',
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      maxResults: 10,
-      orderBy: 'startTime'
-    })
+    console.log(idEvent);
+    // Mediante la ID obtenida, en Firebase indicamos la ruta en la base de datos.
+    this.eventDoc = this.afs.doc<EventInterface>(`events/${idEvent}`);
 
-    console.log(events)
-
-    this.calendarItems = events.result.items;
-
-  }
-
-  async insertEvent() {
-
-    const insert = await gapi.client.calendar.events.insert({
-      calendarId: 'primary',
-      start: {
-        dateTime: hoursFromNow(2),
-        timeZone: 'America/Los_Angeles'
-      },
-      end: {
-        dateTime: hoursFromNow(3),
-        timeZone: 'America/Los_Angeles'
-      },
-      summary: 'Have Fun!!!',
-      description: 'Do some cool stuff and have a fun time doing it'
-    });
-
-    await this.getCalendar();
+    // Llamamos al método en Firebase para eliminar la entrada.
+    this.eventDoc.delete();
   }
 }
-
-const hoursFromNow = (n) => new Date(Date.now() + n * 1000 * 60 * 60 ).toISOString();

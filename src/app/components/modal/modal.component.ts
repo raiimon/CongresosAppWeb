@@ -8,6 +8,7 @@ import {CongresoInterface} from '../../models/congreso';
 import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {CalendarService} from '../../services/calendar.service';
 
 @Component({
   selector: 'app-modal',
@@ -20,7 +21,8 @@ export class ModalComponent implements OnInit {
               private dataCongress: CongresoApiService,
               private dataGuest: InvitadoApiService,
               private dataRoom: SalaApiService,
-              private sinaptic: SinapticoApiService) { }
+              private sinaptic: SinapticoApiService,
+              private dataEvent: CalendarService) { }
 
   // Variables para añadir los valores de los congresos.
   private congress: CongresoInterface[];
@@ -41,6 +43,8 @@ export class ModalComponent implements OnInit {
   @ViewChild('btnCloseInvitado') btnCloseInvitado: ElementRef;
   @ViewChild('btnCloseSinaptic') btnCloseSinaptic: ElementRef;
   @ViewChild('btnCloseRoom') btnCloseRoom: ElementRef;
+  @ViewChild('btnCloseEvents') btnCloseEvents: ElementRef;
+
 
 
   ngOnInit() {
@@ -124,6 +128,28 @@ export class ModalComponent implements OnInit {
         } else {
           // PUT
           this.dataRoom.updateRoom(congressForm.value);
+        }
+        break;
+
+      case 'evento':
+
+        // congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+        // Convertir la fecha de entrada y salida para Firebase.
+        const fechaEntrada = new Date(congressForm.value.start);
+        const fechaSalida = new Date(congressForm.value.end);
+
+        if (congressForm.value.idEvent == null) {
+          // POST
+          // Obtenemos y almacenamos el id del usuario.
+          congressForm.value.userUid = this.userUid;
+          congressForm.value.start = fechaEntrada;
+          congressForm.value.end = fechaSalida;
+
+          this.dataEvent.addEvent(congressForm.value);
+
+        } else {
+          // PUT
+          this.dataEvent.updateEvent(congressForm.value);
         }
         break;
     }

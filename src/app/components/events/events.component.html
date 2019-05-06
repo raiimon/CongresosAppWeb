@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+<br><br><!-- Bajar el calendario -->
+<div class='app'>
+  <div class='app-calendar'>
+    <button class="fc-dayGridMonth-button fc-button fc-button-primary" (click)='toggleWeekends()'>Mostrar Días Laborales</button>
+    <full-calendar
+      #calendar
+      defaultView="timeGridWeek"
+      [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+      [plugins]="calendarPlugins"
+      [weekends]="calendarWeekends"
+      [events]="calendarEvents"
+      [locale]="locale"
+    ></full-calendar>
+  </div>
+  <section class="row mt-5">
+    <div class="col">
+      <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalEvents">Pintar Nuevo Evento</button>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Evento</th>
+          <th scope="col">Hora Comienzo</th>
+          <th scope="col">Hora Finalización</th>
+          <th scope="col">Leyenda</th>
+          <th scope="col">&nbsp;</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let event of calendarEvents">
+          <td>{{event.title}}</td>
+          <td>{{event.start | date: 'HH:mm'}}</td>
+          <td>{{event.end | date: 'HH:mm'}}</td>
+          <td><input type="color" value="{{event.color}}" disabled></td>
+
+          <div *ngIf="event.userUid == userUid || isAdmin == true; else noOwner">
+            <button class="btn btn-primary" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents">Actualizar</button>
+          </div>
+
+
+          <ng-template #noOwner>
+            <button class="btn btn-secondary" (click)="onPreUpdateEvent(event)" disabled="true">Actualizar</button>
+          </ng-template>
+
+
+          <div *ngIf="isAdmin == true; else noAdmin">
+            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteEvent(event.idEvent)">Borrar</button>
+          </div>
+
+
+          <ng-template #noAdmin>
+            <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true">Borrar</button>
+          </ng-template>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scriptcon.min.js"></script>
+  </section>
+
+</div>
+<app-modal [userUid]="userUid"></app-modal>

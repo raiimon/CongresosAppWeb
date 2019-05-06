@@ -53,6 +53,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoadingSpinnersModule } from 'ngx-loading-spinners';
 import { VerifyEmailComponent } from './components/users/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/users/forgot-password/forgot-password.component';
+import { EventsComponent } from './components/events/events.component';
+import {FullCalendarModule} from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { ForgotPasswordComponent } from './components/users/forgot-password/forg
     FilterSinapticPipe,
     LoaderComponent,
     VerifyEmailComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EventsComponent
   ],
   imports: [
     LoadingSpinnersModule,
@@ -85,6 +88,7 @@ import { ForgotPasswordComponent } from './components/users/forgot-password/forg
     BrowserModule,
     ChartsModule,
     AppRoutingModule,
+    FullCalendarModule,
     FormsModule, // Importamos el módulos de los formularios.
     AngularFireStorageModule, // Importamos en el app 'AngularFireStorageModule' para la subida de imágenes.
     AngularFireModule.initializeApp(environment.firebaseConfig), // Importamos la API de Firebase con los datos necesarios.

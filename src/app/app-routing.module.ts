@@ -23,6 +23,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import {VerifyEmailComponent} from './components/users/verify-email/verify-email.component';
 import {ForgotPasswordComponent} from './components/users/forgot-password/forgot-password.component';
 import {HomeComponent} from './components/home/home.component';
+import {EventsComponent} from './components/events/events.component';
 
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'admin/list-room', component: ListRoomComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-sinaptic', component: ListSinapticComponent, canActivate: [AuthGuard] },
   { path: 'home', component: ListSinapticComponent, canActivate: [AuthGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'sinaptic', component: SinapticComponent, canActivate: [AuthGuard] },
   { path: 'control', component: ControlComponent, canActivate: [AuthGuard] },
   { path: 'user/login', component: LoginComponent, canActivate: [SecureInnerPagesGuard] },
