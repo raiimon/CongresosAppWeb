@@ -11,6 +11,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 // Región del calendario - En este caso español.
 import esLocale from '@fullcalendar/core/locales/es';
 import {AuthService} from '../../services/auth.service';
+import {CongresoInterface} from '../../models/congreso';
+import {CongresoApiService} from '../../services/congreso-api.service';
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -25,12 +27,17 @@ export class EventsComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
   locale = esLocale;
+  calendarVisible = false;
+  nombreCongresoSeleccionado: any;
+
+  // Obtener el congreso
+  private congress: CongresoInterface[];
 
   // Usuarios de los roles.
   public isAdmin: any = null;
   public userUid: string = null;
 
-  constructor(private service: CalendarService, public dataApi: CalendarService, private authService: AuthService) {}
+  constructor(private service: CalendarService, public dataApi: CalendarService, private authService: AuthService, private dataCongress: CongresoApiService) {}
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   calendarEvents: EventInterface[];
@@ -52,6 +59,21 @@ export class EventsComponent implements OnInit {
     });
   }
 
+  // Obtener el nombre del congreso.
+  obtenerNombreCongreso(event: Event) {
+    // Obtenemos de la etiqueta.
+    const selectedOptions = event.target['options'];
+
+    // Comprobamos el índice.
+    const selectedIndex = selectedOptions.selectedIndex;
+
+    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
+    this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
+
+    // Activamos el calendario.
+    this.calendarVisible = true;
+  }
+
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
@@ -59,6 +81,10 @@ export class EventsComponent implements OnInit {
   getListCongress() {
     this.dataApi.getAllCongress().subscribe(event => {
       this.calendarEvents = event;
+    });
+
+    this.dataCongress.getAllCongress().subscribe( congreso => {
+      this.congress = congreso;
     });
   }
 
@@ -71,6 +97,6 @@ export class EventsComponent implements OnInit {
   }
 
   onPreUpdateEvent(congres: EventInterface) {
-    this.dataApi.selectedCongreso = Object.assign({}, congres);
+    this.dataApi.selectedEvent = Object.assign({}, congres);
   }
 }
