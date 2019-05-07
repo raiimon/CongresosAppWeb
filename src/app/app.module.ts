@@ -53,6 +53,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoadingSpinnersModule } from 'ngx-loading-spinners';
 import { VerifyEmailComponent } from './components/users/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/users/forgot-password/forgot-password.component';
+import { PrincipalExteriorComponent } from './components/principal-exterior/principal-exterior.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ForgotPasswordComponent } from './components/users/forgot-password/forg
     FilterSinapticPipe,
     LoaderComponent,
     VerifyEmailComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    PrincipalExteriorComponent,
   ],
   imports: [
     LoadingSpinnersModule,
