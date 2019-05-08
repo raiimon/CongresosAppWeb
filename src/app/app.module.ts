@@ -55,6 +55,7 @@ import { VerifyEmailComponent } from './components/users/verify-email/verify-ema
 import { ForgotPasswordComponent } from './components/users/forgot-password/forgot-password.component';
 import { PrincipalExteriorComponent } from './components/principal-exterior/principal-exterior.component';
 import { ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
+import { ExteriorPreciosComponent } from './components/exterior-precios/exterior-precios.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ExteriorCaracteristicasComponent } from './components/exterior-caracter
     ForgotPasswordComponent,
     PrincipalExteriorComponent,
     ExteriorCaracteristicasComponent,
+    ExteriorPreciosComponent,
   ],
   imports: [
     LoadingSpinnersModule,
