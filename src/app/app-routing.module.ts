@@ -18,6 +18,7 @@ import {SinapticComponent} from './components/sinaptic/sinaptic.component';
 import {ControlComponent} from './components/control/control.component';
 import {CheckComponent} from './components/check/check.component';
 import {PrincipalExteriorComponent} from './components/principal-exterior/principal-exterior.component';
+import {ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
 
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
@@ -32,6 +33,7 @@ import { from } from 'rxjs';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'principal', component: PrincipalExteriorComponent},
+  { path: 'caracteristicas', component: ExteriorCaracteristicasComponent},
   { path: 'loader', component: LoaderComponent },
   { path: 'admin/list-congress', component: ListCongressComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },

@@ -1,0 +1,102 @@
+#app-navbar {
+    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+}
+
+.colorJum {
+    background: linear-gradient(20deg, #f6fafa, #e7e7eb);
+    margin-top: -20px;
+}
+
+.colorFa {
+    color: #3b69d4;
+}
+
+.sombras {
+    -webkit-box-shadow: -5px 6px 25px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -5px 6px 25px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: -5px 6px 25px -12px rgba(0, 0, 0, 0.75);
+}
+
+.salto {
+    margin-top: 2%;
+}
+
+.fotos {
+    width: 150px;
+    height: 50px;
+    margin-left: 2%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.margen {
+    margin-left: 10%;
+}
+
+
+/* cards */
+
+.cust_bloglistintro h2 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-top: 40px;
+}
+
+@media (max-width:767px) {
+    .cust_bloglistintro h2 {
+        margin-bottom: 25px;
+        padding-top: 25px;
+        font-size: 24px;
+    }
+}
+
+.cust_bloglistintro {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.cust_blogteaser {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.cust_blogteaser p {
+    float: left;
+    font-size: 14px;
+}
+
+.cust_blogteaser h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.color {
+    border-radius: 5%;
+    background: linear-gradient(20deg, #f6fafa, #e7e7eb);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.imgCard {
+    display: block;
+    margin: auto;
+    width: 80px;
+}
+
+.centCard {
+    text-align: center;
+    margin-top: 2%;
+}
+
+
+/* salto */
+
+#salto {
+    margin-bottom: 5%;
+}
+
+button {
+    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+}

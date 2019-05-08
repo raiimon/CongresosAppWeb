@@ -54,6 +54,7 @@ import { LoadingSpinnersModule } from 'ngx-loading-spinners';
 import { VerifyEmailComponent } from './components/users/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/users/forgot-password/forgot-password.component';
 import { PrincipalExteriorComponent } from './components/principal-exterior/principal-exterior.component';
+import { ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { PrincipalExteriorComponent } from './components/principal-exterior/prin
     VerifyEmailComponent,
     ForgotPasswordComponent,
     PrincipalExteriorComponent,
+    ExteriorCaracteristicasComponent,
   ],
   imports: [
     LoadingSpinnersModule,
