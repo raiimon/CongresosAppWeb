@@ -2,30 +2,16 @@
 <br><br><!-- Bajar el calendario -->
 <div class='app'>
 
-<div class="w-50 p-3 d-flex p-2">
-  <h2>Seleccione el congreso</h2>
-  <select class="form-control select" (change)="obtenerNombreCongreso($event)">
-    <option value="">Seleccione el congreso</option>
-    <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
-  </select>
-</div>
-
-
-  <div class='app-calendar' *ngIf="calendarVisible">
-    <!--<button class="fc-dayGridMonth-button fc-button fc-button-primary" (click)='toggleWeekends()'>Mostrar Días Laborales</button>-->
-    <full-calendar
-      #calendar
-      defaultView="timeGridWeek"
-      [header]="{
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      }"
-      [plugins]="calendarPlugins"
-      [weekends]="calendarWeekends"
-      [events]="calendarEvents"
-      [locale]="locale"></full-calendar>
+  <div class="w-50 p-3 d-flex p-2">
+    <h2>Seleccione el congreso</h2>
+    <select class="form-control select" (change)="obtenerNombreCongreso($event)">
+      <option value="">Seleccione el congreso</option>
+      <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+    </select>
   </div>
+
+  <div #fullCalendarInstance *ngIf="calendarVisible"></div>
+
   <section class="row mt-5">
     <div class="col">
       <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalEvents">Pintar Nuevo Evento</button>

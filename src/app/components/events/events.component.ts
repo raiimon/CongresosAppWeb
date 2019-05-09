@@ -1,34 +1,35 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {CalendarService} from '../../services/calendar.service';
-import {EventInterface} from '../../models/events';
-import {FullCalendarComponent} from '@fullcalendar/angular';
+import {Component, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 
-// Librería de plugins.
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGrigPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+// Librerías del Calendario.
+import {Calendar} from '@fullcalendar/core';
+import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 
-// Región del calendario - En este caso español.
+// Librería del calendario para español.
 import esLocale from '@fullcalendar/core/locales/es';
-import {AuthService} from '../../services/auth.service';
 import {CongresoInterface} from '../../models/congreso';
+import {EventInterface} from '../../models/events';
+import {CalendarService} from '../../services/calendar.service';
+import {AuthService} from '../../services/auth.service';
 import {CongresoApiService} from '../../services/congreso-api.service';
+import 'rxjs-compat/add/operator/map';
+import {SalaApiService} from '../../services/sala-api.service';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent implements OnInit {
 
-  // Componentes
-  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
-  // the #calendar in the template
+export class EventsComponent implements AfterViewInit, OnInit {
 
-  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
-  calendarWeekends = true;
-  locale = esLocale;
-  calendarVisible = false;
-  nombreCongresoSeleccionado: any;
+  @ViewChild('fullCalendarInstance') private fullCalendarInstance: any;
+
+  calendarVisible = true;
+
+  // Obtener la hora actual.
+  private fechaInicio: any;
+  private fechaFin: any;
 
   // Obtener el congreso
   private congress: CongresoInterface[];
@@ -37,14 +38,47 @@ export class EventsComponent implements OnInit {
   public isAdmin: any = null;
   public userUid: string = null;
 
-  constructor(private service: CalendarService, public dataApi: CalendarService, private authService: AuthService, private dataCongress: CongresoApiService) {}
-
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   calendarEvents: EventInterface[];
+
+  // Obtener el nombre del congreso.
+  nombreCongresoSeleccionado: any;
+
+  constructor(public dataApi: CalendarService, public dataRoom: SalaApiService, private authService: AuthService, private dataCongress: CongresoApiService) {}
+
+  ngAfterViewInit() {
+   // this.initFullCalendar();
+  }
 
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
+  }
+
+  initFullCalendar() {
+    // Obtenemos la fecha del congreso.
+    this.fechaInicio = localStorage.getItem('congressDateInicio');
+    this.fechaFin = localStorage.getItem('congressDateFin');
+
+    this.dataApi.getAllEvents().subscribe(event => {
+    this.dataRoom.getAllRooms().subscribe( room => {
+      const calendar = new Calendar(this.fullCalendarInstance.nativeElement, {
+        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+        plugins: [resourceTimeGridPlugin],
+        validRange: {
+          start: this.fechaInicio,
+          end: this.fechaFin
+        },
+        firstDay: 1,
+        locale: esLocale,
+        defaultView: 'resourceTimeGridDay',
+        resources: room,
+        events: event
+      });
+
+      calendar.render();
+    });
+    });
   }
 
   getCurrentUser() {
@@ -53,13 +87,21 @@ export class EventsComponent implements OnInit {
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
           this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
-
         });
       }
     });
   }
 
-  // Obtener el nombre del congreso.
+  getListCongress() {
+    this.dataApi.getAllEvents().subscribe(event => {
+      this.calendarEvents = event;
+    });
+
+    this.dataCongress.getAllCongress().subscribe( congreso => {
+      this.congress = congreso;
+    });
+  }
+
   obtenerNombreCongreso(event: Event) {
     // Obtenemos de la etiqueta.
     const selectedOptions = event.target['options'];
@@ -71,21 +113,7 @@ export class EventsComponent implements OnInit {
     this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
 
     // Activamos el calendario.
-    this.calendarVisible = true;
-  }
-
-  toggleWeekends() {
-    this.calendarWeekends = !this.calendarWeekends;
-  }
-
-  getListCongress() {
-    this.dataApi.getAllCongress().subscribe(event => {
-      this.calendarEvents = event;
-    });
-
-    this.dataCongress.getAllCongress().subscribe( congreso => {
-      this.congress = congreso;
-    });
+    this.initFullCalendar();
   }
 
   onDeleteEvent(idEvent: string): void {

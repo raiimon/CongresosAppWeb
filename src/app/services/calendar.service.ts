@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import {EventInterface} from '../models/events';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import 'rxjs-compat/add/observable/of';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +24,13 @@ export class CalendarService {
     idEvent: null
   };
 
+  // Servicio
+  eventsRef: AngularFireList<any>;
+  events$: Observable<any[]>;
+
   constructor(private afs: AngularFirestore) { }
 
-  getAllCongress() {
+  getAllEvents() {
 
     this.eventsCollection = this.afs.collection<EventInterface>('events');
 
@@ -33,6 +39,7 @@ export class CalendarService {
         return changes.map( action => {
           const data = action.payload.doc.data() as EventInterface;
           data.idEvent = action.payload.doc.id;
+
           // Formateamos las fechas para poderlas mostrar.
           data.start = data.start.toDate();
           data.end = data.end.toDate();

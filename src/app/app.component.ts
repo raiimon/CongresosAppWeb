@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {CalendarService} from './services/calendar.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,6 @@ import {CalendarService} from './services/calendar.service';
 export class AppComponent {
   title = 'CongresosApp2019';
 
-  constructor(private auth: CalendarService
-  ) {
+  constructor() {
   }
 }

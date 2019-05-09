@@ -1,3 +1,6 @@
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
 .app-top {
   margin: 0 0 3em;
 }
@@ -6,3 +9,4 @@
   max-width: 900px;
   margin: 40px auto;
 }
+
