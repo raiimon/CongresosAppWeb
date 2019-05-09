@@ -1,6 +1,8 @@
 export interface EventInterface {
   idEvent?: string;
   title?: string;
+  nombreCongreso?: string;
+  nombreSala?: string;
   resourceId?: string;
   start?: any;
   end?: any;

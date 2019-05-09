@@ -15,7 +15,6 @@
                 <form #congressForm="ngForm" (ngSubmit)="onSaveCongress(congressForm, 'congreso')">
 
                     <input type="hidden" name="idCongreso" [(ngModel)]="this.dataCongress.selectedCongreso.idCongreso">
-                    <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">
 
@@ -71,7 +70,6 @@
                 <form #guestForm="ngForm" (ngSubmit)="onSaveCongress(guestForm, 'invitado')">
 
                     <input type="hidden" name="idInvitado" [(ngModel)]="this.dataGuest.selectedInvitado.idInvitado">
-                    <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">
 
@@ -131,7 +129,7 @@
             <div class="modal-body">
                 <form #roomForm="ngForm" (ngSubmit)="onSaveCongress(roomForm, 'sala')">
 
-                    <input type="hidden" name="idSala" [(ngModel)]="this.dataRoom.selectedSala.idSala">
+                    <input type="hidden" name="id" [(ngModel)]="this.dataRoom.selectedSala.idSala">
                     <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">
@@ -266,13 +264,20 @@
       <div class="modal-body">
         <form #eventForm="ngForm" (ngSubmit)="onSaveCongress(eventForm, 'evento')">
 
-          <input type="hidden" name="idSala" [(ngModel)]="this.dataEvent.selectedEvent.idEvent">
+          <input type="hidden" name="idEvent" [(ngModel)]="this.dataEvent.selectedEvent.idEvent">
 
           <input type="hidden" name="userUid" [value]="userUid">
 
           <select class="form-control select" (change)="obtenerNombreCongreso($event)"><!-- Modificar para mañana -->
             <option value="">Seleccione el congreso</option>
             <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+          </select>
+
+          <br>
+
+          <select class="form-control select" (change)="obtenerNombreSala($event)" name="resourceId"><!-- Modificar para mañana -->
+            <option value="">Seleccione la sala</option>
+            <option *ngFor="let room of rooms" name="resourceId" value="{{room.idSala}}">{{room.nombreSala}}</option>
           </select>
 
           <div class="form-group">

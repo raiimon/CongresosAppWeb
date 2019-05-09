@@ -26,13 +26,13 @@ export class CongresoApiService {
     idCongreso: null
   };
 
+  nombreCongreso: any;
+
   // Método para obtener todos los congresos.
   getAllCongress() {
 
     // Obtenemos todos los congresos almacenados en la tabla 'congreso' en Firebase.
     this.congresosCollection = this.afs.collection<CongresoInterface>('congreso');
-
-    let a: any;
 
     return this.congresos = this.congresosCollection.snapshotChanges()
       .pipe(map( changes => {
@@ -41,15 +41,6 @@ export class CongresoApiService {
           const data = action.payload.doc.data() as CongresoInterface;
           data.idCongreso = action.payload.doc.id;
 
-          // Formateamos las fechas para poderlas mostrar y la almacenamos para el calendario.
-          // Inicio de Fecha.
-          data.fechaInicioCongreso = data.fechaInicioCongreso.toDate();
-          const myFormattedDateInit = moment(data.fechaInicioCongreso).format('YYYY-MM-DD');
-          localStorage.setItem('congressDateInicio', myFormattedDateInit);
-
-          // Salida de fecha.
-          a = moment(data.fechaSalidaCongreso.toDate()).add(1, 'day').format('YYYY-MM-DD');
-          localStorage.setItem('congressDateFin', a);
           return data;
         });
       }));
@@ -58,7 +49,10 @@ export class CongresoApiService {
   // Método para obtener un único congreso.
   getOneCongress(idCongreso: string) {
 
-    this.congresoDoc = this.afs.doc<CongresoInterface>(`invitado/${idCongreso}`);
+    let a: any;
+
+
+    this.congresoDoc = this.afs.doc<CongresoInterface>(`congreso/${idCongreso}`);
 
     return this.congreso = this.congresoDoc.snapshotChanges().pipe(map(action => {
       if (action.payload.exists === false) {
@@ -66,9 +60,19 @@ export class CongresoApiService {
       } else {
         const data = action.payload.data() as CongresoInterface;
         data.idCongreso = action.payload.id;
+
+        // Formateamos las fechas para poderlas mostrar y la almacenamos para el calendario.
+        // Inicio de Fecha.
+        data.fechaInicioCongreso = data.fechaInicioCongreso.toDate();
+        const myFormattedDateInit = moment(data.fechaInicioCongreso).format('YYYY-MM-DD');
+        localStorage.setItem('congressDateInicio', myFormattedDateInit);
+
+        // Salida de fecha.
+        a = moment(data.fechaSalidaCongreso.toDate()).add(1, 'day').format('YYYY-MM-DD');
+        localStorage.setItem('congressDateFin', a);
+
         return data;
       }
-
     }));
   }
 

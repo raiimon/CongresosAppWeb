@@ -9,6 +9,7 @@ import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {CalendarService} from '../../services/calendar.service';
+import {SalaInterface} from '../../models/sala';
 
 @Component({
   selector: 'app-modal',
@@ -26,7 +27,10 @@ export class ModalComponent implements OnInit {
 
   // Variables para añadir los valores de los congresos.
   private congress: CongresoInterface[];
+  private rooms: SalaInterface[];
+
   public nombreCongresoSeleccionado: string;
+  public nombreSalaSeleccionado: string;
 
   // Variable para cargar el porcentage de subida de una imagen.
   uploadPercent: Observable<number>;
@@ -49,11 +53,18 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.getListCongress();
+    this.getListRooms();
   }
 
   getListCongress() {
     this.dataCongress.getAllCongress().subscribe( congreso => {
       this.congress = congreso;
+    });
+  }
+
+  getListRooms() {
+    this.dataRoom.getAllRooms().subscribe(rooms => {
+      this.rooms = rooms;
     });
   }
 
@@ -69,6 +80,18 @@ export class ModalComponent implements OnInit {
     this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
 
   }
+
+  obtenerNombreSala(event: Event) {
+    // Obtenemos de la etiqueta.
+    const selectedOptions = event.target['options'];
+
+    // Comprobamos el índice.
+    const selectedIndex = selectedOptions.selectedIndex;
+
+    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
+    this.nombreSalaSeleccionado = selectedOptions[selectedIndex].value;
+  }
+
   onSaveCongress(congressForm: NgForm, modal): void {
 
     switch (modal) {
@@ -144,6 +167,9 @@ export class ModalComponent implements OnInit {
           congressForm.value.userUid = this.userUid;
           congressForm.value.start = fechaEntrada;
           congressForm.value.end = fechaSalida;
+          congressForm.value.resourceId = this.nombreSalaSeleccionado;
+          congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+
 
           this.dataEvent.addEvent(congressForm.value);
 

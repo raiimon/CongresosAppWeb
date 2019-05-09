@@ -21,7 +21,7 @@ import * as moment from 'moment';
   styleUrls: ['./events.component.css']
 })
 
-export class EventsComponent implements AfterViewInit, OnInit {
+export class EventsComponent implements OnInit {
 
   @ViewChild('fullCalendarInstance') private fullCalendarInstance: any;
 
@@ -33,6 +33,7 @@ export class EventsComponent implements AfterViewInit, OnInit {
 
   // Obtener el congreso
   private congress: CongresoInterface[];
+  private uniqueCongress: CongresoInterface ;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -43,22 +44,16 @@ export class EventsComponent implements AfterViewInit, OnInit {
 
   // Obtener el nombre del congreso.
   nombreCongresoSeleccionado: any;
+  idCongresoSeleccionado: any;
 
   constructor(public dataApi: CalendarService, public dataRoom: SalaApiService, private authService: AuthService, private dataCongress: CongresoApiService) {}
-
-  ngAfterViewInit() {
-   // this.initFullCalendar();
-  }
 
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
   }
 
-  initFullCalendar() {
-    // Obtenemos la fecha del congreso.
-    this.fechaInicio = localStorage.getItem('congressDateInicio');
-    this.fechaFin = localStorage.getItem('congressDateFin');
+  initFullCalendar(fechaInicio: any, fechaFin: any) {
 
     this.dataApi.getAllEvents().subscribe(event => {
     this.dataRoom.getAllRooms().subscribe( room => {
@@ -111,9 +106,21 @@ export class EventsComponent implements AfterViewInit, OnInit {
 
     // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
     this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
+    this.idCongresoSeleccionado = selectedOptions[selectedIndex].value;
+
+    this.dataCongress.getOneCongress(this.idCongresoSeleccionado).subscribe( congresoUnico => {
+      this.uniqueCongress = congresoUnico;
+    });
+
+    // Obtenemos la fecha del congreso.
+    this.fechaInicio = localStorage.getItem('congressDateInicio');
+    this.fechaFin = localStorage.getItem('congressDateFin');
+
+    // Refrescamos el calendario.
+    this.fullCalendarInstance.nativeElement.innerHTML = '';
 
     // Activamos el calendario.
-    this.initFullCalendar();
+    this.initFullCalendar(this.fechaInicio, this.fechaFin);
   }
 
   onDeleteEvent(idEvent: string): void {
