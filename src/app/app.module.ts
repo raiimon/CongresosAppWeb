@@ -56,6 +56,7 @@ import { ForgotPasswordComponent } from './components/users/forgot-password/forg
 import { PrincipalExteriorComponent } from './components/principal-exterior/principal-exterior.component';
 import { ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
 import { ExteriorPreciosComponent } from './components/exterior-precios/exterior-precios.component';
+import {EventsComponent} from './components/events/events.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { ExteriorPreciosComponent } from './components/exterior-precios/exterior
     ForgotPasswordComponent,
     PrincipalExteriorComponent,
     ExteriorCaracteristicasComponent,
+    EventsComponent,
     ExteriorPreciosComponent,
   ],
   imports: [

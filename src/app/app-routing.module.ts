@@ -27,12 +27,13 @@ import {VerifyEmailComponent} from './components/users/verify-email/verify-email
 import {ForgotPasswordComponent} from './components/users/forgot-password/forgot-password.component';
 import {HomeComponent} from './components/home/home.component';
 import { from } from 'rxjs';
+import {EventsComponent} from './components/events/events.component';
 
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: PrincipalExteriorComponent},
   { path: 'principal', component: PrincipalExteriorComponent},
   { path: 'caracteristicas', component: ExteriorCaracteristicasComponent},
   { path: 'precios', component: ExteriorPreciosComponent},
@@ -42,9 +43,10 @@ const routes: Routes = [
   { path: 'check', component: CheckComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-room', component: ListRoomComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-sinaptic', component: ListSinapticComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: ListSinapticComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'sinaptic', component: SinapticComponent, canActivate: [AuthGuard] },
   { path: 'control', component: ControlComponent, canActivate: [AuthGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'user/login', component: LoginComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user/register', component: RegisterComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard]},
