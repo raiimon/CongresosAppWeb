@@ -55,6 +55,23 @@ export class CongresoApiService {
       }));
   }
 
+  // Método para obtener un único congreso.
+  getOneCongress(idCongreso: string) {
+
+    this.congresoDoc = this.afs.doc<CongresoInterface>(`invitado/${idCongreso}`);
+
+    return this.congreso = this.congresoDoc.snapshotChanges().pipe(map(action => {
+      if (action.payload.exists === false) {
+        return null;
+      } else {
+        const data = action.payload.data() as CongresoInterface;
+        data.idCongreso = action.payload.id;
+        return data;
+      }
+
+    }));
+  }
+
   // Método para añadir un congreso.
   addCongress(congreso: CongresoInterface): void {
 
