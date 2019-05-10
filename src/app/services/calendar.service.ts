@@ -24,10 +24,6 @@ export class CalendarService {
     idEvent: null
   };
 
-  // Servicio
-  eventsRef: AngularFireList<any>;
-  events$: Observable<any[]>;
-
   constructor(private afs: AngularFirestore) { }
 
   getAllEvents() {
@@ -37,6 +33,7 @@ export class CalendarService {
     return this.events = this.eventsCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map( action => {
+
           const data = action.payload.doc.data() as EventInterface;
           data.idEvent = action.payload.doc.id;
 

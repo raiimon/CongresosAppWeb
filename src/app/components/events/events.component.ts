@@ -27,10 +27,6 @@ export class EventsComponent implements OnInit {
 
   calendarVisible = true;
 
-  // Obtener la hora actual.
-  private fechaInicio: any;
-  private fechaFin: any;
-
   // Obtener el congreso
   private congress: CongresoInterface[];
   private uniqueCongress: CongresoInterface ;
@@ -53,7 +49,7 @@ export class EventsComponent implements OnInit {
     this.getCurrentUser();
   }
 
-  initFullCalendar(fechaInicio: any, fechaFin: any) {
+  initFullCalendar(fechaInicio, fechaFin) {
 
     this.dataApi.getAllEvents().subscribe(event => {
     this.dataRoom.getAllRooms().subscribe( room => {
@@ -61,8 +57,8 @@ export class EventsComponent implements OnInit {
         schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
         plugins: [resourceTimeGridPlugin],
         validRange: {
-          start: this.fechaInicio,
-          end: this.fechaFin
+          start: fechaInicio,
+          end: fechaFin
         },
         firstDay: 1,
         locale: esLocale,
@@ -88,16 +84,17 @@ export class EventsComponent implements OnInit {
   }
 
   getListCongress() {
-    this.dataApi.getAllEvents().subscribe(event => {
-      this.calendarEvents = event;
-    });
-
+    // Obtenemos todos los congresos para el option.
     this.dataCongress.getAllCongress().subscribe( congreso => {
       this.congress = congreso;
     });
   }
 
   obtenerNombreCongreso(event: Event) {
+
+    let fechaInicio: any = '';
+    let fechaFin: any = '';
+
     // Obtenemos de la etiqueta.
     const selectedOptions = event.target['options'];
 
@@ -110,17 +107,30 @@ export class EventsComponent implements OnInit {
 
     this.dataCongress.getOneCongress(this.idCongresoSeleccionado).subscribe( congresoUnico => {
       this.uniqueCongress = congresoUnico;
-    });
 
-    // Obtenemos la fecha del congreso.
-    this.fechaInicio = localStorage.getItem('congressDateInicio');
-    this.fechaFin = localStorage.getItem('congressDateFin');
+      // Obtenemos la fecha del congreso.
+      fechaInicio = localStorage.getItem('congressDateInicio');
+      fechaFin = localStorage.getItem('congressDateFin');
+
+      // Activamos el calendario.
+      this.initFullCalendar(fechaInicio, fechaFin);
+    });
 
     // Refrescamos el calendario.
     this.fullCalendarInstance.nativeElement.innerHTML = '';
 
-    // Activamos el calendario.
-    this.initFullCalendar(this.fechaInicio, this.fechaFin);
+    // Vamos a mostrar los eventos según el congreso.
+    this.getEvents(this.nombreCongresoSeleccionado);
+
+  }
+
+  getEvents(nombreCongreso) {
+    localStorage.setItem('nombreCongresoEvent', nombreCongreso);
+
+    // Obtenemos todos los eventos.
+    this.dataApi.getAllEvents().subscribe(event => {
+      this.calendarEvents = event;
+    });
   }
 
   onDeleteEvent(idEvent: string): void {

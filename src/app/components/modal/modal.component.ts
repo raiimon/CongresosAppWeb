@@ -97,13 +97,21 @@ export class ModalComponent implements OnInit {
     switch (modal) {
       case 'congreso':
 
+        // congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+        // Convertir la fecha de entrada y salida para Firebase.
+        const fechaEntradaCongreso = new Date(congressForm.value.fechaInicioCongreso);
+        const fechaSalidaCongreso = new Date(congressForm.value.fechaSalidaCongreso);
+
         if (congressForm.value.idCongreso == null) {
 
           congressForm.value.userUid = this.userUid;
+          congressForm.value.fechaInicioCongreso = fechaEntradaCongreso;
+          congressForm.value.fechaSalidaCongreso = fechaSalidaCongreso;
           this.dataCongress.addCongress(congressForm.value);
 
         } else {
-
+          congressForm.value.fechaInicioCongreso = fechaEntradaCongreso;
+          congressForm.value.fechaSalidaCongreso = fechaSalidaCongreso;
           this.dataCongress.updateCongress(congressForm.value);
 
         }

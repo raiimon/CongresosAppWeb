@@ -26,8 +26,8 @@
           <th scope="col">&nbsp;</th>
         </tr>
         </thead>
-        <tbody>
-        <tr *ngFor="let event of calendarEvents">
+        <tbody *ngFor="let event of calendarEvents">
+        <tr *ngIf="(event.nombreCongreso == nombreCongresoSeleccionado)">
           <td>{{event.title}}</td>
           <td>{{event.start | date: 'HH:mm'}}</td>
           <td>{{event.end | date: 'HH:mm'}}</td>
