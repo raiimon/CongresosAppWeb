@@ -50,6 +50,7 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
+    this.fullCalendarInstance.nativeElement.innerHTML = '';
   }
 
   initFullCalendar(fechaInicio, fechaFin) {
@@ -143,20 +144,12 @@ export class EventsComponent implements OnInit {
 
     if (confirmacion) {
       this.dataApi.deleteEvent(idEvent);
-      this.redirectTo('events');
+      this.ngOnInit();
     }
   }
 
   onPreUpdateEvent(congres: EventInterface) {
     this.dataApi.selectedEvent = Object.assign({}, congres);
-    this.redirectTo('events');
-  }
-
-  // Método que 'actualiza' la página actual engañando al router.
-  redirectTo(uri: string) {
-     this.fullCalendarInstance.nativeElement.innerHTML = '';
-
-     this.router.navigateByUrl('/GhostComponent', {skipLocationChange: true}).then(() =>
-      this.router.navigate([uri]));
+    this.ngOnInit();
   }
 }
