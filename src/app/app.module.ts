@@ -57,6 +57,7 @@ import { PrincipalExteriorComponent } from './components/principal-exterior/prin
 import { ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
 import { ExteriorPreciosComponent } from './components/exterior-precios/exterior-precios.component';
 import {EventsComponent} from './components/events/events.component';
+import { ExteriorModalidadesComponent } from './components/exterior-modalidades/exterior-modalidades.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import {EventsComponent} from './components/events/events.component';
     ExteriorCaracteristicasComponent,
     EventsComponent,
     ExteriorPreciosComponent,
+    ExteriorModalidadesComponent,
   ],
   imports: [
     LoadingSpinnersModule,
