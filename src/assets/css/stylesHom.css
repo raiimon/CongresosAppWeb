@@ -18,10 +18,12 @@
 }
 
 .borImg {
-    border-radius: 5px;
+    border-radius: 10px;
     -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
     -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
     box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    width: 100%;
+    height: 100%;
 }
 
 .bordetabla {
@@ -29,7 +31,32 @@
 }
 
 table {
-    -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
-    -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
-    box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+    -webkit-box-shadow: 3px 7px 15px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 7px 15px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 7px 15px -3px rgba(0, 0, 0, 0.75);
+}
+
+.sombras {
+    color: white;
+    -webkit-box-shadow: 3px 4px 9px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 4px 9px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 4px 9px -4px rgba(0, 0, 0, 0.75);
+}
+
+section,
+h1 {
+    border-radius: 4px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
 }

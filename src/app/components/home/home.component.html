@@ -2,58 +2,128 @@
   <app-navbar></app-navbar>
   <link rel="stylesheet" href="assets/css/stylesHom.css">
     <div class="borde">
-        <div class="jumbotron jumbotron-fluid border rounded border-info" id="diseno" style="background-color: rgba(140,214,245,0.28);">
+        <div class="jumbotron jumbotron-fluid border rounded border-primary" id="diseno" style="background-color: rgba(140,214,245,0.28); ">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6 col-lg-4 offset-lg-0 "><img class="img-fluid borImg" src="https://i2.wp.com/protocoloalavista.com/wp-content/uploads/2017/06/SALONDECONGRESOS.jpg?ssl=1" width="400" height="400"></div>
-                    <div class="col-md-6 col-lg-8 ">
-                        <h1 class="text-center " id="titulo">Congresos Disponibles</h1>
-                        <h3 id="descrip" class="bordetabla">Descripción</h3>
-                        <p class="bordetabla">Apartado general de la página principal donde podrás ver los congresos disponibles que has almacenado.&nbsp;</p>
-                    </div>
-                    <div class="col-lg-12">
-                        <h1 class="text-center" id="titulo">Congresos</h1>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre del Congreso</th>
-                                        <th>Dirección</th>
-                                        <th>Fecha Inicio Congreso</th>
-                                        <th>Fecha Finalización Congreso</th>
-                                    </tr>
-                                </thead>
-                              <tbody>
-                                <tr  *ngFor="let event of congress">
-                                  <td>{{event.nombreCongreso}}</td>
-                                  <td>{{event.direccion}}</td>
-                                  <td>{{event.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
-                                  <td>{{event.fechaSalidaCongreso | date: 'dd-MM-yyyy'}}</td>
+                    <div class="col-md-1 col-lg-1 "></div>
+
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 "><img class="img-fluid borImg" src="https://i2.wp.com/protocoloalavista.com/wp-content/uploads/2017/06/SALONDECONGRESOS.jpg?ssl=1"></div>
+                    <div class="col-md-5 col-lg-7 ">
+                        <h1 class="text-center sombras" id="titulo" *ngFor="let event of congress" style="color:white">{{event.nombreCongreso}}</h1>
+                        <h3 id="descrip" class="bordetabla">Información</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Dirección</th>
+                                    <th>Fecha Inicio Congreso</th>
+                                    <th>Fecha Finalización Congreso</th>
                                 </tr>
-                              </tbody>
-                            </table>
-                        </div>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let event of congress">
+                                    <td>{{event.direccion}}</td>
+                                    <td>{{event.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
+                                    <td>{{event.fechaSalidaCongreso | date: 'dd-MM-yyyy'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col">
-                        <h1 class="text-center" id="titulo">Salas</h1>
-                        <div class="table-responsive">
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                        <h1 class="text-center sombras mt-4" id="titulo">Salas</h1>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre Sala</th>
+                                    <th>Nombre Congreso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let event of salas">
+                                    <td>{{event.title}}</td>
+                                    <td>{{event.nombreCongreso}}</td>
+                                </tr>
+                                <tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                        <h1 class="text-center sombras mt-4" id="titulo">Invitados</h1>
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Nombre Sala</th>
-                                        <th>Nombre Congreso</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let event of salas">
-                                        <td>{{event.title}}</td>
-                                        <td>{{event.nombreCongreso}}</td>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
                                     </tr>
                                     <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                        <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
+                        <img class=" borImg" src="https://i2.wp.com/protocoloalavista.com/wp-content/uploads/2017/06/SALONDECONGRESOS.jpg?ssl=1" style=" height: 50vh ;">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
                 </div>
             </div>
         </div>
