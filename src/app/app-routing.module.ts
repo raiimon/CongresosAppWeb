@@ -20,6 +20,9 @@ import {CheckComponent} from './components/check/check.component';
 import {PrincipalExteriorComponent} from './components/principal-exterior/principal-exterior.component';
 import {ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
 import {ExteriorPreciosComponent} from './components/principal-exterior/exterior-precios/exterior-precios.component';
+import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
+
+
 
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
@@ -36,6 +39,7 @@ const routes: Routes = [
   { path: 'principal', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'caracteristicas', component: ExteriorCaracteristicasComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'precios', component: ExteriorPreciosComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: 'modalidades', component: ExteriorModalidadesComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'loader', component: LoaderComponent },
   { path: 'admin/list-congress', component: ListCongressComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },

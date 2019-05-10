@@ -43,6 +43,7 @@ import { ControlComponent } from './components/control/control.component';
 import { CheckComponent } from './components/check/check.component';
 import {NavbarExteriorComponent} from './components/navbar-exterior/navbar-exterior.component';
 
+
 // Importamos nuestro filtro personalizado.
 import { FilterCongressPipe } from './pipes/filter-congress.pipe';
 import { FilterGuestPipe } from './pipes/filter-guest.pipe';
@@ -57,6 +58,8 @@ import { ForgotPasswordComponent } from './components/users/forgot-password/forg
 import { PrincipalExteriorComponent } from './components/principal-exterior/principal-exterior.component';
 import { ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
 import { ExteriorPreciosComponent } from './components/principal-exterior/exterior-precios/exterior-precios.component';
+import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
+
 import {EventsComponent} from './components/events/events.component';
 
 @NgModule({
@@ -88,6 +91,7 @@ import {EventsComponent} from './components/events/events.component';
     EventsComponent,
     ExteriorPreciosComponent,
     NavbarExteriorComponent,
+    ExteriorModalidadesComponent
   ],
   imports: [
     LoadingSpinnersModule,
