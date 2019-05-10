@@ -56,7 +56,7 @@ export class AuthService {
     return this.afsAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['']);
+          this.router.navigate(['home']);
         });
         this.updateUserData(result.user);
       }).catch((error) => {
@@ -83,7 +83,7 @@ export class AuthService {
   signOut() {
     return this.afsAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['user/login']);
+      this.router.navigate(['']);
     });  }
 
 

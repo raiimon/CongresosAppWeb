@@ -4,26 +4,7 @@
 <script src="assets/js/jqueryPrinCi.min.js"></script>
 
 
-<nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="assets/img/logo2.png">
-
-        </a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Inicio</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Características</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Precios</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Resgistrate</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Iniciar Sesión</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<app-navbar-exterior></app-navbar-exterior>
 <section>
     <div class="jumbotron jumbotron-fluid colorJum" style="background-size: cover;">
         <div class="container">
@@ -34,7 +15,7 @@
                     <p class="text-left" id="perso">· Aplicaciones personalizadas 100%</p>
                     <p class="text-left">· Potencia la interacción de los asistentes</p>
                     <p class="text-left">· Analiza las estadísticas de uso una vez finalizado el evento</p>
-                    <p class="text-center"><a class="btn btn-info active btn-block" role="button" href="#">Precio</a></p>
+                    <p class="text-center"><a class="btn btn-info active btn-block" role="button" routerLink="/precios">Precio</a></p>
                 </div>
             </div>
         </div>

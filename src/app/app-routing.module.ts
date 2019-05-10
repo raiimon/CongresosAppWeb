@@ -18,25 +18,24 @@ import {SinapticComponent} from './components/sinaptic/sinaptic.component';
 import {ControlComponent} from './components/control/control.component';
 import {CheckComponent} from './components/check/check.component';
 import {PrincipalExteriorComponent} from './components/principal-exterior/principal-exterior.component';
-import {ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
-import {ExteriorPreciosComponent} from './components/exterior-precios/exterior-precios.component';
+import {ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
+import {ExteriorPreciosComponent} from './components/principal-exterior/exterior-precios/exterior-precios.component';
 
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
 import {VerifyEmailComponent} from './components/users/verify-email/verify-email.component';
 import {ForgotPasswordComponent} from './components/users/forgot-password/forgot-password.component';
 import {HomeComponent} from './components/home/home.component';
-import { from } from 'rxjs';
 import {EventsComponent} from './components/events/events.component';
 
 // En las rutas, añadimos la seguridad de las AuthGuard.
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
 
 const routes: Routes = [
-  { path: '', component: PrincipalExteriorComponent},
-  { path: 'principal', component: PrincipalExteriorComponent},
-  { path: 'caracteristicas', component: ExteriorCaracteristicasComponent},
-  { path: 'precios', component: ExteriorPreciosComponent},
+  { path: '', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: 'principal', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: 'caracteristicas', component: ExteriorCaracteristicasComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: 'precios', component: ExteriorPreciosComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'loader', component: LoaderComponent },
   { path: 'admin/list-congress', component: ListCongressComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },

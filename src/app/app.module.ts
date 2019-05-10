@@ -41,6 +41,7 @@ import { SinapticComponent } from './components/sinaptic/sinaptic.component';
 import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sinaptic.component';
 import { ControlComponent } from './components/control/control.component';
 import { CheckComponent } from './components/check/check.component';
+import {NavbarExteriorComponent} from './components/navbar-exterior/navbar-exterior.component';
 
 // Importamos nuestro filtro personalizado.
 import { FilterCongressPipe } from './pipes/filter-congress.pipe';
@@ -54,8 +55,8 @@ import { LoadingSpinnersModule } from 'ngx-loading-spinners';
 import { VerifyEmailComponent } from './components/users/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/users/forgot-password/forgot-password.component';
 import { PrincipalExteriorComponent } from './components/principal-exterior/principal-exterior.component';
-import { ExteriorCaracteristicasComponent } from './components/exterior-caracteristicas/exterior-caracteristicas.component';
-import { ExteriorPreciosComponent } from './components/exterior-precios/exterior-precios.component';
+import { ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
+import { ExteriorPreciosComponent } from './components/principal-exterior/exterior-precios/exterior-precios.component';
 import {EventsComponent} from './components/events/events.component';
 
 @NgModule({
@@ -86,6 +87,7 @@ import {EventsComponent} from './components/events/events.component';
     ExteriorCaracteristicasComponent,
     EventsComponent,
     ExteriorPreciosComponent,
+    NavbarExteriorComponent,
   ],
   imports: [
     LoadingSpinnersModule,

@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
   // Método para redireccionar a la ruta de admin.
   onLoginRedirect(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
   // Método para mostrar los errores obtenidos por Firebase.
   onError(error) {
