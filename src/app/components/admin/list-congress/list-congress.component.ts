@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {CongresoApiService} from '../../../services/congreso-api.service';
+import { AuthenticationService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-list-congress',
@@ -10,7 +10,7 @@ import {CongresoApiService} from '../../../services/congreso-api.service';
 })
 export class ListCongressComponent implements OnInit {
 
-  constructor(public dataApi: CongresoApiService, public authService: AuthService) { }
+  constructor(public dataApi: CongresoApiService, public authService: AuthenticationService) { }
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];

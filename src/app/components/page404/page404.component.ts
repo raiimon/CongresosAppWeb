@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import {AuthenticationService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class Page404Component implements OnInit {
 
-  constructor(private authService: AuthService,
+  constructor(private authService: AuthenticationService,
               private router: Router) { }
 
   ngOnInit() {

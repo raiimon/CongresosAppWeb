@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
+import { AuthenticationService } from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {SalaApiService} from '../../../services/sala-api.service';
 import {SalaInterface} from '../../../models/sala';
@@ -11,7 +11,7 @@ import {SalaInterface} from '../../../models/sala';
 })
 export class ListRoomComponent implements OnInit {
 
-  constructor(private dataApi: SalaApiService, private authService: AuthService) { }
+  constructor(private dataApi: SalaApiService, private authService: AuthenticationService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private rooms: SalaInterface[];
   private nombreSala: string;

@@ -3,7 +3,7 @@ import {CongresoApiService} from '../../services/congreso-api.service';
 import {SinapticoApiService} from '../../services/sinaptico-api.service';
 import {CongresoInterface} from '../../models/congreso';
 import {SalaInterface} from '../../models/sala';
-import {AuthService} from '../../services/auth.service';
+import { AuthenticationService } from '../../services/auth.service';
 import {SalaApiService} from '../../services/sala-api.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   public isAdmin: any = null;
   public userUid: string = null;
 
-  constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, public authService: AuthService) { }
+  constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, public authService: AuthenticationService) { }
 
   ngOnInit() {
     this.getAllCongress();

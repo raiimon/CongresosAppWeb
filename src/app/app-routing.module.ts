@@ -32,7 +32,7 @@ import {EventsComponent} from './components/events/events.component';
 // De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
 
 const routes: Routes = [
-  { path: '', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: '', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard], pathMatch: 'full'},
   { path: 'principal', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'caracteristicas', component: ExteriorCaracteristicasComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'precios', component: ExteriorPreciosComponent, canActivate: [SecureInnerPagesGuard]},

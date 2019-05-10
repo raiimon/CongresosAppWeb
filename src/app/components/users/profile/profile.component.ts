@@ -1,7 +1,7 @@
 import {Component, OnInit, ElementRef, ViewChild, OnDestroy} from '@angular/core';
 
 // Importamos el servicio necesario.
-import { AuthService } from '../../../services/auth.service';
+import { AuthenticationService } from '../../../services/auth.service';
 
 // Importamos la interface de usuario, que recoge los valores de Firebase.
 import { UserInterface } from '../../../models/user';
@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
 
-  constructor(private authService: AuthService,
+  constructor(private authService: AuthenticationService,
               private storage: AngularFireStorage,
               private router: Router,
               private  afAuth: AngularFireAuth) { }

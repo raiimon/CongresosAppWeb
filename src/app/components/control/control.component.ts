@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import { AuthenticationService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-control',
@@ -11,7 +11,7 @@ export class ControlComponent implements OnInit {
   public userUid: string = null;
   public isAdmin: any = null;
 
-  constructor( private authService: AuthService) { }
+  constructor( private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.getCurrentUser();

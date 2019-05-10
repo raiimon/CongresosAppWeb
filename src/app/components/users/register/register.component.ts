@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 // Importamos el servicio y el router.
-import { AuthService } from '../../../services/auth.service';
+import { AuthenticationService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { AngularFireStorage } from '@angular/fire/storage';
 
 // Importamos finalize para luego guardar la ruta de la imagen y recogerla en la base de datos.
 import { finalize } from 'rxjs/operators';
@@ -17,7 +16,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
-              private authService: AuthService,
+              private authService: AuthenticationService,
               public  afAuth: AngularFireAuth) { }
 
   @ViewChild('imageUser') inputImageUser: ElementRef;

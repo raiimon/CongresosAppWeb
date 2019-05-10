@@ -9,12 +9,11 @@ import esLocale from '@fullcalendar/core/locales/es';
 import {CongresoInterface} from '../../models/congreso';
 import {EventInterface} from '../../models/events';
 import {CalendarService} from '../../services/calendar.service';
-import {AuthService} from '../../services/auth.service';
+import { AuthenticationService } from '../../services/auth.service';
 import {CongresoApiService} from '../../services/congreso-api.service';
 import 'rxjs-compat/add/operator/map';
 import {SalaApiService} from '../../services/sala-api.service';
-import * as moment from 'moment';
-import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-events',
@@ -43,9 +42,8 @@ export class EventsComponent implements OnInit {
 
   constructor(public dataApi: CalendarService,
               public dataRoom: SalaApiService,
-              private authService: AuthService,
-              private dataCongress: CongresoApiService,
-              private router: Router) {}
+              private authService: AuthenticationService,
+              private dataCongress: CongresoApiService) {}
 
   ngOnInit() {
     this.getListCongress();

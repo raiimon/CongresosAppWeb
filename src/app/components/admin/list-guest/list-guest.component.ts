@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
+import { AuthenticationService } from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {InvitadoApiService} from '../../../services/invitado-api.service';
 import {InvitadoInterface} from '../../../models/invitado';
@@ -12,7 +12,7 @@ import {InvitadoInterface} from '../../../models/invitado';
 export class ListGuestComponent implements OnInit {
 
 
-  constructor(private dataApi: InvitadoApiService, private authService: AuthService) { }
+  constructor(private dataApi: InvitadoApiService, private authService: AuthenticationService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private guests: InvitadoInterface[];
   private nombre: string;

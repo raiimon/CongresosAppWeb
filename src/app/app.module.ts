@@ -59,6 +59,7 @@ import { ExteriorCaracteristicasComponent } from './components/principal-exterio
 import { ExteriorPreciosComponent } from './components/principal-exterior/exterior-precios/exterior-precios.component';
 import {EventsComponent} from './components/events/events.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

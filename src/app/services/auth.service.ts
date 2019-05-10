@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from '@angular/router';
 import {UserInterface} from '../models/user';
 import {map} from 'rxjs/operators';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {map} from 'rxjs/operators';
 /* Servicio para la autenticación  de los usuarios, donde tenemos el login-registro-registro con Facebook y Google -
 Logout - Actualización del perfil y la comprobación del tipo de rol. */
 
-export class AuthService {
+export class AuthenticationService {
 
   private userDoc: AngularFirestoreDocument<UserInterface>;
 
@@ -76,16 +77,40 @@ export class AuthService {
   }
 
   loginGoogleUser() {
-    return this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-      .then(credential => this.updateUserData(credential.user));
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      this.afsAuth.auth
+        .signInWithPopup(provider)
+        .then(res => {
+          resolve(res);
+          console.log('Correcto');
+        }, err => {
+          console.log(err);
+          reject(err);
+          console.log('Error');
+
+        });
+    });
   }
 
   signOut() {
-    return this.afsAuth.auth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['']);
-    });  }
-
+    return new Promise<any>((resolve, reject) => {
+      if (firebase.auth().currentUser) {
+        this.afsAuth.auth.signOut().then( () => {
+          localStorage.removeItem('user');
+          this.router.navigate(['']);
+          this.userData = undefined;
+          console.log('Correcto');
+        });
+        resolve();
+      } else {
+        console.log('Incorrecto');
+        reject();
+      }
+    });
+  }
 
   // Método para la comprobación del Navbar.
   isAuth() {

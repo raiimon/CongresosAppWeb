@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
+import { AuthenticationService } from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {SinapticoApiService} from '../../../services/sinaptico-api.service';
 import {SinapticoInterface} from '../../../models/sinaptico';
@@ -11,7 +11,7 @@ import {SinapticoInterface} from '../../../models/sinaptico';
 })
 export class ListSinapticComponent implements OnInit {
 
-  constructor(private dataApi: SinapticoApiService, private authService: AuthService) { }
+  constructor(private dataApi: SinapticoApiService, private authService: AuthenticationService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private sinaptics: SinapticoInterface[];
   private nombreSinopticoFiltro = '';

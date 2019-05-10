@@ -5,7 +5,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 
 // Importamos el servicio de autenticación.
-import {AuthService} from '../../../services/auth.service';
+import { AuthenticationService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
     // LLamamos el servicio.
     this.authService.loginFacebookUser()
       .then((res) => {
+        console.log(res);
         this.onLoginRedirect();
       }).catch( err => this.onError(err));
   }
