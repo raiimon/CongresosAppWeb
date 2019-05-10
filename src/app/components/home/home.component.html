@@ -3,12 +3,12 @@
 <section>
     <link rel="stylesheet" href="assets/css/stylesHom.css">
     <div class="borde">
-        <div class="jumbotron jumbotron-fluid border rounded border-info" id="diseno" style="background-color: rgba(140,214,245,0.28);">
+        <div class="jumbotron jumbotron-fluid border rounded border-primary" id="diseno" style="background-color: rgba(140,214,245,0.28); ">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-1 col-lg-1 "></div>
 
-                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 "><img class="img-fluid borImg" src="https://i2.wp.com/protocoloalavista.com/wp-content/uploads/2017/06/SALONDECONGRESOS.jpg?ssl=1" width="400" height="400"></div>
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 "><img class="img-fluid borImg" src="https://i2.wp.com/protocoloalavista.com/wp-content/uploads/2017/06/SALONDECONGRESOS.jpg?ssl=1"></div>
                     <div class="col-md-5 col-lg-7 ">
                         <h1 class="text-center sombras" id="titulo" *ngFor="let event of congress" style="color:white">{{event.nombreCongreso}}</h1>
                         <h3 id="descrip" class="bordetabla">Información</h3>
@@ -117,7 +117,16 @@
                     <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
                 </div>
             </div>
-
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                        <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
+                        <img class=" borImg" src="https://i2.wp.com/protocoloalavista.com/wp-content/uploads/2017/06/SALONDECONGRESOS.jpg?ssl=1" style=" height: 50vh ;">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="assets/js/jqueryHom.min.js"></script>
