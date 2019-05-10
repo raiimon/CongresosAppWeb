@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {CongresoApiService} from '../../services/congreso-api.service';
+import {SinapticoApiService} from '../../services/sinaptico-api.service';
+import {CongresoInterface} from '../../models/congreso';
+import {SalaInterface} from '../../models/sala';
+import {AuthService} from '../../services/auth.service';
+import {SalaApiService} from '../../services/sala-api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +13,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  // Almacenamos en arrays los valores.
+  public congress: CongresoInterface[];
+  public salas: SalaInterface[];
+
+  // Usuarios de los roles.
+  public isAdmin: any = null;
+  public userUid: string = null;
+
+  constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, public authService: AuthService) { }
 
   ngOnInit() {
+    this.getAllCongress();
+    this.getAllRooms();
+    this.getUser();
+  }
 
+  getAllCongress() {
+    this.congresoApi.getAllCongress().subscribe(congresos => {
+      this.congress = congresos;
+    });
+  }
+
+  getAllRooms() {
+    this.salasApi.getAllRooms().subscribe(salas => {
+      this.salas = salas;
+    });
+  }
+
+  getUser() {
+    this.authService.isAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.uid;
+        this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
+          this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
+        });
+      }
+    });
   }
 
 }

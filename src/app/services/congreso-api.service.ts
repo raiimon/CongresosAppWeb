@@ -40,6 +40,8 @@ export class CongresoApiService {
           // Se obtiene los datos, como están en el modelo.
           const data = action.payload.doc.data() as CongresoInterface;
           data.idCongreso = action.payload.doc.id;
+          data.fechaInicioCongreso = data.fechaInicioCongreso.toDate();
+          data.fechaSalidaCongreso = data.fechaSalidaCongreso.toDate();
           return data;
         });
       }));
