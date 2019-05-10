@@ -14,6 +14,7 @@ import {CongresoApiService} from '../../services/congreso-api.service';
 import 'rxjs-compat/add/operator/map';
 import {SalaApiService} from '../../services/sala-api.service';
 import * as moment from 'moment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -24,8 +25,6 @@ import * as moment from 'moment';
 export class EventsComponent implements OnInit {
 
   @ViewChild('fullCalendarInstance') private fullCalendarInstance: any;
-
-  calendarVisible = true;
 
   // Obtener el congreso
   private congress: CongresoInterface[];
@@ -42,7 +41,11 @@ export class EventsComponent implements OnInit {
   nombreCongresoSeleccionado: any;
   idCongresoSeleccionado: any;
 
-  constructor(public dataApi: CalendarService, public dataRoom: SalaApiService, private authService: AuthService, private dataCongress: CongresoApiService) {}
+  constructor(public dataApi: CalendarService,
+              public dataRoom: SalaApiService,
+              private authService: AuthService,
+              private dataCongress: CongresoApiService,
+              private router: Router) {}
 
   ngOnInit() {
     this.getListCongress();
@@ -53,6 +56,8 @@ export class EventsComponent implements OnInit {
 
     this.dataApi.getAllEvents().subscribe(event => {
     this.dataRoom.getAllRooms().subscribe( room => {
+      console.log('salas', room);
+      console.log('eventos', event);
       const calendar = new Calendar(this.fullCalendarInstance.nativeElement, {
         schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
         plugins: [resourceTimeGridPlugin],
@@ -138,10 +143,20 @@ export class EventsComponent implements OnInit {
 
     if (confirmacion) {
       this.dataApi.deleteEvent(idEvent);
+      this.redirectTo('events');
     }
   }
 
   onPreUpdateEvent(congres: EventInterface) {
     this.dataApi.selectedEvent = Object.assign({}, congres);
+    this.redirectTo('events');
+  }
+
+  // Método que 'actualiza' la página actual engañando al router.
+  redirectTo(uri: string) {
+     this.fullCalendarInstance.nativeElement.innerHTML = '';
+
+     this.router.navigateByUrl('/GhostComponent', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
 }

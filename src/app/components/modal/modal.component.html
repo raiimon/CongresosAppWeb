@@ -120,7 +120,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="tituloModalSala">
-                    {{ !this.dataRoom.selectedSala.idSala ? 'Nueva Sala' : 'Actualizar Sala'}}
+                    {{ !this.dataRoom.selectedSala.id ? 'Nueva Sala' : 'Actualizar Sala'}}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -129,21 +129,17 @@
             <div class="modal-body">
                 <form #roomForm="ngForm" (ngSubmit)="onSaveCongress(roomForm, 'sala')">
 
-                    <input type="hidden" name="id" [(ngModel)]="this.dataRoom.selectedSala.idSala">
+                    <input type="hidden" name="id" [(ngModel)]="this.dataRoom.selectedSala.id">
                     <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">
 
                     <div class="form-group">
-                        <label for="nombreSala" class="col-form-label">Nombre de Sala</label>
-                        <input type="text" class="form-control" name="nombreSala" [(ngModel)]="this.dataRoom.selectedSala.nombreSala" placeholder="Sala Plenaria">
+                        <label for="title" class="col-form-label">Nombre de Sala</label>
+                        <input type="text" class="form-control" name="title" [(ngModel)]="this.dataRoom.selectedSala.title" placeholder="Sala Plenaria">
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="fechaCongreso">Fecha del Congreso</label>
-                            <input type="date" name="fechaCongreso" class="form-control" placeholder="27/09/2019" [(ngModel)]="this.dataRoom.selectedSala.fechaCongreso">
-                        </div>
                         <div class="form-group col-md-6">
                             <label for="nombreCongreso">Nombre del Congreso</label>
 
@@ -153,25 +149,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="nombreSesion" class="col-form-label">Nombre de la sesión</label>
-                        <input type="text" class="form-control" name="nombreSesion" [(ngModel)]="this.dataRoom.selectedSala.nombreSesion" placeholder="Acto Inaugural">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="fechaInicioEvento">Fecha del Congreso</label>
-                            <input type="time" name="fechaInicioEvento" class="form-control" placeholder="09:30" [(ngModel)]="this.dataRoom.selectedSala.fechaInicioEvento">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="fechaFinalizacionEvento">Nombre del Congreso</label>
-                            <input type="time" name="fechaFinalizacionEvento" class="form-control" placeholder="10:00" [(ngModel)]="this.dataRoom.selectedSala.fechaFinalizacionEvento">
-                        </div>
-                    </div>
-
-
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseRoom>Cerrar</button>
                         <button type="submit" class="btn btn-primary">Guardar Sala</button>
@@ -277,7 +254,7 @@
 
           <select class="form-control select" (change)="obtenerNombreSala($event)" name="resourceId"><!-- Modificar para mañana -->
             <option value="">Seleccione la sala</option>
-            <option *ngFor="let room of rooms" name="resourceId" value="{{room.idSala}}">{{room.nombreSala}}</option>
+            <option *ngFor="let room of rooms" name="resourceId" value="{{room.id}}">{{room.title}}</option>
           </select>
 
           <div class="form-group">

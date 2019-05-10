@@ -32,11 +32,11 @@ export class ListRoomComponent implements OnInit {
     });
   }
 
-  onDeleteCongress(idSala: string): void {
-    const confirmacion = confirm('¿Deseas eliminar este congreso?');
+  onDeleteCongress(id: string): void {
+    const confirmacion = confirm('¿Deseas eliminar esta sala?');
 
-    if(confirmacion) {
-      this.dataApi.deleteRoom(idSala);
+    if (confirmacion) {
+      this.dataApi.deleteRoom(id);
     }
 
   }

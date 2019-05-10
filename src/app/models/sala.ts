@@ -1,6 +1,6 @@
 export interface SalaInterface {
-  idSala?: string;
-  nombreSala?: string;
+  id?: string;
+  title?: string;
   nombreCongreso?: string;
   fechaCongreso?: string;
   nombreSesion?: string;

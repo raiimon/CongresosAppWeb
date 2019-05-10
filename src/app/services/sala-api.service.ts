@@ -23,7 +23,7 @@ export class SalaApiService {
   // Cuando se realice un 'update', para obtener los datos directamente.
   public selectedSala: SalaInterface = {
     // Debemos como en todos, definir la ID como nula para no tener problemas a la hora de almacenar o actualizar una entrada.
-    idSala: null
+    id: null
   };
 
   // Método para obtener todas las salas.
@@ -36,7 +36,7 @@ export class SalaApiService {
         return changes.map(action => {
           // Se obtiene los datos, como están en el modelo.
           const data = action.payload.doc.data() as SalaInterface;
-          data.idSala = action.payload.doc.id;
+          data.id = action.payload.doc.id;
           // Devolvemos los valores para poder mostrarlos más adelante.
           return data;
         });
@@ -54,7 +54,7 @@ export class SalaApiService {
         return null;
       } else {
         const data = action.payload.data() as SalaInterface;
-        data.idSala = action.payload.id;
+        data.id = action.payload.id;
         return data;
       }
     }));
@@ -70,7 +70,7 @@ export class SalaApiService {
   updateRoom(sala: SalaInterface): void {
 
     // Obtenemos la ID desde lo obtenido.
-    const idSala = sala.idSala;
+    const idSala = sala.id;
 
     // Mapeamos los datos y la ruta donde se dirigirá los datos a actualizar.
     this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
