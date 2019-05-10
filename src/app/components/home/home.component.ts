@@ -5,6 +5,9 @@ import {CongresoInterface} from '../../models/congreso';
 import {SalaInterface} from '../../models/sala';
 import { AuthenticationService } from '../../services/auth.service';
 import {SalaApiService} from '../../services/sala-api.service';
+import {InvitadoApiService} from '../../services/invitado-api.service';
+import {SinapticoInterface} from '../../models/sinaptico';
+import {InvitadoInterface} from '../../models/invitado';
 
 @Component({
   selector: 'app-home',
@@ -16,16 +19,20 @@ export class HomeComponent implements OnInit {
   // Almacenamos en arrays los valores.
   public congress: CongresoInterface[];
   public salas: SalaInterface[];
+  public sinoptico: SinapticoInterface[];
+  public invitados: InvitadoInterface[]
 
   // Usuarios de los roles.
   public isAdmin: any = null;
   public userUid: string = null;
 
-  constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, public authService: AuthenticationService) { }
+  constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, private authService: AuthenticationService, private sinopticoApi: SinapticoApiService, private invitadosApi: InvitadoApiService) { }
 
   ngOnInit() {
     this.getAllCongress();
     this.getAllRooms();
+    this.getAllGuests();
+    this.getAllSinoptics();
     this.getUser();
   }
 
@@ -38,6 +45,19 @@ export class HomeComponent implements OnInit {
   getAllRooms() {
     this.salasApi.getAllRooms().subscribe(salas => {
       this.salas = salas;
+    });
+  }
+
+  getAllSinoptics() {
+    this.sinopticoApi.getAllSinaptics().subscribe(sinoptico => {
+      this.sinoptico = sinoptico;
+    });
+  }
+
+  getAllGuests() {
+    this.invitadosApi.getAllGuests().subscribe(invitados => {
+      this.invitados = invitados;
+      console.log(this.invitados);
     });
   }
 
