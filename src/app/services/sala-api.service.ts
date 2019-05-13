@@ -18,7 +18,6 @@ export class SalaApiService {
 
   // Para obtener una sola sala.
   private salaDoc: AngularFirestoreDocument<SalaInterface>;
-  private sala: Observable<SalaInterface>;
 
   // Cuando se realice un 'update', para obtener los datos directamente.
   public selectedSala: SalaInterface = {
@@ -43,21 +42,19 @@ export class SalaApiService {
       }));
   }
 
-  // Método para obtener una única sala.
-  getOneRoom(idSala: string) {
-
-    // Por ahora sale error, porque no esta declarado en el routing.
-    this.salaDoc = this.afs.doc<SalaInterface>(`sala/${idSala}`);
-
-    return this.sala = this.salaDoc.snapshotChanges().pipe(map(action => {
-      if (action.payload.exists === false) {
-        return null;
-      } else {
-        const data = action.payload.data() as SalaInterface;
-        data.id = action.payload.id;
-        return data;
-      }
-    }));
+  // Método para obtener sala por nombre de congreso.
+  getRoomsByCongressName(nombreCongreso: string): Observable<SalaInterface[]> {
+    return this.afs.collection<SalaInterface>('sala', ref => ref.where('nombreCongreso', '==', nombreCongreso).orderBy('nombreCongreso', 'desc'))
+      .snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          // Se obtiene los datos, como están en el modelo.
+          const data = action.payload.doc.data() as SalaInterface;
+          data.id = action.payload.doc.id;
+          // Devolvemos los valores para poder mostrarlos más adelante.
+          return data;
+        });
+      }));
   }
 
   // Método para añadir una sala.

@@ -33,7 +33,7 @@ import {DayPilotModule} from 'daypilot-pro-angular';
 
 
 // Importamos otro modulos...
-import { AngularFirestore } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import { ListCongressComponent } from './components/admin/list-congress/list-congress.component';
 import { ListGuestComponent } from './components/admin/list-guest/list-guest.component';
 import { ListRoomComponent } from './components/admin/list-room/list-room.component';
@@ -103,7 +103,8 @@ import {EventsComponent} from './components/events/events.component';
     FormsModule, // Importamos el módulos de los formularios.
     AngularFireStorageModule, // Importamos en el app 'AngularFireStorageModule' para la subida de imágenes.
     AngularFireModule.initializeApp(environment.firebaseConfig), // Importamos la API de Firebase con los datos necesarios.
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFirestoreModule.enablePersistence() // Activamos la persistencia de datos.
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]

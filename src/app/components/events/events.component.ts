@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../services/auth.service';
 import {CongresoApiService} from '../../services/congreso-api.service';
 import 'rxjs-compat/add/operator/map';
 import {SalaApiService} from '../../services/sala-api.service';
+import {SalaInterface} from '../../models/sala';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class EventsComponent implements OnInit {
 
   // Obtener el congreso
   private congress: CongresoInterface[];
-  private uniqueCongress: CongresoInterface ;
+  private uniqueCongress: CongresoInterface;
+  public room: SalaInterface[];
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -51,12 +53,10 @@ export class EventsComponent implements OnInit {
     this.fullCalendarInstance.nativeElement.innerHTML = '';
   }
 
-  initFullCalendar(fechaInicio, fechaFin) {
-
-    this.dataApi.getAllEvents().subscribe(event => {
-    this.dataRoom.getAllRooms().subscribe( room => {
-      console.log('salas', room);
-      console.log('eventos', event);
+  initFullCalendar(fechaInicio, fechaFin, nombreCongreso: string) {
+    this.dataRoom.getRoomsByCongressName(nombreCongreso).subscribe(room => {
+      console.log(room);
+      this.dataApi.getAllEvents().subscribe(event => {
       const calendar = new Calendar(this.fullCalendarInstance.nativeElement, {
         schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
         plugins: [resourceTimeGridPlugin],
@@ -116,9 +116,10 @@ export class EventsComponent implements OnInit {
       fechaInicio = localStorage.getItem('congressDateInicio');
       fechaFin = localStorage.getItem('congressDateFin');
 
+      });
       // Activamos el calendario.
-      this.initFullCalendar(fechaInicio, fechaFin);
-    });
+    this.initFullCalendar(fechaInicio, fechaFin, this.nombreCongresoSeleccionado);
+
 
     // Refrescamos el calendario.
     this.fullCalendarInstance.nativeElement.innerHTML = '';
