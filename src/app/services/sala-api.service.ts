@@ -44,7 +44,7 @@ export class SalaApiService {
 
   // Método para obtener sala por nombre de congreso.
   getRoomsByCongressName(nombreCongreso: string): Observable<SalaInterface[]> {
-    return this.afs.collection<SalaInterface>('sala', ref => ref.where('nombreCongreso', '==', nombreCongreso).orderBy('nombreCongreso', 'desc'))
+    return this.afs.collection<SalaInterface>('sala', ref => ref.where('nombreCongreso', '==', nombreCongreso))
       .snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
