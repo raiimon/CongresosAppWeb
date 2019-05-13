@@ -2,14 +2,14 @@
   <app-navbar></app-navbar>
   <link rel="stylesheet" href="assets/css/stylesHom.css">
     <div class="borde">
-        <div class="jumbotron jumbotron-fluid border rounded border-primary" id="diseno" style="background-color: rgba(140,214,245,0.28); ">
+        <div class="jumbotron jumbotron-fluid border rounded border-primary" id="diseno" style="background-color: rgba(140,214,245,0.28); " *ngFor="let event of congress">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-1 col-lg-1 "></div>
 
-                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 " *ngFor="let event of congress"><img class="img-fluid borImg" src="{{event.imgCongreso}}"></div>
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-3"><img class="img-fluid borImg" src="{{event.imgCongreso}}"></div>
                     <div class="col-md-5 col-lg-7 ">
-                        <h1 class="text-center sombras" id="titulo" *ngFor="let event of congress" style="color:white">{{event.nombreCongreso}}</h1>
+                        <h1 class="text-center sombras" id="titulo"  style="color:white">{{event.nombreCongreso}}</h1>
                         <h3 id="descrip" class="bordetabla">Información</h3>
                         <table class="table">
                             <thead>
