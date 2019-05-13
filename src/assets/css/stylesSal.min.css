@@ -85,3 +85,8 @@
 .table-responsive {
     margin-left: 5px
 }
+
+.bottonColor {
+    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+    color: white;
+}

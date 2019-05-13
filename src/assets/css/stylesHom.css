@@ -22,8 +22,16 @@
     -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
     -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
     box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
+}
+
+.imgSinop {
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
+    width: 50%
 }
 
 .bordetabla {

@@ -74,6 +74,7 @@
     margin-top: 100px
 }
 
-#borrar {
-    width: 105px
+.bottonColor {
+    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+    color: white;
 }

@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <section>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <div class='app'>
 
         <div id="promo">
@@ -30,51 +31,54 @@
 
         <div class="container-fluid mt-5">
             <div class="row d-flex justify-content-end mr-4">
-                <button class="btn btn-primary mb-3" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
+                <button class="btn bottonColor mb-4" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
             </div>
         </div>
         <div class="container-fluid ">
-            <div class="row d-flex justify-content-center ">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Hora Comienzo</th>
+                                <th>Hora Finalización</th>
+                                <th>Leyenda</th>
+                                <th></th>
 
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Evento</th>
-                            <th>Hora Comienzo</th>
-                            <th>Hora Finalización</th>
-                            <th>Leyenda</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let event of calendarEvents">
+                            <tr *ngIf="(event.nombreCongreso == nombreCongresoSeleccionado)">
+                                <td>{{event.title}}</td>
+                                <td>{{event.start | date: 'HH:mm'}}</td>
+                                <td>{{event.end | date: 'HH:mm'}}</td>
+                                <td><input type="color" value="{{event.color}}" disabled></td>
+                                <td class="d-flex justify-content-center">
 
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let event of calendarEvents">
-                        <tr *ngIf="(event.nombreCongreso == nombreCongresoSeleccionado)">
-                            <td>{{event.title}}</td>
-                            <td>{{event.start | date: 'HH:mm'}}</td>
-                            <td>{{event.end | date: 'HH:mm'}}</td>
-                            <td><input type="color" value="{{event.color}}" disabled></td>
-
-                            <div *ngIf="event.userUid == userUid || isAdmin == true; else noOwner">
-                                <button class="btn btn-primary" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents">Actualizar</button>
-                            </div>
-
-
-                            <ng-template #noOwner>
-                                <button class="btn btn-secondary" (click)="onPreUpdateEvent(event)" disabled="true">Actualizar</button>
-                            </ng-template>
+                                    <div *ngIf="event.userUid == userUid || isAdmin == true; else noOwner">
+                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents"><i class="fas fa-pen"></i></button>
+                                    </div>
 
 
-                            <div *ngIf="isAdmin == true; else noAdmin">
-                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteEvent(event.idEvent)">Borrar</button>
-                            </div>
+                                    <ng-template #noOwner>
+                                        <button class="btn btn-secondary" (click)="onPreUpdateEvent(event)" disabled="true"><i class="fas fa-pen"></i></button>
+                                    </ng-template>
 
 
-                            <ng-template #noAdmin>
-                                <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true">Borrar</button>
-                            </ng-template>
-                        </tr>
-                    </tbody>
-                </table>
+                                    <div *ngIf="isAdmin == true; else noAdmin">
+                                        <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteEvent(event.idEvent)"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
 
+
+                                    <ng-template #noAdmin>
+                                        <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                    </ng-template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
                 <script src="assets/js/scriptcon.min.js"></script>
