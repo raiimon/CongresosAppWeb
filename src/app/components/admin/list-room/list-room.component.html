@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <section>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/stylesSal.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
     <div id="promo">
         <div class="jumbotron">
@@ -10,55 +10,64 @@
             <p></p>
         </div>
     </div>
-    <div id="promo2">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="background-color:rgb(174,180,186);">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+                <form class="search-form">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="background-color:rgb(174,180,186);">
                     <i class="fa fa-search"></i>
                   </span>
-                </div>
-                <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSalaFiltro" placeholder="Busque por la sala">
-                <!-- Arreglar para que se quede más centrado -->
+                        </div>
+                        <input class="form-control" type="text" name="busqueda" [(ngModel)]="nombreSalaFiltro" placeholder="Busque por la sala">
+                    </div>
+                </form>
             </div>
-        </form>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nombre Sala</th>
-                        <th><strong>Nombre Congreso</strong></th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button" id="new" data-toggle="modal" data-target="#modalRoom">Nueva Sala</button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let room of rooms | filterRoom:nombreSalaFiltro">
-                        <td>{{room.title}}</td>
-                        <td>{{room.nombreCongreso}}</td>
-                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+        </div>
+    </div>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre Sala</th>
+                            <th><strong>Nombre Congreso</strong></th>
+                            <th>&nbsp;<button class="btn bottonColor" type="button" id="new" data-toggle="modal" data-target="#modalRoom">Nueva Sala</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let room of rooms | filterRoom:nombreSalaFiltro">
+                            <td>{{room.title}}</td>
+                            <td>{{room.nombreCongreso}}</td>
+                            <td class="d-flex justify-content-center">
 
-                            <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
-                                <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(room)" data-toggle="modal" data-target="#modalRoom">Actualizar</button>
-                            </div>
-
-
-                            <ng-template #noOwner>
-                                <button class="btn btn-secondary" (click)="onPreUpdateCongress(room)" disabled="true">Actualizar</button>
-                            </ng-template>
-
-
-                            <div *ngIf="isAdmin == true; else noAdmin">
-                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(room.id)">Borrar</button>
-                            </div>
+                                <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(room)" data-toggle="modal" data-target="#modalRoom"><i class="fas fa-pen"></i></button>
+                                </div>
 
 
-                            <ng-template #noAdmin>
-                                <button class="btn btn-danger" type="button" (click)="onDeleteCongress(room.id)" disabled="true">Borrar</button>
-                            </ng-template>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                <ng-template #noOwner>
+                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(room)" disabled="true"><i class="fas fa-pen"></i></button>
+                                </ng-template>
+
+
+                                <div *ngIf="isAdmin == true; else noAdmin">
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(room.id)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+
+
+                                <ng-template #noAdmin>
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(room.id)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                </ng-template>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

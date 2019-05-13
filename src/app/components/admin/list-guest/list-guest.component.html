@@ -1,70 +1,90 @@
 <app-navbar></app-navbar>
 <section>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/stylesIn.min.css">
     <div id="promo">
         <div class="jumbotron">
             <h1>Invitados</h1>
             <p>En esta sección usted puede añadir, actualizar o eliminar los invitados que asistirán al congreso.</p>
-            <p></p>
         </div>
     </div>
-    <div id="promo2">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="background-color:rgb(174,180,186);">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+                <form class="search-form">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="background-color:rgb(174,180,186);">
                     <i class="fa fa-search"></i>
                   </span>
-                </div>
-                <input class="form-control" type="text" name="busqueda" [(ngModel)]="filterGuest" placeholder="Busque un invitado">
-                <!-- Arreglar para que se quede más centrado -->
+                        </div>
+                        <input class="form-control" type="text" name="busqueda" [(ngModel)]="filterGuest" placeholder="Busque un invitado">
+
+                    </div>
+                </form>
             </div>
-        </form>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th><strong>Apellidos</strong></th>
-                        <th>Dni</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let guest of guests | filterGuest: filterGuest">
-                        <td>{{guest.nombre}}</td>
-                        <td>{{guest.apellidos}}</td>
-                        <td>{{guest.dni}}</td>
-                        <td>{{guest.telefono}}</td>
-                        <td>{{guest.correo}}</td>
-                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
-
-                            <div *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
-                                <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest">Actualizar</button>
-                            </div>
-
-
-                            <ng-template #noOwner>
-                                <button class="btn btn-secondary" (click)="onPreUpdateCongress(guest)" disabled="true">Actualizar</button>
-                            </ng-template>
-
-
-                            <div *ngIf="isAdmin == true; else noAdmin">
-                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(guest.idInvitado)">Borrar</button>
-                            </div>
-
-
-                            <ng-template #noAdmin>
-                                <button class="btn btn-danger" type="button" (click)="onDeleteCongress(guest.idInvitado)" disabled="true">Delete</button>
-                            </ng-template>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
         </div>
+    </div>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th><strong>Apellidos</strong></th>
+                            <th>Dni</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let guest of guests | filterGuest: filterGuest">
+                            <td>{{guest.nombre}}</td>
+                            <td>{{guest.apellidos}}</td>
+                            <td>{{guest.dni}}</td>
+                            <td>{{guest.telefono}}</td>
+                            <td>{{guest.correo}}</td>
+                            <td class="d-flex justify-content-center">
+
+                                <div *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-pen"></i></button>
+                                </div>
+
+
+                                <ng-template #noOwner>
+                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(guest)" disabled="true"><i class="fas fa-pen"></i></button>
+                                </ng-template>
+
+
+                                <div *ngIf="isAdmin == true; else noAdmin">
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(guest.idInvitado)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+
+                                <ng-template #noAdmin>
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(guest.idInvitado)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                </ng-template>
+
+                                <!-- Borja modifica esto que es lo del Check-->
+
+                                <div *ngIf="isAdmin == true; else noAdmin">
+                                    <button class="btn btn-info" type="button" (click)="onDeleteCongress(guest.idInvitado)"><i class="fas fa-chart-pie"></i></button>
+                                </div>
+
+
+                                <ng-template #noAdmin>
+                                    <button class="btn btn-info" type="button" (click)="onDeleteCongress(guest.idInvitado)" disabled="true"><i class="fas fa-chart-pie"></i></button>
+                                </ng-template>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>

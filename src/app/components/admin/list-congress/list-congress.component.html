@@ -1,65 +1,75 @@
 <app-navbar></app-navbar>
 <section>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/stylescon.min.css">
     <div id="promo">
         <div class="jumbotron">
             <h1>Congresos</h1>
             <p>En este apartado, usted puede añadir, actualizar o eliminar los congresos que usted tenga almacenados.</p>
-            <p></p>
+
         </div>
 
     </div>
-    <div id="promo2">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="background-color:rgb(174,180,186);">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+                <form class="search-form">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="background-color:rgb(174,180,186);">
                     <i class="fa fa-search"></i>
                   </span>
-                </div>
-                <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso">
-                <!-- Arreglar para que se quede más centrado -->
+                        </div>
+                        <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso">
+                    </div>
+                </form>
             </div>
-        </form>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nombre del Congreso</th>
-                        <th>Dirección del Congreso</th>
-                        <th>&nbsp;<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let congres of congress | filterCongress:filterCongress">
-                        <td>{{congres.nombreCongreso}}</td>
-                        <td>{{congres.direccion}}</td>
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+        </div>
+    </div>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Congreso</th>
+                            <th>Dirección del Congreso</th>
+                            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let congres of congress | filterCongress:filterCongress">
+                            <td>{{congres.nombreCongreso}}</td>
+                            <td>{{congres.direccion}}</td>
 
-                        <td class="justify-content-between" id="botones" style="color:rgba(33,37,41,0);">
+                            <td class="d-flex justify-content-center">
 
-                            <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
-                                <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">Actualizar</button>
-                            </div>
-
-
-                            <ng-template #noOwner>
-                                <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true">Actualizar</button>
-                            </ng-template>
-
-
-                            <div *ngIf="isAdmin == true; else noAdmin">
-                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteCongress(congres.idCongreso)">Borrar</button>
-                            </div>
+                                <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
+                                </div>
 
 
-                            <ng-template #noAdmin>
-                                <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true">Delete</button>
-                            </ng-template>
+                                <ng-template #noOwner>
+                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true"><i class="fas fa-pen"></i></button>
+                                </ng-template>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+                                <div *ngIf="isAdmin == true; else noAdmin">
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+
+
+                                <ng-template #noAdmin>
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                </ng-template>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
