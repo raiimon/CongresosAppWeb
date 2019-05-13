@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -31,7 +30,6 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
 // Importamos las librerías necesarias para el calendario.
 import {DayPilotModule} from 'daypilot-pro-angular';
 
-
 // Importamos otro modulos...
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import { ListCongressComponent } from './components/admin/list-congress/list-congress.component';
@@ -40,7 +38,6 @@ import { ListRoomComponent } from './components/admin/list-room/list-room.compon
 import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sinaptic.component';
 import { CheckComponent } from './components/check/check.component';
 import {NavbarExteriorComponent} from './components/navbar-exterior/navbar-exterior.component';
-
 
 // Importamos nuestro filtro personalizado.
 import { FilterCongressPipe } from './pipes/filter-congress.pipe';
@@ -59,7 +56,6 @@ import { ExteriorPreciosComponent } from './components/principal-exterior/exteri
 import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
 
 import {EventsComponent} from './components/events/events.component';
-
 
 @NgModule({
   declarations: [

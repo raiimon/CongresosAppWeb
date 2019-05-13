@@ -11,11 +11,11 @@ import 'rxjs-compat/add/observable/of';
 })
 export class CalendarService {
 
-  // Obtener las colecciones de los Congresos que tenemos almacenado en Firebase.
+  // Obtener las colecciones de los Eventos que tenemos almacenado en Firebase.
   private eventsCollection: AngularFirestoreCollection<EventInterface>;
   private events: Observable<EventInterface[]>;
 
-  // Para obtener un sólo congreso.
+  // Para obtener un sólo evento.
   private eventDoc: AngularFirestoreDocument<EventInterface>;
 
   // Cuando se realice un 'update', para obtener los datos directamente.
@@ -26,6 +26,7 @@ export class CalendarService {
 
   constructor(private afs: AngularFirestore) { }
 
+  // Método para obtener todos los eventos.
   getAllEvents() {
 
     this.eventsCollection = this.afs.collection<EventInterface>('events');

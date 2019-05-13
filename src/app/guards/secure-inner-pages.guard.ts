@@ -11,13 +11,15 @@ export class SecureInnerPagesGuard implements  CanActivate{
               private router: Router) {
 
   }
-  // Con este guard de seguridad comprobaremos que el usuario a parte de estar loggeado también haya verificado el inicio de sesión, de manera que evitamos entrada de bots.
-
+  /* Similar al otro Guard, usando la misma sesión pero con la diferencia de que si ha iniciado sesión no le deja acceder a las rutas
+    de inicio de sesión. */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise <boolean> | boolean {
     if ( this.authService.isLoggedIn ) {
+      // Envía una alerta al usuario.
       window.alert('No puedes acceder, tienes la sesión iniciada.');
+      // Reenvía al usuario a la principal de los usuarios con inicio de sesión.
       this.router.navigate(['home']);
     }
     return true;

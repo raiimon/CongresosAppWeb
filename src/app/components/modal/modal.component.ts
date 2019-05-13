@@ -29,6 +29,7 @@ export class ModalComponent implements OnInit {
   private congress: CongresoInterface[];
   private rooms: SalaInterface[];
 
+  // Variables para almacenar los nombres de congreso y sala.
   public nombreCongresoSeleccionado: string;
   public nombreSalaSeleccionado: string;
 
@@ -48,8 +49,6 @@ export class ModalComponent implements OnInit {
   @ViewChild('btnCloseSinaptic') btnCloseSinaptic: ElementRef;
   @ViewChild('btnCloseRoom') btnCloseRoom: ElementRef;
   @ViewChild('btnCloseEvents') btnCloseEvents: ElementRef;
-
-
 
   ngOnInit() {
     this.getListCongress();

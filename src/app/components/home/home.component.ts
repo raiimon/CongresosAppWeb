@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   public userUid: string = null;
 
   constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, private authService: AuthenticationService, private sinopticoApi: SinapticoApiService, private invitadosApi: InvitadoApiService) { }
-
+  // Método para iniciar los métodos al inicio del componente.
   ngOnInit() {
     this.getAllCongress();
     this.getAllRooms();
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.getAllSinoptics();
     this.getUser();
   }
-
+  /* Métodos para recoger de cada service todos los elementos necesarios para mostrar */
   getAllCongress() {
     this.congresoApi.getAllCongress().subscribe(congresos => {
       this.congress = congresos;

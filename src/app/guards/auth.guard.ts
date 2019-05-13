@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-
-// Importamos las librerías necesarias.
-import {AngularFireAuth} from '@angular/fire/auth';
-import {take, map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+
+// Importamos el servicio.
 import {AuthenticationService} from '../services/auth.service';
 
 @Injectable({
@@ -13,16 +11,12 @@ import {AuthenticationService} from '../services/auth.service';
 export class AuthGuard  implements CanActivate {
 
   constructor(private authService: AuthenticationService,
-              private router: Router) {
-
-  }
-  // Con este guard de seguridad comprobaremos que el usuario a parte de estar loggeado también haya verificado el inicio de sesión, de manera que evitamos entrada de bots.
-
+              private router: Router) {}
+  /* Comprobamos si el usuario ha iniciado sesión, en caso que no este loggeado ni verificado le volvera a la página de Login */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise <boolean> | boolean {
       if ( this.authService.isLoggedIn !== true) {
-        window.alert('No has verificado tu correo!');
         this.router.navigate(['user/login']);
       }
       return true;
