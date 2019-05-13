@@ -76,15 +76,15 @@
     <div id="cuarto" *ngIf="authService.userData as user">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 offset-0 offset-xl-0">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="card-imagia">
                         <div class="front-imagia">
                             <div class="cover-imagia"><img src="assets/img/images.jpeg" alt=""></div>
                             <h3 id="Cambiar" class="name-imagia">Datos Personales</h3>
                             <p id="PassWord" class="subtitle-imagia">Rellena los campos para modificar tus datos personales</p>
-                            <div class="col d-flex justify-content-around">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center">
 
-                                <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6  input-group" id="imputinf">
                                     <div class="input-group-prepend">
                                         <span class="border rounded input-group-text">
                                     <i class="fas fa-envelope"></i>
@@ -94,7 +94,7 @@
                                     <div class="input-group-append"></div>
                                 </div>
 
-                                <div class="input-group" id="imputinf" style="width: 450px;">
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6  input-group" id="imputinf">
                                     <div class="input-group-append">
                                         <span class="border rounded input-group-text">
                                     <i class="fas fa-user-tie"></i>
@@ -104,7 +104,7 @@
                                     <div class="input-group-append"></div>
                                 </div>
                             </div>
-                            <div class="footer-imagia" style="width: 97%;">
+                            <div class="footer-imagia" style="width: 95%;">
                                 <button class="btn btn-primary" type="button" (click)="updateName()">Enviar</button>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                 <div class="input-group-prepend"></div>
                                 <div class="input-group-append"></div>
                             </div>
-                            <p id="PassWord" class="subtitle-imagia">Si borras esta cuenta ya no pordes acceder a ella</p>
+                            <p id="PassWord" class="subtitle-imagia">Si borras esta cuenta ya no podrás acceder más a ella. <br> ¡Cuidado!</p>
                             <div class="footer-imagia" style="width: 95%;">
                                 <button class="btn btn-danger" type="button" (click)="deleteUser()">Eliminar Usuario</button>
                             </div>
