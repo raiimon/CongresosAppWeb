@@ -116,10 +116,10 @@ export class EventsComponent implements OnInit {
       fechaInicio = localStorage.getItem('congressDateInicio');
       fechaFin = localStorage.getItem('congressDateFin');
 
-      });
       // Activamos el calendario.
-    this.initFullCalendar(fechaInicio, fechaFin, this.nombreCongresoSeleccionado);
+      this.initFullCalendar(fechaInicio, fechaFin, this.nombreCongresoSeleccionado);
 
+    });
 
     // Refrescamos el calendario.
     this.fullCalendarInstance.nativeElement.innerHTML = '';
