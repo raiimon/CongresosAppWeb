@@ -1,15 +1,75 @@
 <app-navbar></app-navbar>
+<link rel="stylesheet" href="assets/css/stylesCheck.min.css">
+<section>
+    <div id="promo">
+        <div class="jumbotron">
+            <h1 class="text-center">Control del Usuario</h1>
+            <p class="text-center">En este apartado, usted podra ver el Control de asistencia de
+                <!-- {{nombre.Jovo}}-->.</p>
+        </div>
+    </div>
 
-<br>
-<br>
-<br>
-<h3 style="text-align: center"> Control del Usuario: Ejemplo</h3>
-
-<div style="display: block;">
-  <canvas baseChart
-          [data]="demodoughnutChartData"
-          [labels]="doughnutChartLabels"
-          [chartType]="doughnutChartType"
-          [colors]="donutColors"
-          ></canvas>
-</div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
+                <div class="table-responsive mt-5">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Nombre</th>
+                            <td>Jovo</td>
+                        </tr>
+                        <tr>
+                            <th>Apellidos</th>
+                            <td>Media</td>
+                        </tr>
+                        <tr>
+                            <th>Dni</th>
+                            <td>555 77 855</td>
+                        </tr>
+                        <tr>
+                            <th>Teléfono</th>
+                            <td>555 77 855</td>
+                        </tr>
+                        <tr>
+                            <th>Correo</th>
+                            <td>JovoMedia@MoreRandy.cat</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
+                <h2 class="text-center">Total de Asistencias y Faltas</h2>
+                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                 </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5 ">
+        <div class="row ">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                <h2 class="text-center">Sala Plenaria</h2>
+                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                 </canvas>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                <h2 class="text-center">Sala B</h2>
+                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                 </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row ">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                <h2 class="text-center">Sala C</h2>
+                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                 </canvas>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                <h2 class="text-center">Sala D</h2>
+                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                 </canvas>
+            </div>
+        </div>
+    </div>
+</section>

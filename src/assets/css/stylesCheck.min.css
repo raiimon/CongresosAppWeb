@@ -1,0 +1,22 @@
+#promo {
+    padding: 40px;
+    background: url(/assets/img/reuniones_efectivas.jpg) no-repeat;
+    background-size: cover
+}
+
+#promo .jumbotron {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, .75);
+    margin: auto;
+    max-width: 800px
+}
+
+.borde {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+    -webkit-box-shadow: 3px 7px 15px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 7px 15px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 7px 15px -3px rgba(0, 0, 0, 0.75);
+}
