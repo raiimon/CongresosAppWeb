@@ -14,8 +14,6 @@ import {ListCongressComponent} from './components/admin/list-congress/list-congr
 import {ListGuestComponent} from './components/admin/list-guest/list-guest.component';
 import {ListRoomComponent} from './components/admin/list-room/list-room.component';
 import {ListSinapticComponent} from './components/admin/list-sinaptic/list-sinaptic.component';
-import {SinapticComponent} from './components/sinaptic/sinaptic.component';
-import {ControlComponent} from './components/control/control.component';
 import {CheckComponent} from './components/check/check.component';
 import {PrincipalExteriorComponent} from './components/principal-exterior/principal-exterior.component';
 import {ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
@@ -47,8 +45,6 @@ const routes: Routes = [
   { path: 'admin/list-room', component: ListRoomComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-sinaptic', component: ListSinapticComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'sinaptic', component: SinapticComponent, canActivate: [AuthGuard] },
-  { path: 'control', component: ControlComponent, canActivate: [AuthGuard] },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'user/login', component: LoginComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user/register', component: RegisterComponent, canActivate: [SecureInnerPagesGuard] },

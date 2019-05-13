@@ -37,9 +37,7 @@ import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore'
 import { ListCongressComponent } from './components/admin/list-congress/list-congress.component';
 import { ListGuestComponent } from './components/admin/list-guest/list-guest.component';
 import { ListRoomComponent } from './components/admin/list-room/list-room.component';
-import { SinapticComponent } from './components/sinaptic/sinaptic.component';
 import { ListSinapticComponent } from './components/admin/list-sinaptic/list-sinaptic.component';
-import { ControlComponent } from './components/control/control.component';
 import { CheckComponent } from './components/check/check.component';
 import {NavbarExteriorComponent} from './components/navbar-exterior/navbar-exterior.component';
 
@@ -69,7 +67,6 @@ import {EventsComponent} from './components/events/events.component';
     HomeComponent,
     ModalComponent,
     NavbarComponent,
-    ControlComponent,
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
@@ -77,7 +74,6 @@ import {EventsComponent} from './components/events/events.component';
     ListCongressComponent,
     ListGuestComponent,
     ListRoomComponent,
-    SinapticComponent,
     ListSinapticComponent,
     CheckComponent,
     FilterCongressPipe,
