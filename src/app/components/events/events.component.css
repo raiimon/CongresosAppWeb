@@ -1,12 +1,42 @@
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
-
 .app-top {
-  margin: 0 0 3em;
+    margin: 0 0 3em;
 }
 
 .app-calendar {
-  max-width: 900px;
-  margin: 40px auto;
+    max-width: 900px;
+    margin: 40px auto;
 }
 
+#promo {
+    padding: 40px;
+    background: url(/assets/img/reuniones_efectivas.jpg) no-repeat;
+    background-size: cover
+}
+
+#promo .jumbotron {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, .75);
+    margin: auto;
+    max-width: 800px
+}
+
+.table td,
+.table th,
+.table thead th {
+    text-align: center
+}
+
+.tama {
+    height: 50%;
+}
+
+h2 {
+    text-align: center;
+}
+
+button {
+    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+}

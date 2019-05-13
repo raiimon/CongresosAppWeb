@@ -1,64 +1,85 @@
 <app-navbar></app-navbar>
-<br><br><!-- Bajar el calendario -->
-<div class='app'>
+<section>
+    <div class='app'>
 
-  <div class="w-50 p-3 d-flex p-2">
-    <h2>Seleccione el congreso</h2>
-    <select class="form-control select" (change)="obtenerNombreCongreso($event)">
-      <option value="">Seleccione el congreso</option>
-      <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
-    </select>
-  </div>
-
-  <div #fullCalendarInstance></div>
-
-  <section class="row mt-5">
-    <div class="col">
-      <button class="btn btn-primary float-right mb-3" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th scope="col">Evento</th>
-          <th scope="col">Hora Comienzo</th>
-          <th scope="col">Hora Finalización</th>
-          <th scope="col">Leyenda</th>
-          <th scope="col">&nbsp;</th>
-          <th scope="col">&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody *ngFor="let event of calendarEvents">
-        <tr *ngIf="(event.nombreCongreso == nombreCongresoSeleccionado)">
-          <td>{{event.title}}</td>
-          <td>{{event.start | date: 'HH:mm'}}</td>
-          <td>{{event.end | date: 'HH:mm'}}</td>
-          <td><input type="color" value="{{event.color}}" disabled></td>
-
-          <div *ngIf="event.userUid == userUid || isAdmin == true; else noOwner">
-            <button class="btn btn-primary" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents">Actualizar</button>
-          </div>
+        <div id="promo">
+            <div class="jumbotron">
+                <h1 class="text-center">Eventos</h1>
+                <p class="text-center">En este apartado, usted puede añadir sus eventos a su calendario .</p>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <div class="row d-flex justify-content-center">
+                <h2>Seleccione el congreso</h2>
+                <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
+               <option value="">Seleccione el congreso</option>
+               <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+            </select>
+            </div>
+        </div>
+        <div class="container-fluid mt-3">
+            <div class="row d-flex justify-content-center ">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 "></div>
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 ">
+                    <div #fullCalendarInstance class="tama"></div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 "></div>
+            </div>
+        </div>
 
 
-          <ng-template #noOwner>
-            <button class="btn btn-secondary" (click)="onPreUpdateEvent(event)" disabled="true">Actualizar</button>
-          </ng-template>
+        <div class="container-fluid mt-5">
+            <div class="row d-flex justify-content-end mr-4">
+                <button class="btn btn-primary mb-3" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <div class="row d-flex justify-content-center ">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Evento</th>
+                            <th>Hora Comienzo</th>
+                            <th>Hora Finalización</th>
+                            <th>Leyenda</th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let event of calendarEvents">
+                        <tr *ngIf="(event.nombreCongreso == nombreCongresoSeleccionado)">
+                            <td>{{event.title}}</td>
+                            <td>{{event.start | date: 'HH:mm'}}</td>
+                            <td>{{event.end | date: 'HH:mm'}}</td>
+                            <td><input type="color" value="{{event.color}}" disabled></td>
+
+                            <div *ngIf="event.userUid == userUid || isAdmin == true; else noOwner">
+                                <button class="btn btn-primary" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents">Actualizar</button>
+                            </div>
 
 
-          <div *ngIf="isAdmin == true; else noAdmin">
-            <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteEvent(event.idEvent)">Borrar</button>
-          </div>
+                            <ng-template #noOwner>
+                                <button class="btn btn-secondary" (click)="onPreUpdateEvent(event)" disabled="true">Actualizar</button>
+                            </ng-template>
 
 
-          <ng-template #noAdmin>
-            <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true">Borrar</button>
-          </ng-template>
-        </tr>
-        </tbody>
-      </table>
+                            <div *ngIf="isAdmin == true; else noAdmin">
+                                <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteEvent(event.idEvent)">Borrar</button>
+                            </div>
+
+
+                            <ng-template #noAdmin>
+                                <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true">Borrar</button>
+                            </ng-template>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/scriptcon.min.js"></script>
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/scriptcon.min.js"></script>
-  </section>
-
-</div>
-<app-modal [userUid]="userUid"></app-modal>
+    <app-modal [userUid]="userUid"></app-modal>
+</section>
