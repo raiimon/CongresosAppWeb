@@ -42,10 +42,32 @@
                         </div>
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseCongreso>Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Sala</button>
+                  <hr>
+
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="subirImagenSinoptico($event)">
+                      <label class="custom-file-label" for="inputGroupFile01">Subir imagen</label>
                     </div>
+                  </div>
+                  <br>
+
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'"></div>
+                  </div>
+                  <br>
+                  <input type="hidden" #imageUser [value]="urlImage | async">
+                  <!-- URL en Firebase de la imagen que se almacena -->
+
+
+                  <ng-template #btnDisable>
+                    <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Guardar Sinóptico</button>
+                  </ng-template>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseSinaptic>Cerrar</button>
+                    <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Sinóptico</button>
+                  </div>
 
                 </form>
             </div>
@@ -79,14 +101,22 @@
                         <!-- Para cuando realicemos un update -->
                     </div>
 
+                  <div class="form-group">
+                    <label for="nombreCongreso" class="col-form-label">Nombre del congreso</label>
+                    <select class="form-control select" (change)="obtenerNombreCongreso($event)"><!-- Modificar para mañana -->
+                      <option value="nombreCongreso">Seleccione el congreso</option>
+                      <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+                    </select>
+                  </div>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="nombre">Nombre</label>
-                            <input type="date" name="nombre" class="form-control" placeholder="Marío" [(ngModel)]="this.dataGuest.selectedInvitado.nombre">
+                            <input type="text" name="nombre" class="form-control" placeholder="Marío" [(ngModel)]="this.dataGuest.selectedInvitado.nombre">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="apellidos">Apellidos</label>
-                            <input type="date" name="apellidos" class="form-control" placeholder="Luna" [(ngModel)]="this.dataGuest.selectedInvitado.apellidos">
+                            <input type="text" name="apellidos" class="form-control" placeholder="Luna" [(ngModel)]="this.dataGuest.selectedInvitado.apellidos">
                         </div>
                     </div>
 
@@ -160,7 +190,7 @@
     </div>
 </div>
 
-<!-- Modal Sinaptico -->
+<!-- Modal Sinoptico -->
 
 <div class="modal fade" id="modalSinaptics" tabindex="-1" role="dialog" aria-labelledby="modalSinaptics" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -191,7 +221,16 @@
                         <input type="text" class="form-control" name="descripcionSinaptico" [(ngModel)]="this.sinaptic.selectedSinaptic.descripcionSinaptico" placeholder="Congreso del 27 al 29 de marzo">
                     </div>
 
+                    <div class="form-group">
+                      <label for="nombreCongreso" class="col-form-label">Nombre del congreso</label>
+                      <select class="form-control select" (change)="obtenerNombreCongreso($event)"><!-- Modificar para mañana -->
+                      <option value="">Seleccione el congreso</option>
+                      <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+                     </select>
+                    </div>
+
                     <hr>
+
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="subirImagenSinoptico($event)">
@@ -245,18 +284,21 @@
 
           <input type="hidden" name="userUid" [value]="userUid">
 
-          <select class="form-control select" (change)="obtenerNombreCongreso($event)"><!-- Modificar para mañana -->
-            <option value="">Seleccione el congreso</option>
-            <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
-          </select>
+          <div class="form-group">
+            <label for="nombreCongreso" class="col-form-label">Nombre del congreso</label>
+            <select class="form-control select" (change)="obtenerNombreCongreso($event)"><!-- Modificar para mañana -->
+              <option value="">Seleccione el congreso</option>
+              <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+            </select>
+          </div>
 
-          <br>
-
-          <select class="form-control select" (change)="obtenerNombreSala($event)" name="resourceId"><!-- Modificar para mañana -->
-            <option value="">Seleccione la sala</option>
-            <option *ngFor="let room of rooms" name="resourceId" value="{{room.id}}">{{room.title}}</option>
-          </select>
-
+          <div class="form-group">
+            <label for="resourceId" class="col-form-label">Nombre de la sala</label>
+            <select class="form-control select" (change)="obtenerNombreSala($event)" name="resourceId"><!-- Modificar para mañana -->
+             <option value="">Seleccione la sala</option>
+             <option *ngFor="let room of rooms" name="resourceId" value="{{room.id}}">{{room.title}}</option>
+            </select>
+          </div>
           <div class="form-group">
             <label for="title" class="col-form-label">Nombre Evento</label>
             <input type="text" class="form-control" name="title" [(ngModel)]="this.dataEvent.selectedEvent.title" placeholder="Inaguración Evento">

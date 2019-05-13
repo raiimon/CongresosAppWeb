@@ -43,10 +43,10 @@
                                     <th>Nombre Congreso</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr *ngFor="let event of salas">
-                                    <td>{{event.title}}</td>
-                                    <td>{{event.nombreCongreso}}</td>
+                            <tbody *ngFor="let sala of salas">
+                                <tr *ngIf="(sala.nombreCongreso == event.nombreCongreso)">
+                                    <td>{{sala.title}}</td>
+                                    <td>{{sala.nombreCongreso}}</td>
                                 </tr>
                                 <tr>
                             </tbody>
@@ -75,8 +75,8 @@
 
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr *ngFor="let invitado of invitados ; index as i">
+                                <tbody *ngFor="let invitado of invitados ; index as i">
+                                    <tr *ngIf="(invitado.nombreCongreso == event.nombreCongreso)">
                                         <th scope="row">{{i+1}}</th>
                                         <td>{{invitado.nombre}}</td>
                                         <td>{{invitado.apellidos}}</td>
@@ -91,10 +91,10 @@
                     <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="row">
+            <div class="container-fluid" *ngFor="let sinoptico of sinoptico">
+                <div class="row"  *ngIf="(sinoptico.nombreCongreso == event.nombreCongreso)">
                     <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 " *ngFor="let sinoptico of sinoptico">
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
                         <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
                         <img class=" borImg" src="{{sinoptico.imgSinaptico}}" style=" height: 50vh ;">
                     </div>

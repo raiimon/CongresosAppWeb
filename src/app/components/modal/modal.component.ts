@@ -101,6 +101,8 @@ export class ModalComponent implements OnInit {
         // Convertir la fecha de entrada y salida para Firebase.
         const fechaEntradaCongreso = new Date(congressForm.value.fechaInicioCongreso);
         const fechaSalidaCongreso = new Date(congressForm.value.fechaSalidaCongreso);
+        congressForm.value.imgCongreso = this.inputImageUser.nativeElement.value;
+
 
         if (congressForm.value.idCongreso == null) {
 
@@ -119,6 +121,7 @@ export class ModalComponent implements OnInit {
 
       case 'sinoptico':
         congressForm.value.imgSinaptico = this.inputImageUser.nativeElement.value;
+        congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
 
         if (congressForm.value.idInvitado == null) {
           // POST
@@ -133,6 +136,9 @@ export class ModalComponent implements OnInit {
         break;
 
       case 'invitado':
+
+        congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+
 
         if (congressForm.value.idInvitado == null) {
 
