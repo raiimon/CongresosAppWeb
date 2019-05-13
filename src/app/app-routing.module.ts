@@ -20,8 +20,6 @@ import {ExteriorCaracteristicasComponent } from './components/principal-exterior
 import {ExteriorPreciosComponent} from './components/principal-exterior/exterior-precios/exterior-precios.component';
 import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
 
-
-
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
 import {VerifyEmailComponent} from './components/users/verify-email/verify-email.component';
@@ -29,8 +27,8 @@ import {ForgotPasswordComponent} from './components/users/forgot-password/forgot
 import {HomeComponent} from './components/home/home.component';
 import {EventsComponent} from './components/events/events.component';
 
-// En las rutas, añadimos la seguridad de las AuthGuard.
-// De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder.
+/* En las rutas, añadimos la seguridad de las AuthGuard.
+ De esta manera evitamos que si el usuario no ha iniciado sesión, no pueda acceder. */
 
 const routes: Routes = [
   { path: '', component: PrincipalExteriorComponent, canActivate: [SecureInnerPagesGuard], pathMatch: 'full'},
