@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { AuthenticationService } from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {InvitadoApiService} from '../../../services/invitado-api.service';
@@ -36,7 +36,7 @@ export class ListGuestComponent implements OnInit {
   onDeleteCongress(idCongreso: string): void {
     const confirmacion = confirm('¿Deseas eliminar este congreso?');
 
-    if(confirmacion) {
+    if (confirmacion) {
       this.dataApi.deleteGuest(idCongreso);
     }
 
@@ -52,6 +52,10 @@ export class ListGuestComponent implements OnInit {
         });
       }
     });
+  }
+
+  showCheck(congres: CongresoInterface) {
+    this.dataApi.selectedInvitado = Object.assign({}, congres);
   }
 
   onPreUpdateCongress(congres: CongresoInterface) {

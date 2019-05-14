@@ -5,7 +5,7 @@
         <div class="jumbotron">
             <h1 class="text-center">Control del Usuario</h1>
             <p class="text-center">En este apartado, usted podra ver el Control de asistencia de
-                <!-- {{nombre.Jovo}}-->.</p>
+                {{this.dataApi.selectedInvitado.nombre}}</p>
         </div>
     </div>
 
@@ -13,26 +13,27 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
                 <div class="table-responsive mt-5">
+                  <h1>Datos del invitado</h1>
                     <table class="table table-hover">
                         <tr>
                             <th>Nombre</th>
-                            <td>Jovo</td>
+                            <td>{{this.dataApi.selectedInvitado.nombre}}</td>
                         </tr>
                         <tr>
                             <th>Apellidos</th>
-                            <td>Media</td>
+                            <td>{{this.dataApi.selectedInvitado.apellidos}}</td>
                         </tr>
                         <tr>
                             <th>Dni</th>
-                            <td>555 77 855</td>
+                            <td>{{this.dataApi.selectedInvitado.dni}}</td>
                         </tr>
                         <tr>
                             <th>Teléfono</th>
-                            <td>555 77 855</td>
+                            <td>{{this.dataApi.selectedInvitado.telefono}}</td>
                         </tr>
                         <tr>
                             <th>Correo</th>
-                            <td>JovoMedia@MoreRandy.cat</td>
+                            <td>{{this.dataApi.selectedInvitado.correo}}</td>
                         </tr>
                     </table>
                 </div>

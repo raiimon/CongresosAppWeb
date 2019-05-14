@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {InvitadoApiService} from '../../services/invitado-api.service';
 
 @Component({
   selector: 'app-check',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class CheckComponent {
 
+  constructor(private dataApi: InvitadoApiService) {}
   // Doughnut
   public doughnutChartLabels = ['Asistencia', 'Faltas'];
   public demodoughnutChartData =  [ 650, 350 ];
