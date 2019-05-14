@@ -57,7 +57,6 @@ export class HomeComponent implements OnInit {
   getAllGuests() {
     this.invitadosApi.getAllGuests().subscribe(invitados => {
       this.invitados = invitados;
-      console.log(this.invitados);
     });
   }
 
