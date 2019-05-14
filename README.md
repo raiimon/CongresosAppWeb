@@ -1,6 +1,6 @@
 # CongresosApp
 
-![Image description](https://img.shields.io/badge/left-right-f39f37.svg)
+![Image description](https://img.shields.io/badge/angular-7.3.8-lightgrey.svg)
 
 CongresosApp is a productive web application where it is combined with a mobile application (coming soon) to carry out the control of guests attending a conference
 
