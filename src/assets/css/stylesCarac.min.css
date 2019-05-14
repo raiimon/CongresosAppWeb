@@ -95,6 +95,10 @@
     margin-bottom: 5%;
 }
 
+.textoMar {
+    margin-left: 10%;
+}
+
 button {
     background: linear-gradient(120deg, #07a2c9, #3b69d4);
 }
