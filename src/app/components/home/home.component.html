@@ -1,110 +1,112 @@
 <section>
     <app-navbar></app-navbar>
     <link rel="stylesheet" href="assets/css/stylesHom.css">
-    <div class="borde">
-        <div class="jumbotron jumbotron-fluid border rounded border-primary" id="diseno" style="background-color: rgba(140,214,245,0.28); " *ngFor="let event of congress">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-1 col-lg-1 "></div>
 
-                    <div class="col-12 col-sm-12 col-md-5 col-lg-3"><img class="img-fluid borImg" src="{{event.imgCongreso}}"></div>
-                    <div class="col-md-5 col-lg-7 ">
-                        <h1 class="text-center sombras" id="titulo" style="color:white">{{event.nombreCongreso}}</h1>
-                        <h3 id="descrip" class="bordetabla">Información</h3>
+    <div class="jumbotron rounded border-primary" *ngFor="let event of congress">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex justify-content-center "><img class="img-fluid borImg" src="{{event.imgCongreso}}"></div>
+                <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                    <h1 class="text-center sombras" id="titulo" style="color:white">{{event.nombreCongreso}}</h1>
+                    <h3 id="descrip" class="bordetabla">Información</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Dirección</th>
+                                <th>Fecha Inicio Congreso</th>
+                                <th>Fecha Finalización Congreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let event of congress">
+                                <td>{{event.direccion}}</td>
+                                <td>{{event.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
+                                <td>{{event.fechaSalidaCongreso | date: 'dd-MM-yyyy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2 col-lg-2 "></div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                    <h1 class="text-center sombras mt-4" id="titulo">Salas</h1>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre Sala</th>
+                                <th>Nombre Congreso</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let sala of salas">
+                            <tr *ngIf="(sala.nombreCongreso == event.nombreCongreso)">
+                                <td>{{sala.title}}</td>
+                                <td>{{sala.nombreCongreso}}</td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                    <h1 class="text-center sombras mt-4" id="titulo">Invitados</h1>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Dirección</th>
-                                    <th>Fecha Inicio Congreso</th>
-                                    <th>Fecha Finalización Congreso</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellidos</th>
+                                    <th scope="col">DNI</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Correo</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr *ngFor="let event of congress">
-                                    <td>{{event.direccion}}</td>
-                                    <td>{{event.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
-                                    <td>{{event.fechaSalidaCongreso | date: 'dd-MM-yyyy'}}</td>
+                            <tbody *ngFor="let invitado of invitados ; index as i">
+                                <tr *ngIf="(invitado.nombreCongreso == event.nombreCongreso)">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>{{invitado.nombre}}</td>
+                                    <td>{{invitado.apellidos}}</td>
+                                    <td>{{invitado.dni}}</td>
+                                    <td>{{invitado.telefono}}</td>
+                                    <td>{{invitado.correo}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
             </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <h1 class="text-center sombras mt-4" id="titulo">Salas</h1>
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nombre Sala</th>
-                                    <th>Nombre Congreso</th>
-                                </tr>
-                            </thead>
-                            <tbody *ngFor="let sala of salas">
-                                <tr *ngIf="(sala.nombreCongreso == event.nombreCongreso)">
-                                    <td>{{sala.title}}</td>
-                                    <td>{{sala.nombreCongreso}}</td>
-                                </tr>
-                                <tr>
-                            </tbody>
-                        </table>
-
+        </div>
+        <div class="container-fluid" *ngFor="let sinoptico of sinoptico">
+            <div class="row" *ngIf="(sinoptico.nombreCongreso == event.nombreCongreso)">
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                    <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
+                    <div class="d-flex justify-content-center">
+                        <img class="img-fluid imgSinop" src="{{sinoptico.imgSinaptico}}" style=" height: 60vh ;">
                     </div>
-                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <h1 class="text-center sombras mt-4" id="titulo">Invitados</h1>
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellidos</th>
-                                        <th scope="col">DNI</th>
-                                        <th scope="col">Telefono</th>
-                                        <th scope="col">Correo</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody *ngFor="let invitado of invitados ; index as i">
-                                    <tr *ngIf="(invitado.nombreCongreso == event.nombreCongreso)">
-                                        <th scope="row">{{i+1}}</th>
-                                        <td>{{invitado.nombre}}</td>
-                                        <td>{{invitado.apellidos}}</td>
-                                        <td>{{invitado.dni}}</td>
-                                        <td>{{invitado.telefono}}</td>
-                                        <td>{{invitado.correo}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                </div>
-            </div>
-            <div class="container-fluid" *ngFor="let sinoptico of sinoptico">
-                <div class="row" *ngIf="(sinoptico.nombreCongreso == event.nombreCongreso)">
-                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
-                        <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
-                        <div class="d-flex justify-content-center">
-                            <img class="img-fluid imgSinop" src="{{sinoptico.imgSinaptico}}" style=" height: 60vh ;">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                </div>
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
             </div>
         </div>
     </div>
+
+    <div class="mt-5"></div>
+
     <script src="assets/js/jqueryHom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
