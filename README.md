@@ -2,6 +2,8 @@
 
 ![Image description](https://img.shields.io/badge/angular-7.3.8-lightgrey.svg)
 
+![Image description](https://img.shields.io/badge/build-passing-green.svg)
+
 CongresosApp is a productive web application where it is combined with a mobile application (coming soon) to carry out the control of guests attending a conference
 
 This project was generated with Angular CLI version 7.3.8.
