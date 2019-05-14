@@ -37,4 +37,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   - Borja de Vicente Casado. (Backend) 🔥 
   - Ramón Casaña Martínez.  (Frontend) 🎨
-  - Virgnia Tobacco. 🚬
+  - Virgnia & Marlboro Tobacco. 🚬
