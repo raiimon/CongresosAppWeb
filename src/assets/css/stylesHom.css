@@ -6,13 +6,6 @@
     margin-top: 2%;
 }
 
-#diseno {
-    margin: 19px;
-    -webkit-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
-    -moz-box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
-    box-shadow: 10px 7px 11px 1px rgba(0, 0, 0, 0.55);
-}
-
 .borde {
     margin-top: 5%
 }
