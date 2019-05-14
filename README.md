@@ -1,4 +1,4 @@
-# CongresosApp
+# CongresosAppWeb
 
 ![Image description](https://img.shields.io/badge/angular-7.3.8-lightgrey.svg) ![Image description](https://img.shields.io/badge/build-passing-green.svg) ![Image description](https://img.shields.io/david/expressjs/express.svg)
 
