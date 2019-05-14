@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 
 // Importamos OAuth de Firebase para Google y Facebook.
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private authService: AuthenticationService) { }
+              private authService: AuthenticationService,
+              public ngZone: NgZone) { }
 
   ngOnInit() {
   }
@@ -39,20 +40,8 @@ export class LoginComponent implements OnInit {
     // LLamamos el servicio.
     this.authService.loginGoogleUser()
       .then((res) => {
-        console.log(res);
         this.onLoginRedirect();
     }).catch( err => this.onError(err));
-  }
-
-  // Similar al método de Google.
-  onLoginFacebook(): void {
-
-    // LLamamos el servicio.
-    this.authService.loginFacebookUser()
-      .then((res) => {
-        console.log(res);
-        this.onLoginRedirect();
-      }).catch( err => this.onError(err));
   }
 
   // Método para redireccionar a la ruta de admin.

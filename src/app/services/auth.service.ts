@@ -86,11 +86,6 @@ export class AuthenticationService {
 
   /* Loggin de Redes Sociales, Los dos son similares ya que usan el OAuth de Firebase. */
 
-  // Login de Facebook.
-  loginFacebookUser() {
-    return this.afsAuth.auth.signInWithPopup(new auth.FacebookAuthProvider())
-      .then(credential => this.updateUserData(credential.user));
-  }
   // Login de Google.
   loginGoogleUser() {
     return this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
@@ -136,9 +131,6 @@ export class AuthenticationService {
         editor: true
       }
     };
-
-    // Devolvemos los valores.
-    return userRef.set(data, {merge: true});
   }
 
   // Eliminamos un usuario desde la ID obtenida en la parte de profile.
