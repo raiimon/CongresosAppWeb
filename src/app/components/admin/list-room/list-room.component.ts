@@ -41,7 +41,7 @@ export class ListRoomComponent implements OnInit {
     });
   }
 
-  onDeleteCongress(id: string): void {
+  onDeleteRooms(id: string): void {
     const confirmacion = confirm('¿Deseas eliminar esta sala?');
 
     if (confirmacion) {
@@ -62,7 +62,7 @@ export class ListRoomComponent implements OnInit {
     });
   }
 
-  onPreUpdateCongress(congres: CongresoInterface) {
+  onPreUpdateRooms(congres: CongresoInterface) {
     this.dataApi.selectedSala = Object.assign({}, congres);
   }
 

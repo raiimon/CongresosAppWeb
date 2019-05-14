@@ -21,17 +21,17 @@ export class ListSinapticComponent implements OnInit {
   public userUid: string = null;
 
   ngOnInit() {
-    this.getListCongress();
+    this.getListSinoptics();
     this.getCurrentUser();
   }
 
-  getListCongress() {
+  getListSinoptics() {
     this.dataApi.getAllSinaptics().subscribe( congreso => {
       this.sinaptics = congreso;
     });
   }
 
-  onDeleteCongress(idCongreso: string): void {
+  onDeleteSinoptics(idCongreso: string): void {
     const confirmacion = confirm('¿Deseas eliminar este congreso?');
 
     if (confirmacion) {
@@ -50,7 +50,7 @@ export class ListSinapticComponent implements OnInit {
     });
   }
 
-  onPreUpdateCongress(congres: CongresoInterface) {
+  onPreUpdateSinoptics(congres: CongresoInterface) {
     this.dataApi.selectedSinaptic = Object.assign({}, congres);
   }
 }

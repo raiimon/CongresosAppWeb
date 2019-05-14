@@ -27,10 +27,10 @@ export class ListGuestComponent implements OnInit {
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
-    this.getListRooms();
+    this.getListGuest();
   }
 
-  getListRooms() {
+  getListGuest() {
     this.dataApi.getAllGuests().subscribe( invitado => {
       this.guests = invitado;
     });
@@ -42,7 +42,7 @@ export class ListGuestComponent implements OnInit {
     });
   }
 
-  onDeleteCongress(idCongreso: string): void {
+  onDeleteGuest(idCongreso: string): void {
     const confirmacion = confirm('¿Deseas eliminar este congreso?');
 
     if (confirmacion) {
@@ -67,7 +67,7 @@ export class ListGuestComponent implements OnInit {
     this.dataApi.selectedInvitado = Object.assign({}, congres);
   }
 
-  onPreUpdateCongress(congres: CongresoInterface) {
+  onPreUpdateGuest(congres: CongresoInterface) {
     this.dataApi.selectedInvitado = Object.assign({}, congres);
   }
 

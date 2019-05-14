@@ -46,22 +46,22 @@
                             <td class="d-flex justify-content-center">
 
                                 <div *ngIf="sinoptic.userUid == userUid || isAdmin == true; else noOwner">
-                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(sinoptic)" data-toggle="modal" data-target="#modalSinaptics"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateSinoptics(sinoptic)" data-toggle="modal" data-target="#modalSinaptics"><i class="fas fa-pen"></i></button>
                                 </div>
 
 
                                 <ng-template #noOwner>
-                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(sinoptic)" disabled="true"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
                                 </ng-template>
 
 
                                 <div *ngIf="isAdmin == true; else noAdmin">
-                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(sinoptic.idSinaptico)"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteSinoptics(sinoptic.idSinaptico)"><i class="fas fa-trash-alt"></i></button>
                                 </div>
 
 
                                 <ng-template #noAdmin>
-                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(sinoptic.idSinaptico)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                 </ng-template>
                             </td>
                         </tr>

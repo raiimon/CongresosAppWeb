@@ -60,7 +60,7 @@
                             <td class="d-flex justify-content-center">
 
                                 <div *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
-                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateGuest(guest)" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-pen"></i></button>
                                 </div>
 
                                 <ng-template #noOwner>
@@ -68,7 +68,7 @@
                                 </ng-template>
 
                                 <div *ngIf="isAdmin == true; else noAdmin">
-                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(guest.idInvitado)"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteGuest(guest.idInvitado)"><i class="fas fa-trash-alt"></i></button>
                                 </div>
 
                                 <ng-template #noAdmin>
