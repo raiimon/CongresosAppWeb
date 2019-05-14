@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   public congress: CongresoInterface[];
   public salas: SalaInterface[];
   public sinoptico: SinapticoInterface[];
-  public invitados: InvitadoInterface[]
+  public invitados: InvitadoInterface[];
 
   // Usuarios de los roles.
   public isAdmin: any = null;
