@@ -4,16 +4,16 @@
     <div id="promo">
         <div class="jumbotron">
             <h1 class="text-center">Control del Usuario</h1>
-            <p class="text-center">En este apartado, usted podra ver el Control de asistencia de
-                {{this.dataApi.selectedInvitado.nombre}}</p>
+            <p class="text-center">En este apartado, usted podra ver el Control de asistencia de {{this.dataApi.selectedInvitado.nombre}}
+            </p>
         </div>
     </div>
 
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
+        <div class="row d-flex justify-content-between ">
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 borde">
                 <div class="table-responsive mt-5">
-                  <h1>Datos del invitado</h1>
+                    <h1>Datos del invitado</h1>
                     <table class="table table-hover">
                         <tr>
                             <th>Nombre</th>
@@ -38,38 +38,43 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
-                <h2 class="text-center">Total de Asistencias y Faltas</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 borde ">
+                <div>
+                    <h2 class="text-center">Total de Asistencias y Faltas</h2>
+                    <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container mt-5 ">
-        <div class="row ">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
-                <h2 class="text-center">Sala Plenaria</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+    <div class="borde">
+        <div class="container mt-5 ">
+            <div class="row ">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                    <h2 class="text-center">Sala Plenaria</h2>
+                    <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
-                <h2 class="text-center">Sala B</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                    <h2 class="text-center">Sala B</h2>
+                    <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container mt-5">
-        <div class="row ">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
-                <h2 class="text-center">Sala C</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+        <div class="container mt-5">
+            <div class="row ">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                    <h2 class="text-center">Sala C</h2>
+                    <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
-                <h2 class="text-center">Sala D</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                    <h2 class="text-center">Sala D</h2>
+                    <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
+                </div>
             </div>
         </div>
     </div>
