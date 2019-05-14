@@ -1,6 +1,6 @@
 # CongresosApp
 
-![Image description](https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png)
+![Image description](https://img.shields.io/badge/left-right-f39f37.svg)
 
 CongresosApp is a productive web application where it is combined with a mobile application (coming soon) to carry out the control of guests attending a conference
 
