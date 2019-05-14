@@ -3,6 +3,7 @@ import { AuthenticationService } from '../../../services/auth.service';
 import {CongresoInterface} from '../../../models/congreso';
 import {InvitadoApiService} from '../../../services/invitado-api.service';
 import {InvitadoInterface} from '../../../models/invitado';
+import {CongresoApiService} from '../../../services/congreso-api.service';
 
 @Component({
   selector: 'app-list-guest',
@@ -12,10 +13,11 @@ import {InvitadoInterface} from '../../../models/invitado';
 export class ListGuestComponent implements OnInit {
 
 
-  constructor(private dataApi: InvitadoApiService, private authService: AuthenticationService) { }
+  constructor(private dataApi: InvitadoApiService, private authService: AuthenticationService, private dataCongress: CongresoApiService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private guests: InvitadoInterface[];
-  private nombre: string;
+  private congress: CongresoInterface[];
+  nombreCongresoSeleccionado: any;
   private filterGuest = '';
 
   // Usuarios de los roles.
@@ -25,11 +27,18 @@ export class ListGuestComponent implements OnInit {
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
+    this.getListRooms();
+  }
+
+  getListRooms() {
+    this.dataApi.getAllGuests().subscribe( invitado => {
+      this.guests = invitado;
+    });
   }
 
   getListCongress() {
-    this.dataApi.getAllGuests().subscribe( invitado => {
-      this.guests = invitado;
+    this.dataCongress.getAllCongress().subscribe( congreso => {
+      this.congress = congreso;
     });
   }
 
@@ -60,5 +69,19 @@ export class ListGuestComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedInvitado = Object.assign({}, congres);
+  }
+
+
+  obtenerNombreCongreso(event: Event) {
+
+    // Obtenemos de la etiqueta.
+    const selectedOptions = event.target['options'];
+
+    // Comprobamos el índice.
+    const selectedIndex = selectedOptions.selectedIndex;
+
+    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
+    this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
+
   }
 }

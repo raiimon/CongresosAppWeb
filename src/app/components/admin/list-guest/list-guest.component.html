@@ -11,7 +11,17 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-            <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+          <!-- SELECT -->
+          <div class="row d-flex justify-content-center">
+            <h2>Seleccione el congreso para mostrar los invitados.</h2>
+            <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
+              <option value="">Seleccione el congreso</option>
+              <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+            </select>
+          </div>
+          <!-- SELECT -->
+
+          <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
                 <form class="search-form">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -20,7 +30,6 @@
                   </span>
                         </div>
                         <input class="form-control" type="text" name="busqueda" [(ngModel)]="filterGuest" placeholder="Busque un invitado">
-
                     </div>
                 </form>
             </div>
@@ -41,8 +50,8 @@
                             <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let guest of guests | filterGuest: filterGuest" (click)="showCheck(guest)" routerLink="/check">
+                    <tbody *ngFor="let guest of guests | filterGuest: filterGuest">
+                        <tr *ngIf="(guest.nombreCongreso == nombreCongresoSeleccionado)">
                             <td>{{guest.nombre}}</td>
                             <td>{{guest.apellidos}}</td>
                             <td>{{guest.dni}}</td>
@@ -54,29 +63,24 @@
                                     <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(guest)" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-pen"></i></button>
                                 </div>
 
-
                                 <ng-template #noOwner>
-                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(guest)" disabled="true"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
                                 </ng-template>
-
 
                                 <div *ngIf="isAdmin == true; else noAdmin">
                                     <button class="btn btn-danger" type="button" (click)="onDeleteCongress(guest.idInvitado)"><i class="fas fa-trash-alt"></i></button>
                                 </div>
 
                                 <ng-template #noAdmin>
-                                    <button class="btn btn-danger btn-secondary" type="button" (click)="onDeleteCongress(guest.idInvitado)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger btn-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                 </ng-template>
 
-                                <!-- Borja modifica esto que es lo del Check-->
-
                                 <div *ngIf="isAdmin == true; else dontShow">
-                                    <button class="btn btn-info" type="button" (click)="onDeleteCongress(guest.idInvitado)"><i class="fas fa-chart-pie"></i></button>
+                                    <button class="btn btn-info" type="button" (click)="showCheck(guest)" routerLink="/check"><i class="fas fa-chart-pie"></i></button>
                                 </div>
 
-
                                 <ng-template #dontShow>
-                                    <button class="btn btn-info" type="button" (click)="onDeleteCongress(guest.idInvitado)" disabled="true"><i class="fas fa-chart-pie"></i></button>
+                                    <button class="btn btn-info" type="button" disabled="true"><i class="fas fa-chart-pie"></i></button>
                                 </ng-template>
                             </td>
                         </tr>
