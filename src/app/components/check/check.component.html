@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 <link rel="stylesheet" href="assets/css/stylesCheck.min.css">
 <section>
-    <div id="promo">
+  <div id="promo">
         <div class="jumbotron">
             <h1 class="text-center">Control del Usuario</h1>
             <p class="text-center">En este apartado, usted podra ver el Control de asistencia de
-                {{this.dataApi.selectedInvitado.nombre}}</p>
+              </p>
         </div>
     </div>
 
@@ -40,34 +40,16 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
                 <h2 class="text-center">Total de Asistencias y Faltas</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+                <canvas baseChart [data]="demodoughnutChartDataPrincipal" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
             </div>
         </div>
     </div>
-    <div class="container mt-5 ">
-        <div class="row ">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
-                <h2 class="text-center">Sala Plenaria</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
-                 </canvas>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
-                <h2 class="text-center">Sala B</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
-                 </canvas>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
-        <div class="row ">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
-                <h2 class="text-center">Sala C</h2>
-                <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
-                 </canvas>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
-                <h2 class="text-center">Sala D</h2>
+
+    <div class="container mt-5" *ngFor="let room of rooms">
+        <div class="row " *ngIf="(room.nombreCongreso == this.dataApi.selectedInvitado.nombreCongreso)">
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                <h2 class="text-center">{{room.title}}</h2>
                 <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
             </div>
