@@ -1,8 +1,10 @@
 # CongresosApp
 
+![Image description](https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png)
+
 CongresosApp is a productive web application where it is combined with a mobile application (coming soon) to carry out the control of guests attending a conference
 
-This project was generated with # Angular CLI version 7.3.8.
+This project was generated with Angular CLI version 7.3.8.
 
 ## Development server
 
