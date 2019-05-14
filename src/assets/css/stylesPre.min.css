@@ -228,11 +228,9 @@
 }
 
 .main_grid_contact {
-    width: 70%;
     -webkit-box-shadow: -5px 6px 25px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -5px 6px 25px -12px rgba(0, 0, 0, 0.75);
     box-shadow: -5px 6px 25px -12px rgba(0, 0, 0, 0.75);
-    margin: 4em auto 0;
 }
 
 .form {
@@ -273,7 +271,6 @@
     transition: all 0.5s ease-in;
     font-weight: 700;
     margin: 1em auto;
-    width: 30%;
     height: 50px;
     text-align: center;
     display: block;

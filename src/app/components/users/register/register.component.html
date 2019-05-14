@@ -1,20 +1,21 @@
+<app-navbar-exterior></app-navbar-exterior>
 <section>
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <div class="container">
-      <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div class="card card-signin my-5">
-            <div class="card-body">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
 
-              <h5 class="card-title text-center">Registro de Usuario</h5>
+                        <h5 class="card-title text-center">Registro de Usuario</h5>
 
-              <form class="form-signin">
-            <div class="form-label-group text-center ">
+                        <form class="form-signin">
+                            <div class="form-label-group text-center ">
 
-              <input type="email" name="email" id="email" class="form-control" placeholder="email"  #userEmail minlength="8" maxlength="50" required>
-              <label for="email">Correo electrónico</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="email" #userEmail minlength="8" maxlength="50" required>
+                                <label for="email">Correo electrónico</label>
 
-              <!-- Con el #emil=ngModel recogemos el valor y hacemos la verificaciones necesarias
+                                <!-- Con el #emil=ngModel recogemos el valor y hacemos la verificaciones necesarias
               <div class="colorError" *ngIf="emil.touched && !emil.valid">
                 Cuando salga el campo saltara el *ngIf cuando detecto el errors
                 <div *ngIf="emil.errors.required">Email es requerido</div>
@@ -22,26 +23,26 @@
               </div>
             </div>
             -->
-            <hr>
-            <div class="form-label-group text-center">
-              <input type="password"  name="password" id="password" class="form-control" placeholder="password"  #userPassword minlength="5" required >
-              <label for="password">Contraseña</label>
-              <!--
+                                <hr>
+                                <div class="form-label-group text-center">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="password" #userPassword minlength="5" required>
+                                    <label for="password">Contraseña</label>
+                                    <!--
               <div class="colorError" *ngIf="pass.touched && !pass.valid">
                   <div *ngIf="pass.errors.required">Contraseña es requerido</div>
                   <div *ngIf="pass.errors.minlength">Contraseña tiene que tener más de 5 characteres</div>
                 </div>
                 -->
-              </div>
+                                </div>
 
 
-                <button type="button" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="authService.registerUser(userEmail.value, userPassword.value)">Registrarse</button>
+                                <button type="button" class="btn btn-lg btn-primary btn-block text-uppercase" (click)="authService.registerUser(userEmail.value, userPassword.value)">Registrarse</button>
+                            </div>
+                        </form>
+                        <a class="d-block text-center mt-2 medium" routerLink="/user/login">¿ Ya estas registrado ?</a>
+                    </div>
+                </div>
             </div>
-           </form>
-           <a class="d-block text-center mt-2 medium" routerLink="/user/login">¿ Ya estas registrado ?</a>
         </div>
-      </div>
-        </div>
-  </div>
-</div>
+    </div>
 </section>
