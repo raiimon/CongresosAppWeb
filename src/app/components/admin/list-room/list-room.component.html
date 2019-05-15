@@ -7,21 +7,28 @@
         <div class="jumbotron">
             <h1>Salas</h1>
             <p>En esta sección usted puede añadir, actualizar o eliminar las salas del congreso en croncreto.</p>
-            <p></p>
+            <br>
         </div>
     </div>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-          <!-- SELECT -->
-          <div class="row d-flex justify-content-center">
-            <h2>Seleccione el congreso para mostrar las salas.</h2>
-            <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
-              <option value="">Seleccione el congreso</option>
-              <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
-            </select>
-          </div>
-          <!-- SELECT -->
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+                <!-- SELECT -->
+                <h2 class="mt-3 text-center">Seleccione el congreso para mostrar las salas.</h2>
+                <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
+                  <option value="">Seleccione el congreso</option>
+                  <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+                </select>
+            </div>
+            <!-- SELECT -->
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
                 <form class="search-form">
                     <div class="input-group">
@@ -48,8 +55,8 @@
                             <th>&nbsp;<button class="btn bottonColor" type="button" id="new" data-toggle="modal" data-target="#modalRoom">Nueva Sala</button></th>
                         </tr>
                     </thead>
-                        <tbody *ngFor="let room of rooms | filterGuest: nombreSalaFiltro">
-                          <tr *ngIf="(room.nombreCongreso == nombreCongresoSeleccionado)">
+                    <tbody *ngFor="let room of rooms | filterGuest: nombreSalaFiltro">
+                        <tr *ngIf="(room.nombreCongreso == nombreCongresoSeleccionado)">
                             <td>{{room.title}}</td>
                             <td>{{room.nombreCongreso}}</td>
                             <td class="d-flex justify-content-center">
@@ -70,7 +77,7 @@
 
 
                                 <ng-template #noAdmin>
-                                    <button class="btn btn-danger" type="button"  disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                 </ng-template>
                             </td>
                         </tr>
