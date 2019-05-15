@@ -58,7 +58,7 @@
 #promo {
     padding: 40px;
     background: url(assets/img/invitados.jpeg) no-repeat;
-    background-size: cover
+    background-size: cover;
 }
 
 #promo .jumbotron {
