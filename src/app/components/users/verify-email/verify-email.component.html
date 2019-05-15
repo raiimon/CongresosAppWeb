@@ -1,20 +1,24 @@
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/stylesFor.css">
-</head>
-<section>
-    <div class="jumbotron" id="Jump">
+<link rel="stylesheet" href="assets/css/stylesFor.css">
 
-        <div class="container" *ngIf="authService.userData as user">
-            <h1 class="text-center">Gracias por registrarse, por favor siga los pasos indicados por correo.</h1>
-            <p class="text-center">Hemos enviado un correo de confirmación al correo <strong>{{user.email}}</strong>.</p>
-            <p class="text-center">Compruebe el enlace de su correo y siga los pasos.</p>
-            <p class="text-center">
-              <a class="btn btn-link btn-sm color" role="button" (click)="authService.sendVerificationEmail()">Reenviar la confirmación de correo</a>
-                <br>
-                <a class="btn btn-primary posi" role="button" routerLink="user/login">Iniciar Sesión</a>
-            </p>
+<section>
+    <div class="jumbotron jumbotron-fluid" id="Jump">
+
+        <div class="container-fluid  ">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10 centrar" *ngIf="authService.userData as user">
+                    <h1 class="text-center">Gracias por registrarse, por favor siga los pasos indicados por correo.</h1>
+                    <p class="text-center ">Hemos enviado un correo de confirmación al correo <strong>{{user.email}}</strong>.</p>
+                    <p class="text-center ">Compruebe el enlace de su correo y siga los pasos.</p>
+                    <p class="text-center ">
+                        <a class="btn btn-link btn-sm" style="color:blue" role="button" (click)="authService.sendVerificationEmail()">Reenviar la confirmación de correo</a>
+                        <br>
+                        <a class="btn btn-primary " role="button" routerLink="user/login">Iniciar Sesión</a>
+                    </p>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                </div>
+            </div>
         </div>
+
     </div>
 </section>
-<script src="assets/js/jqueryFor.min.js"></script>

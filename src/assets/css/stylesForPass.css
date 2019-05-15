@@ -7,5 +7,9 @@
     background-image: url(../../assets/img/validar.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 50% 50%
+}
+
+.centrar {
+    margin-top: 20%;
+    margin-bottom: 20%;
 }
