@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 <link rel="stylesheet" href="assets/css/stylesCheck.min.css">
 <section>
-  <div id="promo">
+    <div id="promo">
         <div class="jumbotron">
             <h1 class="text-center">Control del Usuario</h1>
             <p class="text-center">En este apartado, usted podra ver el Control de asistencia de
-              </p>
+            </p>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 borde">
                 <div class="table-responsive mt-5">
-                  <h1>Datos del invitado</h1>
+                    <h1>Datos del invitado</h1>
                     <table class="table table-hover">
                         <tr>
                             <th>Nombre</th>
@@ -46,9 +46,9 @@
         </div>
     </div>
 
-    <div class="container mt-5" *ngFor="let room of rooms">
-        <div class="row " *ngIf="(room.nombreCongreso == this.dataApi.selectedInvitado.nombreCongreso)">
-            <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+    <div class="d-flex justify-content-between">
+        <div class="container mt-5" *ngFor="let room of rooms">
+            <div class="row d-flex justify-content-center " *ngIf="(room.nombreCongreso == this.dataApi.selectedInvitado.nombreCongreso)">
                 <h2 class="text-center">{{room.title}}</h2>
                 <canvas baseChart [data]="demodoughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
                  </canvas>
