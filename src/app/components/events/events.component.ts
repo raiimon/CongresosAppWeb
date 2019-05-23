@@ -29,7 +29,6 @@ export class EventsComponent implements OnInit {
   // Obtener el congreso
   private congress: CongresoInterface[];
   private uniqueCongress: CongresoInterface;
-  public room: SalaInterface[];
 
   // Usuarios de los roles.
   public isAdmin: any = null;

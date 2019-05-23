@@ -131,6 +131,7 @@ export class AuthenticationService {
         editor: true
       }
     };
+    return userRef.set(data, {merge: true});
   }
 
   // Eliminamos un usuario desde la ID obtenida en la parte de profile.
