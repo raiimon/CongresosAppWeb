@@ -7,7 +7,7 @@
 This project was generated with [Angular CLI](https://cli.angular.io).
 
 
- !(<a href="https://ibb.co/6RM1y67"><img src="https://i.ibb.co/qMSWDb3/foto.png" alt="foto" border="0"></a>)
+ <a href="https://congresosapp2019.firebaseapp.com"><img src="https://i.ibb.co/qMSWDb3/foto.png" alt="foto" border="0"></a>)
 
 ## Features
 
