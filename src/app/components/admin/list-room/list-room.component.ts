@@ -23,6 +23,8 @@ export class ListRoomComponent implements OnInit {
   public isAdmin: any = null;
   public userUid: string = null;
 
+  checkSameValue = 0;
+
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
@@ -77,5 +79,13 @@ export class ListRoomComponent implements OnInit {
     // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
     this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
 
+  }
+
+  showElementByUserID(elementValue) {
+
+    if (this.userUid === elementValue.userUid && this.nombreCongresoSeleccionado === elementValue.nombreCongreso) {
+      this.checkSameValue++;
+      return true;
+    }
   }
 }

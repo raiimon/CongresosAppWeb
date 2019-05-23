@@ -22,6 +22,8 @@ export class ListCongressComponent implements OnInit {
   public isAdmin: any = null;
   public userUid: string = null;
 
+  checkSameValue = 0;
+
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
@@ -44,7 +46,6 @@ export class ListCongressComponent implements OnInit {
   getCurrentUser() {
     this.authService.isAuth().subscribe(auth => {
       if (auth) {
-        console.log(auth);
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
             this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
@@ -55,5 +56,13 @@ export class ListCongressComponent implements OnInit {
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedCongreso = Object.assign({}, congres);
+  }
+
+  showElementByUserID(elementValue) {
+
+    if (this.userUid === elementValue.userUid) {
+      this.checkSameValue++;
+      return true;
+    }
   }
 }

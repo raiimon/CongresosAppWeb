@@ -20,6 +20,8 @@ export class ListSinapticComponent implements OnInit {
   public isAdmin: any = null;
   public userUid: string = null;
 
+  checkSameValue = 0;
+
   ngOnInit() {
     this.getListSinoptics();
     this.getCurrentUser();
@@ -52,5 +54,13 @@ export class ListSinapticComponent implements OnInit {
 
   onPreUpdateSinoptics(congres: CongresoInterface) {
     this.dataApi.selectedSinaptic = Object.assign({}, congres);
+  }
+
+  showElementByUserID(elementValue) {
+
+    if (this.userUid === elementValue.userUid) {
+      this.checkSameValue++;
+      return true;
+    }
   }
 }

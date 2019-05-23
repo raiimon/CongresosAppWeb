@@ -39,8 +39,8 @@
                             <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalSinaptics">Nuevo&nbsp;Sinóptico</button></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let sinoptic of sinaptics | filterSinaptic:nombreSinopticoFiltro">
+                    <tbody *ngFor="let sinoptic of sinaptics | filterSinaptic:nombreSinopticoFiltro">
+                        <tr *ngIf="showElementByUserID(sinoptic)">
                             <td>{{sinoptic.nombreSinaptico}}</td>
                             <td>{{sinoptic.descripcionSinaptico}}</td>
                             <td class="d-flex justify-content-center">

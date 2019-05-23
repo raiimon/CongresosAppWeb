@@ -39,8 +39,8 @@
                             <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let congres of congress | filterCongress:filterCongress">
+                    <tbody *ngFor="let congres of congress | filterCongress:filterCongress">
+                        <tr *ngIf="showElementByUserID(congres)">
                             <td>{{congres.nombreCongreso}}</td>
                             <td>{{congres.direccion}}</td>
 

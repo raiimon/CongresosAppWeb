@@ -17,8 +17,10 @@
                 <h2 class="mt-3 text-center">Seleccione el congreso para mostrar los invitados.</h2>
                 <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
                       <option value="">Seleccione el congreso</option>
-                      <option *ngFor="let congreso of congress" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
-                    </select>
+                      <ng-container *ngFor="let congreso of congress">
+                        <option *ngIf="congreso.userUid == userUid" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
+                      </ng-container>
+                </select>
                 <!-- SELECT -->
             </div>
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
@@ -57,8 +59,8 @@
                             <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button></th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let guest of guests | filterGuest: filterGuest">
-                        <tr *ngIf="(guest.nombreCongreso == nombreCongresoSeleccionado)">
+                  <tbody *ngFor="let guest of guests | filterCongress:filterGuest">
+                      <tr *ngIf="showElementByUserID(guest)">
                             <td>{{guest.nombre}}</td>
                             <td>{{guest.apellidos}}</td>
                             <td>{{guest.dni}}</td>

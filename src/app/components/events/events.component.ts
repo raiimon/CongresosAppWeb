@@ -54,7 +54,6 @@ export class EventsComponent implements OnInit {
 
   initFullCalendar(fechaInicio, fechaFin, nombreCongreso: string) {
     this.dataRoom.getRoomsByCongressName(nombreCongreso).subscribe(room => {
-      console.log(room);
       this.dataApi.getAllEvents().subscribe(event => {
       const calendar = new Calendar(this.fullCalendarInstance.nativeElement, {
         schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
@@ -149,5 +148,12 @@ export class EventsComponent implements OnInit {
   onPreUpdateEvent(congres: EventInterface) {
     this.dataApi.selectedEvent = Object.assign({}, congres);
     this.ngOnInit();
+  }
+
+  showElementByUserID(elementValue) {
+
+    if (this.userUid === elementValue.userUid) {
+      return true;
+    }
   }
 }
