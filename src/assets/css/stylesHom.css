@@ -61,3 +61,21 @@ h1 {
 .table-wrapper-scroll-y {
     display: block;
 }
+
+.botonAnadir {
+    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+    color: white;
+}
+
+#promo {
+    padding: 40px;
+    background-size: cover
+}
+
+#promo .jumbotron {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, .75);
+    margin: auto;
+    width: 100%;
+}
