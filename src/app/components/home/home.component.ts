@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
   public isAdmin: any = null;
   public userUid: string = null;
 
+  checkSameValue = 0;
+  isVisible: any = false;
+
   constructor(private congresoApi: CongresoApiService, private salasApi: SalaApiService, private authService: AuthenticationService, private sinopticoApi: SinapticoApiService, private invitadosApi: InvitadoApiService) { }
 
   // Método para iniciar los métodos al inicio del componente.
@@ -72,4 +75,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  showCondition(elementValue) {
+
+    this.isVisible = false;
+
+    if (this.userUid === elementValue.userUid) {
+      this.checkSameValue++;
+      return true;
+    }
+
+    if (this.checkSameValue <= 0) {
+      this.isVisible = true;
+    }
+  }
 }

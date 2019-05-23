@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -88,8 +87,14 @@ export class AuthenticationService {
 
   // Login de Google.
   loginGoogleUser() {
-    return this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-      .then(credential => this.updateUserData(credential.user));
+
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      this.afsAuth.auth.signInWithPopup(provider)
+        .then(res => this.updateUserData(res.user));
+    });
   }
   /* ------------------------ */
 

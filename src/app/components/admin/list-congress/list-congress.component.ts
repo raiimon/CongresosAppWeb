@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CongresoInterface} from '../../../models/congreso';
 import {CongresoApiService} from '../../../services/congreso-api.service';
 import { AuthenticationService} from '../../../services/auth.service';
+import {UserInterface} from '../../../models/user';
 
 @Component({
   selector: 'app-list-congress',
@@ -14,6 +15,7 @@ export class ListCongressComponent implements OnInit {
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];
+  public users: UserInterface[];
   filterCongress = '';
 
   // Usuarios de los roles.
@@ -42,6 +44,7 @@ export class ListCongressComponent implements OnInit {
   getCurrentUser() {
     this.authService.isAuth().subscribe(auth => {
       if (auth) {
+        console.log(auth);
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
             this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');

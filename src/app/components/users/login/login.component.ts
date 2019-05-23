@@ -19,12 +19,9 @@ export class LoginComponent implements OnInit {
   public password: string = '';
 
 
-  constructor(private router: Router,
-              private authService: AuthenticationService,
-              public ngZone: NgZone) { }
+  constructor(private router: Router, private authService: AuthenticationService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // Método para inicio de sesión normal.
   onLogin(): void {

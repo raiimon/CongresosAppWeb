@@ -56,6 +56,7 @@ import { ExteriorPreciosComponent } from './components/principal-exterior/exteri
 import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
 
 import {EventsComponent} from './components/events/events.component';
+import {AuthenticationService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,7 @@ import {EventsComponent} from './components/events/events.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule.enablePersistence() // Activamos la persistencia de datos.
   ],
-  providers: [AngularFireAuth, AngularFirestore],
+  providers: [AngularFireAuth, AngularFirestore, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

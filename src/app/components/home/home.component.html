@@ -3,8 +3,10 @@
     <app-navbar></app-navbar>
     <link rel="stylesheet" href="assets/css/stylesHom.css">
 
-    <div class="jumbotron rounded border-primary" *ngFor="let event of congress">
+  <div class="loop-div" *ngFor="let event of congress">
+    <div class="jumbotron rounded border-primary check-div" *ngIf="showCondition(event)">
         <div class="container">
+
             <div class="row ">
                 <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
                 <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex justify-content-center "><img class="img-fluid borImg" src="{{event.imgCongreso}} " style="background-size: cover"></div>
@@ -73,7 +75,6 @@
                                     <th scope="col">DNI</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Correo</th>
-
                                 </tr>
                             </thead>
                             <tbody *ngFor="let invitado of invitados ; index as i">
@@ -105,6 +106,20 @@
             </div>
         </div>
     </div>
+    </div>
+  <form [style.display]="isVisible ? 'block' : 'none'">
+    <br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+          <h1 class="text-center sombras mt-4" id="titulo">Sin congresos, genere uno</h1>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+      </div>
+    </div>
+  </form>
 
     <div class="mt-5"></div>
 
