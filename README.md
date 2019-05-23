@@ -7,7 +7,7 @@
 This project was generated with [Angular CLI](https://cli.angular.io).
 
 
- ![Imagen de Ejemplo](https://ibb.co/6RM1y67)
+ ![Imagen de Ejemplo](<a href="https://ibb.co/6RM1y67"><img src="https://i.ibb.co/qMSWDb3/foto.png" alt="foto" border="0"></a>)
 
 ## Features
 
