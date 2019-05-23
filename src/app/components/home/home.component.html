@@ -103,29 +103,32 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+
             </div>
         </div>
     </div>
     </div>
-  <form [style.display]="isVisible ? 'block' : 'none'">
-    <br>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-        <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-          <h1 class="text-center sombras mt-4" id="titulo">Sin congresos, genere uno</h1>
 
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <form [style.display]="isVisible ? 'block' : 'none'">
+        <br>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <h1 class="text-center sombras mt-4" id="titulo">Sin congresos, genere uno</h1>
+
+            </div>
+
+          </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-      </div>
+      </form>
+
     </div>
-  </form>
-
-    <div class="mt-5"></div>
-
-    <script src="assets/js/jqueryHom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-
+  </div>
+  <div class="marger"></div>
 </section>
 <app-modal [userUid]="userUid"></app-modal>

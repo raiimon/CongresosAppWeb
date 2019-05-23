@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {UserInterface} from '../models/user';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase/app';
+import {auth} from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -86,15 +87,8 @@ export class AuthenticationService {
   /* Loggin de Redes Sociales, Los dos son similares ya que usan el OAuth de Firebase. */
 
   // Login de Google.
-  loginGoogleUser() {
-
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.afsAuth.auth.signInWithPopup(provider)
-        .then(res => this.updateUserData(res.user));
-    });
+  async  loginWithGoogle() {
+    return await this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
   /* ------------------------ */
 

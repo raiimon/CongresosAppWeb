@@ -1,7 +1,6 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // Importamos OAuth de Firebase para Google y Facebook.
-import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 
 // Importamos el servicio de autenticación.
@@ -18,8 +17,7 @@ export class LoginComponent implements OnInit {
   public email: string = '';
   public password: string = '';
 
-
-  constructor(private router: Router, private authService: AuthenticationService) { }
+  constructor(private router: Router, private authService: AuthenticationService) {}
 
   ngOnInit() {}
 
@@ -32,13 +30,12 @@ export class LoginComponent implements OnInit {
   }
 
   /* Método para iniciar sesión con Google. Llamamos al servicio que tenemos en 'auth.services.ts', el 'void' no devolvemos nada. */
-  onLoginGoogle(): void {
-
-    // LLamamos el servicio.
-    this.authService.loginGoogleUser()
-      .then((res) => {
+  onLoginGoogle() {
+    this.authService.loginWithGoogle()
+      .then(res => {
         this.onLoginRedirect();
-    }).catch( err => this.onError(err));
+      }, err => {
+      });
   }
 
   // Método para redireccionar a la ruta de admin.

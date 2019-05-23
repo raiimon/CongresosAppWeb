@@ -2,7 +2,9 @@ html,
 body {
   height: auto;
   width: auto;
+  font-family: "Lato", sans-serif;
 }
+
 #page-content {
   flex: 1 0 auto;
 }
