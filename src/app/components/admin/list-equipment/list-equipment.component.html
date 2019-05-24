@@ -1,94 +1,258 @@
 <app-navbar></app-navbar>
+
 <section>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/stylescon.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/stylesEqui.min.css">
 
-  <div id="promo">
-    <div class="jumbotron">
-      <h1>Equipamientos</h1>
-      <p>En este apartado, usted puede añadir, actualizar o eliminar los equipamientos que usted tenga almacenados.</p>
-
+    <div id="promo">
+        <div class="jumbotron">
+            <h1>Equipamiento</h1>
+            <p>En este apartado, usted puede añadir, actualizar o eliminar el equipamiento que usted necesite para su congreso.</p>
+        </div>
     </div>
-  </div>
-  <div class="container mt-5">
-    <div class="row d-flex justify-content-center">
-      <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-      <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
-        <form class="search-form">
-          <div class="input-group">
-            <div class="input-group-prepend">
-                            <span class="input-group-text" style="background-color:rgb(174,180,186);">
-                    <i class="fa fa-search"></i>
-                  </span>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                <form class="search-form">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" placeholder="Añade la familia">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success" type="button"><i class="fas fa-pen"></i></button>
+                                        <button class="btn btn-outline-danger" type="button"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-search"></i>
+                            </span>
+                                    </div>
+                                    <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un equipamiento">
+                                    <!-- Ignorar Errores -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <input class="form-control" type="text" name="filterPost" [(ngModel)]="subfamilySearch" autocomplete="off" placeholder="Busque un equipamiento"><!-- Ignorar Errores -->
-          </div>
-        </form>
-      </div>
-      <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+        </div>
     </div>
-  </div>
-  <div class="container-fluid " *ngIf="this.nombreCongresoSeleccionado">
-    <div class="row">
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th>Subfamilia</th>
-            <th>Cantidad</th>
-            <th>Familia</th>
-            <th>Congreso</th>
-            <th>Producto</th>
-            <th>Número serie</th>
-            <th>Descripción</th>
-            <th>Proovedor</th>
-            <th>Valor 1</th>
-            <th>Valor 2</th>
-            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let equipment of equipments | filterEquipments: subfamilySearch">
-            <td>{{equipment.subfamilia}}</td>
-            <td>{{equipment.cantidad}}</td>
-            <td>{{equipment.familia}}</td>
-            <td>{{equipment.nombreCongreso}}</td>
-            <td>{{equipment.producto}}</td>
-            <td>{{equipment.numeroSerie}}</td>
-            <td>{{equipment.descripcion}}</td>
-            <td>{{equipment.proveedor}}</td>
-            <td>{{equipment.valor1}}</td>
-            <td>{{equipment.valor2}}</td>
 
-            <td class="d-flex justify-content-center">
+    <div class="container-fluid mt-5">
 
-              <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
-                <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
-              </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="multimedia-tab" data-toggle="tab" href="#multimedia" role="tab" aria-controls="multimedia" aria-selected="false">Multimedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="sonido-tab" data-toggle="tab" href="#sonido" role="tab" aria-controls="sonido" aria-selected="false">Sonido</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Congreso</th>
+                                                <th>Cantidad</th>
+                                                <th>Familia</th>
+                                                <th>Subfamilia</th>
+                                                <th>Producto</th>
+                                                <th>Número serie</th>
+                                                <th>Descripción</th>
+                                                <th>Proovedor</th>
+                                                <th>Valor 1</th>
+                                                <th>Valor 2</th>
+                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let equipment of equipments">
+                                            <tr>
+                                                <td>{{equipment.nombreCongreso}}</td>
+                                                <td>{{equipment.cantidad}}</td>
+                                                <td>{{equipment.familia}}</td>
+                                                <td>{{equipment.subfamilia}}</td>
+                                                <td>{{equipment.producto}}</td>
+                                                <td>{{equipment.numeroSerie}}</td>
+                                                <td>{{equipment.descripcion}}</td>
+                                                <td>{{equipment.proveedor}}</td>
+                                                <td>{{equipment.valor1}}</td>
+                                                <td>{{equipment.valor2}}</td>
 
-              <ng-template #noOwner>
-                <button class="btn btn-secondary"  disabled="true"><i class="fas fa-pen"></i></button>
-              </ng-template>
+                                                <td class="d-flex justify-content-center">
+
+                                                    <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <ng-template #noOwner>
+                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                    </ng-template>
 
 
-              <div *ngIf="isAdmin == true; else noAdmin">
-                <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
-              </div>
+                                                    <div *ngIf="isAdmin == true; else noAdmin">
+                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
 
 
-              <ng-template #noAdmin>
-                <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
-              </ng-template>
+                                                    <ng-template #noAdmin>
+                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                    </ng-template>
 
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Multimedia-->
+                    <div class="tab-pane fade" id="multimedia" role="tabpanel" aria-labelledby="multimedia-tab">
+                        <!-- Multimedia-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Congreso</th>
+                                                <th>Cantidad</th>
+                                                <th>Familia</th>
+                                                <th>Subfamilia</th>
+                                                <th>Producto</th>
+                                                <th>Número serie</th>
+                                                <th>Descripción</th>
+                                                <th>Proovedor</th>
+                                                <th>Valor 1</th>
+                                                <th>Valor 2</th>
+                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let equipment of equipments">
+                                            <tr>
+                                                <td>{{equipment.nombreCongreso}}</td>
+                                                <td>{{equipment.cantidad}}</td>
+                                                <td>{{equipment.familia}}</td>
+                                                <td>{{equipment.subfamilia}}</td>
+                                                <td>{{equipment.producto}}</td>
+                                                <td>{{equipment.numeroSerie}}</td>
+                                                <td>{{equipment.descripcion}}</td>
+                                                <td>{{equipment.proveedor}}</td>
+                                                <td>{{equipment.valor1}}</td>
+                                                <td>{{equipment.valor2}}</td>
+
+                                                <td class="d-flex justify-content-center">
+
+                                                    <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <ng-template #noOwner>
+                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                    </ng-template>
+
+
+                                                    <div *ngIf="isAdmin == true; else noAdmin">
+                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
+
+
+                                                    <ng-template #noAdmin>
+                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                    </ng-template>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="sonido" role="tabpanel" aria-labelledby="sonido-tab">
+                        <!-- Sonido -->
+                        <div class="container-fluid">
+                            <!-- Sonido -->
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Congreso</th>
+                                                <th>Cantidad</th>
+                                                <th>Familia</th>
+                                                <th>Subfamilia</th>
+                                                <th>Producto</th>
+                                                <th>Número serie</th>
+                                                <th>Descripción</th>
+                                                <th>Proovedor</th>
+                                                <th>Valor 1</th>
+                                                <th>Valor 2</th>
+                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let equipment of equipments">
+                                            <tr>
+                                                <td>{{equipment.nombreCongreso}}</td>
+                                                <td>{{equipment.cantidad}}</td>
+                                                <td>{{equipment.familia}}</td>
+                                                <td>{{equipment.subfamilia}}</td>
+                                                <td>{{equipment.producto}}</td>
+                                                <td>{{equipment.numeroSerie}}</td>
+                                                <td>{{equipment.descripcion}}</td>
+                                                <td>{{equipment.proveedor}}</td>
+                                                <td>{{equipment.valor1}}</td>
+                                                <td>{{equipment.valor2}}</td>
+
+                                                <td class="d-flex justify-content-center">
+
+                                                    <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <ng-template #noOwner>
+                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                    </ng-template>
+
+
+                                                    <div *ngIf="isAdmin == true; else noAdmin">
+                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
+
+
+                                                    <ng-template #noAdmin>
+                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                    </ng-template>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/scriptcon.min.js"></script>
 </section>
 <app-modal [userUid]="userUid"></app-modal>
