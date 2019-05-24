@@ -79,12 +79,16 @@ export class HomeComponent implements OnInit {
 
     this.isVisible = false;
 
-    if (this.userUid === elementValue.userUid || this.isAdmin === true) {
-      this.checkSameValue++;
-      return true;
-    }
+    if (localStorage.getItem('nombreCongreso')) {
+      if (this.userUid === elementValue.userUid || this.isAdmin === true) {
+        this.checkSameValue++;
+        return true;
+      }
 
-    if (this.checkSameValue <= 0) {
+      if (this.checkSameValue <= 0) {
+        this.isVisible = true;
+      }
+    } else {
       this.isVisible = true;
     }
   }
