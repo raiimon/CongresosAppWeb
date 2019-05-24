@@ -74,6 +74,13 @@ export class ListCongressComponent implements OnInit {
 
       }
   }
+  congresoSeleccionado() {
+    if (localStorage.getItem('nombreCongreso')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedCongreso = Object.assign({}, congres);

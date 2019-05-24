@@ -10,6 +10,10 @@
 
         </div>
     </div>
+    <div class="alert alert-primary" role="alert" *ngIf="congresoSeleccionado();">
+        <p>
+            Tienes seleccionado el congreso {{nombreCongresoSeleccionado}}</p>
+    </div>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
@@ -21,7 +25,8 @@
                     <i class="fa fa-search"></i>
                   </span>
                         </div>
-                        <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso"><!-- Ignorar Errores -->
+                        <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso">
+                        <!-- Ignorar Errores -->
                     </div>
                 </form>
             </div>
@@ -74,8 +79,6 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/scriptcon.min.js"></script>
+
 </section>
 <app-modal [userUid]="userUid"></app-modal>
