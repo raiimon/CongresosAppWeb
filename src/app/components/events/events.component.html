@@ -12,9 +12,9 @@
         </div>
         <div class="container mt-5">
             <div class="row d-flex justify-content-center">
-              <h2 class="mt-3 text-center">Congreso seleccionado: {{nombreCongresoSeleccionado}}</h2>
+                <h2 class="mt-3 text-center">Congreso seleccionado: {{nombreCongresoSeleccionado}}</h2>
 
-              <!-- <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
+                <!-- <select class="form-control select mt-3" (change)="obtenerNombreCongreso($event)">
                 <option value="">Seleccione el congreso</option>
                 <ng-container *ngFor="let congreso of congress">
                   <option *ngIf="showElementByUserID(congreso)" value="{{congreso.idCongreso}}">{{congreso.nombreCongreso}}</option>
@@ -35,14 +35,14 @@
 
         <div class="container-fluid mt-5">
             <div class="row d-flex justify-content-end mr-4">
-                <button class="btn bottonColor mb-4" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
+                <button class="btn btn btn-outline-secondary mb-4" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
             </div>
         </div>
         <div class="container-fluid ">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-hover">
-                        <thead>
+                        <thead class="theadColor">
                             <tr>
                                 <th>Evento</th>
                                 <th>Hora Comienzo</th>
@@ -61,31 +61,28 @@
                                 <td class="d-flex justify-content-center">
 
                                     <div *ngIf="event.userUid == userUid || isAdmin == true; else noOwner">
-                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents"><i class="fas fa-pen"></i></button>
+                                        <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEvent(event)" data-toggle="modal" data-target="#modalEvents"><i class="fas fa-pen"></i></button>
                                     </div>
 
 
                                     <ng-template #noOwner>
-                                        <button class="btn btn-secondary" (click)="onPreUpdateEvent(event)" disabled="true"><i class="fas fa-pen"></i></button>
+                                        <button class="btn btn-outline-secondary" (click)="onPreUpdateEvent(event)" disabled="true"><i class="fas fa-pen"></i></button>
                                     </ng-template>
 
 
                                     <div *ngIf="isAdmin == true; else noAdmin">
-                                        <button class="btn btn-danger" type="button" id="borrar" style="background-color:rgb(255,0,15);" (click)="onDeleteEvent(event.idEvent)"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-danger" type="button" id="borrar" (click)="onDeleteEvent(event.idEvent)"><i class="fas fa-trash-alt"></i></button>
                                     </div>
 
 
                                     <ng-template #noAdmin>
-                                        <button class="btn btn-danger" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button" (click)="onDeleteEvent(event.idEvent)" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                     </ng-template>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-                <script src="assets/js/scriptcon.min.js"></script>
             </div>
         </div>
     </div>

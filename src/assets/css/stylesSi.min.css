@@ -69,16 +69,14 @@
     max-width: 800px
 }
 
-.btn:not(:disabled):not(.disabled),
-.table-responsive {
-    margin-left: 5px
-}
-
 #promo2 {
     margin-top: 100px
 }
 
-.bottonColor {
-    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+
+/* color de la tabla */
+
+.theadColor {
+    background: linear-gradient(120deg, #5593c9, #3b85d4);
     color: white;
 }

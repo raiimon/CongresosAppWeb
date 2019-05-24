@@ -22,7 +22,7 @@
                 <form class="search-form">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="background-color:rgb(174,180,186);">
+                            <span class="input-group-text">
                     <i class="fa fa-search"></i>
                   </span>
                         </div>
@@ -38,12 +38,12 @@
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead>
+                    <thead class="theadColor">
                         <tr>
                             <th>Nombre del Congreso</th>
                             <th>Sede del Congreso</th>
                             <th>Fecha Inicio del Congreso</th>
-                            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
+                            <th>&nbsp;<button class="btn btn-outline-light" type="button" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-plus"></i> Congresos</button></th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let congres of congress |  filterCongress: filterCongress | orderbyCongress: 'fechaInicioCongreso'">
@@ -55,22 +55,19 @@
                             <td class="d-flex justify-content-center">
 
                                 <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
-                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-outline-success" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
                                 </div>
-
 
                                 <ng-template #noOwner>
-                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-outline-secondary" type="button" (click)="onPreUpdateCongress(congres)" disabled="true"><i class="fas fa-pen"></i></button>
                                 </ng-template>
 
-
                                 <div *ngIf="isAdmin == true; else noAdmin">
-                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)"><i class="fas fa-trash-alt"></i></button>
                                 </div>
 
-
                                 <ng-template #noAdmin>
-                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-secondary" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                 </ng-template>
 
                             </td>
