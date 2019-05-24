@@ -57,6 +57,7 @@ import { ExteriorPreciosComponent } from './components/principal-exterior/exteri
 import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
 import {EventsComponent} from './components/events/events.component';
 import {AuthenticationService} from './services/auth.service';
+import {ListEquipmentComponent} from './components/admin/list-equipment/list-equipment.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import {AuthenticationService} from './services/auth.service';
     ListGuestComponent,
     ListRoomComponent,
     ListSinapticComponent,
+    ListEquipmentComponent,
     CheckComponent,
     FilterCongressPipe,
     FilterGuestPipe,
