@@ -7,12 +7,13 @@
         <div class="jumbotron">
             <h1>Congresos</h1>
             <p>En este apartado, usted puede añadir, actualizar o eliminar los congresos que usted tenga almacenados.</p>
-
         </div>
     </div>
     <div class="alert alert-primary" role="alert" *ngIf="congresoSeleccionado();">
-        <p>
-            Tienes seleccionado el congreso {{nombreCongresoSeleccionado}}</p>
+        Tienes seleccionado el congreso {{nombreCongresoSeleccionado}}
+    </div>
+    <div class="alert alert-secondary" role="alert" *ngIf="!congresoSeleccionado();">
+        No tienes ningun congreso seleccionado
     </div>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
