@@ -32,3 +32,11 @@
 .table thead th {
     text-align: center
 }
+
+
+/* color de la tabla */
+
+.theadColor {
+    background: linear-gradient(120deg, #5593c9, #3b85d4);
+    color: white;
+}

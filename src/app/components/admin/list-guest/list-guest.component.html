@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="assets/css/stylesIn.min.css">
     <div id="promo">
         <div class="jumbotron">
-            <h1>Invitados</h1>
-            <p>En esta sección usted puede añadir, actualizar o eliminar los invitados que asistirán al congreso.</p>
+            <h1>Asistentes</h1>
+            <p>En esta sección usted puede añadir, actualizar o eliminar los asistentes que asistirán al congreso.</p>
             <br>
         </div>
     </div>
@@ -49,18 +49,18 @@
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead>
+                    <thead class="theadColor">
                         <tr>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Dni</th>
                             <th>Teléfono</th>
                             <th>Correo</th>
-                            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalGuest">Nuevo Invitado</button></th>
+                            <th>&nbsp;<button class=" btn btn-outline-light" type="button" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-plus"></i> Asistentes</button></th>
                         </tr>
                     </thead>
-                  <tbody *ngFor="let guest of guests | filterCongress:filterGuest">
-                      <tr *ngIf="showElementByUserID(guest)">
+                    <tbody *ngFor="let guest of guests | filterCongress:filterGuest">
+                        <tr *ngIf="showElementByUserID(guest)">
                             <td>{{guest.nombre}}</td>
                             <td>{{guest.apellidos}}</td>
                             <td>{{guest.dni}}</td>
@@ -69,27 +69,27 @@
                             <td class="d-flex justify-content-center">
 
                                 <div *ngIf="guest.userUid == userUid || isAdmin == true; else noOwner">
-                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateGuest(guest)" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-outline-success" type="button" (click)="onPreUpdateGuest(guest)" data-toggle="modal" data-target="#modalGuest"><i class="fas fa-pen"></i></button>
                                 </div>
 
                                 <ng-template #noOwner>
-                                    <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-outline-secondary" disabled="true"><i class="fas fa-pen"></i></button>
                                 </ng-template>
 
                                 <div *ngIf="isAdmin == true; else noAdmin">
-                                    <button class="btn btn-danger" type="button" (click)="onDeleteGuest(guest.idInvitado)"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-danger" type="button" (click)="onDeleteGuest(guest.idInvitado)"><i class="fas fa-trash-alt"></i></button>
                                 </div>
 
                                 <ng-template #noAdmin>
-                                    <button class="btn btn-danger btn-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                 </ng-template>
 
                                 <div *ngIf="isAdmin == true; else dontShow">
-                                    <button class="btn btn-info" type="button" (click)="showCheck(guest)" routerLink="/check"><i class="fas fa-chart-pie"></i></button>
+                                    <button class="btn btn-outline-info" type="button" (click)="showCheck(guest)" routerLink="/check"><i class="fas fa-chart-pie"></i></button>
                                 </div>
 
                                 <ng-template #dontShow>
-                                    <button class="btn btn-info" type="button" disabled="true"><i class="fas fa-chart-pie"></i></button>
+                                    <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-chart-pie"></i></button>
                                 </ng-template>
                             </td>
                         </tr>
@@ -99,8 +99,6 @@
         </div>
 
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/scriptIn.min.js"></script>
+
 </section>
 <app-modal [userUid]="userUid"></app-modal>

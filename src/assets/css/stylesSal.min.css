@@ -77,16 +77,14 @@
     margin-top: 100px
 }
 
-.btn:not(:disabled):not(.disabled) {
-    text-align: center;
-    margin-left: 5px
-}
-
 .table-responsive {
     margin-left: 5px
 }
 
-.bottonColor {
-    background: linear-gradient(120deg, #07a2c9, #3b69d4);
+
+/* color de la tabla */
+
+.theadColor {
+    background: linear-gradient(120deg, #5593c9, #3b85d4);
     color: white;
 }
