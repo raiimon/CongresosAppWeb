@@ -24,6 +24,7 @@ export class ListCongressComponent implements OnInit {
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
+    this.checkNameCongress();
   }
 
   getListCongress() {
@@ -49,6 +50,13 @@ export class ListCongressComponent implements OnInit {
         });
       }
     });
+  }
+
+  checkNameCongress() {
+    if (localStorage.getItem('nombreCongreso')) {
+      this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
+      return true;
+    }
   }
 
   selectCongress(nombreCongreso, idCongreso) {
