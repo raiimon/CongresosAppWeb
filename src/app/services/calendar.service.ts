@@ -3,7 +3,6 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import {EventInterface} from '../models/events';
-import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import 'rxjs-compat/add/observable/of';
 
 @Injectable({
