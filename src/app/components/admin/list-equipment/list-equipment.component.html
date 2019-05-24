@@ -23,6 +23,10 @@
                                         <button class="btn btn-outline-secondary" type="button"><i class="fas fa-plus"></i></button>
                                     </div>
                                     <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" placeholder="Añade la familia">
+                                    <div class="input-group-append" id="button-addon4">
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-pen"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
@@ -43,7 +47,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
 
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -52,10 +56,10 @@
                         <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"></a>
+                        <a class="nav-link" id="multimedia-tab" data-toggle="tab" href="#multimedia" role="tab" aria-controls="multimedia" aria-selected="false">Multimedia</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="sonido-tab" data-toggle="tab" href="#sonido" role="tab" aria-controls="sonido" aria-selected="false">Sonido</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -120,8 +124,132 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                    <!-- Multimedia-->
+                    <div class="tab-pane fade" id="multimedia" role="tabpanel" aria-labelledby="multimedia-tab">
+                        <!-- Multimedia-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Congreso</th>
+                                                <th>Cantidad</th>
+                                                <th>Familia</th>
+                                                <th>Subfamilia</th>
+                                                <th>Producto</th>
+                                                <th>Número serie</th>
+                                                <th>Descripción</th>
+                                                <th>Proovedor</th>
+                                                <th>Valor 1</th>
+                                                <th>Valor 2</th>
+                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let equipment of equipments">
+                                            <tr>
+                                                <td>{{equipment.nombreCongreso}}</td>
+                                                <td>{{equipment.cantidad}}</td>
+                                                <td>{{equipment.familia}}</td>
+                                                <td>{{equipment.subfamilia}}</td>
+                                                <td>{{equipment.producto}}</td>
+                                                <td>{{equipment.numeroSerie}}</td>
+                                                <td>{{equipment.descripcion}}</td>
+                                                <td>{{equipment.proveedor}}</td>
+                                                <td>{{equipment.valor1}}</td>
+                                                <td>{{equipment.valor2}}</td>
+
+                                                <td class="d-flex justify-content-center">
+
+                                                    <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <ng-template #noOwner>
+                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                    </ng-template>
+
+
+                                                    <div *ngIf="isAdmin == true; else noAdmin">
+                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
+
+
+                                                    <ng-template #noAdmin>
+                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                    </ng-template>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="sonido" role="tabpanel" aria-labelledby="sonido-tab">
+                        <!-- Sonido -->
+                        <div class="container-fluid">
+                            <!-- Sonido -->
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Congreso</th>
+                                                <th>Cantidad</th>
+                                                <th>Familia</th>
+                                                <th>Subfamilia</th>
+                                                <th>Producto</th>
+                                                <th>Número serie</th>
+                                                <th>Descripción</th>
+                                                <th>Proovedor</th>
+                                                <th>Valor 1</th>
+                                                <th>Valor 2</th>
+                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let equipment of equipments">
+                                            <tr>
+                                                <td>{{equipment.nombreCongreso}}</td>
+                                                <td>{{equipment.cantidad}}</td>
+                                                <td>{{equipment.familia}}</td>
+                                                <td>{{equipment.subfamilia}}</td>
+                                                <td>{{equipment.producto}}</td>
+                                                <td>{{equipment.numeroSerie}}</td>
+                                                <td>{{equipment.descripcion}}</td>
+                                                <td>{{equipment.proveedor}}</td>
+                                                <td>{{equipment.valor1}}</td>
+                                                <td>{{equipment.valor2}}</td>
+
+                                                <td class="d-flex justify-content-center">
+
+                                                    <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <ng-template #noOwner>
+                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                    </ng-template>
+
+
+                                                    <div *ngIf="isAdmin == true; else noAdmin">
+                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
+
+
+                                                    <ng-template #noAdmin>
+                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                    </ng-template>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
