@@ -59,6 +59,10 @@ import {EventsComponent} from './components/events/events.component';
 import {AuthenticationService} from './services/auth.service';
 import { EquipamientoComponent } from './components/admin/equipamiento/equipamiento.component';
 
+// Toast 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +103,14 @@ import { EquipamientoComponent } from './components/admin/equipamiento/equipamie
     AngularFireStorageModule, // Importamos en el app 'AngularFireStorageModule' para la subida de imágenes.
     AngularFireModule.initializeApp(environment.firebaseConfig), // Importamos la API de Firebase con los datos necesarios.
     AngularFireDatabaseModule,
-    AngularFirestoreModule.enablePersistence() // Activamos la persistencia de datos.
+    AngularFirestoreModule.enablePersistence(), // Activamos la persistencia de datos.
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
   ],
   providers: [AngularFireAuth, AngularFirestore, AuthenticationService],
   bootstrap: [AppComponent]

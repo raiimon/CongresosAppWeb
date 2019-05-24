@@ -4,6 +4,8 @@ import {CongresoApiService} from '../../../services/congreso-api.service';
 import { AuthenticationService} from '../../../services/auth.service';
 import {UserInterface} from '../../../models/user';
 
+import {ToastrService} from 'ngx-toastr';
+
 @Component({
   selector: 'app-list-congress',
   templateUrl: './list-congress.component.html',
@@ -11,7 +13,13 @@ import {UserInterface} from '../../../models/user';
 })
 export class ListCongressComponent implements OnInit {
 
-  constructor(public dataApi: CongresoApiService, public authService: AuthenticationService) { }
+  constructor(public dataApi: CongresoApiService, public authService: AuthenticationService, private toast:ToastrService) { }
+
+  showSuccess(){
+    this.toast.info('La vida es una mierda','¡Yo se que si!');
+
+  }
+  
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];

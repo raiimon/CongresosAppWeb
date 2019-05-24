@@ -10,6 +10,7 @@
 
         </div>
     </div>
+
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
@@ -45,9 +46,18 @@
                             <td>{{congres.direccion}}</td>
 
                             <td class="d-flex justify-content-center">
+                                <div *ngIf="isAdmin == true; else noAdmin">
+                                    <button class="btn btn-danger" type="button" (click)="showSuccess()"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+
+
+                                <ng-template #noAdmin>
+                                    <button class="btn btn-danger" type="button" (click)="showSuccess()" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                </ng-template>
 
                                 <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
-                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress">
+                                        <i class="fas fa-pen"></i></button>
                                 </div>
 
 
