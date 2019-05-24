@@ -19,6 +19,7 @@ import {PrincipalExteriorComponent} from './components/principal-exterior/princi
 import {ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
 import {ExteriorPreciosComponent} from './components/principal-exterior/exterior-precios/exterior-precios.component';
 import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
+import {EquipamientoComponent} from './components/admin/equipamiento/equipamiento.component';
 
 // Animación
 import { LoaderComponent } from './components/loader/loader.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'admin/list-guest', component: ListGuestComponent, canActivate: [AuthGuard] },
   { path: 'check', component: CheckComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-room', component: ListRoomComponent, canActivate: [AuthGuard] },
+  { path: 'admin/equipamiento', component: EquipamientoComponent, canActivate: [AuthGuard] },
   { path: 'admin/list-sinaptic', component: ListSinapticComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },

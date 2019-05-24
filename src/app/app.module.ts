@@ -57,6 +57,7 @@ import {ExteriorModalidadesComponent} from './components/principal-exterior/exte
 
 import {EventsComponent} from './components/events/events.component';
 import {AuthenticationService} from './services/auth.service';
+import { EquipamientoComponent } from './components/admin/equipamiento/equipamiento.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {AuthenticationService} from './services/auth.service';
     EventsComponent,
     ExteriorPreciosComponent,
     NavbarExteriorComponent,
-    ExteriorModalidadesComponent
+    ExteriorModalidadesComponent,
+    EquipamientoComponent
   ],
   imports: [
     LoadingSpinnersModule,
