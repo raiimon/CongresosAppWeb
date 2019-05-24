@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {CalendarService} from '../../services/calendar.service';
 import {SalaInterface} from '../../models/sala';
+import {EquipamientoService} from '../../services/equipamiento.service';
 
 @Component({
   selector: 'app-modal',
@@ -20,6 +21,7 @@ export class ModalComponent implements OnInit {
 
   constructor(private storage: AngularFireStorage,
               private dataCongress: CongresoApiService,
+              private dataEquipment: EquipamientoService,
               private dataGuest: InvitadoApiService,
               private dataRoom: SalaApiService,
               private sinaptic: SinapticoApiService,
@@ -49,10 +51,12 @@ export class ModalComponent implements OnInit {
   @ViewChild('btnCloseSinaptic') btnCloseSinaptic: ElementRef;
   @ViewChild('btnCloseRoom') btnCloseRoom: ElementRef;
   @ViewChild('btnCloseEvents') btnCloseEvents: ElementRef;
+  @ViewChild('btnCloseEquipment') btnCloseEquipment: ElementRef;
 
   ngOnInit() {
     this.getListCongress();
     this.getListRooms();
+    this.getCongressName();
   }
 
   getListCongress() {
@@ -65,6 +69,10 @@ export class ModalComponent implements OnInit {
     this.dataRoom.getAllRooms().subscribe(rooms => {
       this.rooms = rooms;
     });
+  }
+
+  getCongressName() {
+    this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
   }
 
   // Obtener el nombre del congreso.
@@ -131,6 +139,21 @@ export class ModalComponent implements OnInit {
         } else {
           // PUT
           this.sinaptic.updateSinaptic(congressForm.value);
+        }
+        break;
+
+      case 'equipamiento':
+        congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+
+        if (congressForm.value.idEquipamiento == null) {
+          // POST
+          // Obtenemos y almacenamos el id del usuario.
+          congressForm.value.userUid = this.userUid;
+          this.dataEquipment.addEquipment(congressForm.value);
+
+        } else {
+          // PUT
+          this.dataEquipment.updateEquipment(congressForm.value);
         }
         break;
 
@@ -201,6 +224,7 @@ export class ModalComponent implements OnInit {
     this.btnCloseInvitado.nativeElement.click();
     this.btnCloseSinaptic.nativeElement.click();
     this.btnCloseRoom.nativeElement.click();
+    this.btnCloseCongreso.nativeElement.click();
   }
 
   subirImagenSinoptico(imagen) {

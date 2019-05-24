@@ -21,7 +21,7 @@
                     <i class="fa fa-search"></i>
                   </span>
             </div>
-            <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso"><!-- Ignorar Errores -->
+            <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un equipamiento"><!-- Ignorar Errores -->
           </div>
         </form>
       </div>
@@ -35,20 +35,35 @@
           <thead>
           <tr>
             <th>Nombre del Congreso</th>
-            <th>Sede del Congreso</th>
-            <th>Fecha Inicio del Congreso</th>
-            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
+            <th>Cantidad</th>
+            <th>Familia</th>
+            <th>Subfamilia</th>
+            <th>Producto</th>
+            <th>Número serie</th>
+            <th>Descripción</th>
+            <th>Proovedor</th>
+            <th>Valor 1</th>
+            <th>Valor 2</th>
+            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
           </tr>
           </thead>
-          <tbody *ngFor="let equipment of equipments |  filterCongress: filterCongress">
-          <tr *ngIf="showElementByUserID(equipment)">
+          <tbody *ngFor="let equipment of equipments">
+          <tr>
             <td>{{equipment.nombreCongreso}}</td>
-            <td>{{equipment.sedeCongreso}}</td>
+            <td>{{equipment.cantidad}}</td>
+            <td>{{equipment.familia}}</td>
+            <td>{{equipment.subfamilia}}</td>
+            <td>{{equipment.producto}}</td>
+            <td>{{equipment.numeroSerie}}</td>
+            <td>{{equipment.descripcion}}</td>
+            <td>{{equipment.proveedor}}</td>
+            <td>{{equipment.valor1}}</td>
+            <td>{{equipment.valor2}}</td>
 
             <td class="d-flex justify-content-center">
 
               <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
-                <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
+                <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
               </div>
 
               <ng-template #noOwner>
