@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+    this.congresoSeleccionado();
   }
 
   getUser() {
@@ -22,5 +23,13 @@ export class NavbarComponent implements OnInit {
         this.fotoPerfil = auth.photoURL;
       }
     });
+  }
+
+  congresoSeleccionado() {
+    if (localStorage.getItem('nombreCongreso')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

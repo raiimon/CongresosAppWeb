@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CongresoInterface} from '../../../models/congreso';
 import {CongresoApiService} from '../../../services/congreso-api.service';
 import { AuthenticationService} from '../../../services/auth.service';
-import {UserInterface} from '../../../models/user';
+import {OrderbyCongressPipe} from '../../../pipes/orderby-congress.pipe';
 
 @Component({
   selector: 'app-list-congress',
@@ -15,14 +15,12 @@ export class ListCongressComponent implements OnInit {
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];
-  public users: UserInterface[];
   filterCongress = '';
+  orderByCongress: any;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
   public userUid: string = null;
-
-  checkSameValue = 0;
 
   ngOnInit() {
     this.getListCongress();
@@ -44,7 +42,7 @@ export class ListCongressComponent implements OnInit {
   }
 
   getCurrentUser() {
-    this.authService.isAuth().subscribe(auth => {
+    return this.authService.isAuth().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
         this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
@@ -54,15 +52,38 @@ export class ListCongressComponent implements OnInit {
     });
   }
 
+  selectCongress(nombreCongreso, idCongreso) {
+
+      if (localStorage.getItem('idCongreso') && localStorage.getItem('nombreCongreso')) {
+        localStorage.removeItem('nombreCongreso');
+        localStorage.removeItem('idCongreso');
+
+        // Para indicar que se ha quitado un congreso, vuelve a pulsar.
+        // ALERT QUE HA ELIMINADO EL CONGRESO
+        console.log('Congreso Seleccionado');
+
+      } else {
+        // Almacenamos la ID y nombre del congreso en un localStorage.
+        localStorage.setItem('idCongreso', idCongreso);
+        localStorage.setItem('nombreCongreso', nombreCongreso);
+
+        // Alert de almacenamiento del congreso
+        // ALERT QUE HA SELECCIONADO EL CONGRESO
+
+        console.log('Congreso Deseleccionado');
+
+      }
+  }
+
   onPreUpdateCongress(congres: CongresoInterface) {
     this.dataApi.selectedCongreso = Object.assign({}, congres);
   }
 
   showElementByUserID(elementValue) {
-
-    if (this.userUid === elementValue.userUid) {
-      this.checkSameValue++;
+    if (this.userUid === elementValue.userUid || this.isAdmin === true) {
       return true;
+    } else {
+      return false;
     }
   }
 }

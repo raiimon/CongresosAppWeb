@@ -88,7 +88,8 @@ export class AuthenticationService {
 
   // Login de Google.
   async  loginWithGoogle() {
-    return await this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    return await this.afsAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+      .then(credential => this.updateUserData(credential.user));
   }
   /* ------------------------ */
 
@@ -99,6 +100,8 @@ export class AuthenticationService {
           localStorage.removeItem('user');
           this.router.navigate(['']);
           this.userData = undefined;
+          localStorage.removeItem('nombreCongreso');
+          localStorage.removeItem('idCongreso');
         });
         resolve();
       } else {

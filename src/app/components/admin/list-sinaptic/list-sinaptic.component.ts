@@ -15,6 +15,7 @@ export class ListSinapticComponent implements OnInit {
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private sinaptics: SinapticoInterface[];
   private nombreSinopticoFiltro = '';
+  nombreCongresoSeleccionado: any;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -25,6 +26,7 @@ export class ListSinapticComponent implements OnInit {
   ngOnInit() {
     this.getListSinoptics();
     this.getCurrentUser();
+    this.obtenerNombreCongreso();
   }
 
   getListSinoptics() {
@@ -54,6 +56,11 @@ export class ListSinapticComponent implements OnInit {
 
   onPreUpdateSinoptics(congres: CongresoInterface) {
     this.dataApi.selectedSinaptic = Object.assign({}, congres);
+  }
+
+  obtenerNombreCongreso() {
+    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
+    this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
   }
 
   showElementByUserID(elementValue) {

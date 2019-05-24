@@ -19,6 +19,7 @@ export class FilterCongressPipe implements PipeTransform {
         }
       }
       return resultPosts;
+      console.log(resultPosts);
     }
   }
 
