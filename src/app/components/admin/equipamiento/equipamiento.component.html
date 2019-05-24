@@ -1,3 +1,69 @@
-<p>
-  equipamiento works!
-</p>
+<app-navbar></app-navbar>
+<section>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/stylesEqui.min.css">
+
+    <div id="promo">
+        <div class="jumbotron">
+            <h1>Equipamiento</h1>
+            <p>En este apartado, usted puede añadir, actualizar o eliminar el equipamiento que usted necesite para su congreso.</p>
+
+        </div>
+    </div>
+
+    <div class="container-fluid mt-5 ">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Familia</th>
+                            <th>Subfamilia</th>
+                            <th>Concepto</th>
+                            <th>Product Nº</th>
+                            <th>Numero de Serie</th>
+                            <th>Descripción</th>
+                            <th>Proveedor</th>
+                            <th>Valor 1</th>
+                            <th>Valor 2</th>
+                            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Equipamiento</button></th>
+                        </tr>
+                    </thead>
+
+                    <!-- Copiado de list-congress-->
+
+                    <tbody *ngFor="let congres of congress | filterCongress:filterCongress">
+                        <tr *ngIf="showElementByUserID(congres)">
+                            <td>{{congres.nombreCongreso}}</td>
+                            <td>{{congres.direccion}}</td>
+
+                            <td class="d-flex justify-content-center">
+
+                                <div *ngIf="congres.userUid == userUid || isAdmin == true; else noOwner">
+                                    <button class="btn btn-primary" type="button" (click)="onPreUpdateCongress(congres)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
+                                </div>
+
+
+                                <ng-template #noOwner>
+                                    <button class="btn btn-secondary" (click)="onPreUpdateCongress(congres)" disabled="true"><i class="fas fa-pen"></i></button>
+                                </ng-template>
+
+
+                                <div *ngIf="isAdmin == true; else noAdmin">
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+
+
+                                <ng-template #noAdmin>
+                                    <button class="btn btn-danger" type="button" (click)="onDeleteCongress(congres.idCongreso)" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                </ng-template>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!-- Fin -->
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
