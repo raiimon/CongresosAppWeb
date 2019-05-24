@@ -81,7 +81,7 @@ export class ListGuestComponent implements OnInit {
   }
 
   showElementByUserID(elementValue) {
-    if (this.userUid === elementValue.userUid || this.isAdmin === true) {
+    if (this.userUid === elementValue.userUid) {
       return true;
     } else {
       return false;

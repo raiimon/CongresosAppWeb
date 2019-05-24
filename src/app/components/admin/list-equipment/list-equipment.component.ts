@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CongresoApiService} from '../../../services/congreso-api.service';
 import {AuthenticationService} from '../../../services/auth.service';
 import {EquipamientoInterface} from '../../../models/equipamiento';
 import {EquipamientoService} from '../../../services/equipamiento.service';
