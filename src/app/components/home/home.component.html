@@ -3,132 +3,140 @@
     <app-navbar></app-navbar>
     <link rel="stylesheet" href="assets/css/stylesHom.css">
 
-  <div class="loop-div" *ngFor="let event of congress">
-    <div class="jumbotron rounded border-primary check-div" *ngIf="showCondition(event)">
-        <div class="container">
+    <div class="loop-div" *ngFor="let event of congress">
+        <div class="jumbotron rounded border-primary check-div" *ngIf="showCondition(event)">
+            <div class="container">
 
-            <div class="row ">
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex justify-content-center "><img class="img-fluid borImg" src="{{event.imgCongreso}} " style="background-size: cover"></div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
-                    <h1 class="text-center sombras" id="titulo" style="color:white">{{event.nombreCongreso}}</h1>
-                    <h3 id="descrip" class="bordetabla">Información</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Dirección</th>
-                                <th>Fecha Inicio Congreso</th>
-                                <th>Fecha Finalización Congreso</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{event.direccion}}</td>
-                                <td>{{event.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
-                                <td>{{event.fechaSalidaCongreso | date: 'dd-MM-yyyy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                    <h1 class="text-center sombras mt-4" id="titulo">Salas</h1>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nombre Sala</th>
-                                <th>Nombre Congreso</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let sala of salas">
-                            <tr *ngIf="(sala.nombreCongreso == event.nombreCongreso)">
-                                <td>{{sala.title}}</td>
-                                <td>{{sala.nombreCongreso}}</td>
-                            </tr>
-                            <tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                    <h1 class="text-center sombras mt-4" id="titulo">Invitados</h1>
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
+                <div class="row ">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex justify-content-center "><img class="img-fluid borImg" src="{{event.imgCongreso}} " style="background-size: cover"></div>
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                        <h1 class="text-center sombras" id="titulo" style="color:white">{{event.nombreCongreso}}</h1>
+                        <h3 id="descrip" class="bordetabla">Información</h3>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Apellidos</th>
-                                    <th scope="col">DNI</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Correo</th>
+                                    <th>Dirección</th>
+                                    <th>Fecha Inicio Congreso</th>
+                                    <th>Fecha Finalización Congreso</th>
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let invitado of invitados ; index as i">
-                                <tr *ngIf="(invitado.nombreCongreso == event.nombreCongreso)">
-                                    <th scope="row">{{i+1}}</th>
-                                    <td>{{invitado.nombre}}</td>
-                                    <td>{{invitado.apellidos}}</td>
-                                    <td>{{invitado.dni}}</td>
-                                    <td>{{invitado.telefono}}</td>
-                                    <td>{{invitado.correo}}</td>
+                            <tbody>
+                                <tr>
+                                    <td>{{event.direccion}}</td>
+                                    <td>{{event.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
+                                    <td>{{event.fechaSalidaCongreso | date: 'dd-MM-yyyy'}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                        <h1 class="text-center sombras mt-4" id="titulo">Salas</h1>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre Sala</th>
+                                    <th>Nombre Congreso</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let sala of salas">
+                                <tr *ngIf="(sala.nombreCongreso == event.nombreCongreso)">
+                                    <td>{{sala.title}}</td>
+                                    <td>{{sala.nombreCongreso}}</td>
+                                </tr>
+                                <tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                        <h1 class="text-center sombras mt-4" id="titulo">Invitados</h1>
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellidos</th>
+                                        <th scope="col">DNI</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let invitado of invitados ; index as i">
+                                    <tr *ngIf="(invitado.nombreCongreso == event.nombreCongreso)">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{invitado.nombre}}</td>
+                                        <td>{{invitado.apellidos}}</td>
+                                        <td>{{invitado.dni}}</td>
+                                        <td>{{invitado.telefono}}</td>
+                                        <td>{{invitado.correo}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                </div>
+            </div>
+            <div class="container-fluid" *ngFor="let sinoptico of sinoptico">
+                <div class="row" *ngIf="(sinoptico.nombreCongreso == event.nombreCongreso)">
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                        <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
+                        <div class="d-flex justify-content-center">
+                            <img class="img-fluid imgSinop" src="{{sinoptico.imgSinaptico}}" style=" height: 60vh ;">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+
+                </div>
             </div>
         </div>
-        <div class="container-fluid" *ngFor="let sinoptico of sinoptico">
-            <div class="row" *ngIf="(sinoptico.nombreCongreso == event.nombreCongreso)">
-                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
-                <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
-                    <h1 class="text-center sombras mt-4" id="titulo">Imagen Sinóptico</h1>
-                    <div class="d-flex justify-content-center">
-                        <img class="img-fluid imgSinop" src="{{sinoptico.imgSinaptico}}" style=" height: 60vh ;">
+    </div>
+
+
+
+    <div [style.display]="isVisible ? 'block' : 'none'">
+
+        <div class="container-fluid mt-5">
+            <div class="row d-flex justify-content-center">
+                <div id="promo">
+                    <div class="jumbotron">
+                        <h1>Bienvenido a Softmedia Planner Congreso</h1>
+                        <p> Si quieres empezar a montar tu congreso selecciona el botón de abajo o ves directamente a la pestaña de congreso</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row ">
+
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10 d-flex justify-content-center">
+                    <button class="btn btn-lg botonAnadir "> Añade tu Primer congreso </button>
+
+                </div>
                 <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
 
             </div>
         </div>
     </div>
-    </div>
+    <div class="marger"></div>
 
-
-  <div class="container-fluid">
-
-    <div class="row">
-
-      <form [style.display]="isVisible ? 'block' : 'none'">
-        <br>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <h1 class="text-center sombras mt-4" id="titulo">Sin congresos, genere uno</h1>
-
-            </div>
-
-          </div>
-        </div>
-      </form>
-
-    </div>
-  </div>
-  <div class="marger"></div>
 </section>
 <app-modal [userUid]="userUid"></app-modal>
