@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
 
     this.isVisible = false;
 
-    if (this.userUid === elementValue.userUid) {
+    if (this.userUid === elementValue.userUid || this.isAdmin === true) {
       this.checkSameValue++;
       return true;
     }

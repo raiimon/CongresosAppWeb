@@ -75,10 +75,10 @@ export class ListRoomComponent implements OnInit {
   }
 
   showElementByUserID(elementValue) {
-
-    if (this.userUid === elementValue.userUid && this.nombreCongresoSeleccionado === elementValue.nombreCongreso) {
-      this.checkSameValue++;
+    if (this.userUid === elementValue.userUid || this.isAdmin === true) {
       return true;
+    } else {
+      return false;
     }
   }
 }

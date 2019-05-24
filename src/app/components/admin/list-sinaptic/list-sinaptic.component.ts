@@ -64,10 +64,10 @@ export class ListSinapticComponent implements OnInit {
   }
 
   showElementByUserID(elementValue) {
-
-    if (this.userUid === elementValue.userUid) {
-      this.checkSameValue++;
+    if (this.userUid === elementValue.userUid || this.isAdmin === true) {
       return true;
+    } else {
+      return false;
     }
   }
 }
