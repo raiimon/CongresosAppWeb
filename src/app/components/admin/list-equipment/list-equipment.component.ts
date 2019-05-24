@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-equipamiento',
   templateUrl: './equipamiento.component.html',
-  styleUrls: ['./equipamiento.component.css']
+  styleUrls: ['./list-equipment.component.css']
 })
-export class EquipamientoComponent implements OnInit {
+export class ListEquipmentComponent implements OnInit {
 
   constructor() { }
 

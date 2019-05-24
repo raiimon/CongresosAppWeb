@@ -49,6 +49,7 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
+    this.obtenerDatosCongreso();
     this.fullCalendarInstance.nativeElement.innerHTML = '';
   }
 
@@ -92,20 +93,18 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  obtenerNombreCongreso(event: Event) {
+  obtenerDatosCongreso() {
+    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
+    this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
+    this.idCongresoSeleccionado = localStorage.getItem('idCongreso');
+
+    this.obtenerNombreCongreso();
+  }
+
+  obtenerNombreCongreso() {
 
     let fechaInicio: any = '';
     let fechaFin: any = '';
-
-    // Obtenemos de la etiqueta.
-    const selectedOptions = event.target['options'];
-
-    // Comprobamos el índice.
-    const selectedIndex = selectedOptions.selectedIndex;
-
-    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
-    this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
-    this.idCongresoSeleccionado = selectedOptions[selectedIndex].value;
 
     this.dataCongress.getOneCongress(this.idCongresoSeleccionado).subscribe( congresoUnico => {
       this.uniqueCongress = congresoUnico;

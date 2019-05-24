@@ -29,6 +29,7 @@ export class ListRoomComponent implements OnInit {
     this.getListCongress();
     this.getCurrentUser();
     this.getListRooms();
+    this.obtenerNombreCongreso();
   }
 
   getListRooms() {
@@ -68,17 +69,9 @@ export class ListRoomComponent implements OnInit {
     this.dataApi.selectedSala = Object.assign({}, congres);
   }
 
-  obtenerNombreCongreso(event: Event) {
-
-    // Obtenemos de la etiqueta.
-    const selectedOptions = event.target['options'];
-
-    // Comprobamos el índice.
-    const selectedIndex = selectedOptions.selectedIndex;
-
+  obtenerNombreCongreso() {
     // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
-    this.nombreCongresoSeleccionado = selectedOptions[selectedIndex].text;
-
+    this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
   }
 
   showElementByUserID(elementValue) {

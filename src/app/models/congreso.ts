@@ -1,7 +1,7 @@
 export interface CongresoInterface {
   idCongreso?: string;
   nombreCongreso?: string;
-  direccion?: string;
+  sedeCongreso?: string;
   fechaInicioCongreso?: any;
   fechaSalidaCongreso?: any;
   imgCongreso?: string;

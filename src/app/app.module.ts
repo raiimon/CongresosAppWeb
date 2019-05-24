@@ -45,6 +45,7 @@ import { FilterGuestPipe } from './pipes/filter-guest.pipe';
 import { FilterRoomPipe } from './pipes/filter-room.pipe';
 import { FilterSinapticPipe } from './pipes/filter-sinaptic.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
+import { OrderbyCongressPipe } from './pipes/orderby-congress.pipe';
 
 // Librerías de Spinner.
 import { LoadingSpinnersModule } from 'ngx-loading-spinners';
@@ -54,10 +55,9 @@ import { PrincipalExteriorComponent } from './components/principal-exterior/prin
 import { ExteriorCaracteristicasComponent } from './components/principal-exterior/exterior-caracteristicas/exterior-caracteristicas.component';
 import { ExteriorPreciosComponent } from './components/principal-exterior/exterior-precios/exterior-precios.component';
 import {ExteriorModalidadesComponent} from './components/principal-exterior/exterior-modalidades/exterior-modalidades.component';
-
 import {EventsComponent} from './components/events/events.component';
 import {AuthenticationService} from './services/auth.service';
-import { EquipamientoComponent } from './components/admin/equipamiento/equipamiento.component';
+import {ListEquipmentComponent} from './components/admin/list-equipment/list-equipment.component';
 
 // Toast 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -77,6 +77,7 @@ import {ToastrModule} from 'ngx-toastr';
     ListGuestComponent,
     ListRoomComponent,
     ListSinapticComponent,
+    ListEquipmentComponent,
     CheckComponent,
     FilterCongressPipe,
     FilterGuestPipe,
@@ -91,7 +92,7 @@ import {ToastrModule} from 'ngx-toastr';
     ExteriorPreciosComponent,
     NavbarExteriorComponent,
     ExteriorModalidadesComponent,
-    EquipamientoComponent
+    OrderbyCongressPipe
   ],
   imports: [
     LoadingSpinnersModule,

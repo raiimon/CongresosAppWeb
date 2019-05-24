@@ -22,7 +22,7 @@
                     <i class="fa fa-search"></i>
                   </span>
                         </div>
-                        <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso">
+                        <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso"><!-- Ignorar Errores -->
                     </div>
                 </form>
             </div>
@@ -36,14 +36,16 @@
                     <thead>
                         <tr>
                             <th>Nombre del Congreso</th>
-                            <th>Dirección del Congreso</th>
+                            <th>Sede del Congreso</th>
+                            <th>Fecha Inicio del Congreso</th>
                             <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let congres of congress | filterCongress:filterCongress">
-                        <tr *ngIf="showElementByUserID(congres)">
+                    <tbody *ngFor="let congres of congress |  filterCongress: filterCongress | orderbyCongress: 'fechaInicioCongreso'">
+                        <tr *ngIf="showElementByUserID(congres)" (click)="selectCongress(congres.nombreCongreso, congres.idCongreso)">
                             <td>{{congres.nombreCongreso}}</td>
-                            <td>{{congres.direccion}}</td>
+                            <td>{{congres.sedeCongreso}}</td>
+                            <td>{{congres.fechaInicioCongreso | date: 'dd-MM-yyyy'}}</td>
 
                             <td class="d-flex justify-content-center">
                                 <div *ngIf="isAdmin == true; else noAdmin">
