@@ -58,6 +58,7 @@ import {ExteriorModalidadesComponent} from './components/principal-exterior/exte
 import {EventsComponent} from './components/events/events.component';
 import {AuthenticationService} from './services/auth.service';
 import {ListEquipmentComponent} from './components/admin/list-equipment/list-equipment.component';
+import { FilterEquipmentsPipe } from './pipes/filter-equipments.pipe';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import {ListEquipmentComponent} from './components/admin/list-equipment/list-equ
     ExteriorPreciosComponent,
     NavbarExteriorComponent,
     ExteriorModalidadesComponent,
-    OrderbyCongressPipe
+    OrderbyCongressPipe,
+    FilterEquipmentsPipe
   ],
   imports: [
     LoadingSpinnersModule,

@@ -67,20 +67,10 @@ export class ListCongressComponent implements OnInit {
         localStorage.removeItem('nombreCongreso');
         localStorage.removeItem('idCongreso');
 
-        // Para indicar que se ha quitado un congreso, vuelve a pulsar.
-        // ALERT QUE HA ELIMINADO EL CONGRESO
-        console.log('Congreso Seleccionado');
-
       } else {
         // Almacenamos la ID y nombre del congreso en un localStorage.
         localStorage.setItem('idCongreso', idCongreso);
         localStorage.setItem('nombreCongreso', nombreCongreso);
-
-        // Alert de almacenamiento del congreso
-        // ALERT QUE HA SELECCIONADO EL CONGRESO
-
-        console.log('Congreso Deseleccionado');
-
       }
   }
   congresoSeleccionado() {

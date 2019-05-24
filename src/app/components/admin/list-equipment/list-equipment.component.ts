@@ -14,7 +14,8 @@ export class ListEquipmentComponent implements OnInit {
 
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public equipments: EquipamientoInterface[];
-  filterCongress = '';
+  subfamilySearch = '';
+  nombreCongresoSeleccionado: string;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -23,12 +24,18 @@ export class ListEquipmentComponent implements OnInit {
   ngOnInit() {
     this.getListEquipments();
     this.getCurrentUser();
+    this.obtenerNombreCongreso();
   }
 
   getListEquipments() {
     this.dataApi.getAllEquipments().subscribe(equipments => {
       this.equipments = equipments;
     });
+  }
+
+  obtenerNombreCongreso() {
+    // Almacenamos el valor en la variable para después almacenarlo en el formulario de Firebase.
+    this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
   }
 
   onDeleteEquipment(idEquipment: string): void {

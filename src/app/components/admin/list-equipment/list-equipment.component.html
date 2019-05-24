@@ -21,7 +21,7 @@
                     <i class="fa fa-search"></i>
                   </span>
             </div>
-            <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un equipamiento"><!-- Ignorar Errores -->
+            <input class="form-control" type="text" name="filterPost" [(ngModel)]="subfamilySearch" autocomplete="off" placeholder="Busque un equipamiento"><!-- Ignorar Errores -->
           </div>
         </form>
       </div>
@@ -34,10 +34,10 @@
         <table class="table table-hover">
           <thead>
           <tr>
-            <th>Nombre del Congreso</th>
+            <th>Subfamilia</th>
             <th>Cantidad</th>
             <th>Familia</th>
-            <th>Subfamilia</th>
+            <th>Congreso</th>
             <th>Producto</th>
             <th>Número serie</th>
             <th>Descripción</th>
@@ -47,12 +47,12 @@
             <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
           </tr>
           </thead>
-          <tbody *ngFor="let equipment of equipments">
-          <tr>
-            <td>{{equipment.nombreCongreso}}</td>
+          <tbody>
+          <tr *ngFor="let equipment of equipments | filterEquipments: subfamilySearch">
+            <td>{{equipment.subfamilia}}</td>
             <td>{{equipment.cantidad}}</td>
             <td>{{equipment.familia}}</td>
-            <td>{{equipment.subfamilia}}</td>
+            <td>{{equipment.nombreCongreso}}</td>
             <td>{{equipment.producto}}</td>
             <td>{{equipment.numeroSerie}}</td>
             <td>{{equipment.descripcion}}</td>
