@@ -1,3 +1,79 @@
-<p>
-  equipamiento works!
-</p>
+<app-navbar></app-navbar>
+<section>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/stylescon.min.css">
+
+  <div id="promo">
+    <div class="jumbotron">
+      <h1>Equipamientos</h1>
+      <p>En este apartado, usted puede añadir, actualizar o eliminar los equipamientos que usted tenga almacenados.</p>
+
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+      <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+        <form class="search-form">
+          <div class="input-group">
+            <div class="input-group-prepend">
+                            <span class="input-group-text" style="background-color:rgb(174,180,186);">
+                    <i class="fa fa-search"></i>
+                  </span>
+            </div>
+            <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un congreso"><!-- Ignorar Errores -->
+          </div>
+        </form>
+      </div>
+      <div class="col-12 col-sm-12 col-md-1 col-lg-1 "></div>
+    </div>
+  </div>
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Nombre del Congreso</th>
+            <th>Sede del Congreso</th>
+            <th>Fecha Inicio del Congreso</th>
+            <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalCongress">Nuevo Congreso</button></th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let equipment of equipments |  filterCongress: filterCongress">
+          <tr *ngIf="showElementByUserID(equipment)">
+            <td>{{equipment.nombreCongreso}}</td>
+            <td>{{equipment.sedeCongreso}}</td>
+
+            <td class="d-flex justify-content-center">
+
+              <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalCongress"><i class="fas fa-pen"></i></button>
+              </div>
+
+              <ng-template #noOwner>
+                <button class="btn btn-secondary"  disabled="true"><i class="fas fa-pen"></i></button>
+              </ng-template>
+
+
+              <div *ngIf="isAdmin == true; else noAdmin">
+                <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+              </div>
+
+
+              <ng-template #noAdmin>
+                <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+              </ng-template>
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/scriptcon.min.js"></script>
+</section>
+<app-modal [userUid]="userUid"></app-modal>

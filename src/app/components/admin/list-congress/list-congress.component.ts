@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CongresoInterface} from '../../../models/congreso';
 import {CongresoApiService} from '../../../services/congreso-api.service';
 import { AuthenticationService} from '../../../services/auth.service';
-import {OrderbyCongressPipe} from '../../../pipes/orderby-congress.pipe';
 
 @Component({
   selector: 'app-list-congress',
@@ -16,7 +15,7 @@ export class ListCongressComponent implements OnInit {
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   public congress: CongresoInterface[];
   filterCongress = '';
-  orderByCongress: any;
+  nombreCongresoSeleccionado: string;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
@@ -54,7 +53,9 @@ export class ListCongressComponent implements OnInit {
 
   selectCongress(nombreCongreso, idCongreso) {
 
-      if (localStorage.getItem('idCongreso') && localStorage.getItem('nombreCongreso')) {
+    this.nombreCongresoSeleccionado = nombreCongreso;
+
+    if (localStorage.getItem('idCongreso') && localStorage.getItem('nombreCongreso')) {
         localStorage.removeItem('nombreCongreso');
         localStorage.removeItem('idCongreso');
 
