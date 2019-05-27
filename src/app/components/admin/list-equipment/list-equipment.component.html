@@ -18,24 +18,24 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
-                              <form #roomForm="ngForm" (ngSubmit)="onSaveSubfamily(roomForm)">
-                                <div class="input-group">
+                                <form #roomForm="ngForm" (ngSubmit)="onSaveSubfamily(roomForm)">
+                                    <div class="input-group">
 
-                                  <input type="hidden" name="id">
-                                  <!-- Almacenar la ID del libro. -->
+                                        <input type="hidden" name="id">
+                                        <!-- Almacenar la ID del libro. -->
 
-                                  <input type="hidden" name="userUid" [value]="userUid">
+                                        <input type="hidden" name="userUid" [value]="userUid">
 
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-plus"></i></button>
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                        <input type="text" name="nombreSubFamilia" id="nombreSubFamilia" [(ngModel)]="nombreSubFamilia" placeholder="Añade la familia">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="submit" (ngSubmit)="onSaveSubfamily(roomForm)"><i class="fas fa-pen"></i></button>
+                                            <button class="btn btn-outline-danger" type="button" (click)="onDeleteSubFamily()"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
                                     </div>
-                                  <input type="text"  name="nombreSubFamilia" id="nombreSubFamilia" [(ngModel)]="nombreSubFamilia" placeholder="Añade la familia">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-success" type="submit" (ngSubmit)="onSaveSubfamily(roomForm)"><i class="fas fa-pen"></i></button>
-                                        <button class="btn btn-outline-danger" type="button" (click)="onDeleteSubFamily()"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                              </form>
+                                </form>
                             </div>
 
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
@@ -64,8 +64,8 @@
                         <a (click)="idSubFamilia = ''; nombreSubFamilia = ''" class="nav-link active" data-toggle="tab" id="general-tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
                     </li>
                     <li *ngFor="let subfamilia of subfamily" role="presentation" class="nav-link active">
-                      <a (click)="nombreSubFamilia = subfamilia.nombreSubFamilia; idSubFamilia = subfamilia.idSubFamilia" aria-controls="one" role="tab" href="#one" id="nombreFamilia" data-toggle="tab">{{this.subfamilia.nombreSubFamilia}}</a>
-                  </li>
+                        <a (click)="nombreSubFamilia = subfamilia.nombreSubFamilia; idSubFamilia = subfamilia.idSubFamilia" aria-controls="one" role="tab" href="#one" id="nombreFamilia" data-toggle="tab">{{this.subfamilia.nombreSubFamilia}}</a>
+                    </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -73,7 +73,7 @@
                             <div class="row">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
-                                        <thead>
+                                        <thead class="theadColor">
                                             <tr>
                                                 <th>Cantidad</th>
                                                 <th>Disponibles</th>
@@ -85,7 +85,7 @@
                                                 <th>Proovedor</th>
                                                 <th>Valor 1</th>
                                                 <th>Valor 2</th>
-                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                                <th>&nbsp;<button class="btn btn-outline-light" type="button" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-plus"></i> Equipamiento</button></th>
                                             </tr>
                                         </thead>
                                         <tbody *ngFor="let equipment of equipments | filterEquipments: subfamilySearch">
@@ -104,21 +104,21 @@
                                                 <td class="d-flex justify-content-center">
 
                                                     <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
-                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                        <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
                                                     </div>
 
                                                     <ng-template #noOwner>
-                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                        <button class="btn btn-outline-secondary" disabled="true"><i class="fas fa-pen"></i></button>
                                                     </ng-template>
 
 
                                                     <div *ngIf="isAdmin == true; else noAdmin">
-                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                        <button class="btn btn-outline-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
                                                     </div>
 
 
                                                     <ng-template #noAdmin>
-                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                        <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                                     </ng-template>
 
                                                 </td>
@@ -136,8 +136,9 @@
                             <div class="row">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
-                                        <thead>
+                                        <thead class="theadColor">
                                             <tr>
+                                                <th>Nombre del Congreso</th>
                                                 <th>Cantidad</th>
                                                 <th>Familia</th>
                                                 <th>Subfamilia</th>
@@ -147,13 +148,13 @@
                                                 <th>Proovedor</th>
                                                 <th>Valor 1</th>
                                                 <th>Valor 2</th>
-                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
+                                                <th>&nbsp;<button class="btn btn-outline-light " type="button" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-plus"></i> Equipamiento</button></th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let equipment of equipments | filterEquipments: subfamilySearch">
-                                        <tr *ngIf="nombreSubFamilia == equipment.familia">
+                                        <tbody *ngFor="let equipment of equipments">
+                                            <tr *ngIf="nombreSubFamilia == equipment.familia">
+                                                <td>{{equipment.nombreCongreso}}</td>
                                                 <td>{{equipment.cantidad}}</td>
-                                                <td>{{equipment.disponibilidad}}</td>
                                                 <td>{{equipment.familia}}</td>
                                                 <td>{{equipment.subfamilia}}</td>
                                                 <td>{{equipment.producto}}</td>
@@ -166,25 +167,25 @@
                                                 <td class="d-flex justify-content-center">
 
                                                     <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
-                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                        <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
                                                     </div>
 
                                                     <ng-template #noOwner>
-                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                        <button class="btn btn-outline-secondary" disabled="true"><i class="fas fa-pen"></i></button>
                                                     </ng-template>
 
 
                                                     <div *ngIf="isAdmin == true; else noAdmin">
-                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                        <button class="btn btn-outline-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
                                                     </div>
 
 
                                                     <ng-template #noAdmin>
-                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                        <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
                                                     </ng-template>
 
                                                 </td>
-                                        </tr>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
