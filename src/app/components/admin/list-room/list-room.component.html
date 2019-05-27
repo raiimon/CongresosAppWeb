@@ -58,7 +58,7 @@
                         </tr>
                     </thead>
                     <tbody *ngFor="let room of rooms | filterGuest: nombreSalaFiltro">
-                        <tr *ngIf="showElementByUserID(room)">
+                        <tr *ngIf="this.nombreCongresoSeleccionado == room.nombreCongreso">
                             <td>{{room.title}}</td>
                             <td>{{room.nombreCongreso}}</td>
                             <td class="d-flex justify-content-center">
