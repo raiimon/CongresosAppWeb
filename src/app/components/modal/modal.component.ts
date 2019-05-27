@@ -146,8 +146,10 @@ export class ModalComponent implements OnInit {
 
         if (congressForm.value.idEquipamiento == null) {
           // POST
-          // Obtenemos y almacenamos el id del usuario.
+          // Obtenemos y almacenamos el id del usuario y la disponibilidad la igualamos a la cantidad.
           congressForm.value.userUid = this.userUid;
+          congressForm.value.disponibles = congressForm.value.cantidad;
+
           this.dataEquipment.addEquipment(congressForm.value);
 
         } else {
