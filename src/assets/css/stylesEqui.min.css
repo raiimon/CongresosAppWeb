@@ -40,3 +40,8 @@
     background: linear-gradient(120deg, #5593c9, #3b85d4);
     color: white;
 }
+
+.espa {
+    margin-left: 5px;
+    text-align: center;
+}
