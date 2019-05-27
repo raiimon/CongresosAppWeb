@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let event of calendarEvents">
-                            <tr>
+                            <tr *ngIf="nombreCongresoSeleccionado == event.nombreCongreso">
                                 <td>{{event.title}}</td>
                                 <td>{{event.start | date: 'HH:mm'}}</td>
                                 <td>{{event.end | date: 'HH:mm'}}</td>
