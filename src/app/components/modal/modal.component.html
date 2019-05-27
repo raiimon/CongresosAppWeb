@@ -65,8 +65,8 @@
                   </ng-template>
 
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseSinaptic>Cerrar</button>
-                    <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Sinóptico</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseCongreso>Cerrar</button>
+                    <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Congreso</button>
                   </div>
 
                 </form>
@@ -159,7 +159,7 @@
             <div class="modal-body">
                 <form #roomForm="ngForm" (ngSubmit)="onSaveCongress(roomForm, 'sala')">
 
-                    <input type="hidden" name="id" [(ngModel)]="this.dataRoom.selectedSala.id">
+                    <input type="hidden" name="id" id="id" [(ngModel)]="this.dataRoom.selectedSala.id">
                     <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">
@@ -371,29 +371,33 @@
             <input type="number" class="form-control" name="cantidad" [(ngModel)]="this.dataEquipment.selectedEquipamiento.cantidad" placeholder="10">
           </div>
 
-          <div class="form-group">
-            <label for="familia">Familia</label>
-            <input type="text" name="familia" class="form-control" placeholder="TV" [(ngModel)]="this.dataEquipment.selectedEquipamiento.familia">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="familia">Familia</label>
+              <input type="text" name="familia" class="form-control" placeholder="TV" [(ngModel)]="this.dataEquipment.selectedEquipamiento.familia">
+            </div>
+
+            <div class="form-group">
+              <label for="subfamilia">Subfamilia</label>
+              <input type="text" name="subfamilia" class="form-control" placeholder="Monitor Hanss HW246HBB" [(ngModel)]="this.dataEquipment.selectedEquipamiento.subfamilia">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="subfamilia">Subfamilia</label>
-            <input type="text" name="subfamilia" class="form-control" placeholder="Monitor Hanss HW246HBB" [(ngModel)]="this.dataEquipment.selectedEquipamiento.subfamilia">
-          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="producto">Producto</label>
+             <input type="text" name="producto" class="form-control" placeholder="HSG1269" [(ngModel)]="this.dataEquipment.selectedEquipamiento.producto">
+           </div>
 
-          <div class="form-group">
-            <label for="producto">Producto</label>
-            <input type="text" name="producto" class="form-control" placeholder="HSG1269" [(ngModel)]="this.dataEquipment.selectedEquipamiento.producto">
-          </div>
-
-          <div class="form-group">
-            <label for="numeroSerie">Número de serie</label>
-            <input type="text" name="numeroSerie" class="form-control" placeholder="4347Q3C500197" [(ngModel)]="this.dataEquipment.selectedEquipamiento.numeroSerie">
+            <div class="form-group">
+             <label for="numeroSerie">Número de serie</label>
+             <input type="text" name="numeroSerie" class="form-control" placeholder="4347Q3C500197" [(ngModel)]="this.dataEquipment.selectedEquipamiento.numeroSerie">
+            </div>
           </div>
 
           <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" class="form-control" placeholder="HSG1269" [(ngModel)]="this.dataEquipment.selectedEquipamiento.descripcion">
+            <input type="textarea" name="descripcion" class="form-control" placeholder="HSG1269" [(ngModel)]="this.dataEquipment.selectedEquipamiento.descripcion">
           </div>
 
           <div class="form-group">
@@ -401,17 +405,18 @@
             <input type="text" name="proveedor" class="form-control" placeholder="PYMEMATICA" [(ngModel)]="this.dataEquipment.selectedEquipamiento.proveedor">
           </div>
 
-          <div class="form-group">
-            <label for="valor1">Primer Valor</label>
-            <input type="number" name="valor1" class="form-control" placeholder="115" [(ngModel)]="this.dataEquipment.selectedEquipamiento.valor1">
+          <div class="form-row">
+            <div class="form-group">
+             <label for="valor1">Primer Valor</label>
+             <input type="number" name="valor1" class="form-control" placeholder="115" [(ngModel)]="this.dataEquipment.selectedEquipamiento.valor1">
+            </div>
+
+           <div class="form-group">
+             <label for="valor2">Segundo Valor</label>
+             <input type="number" name="valor2" class="form-control" placeholder="70" [(ngModel)]="this.dataEquipment.selectedEquipamiento.valor2">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="valor2">Segundo Valor</label>
-            <input type="number" name="valor2" class="form-control" placeholder="70" [(ngModel)]="this.dataEquipment.selectedEquipamiento.valor2">
-          </div>
-
-          <hr>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseEquipment>Cerrar</button>
