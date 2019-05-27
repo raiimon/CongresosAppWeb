@@ -129,7 +129,6 @@ export class ModalComponent implements OnInit {
       case 'sinoptico':
         congressForm.value.imgSinaptico = this.inputImageUser.nativeElement.value;
         congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
-
         if (congressForm.value.idInvitado == null) {
           // POST
           // Obtenemos y almacenamos el id del usuario.
@@ -177,8 +176,9 @@ export class ModalComponent implements OnInit {
       case 'sala':
 
         congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
+        console.log(congressForm.value);
 
-        if (congressForm.value.idSala == null) {
+        if (congressForm.value.id == null) {
           // POST
           // Obtenemos y almacenamos el id del usuario.
           congressForm.value.userUid = this.userUid;

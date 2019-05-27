@@ -159,7 +159,7 @@
             <div class="modal-body">
                 <form #roomForm="ngForm" (ngSubmit)="onSaveCongress(roomForm, 'sala')">
 
-                    <input type="hidden" name="id" [(ngModel)]="this.dataRoom.selectedSala.id">
+                    <input type="text" name="id" id="id" [(ngModel)]="this.dataRoom.selectedSala.id">
                     <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">
