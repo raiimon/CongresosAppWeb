@@ -65,8 +65,8 @@
                   </ng-template>
 
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseSinaptic>Cerrar</button>
-                    <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Sinóptico</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseCongreso>Cerrar</button>
+                    <button *ngIf="urlImage | async; else btnDisable" type="submit" class="btn btn-primary">Guardar Congreso</button>
                   </div>
 
                 </form>
@@ -159,7 +159,7 @@
             <div class="modal-body">
                 <form #roomForm="ngForm" (ngSubmit)="onSaveCongress(roomForm, 'sala')">
 
-                    <input type="text" name="id" id="id" [(ngModel)]="this.dataRoom.selectedSala.id">
+                    <input type="hidden" name="id" id="id" [(ngModel)]="this.dataRoom.selectedSala.id">
                     <!-- Almacenar la ID del libro. -->
 
                     <input type="hidden" name="userUid" [value]="userUid">

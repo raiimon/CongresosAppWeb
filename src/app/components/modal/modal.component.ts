@@ -176,7 +176,6 @@ export class ModalComponent implements OnInit {
       case 'sala':
 
         congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
-        console.log(congressForm.value);
 
         if (congressForm.value.id == null) {
           // POST
