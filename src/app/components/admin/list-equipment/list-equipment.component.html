@@ -18,25 +18,33 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                              <form #roomForm="ngForm" (ngSubmit)="onSaveSubfamily(roomForm)">
                                 <div class="input-group">
+
+                                  <input type="hidden" name="id">
+                                  <!-- Almacenar la ID del libro. -->
+
+                                  <input type="hidden" name="userUid" [value]="userUid">
+
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-plus"></i></button>
+                                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-plus"></i></button>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" placeholder="Añade la familia">
+                                  <input type="text"  name="nombreSubFamilia" id="nombreSubFamilia" [(ngModel)]="nombreSubFamilia" placeholder="Añade la familia">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-success" type="button"><i class="fas fa-pen"></i></button>
-                                        <button class="btn btn-outline-danger" type="button"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-success" type="submit" (ngSubmit)="onSaveSubfamily(roomForm)"><i class="fas fa-pen"></i></button>
+                                        <button class="btn btn-outline-danger" type="button" (click)="onDeleteSubFamily()"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
+                              </form>
                             </div>
+
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-search"></i>
                             </span>
                                     </div>
-                                    <input class="form-control" type="text" name="filterPost" [(ngModel)]="filterCongress" autocomplete="off" placeholder="Busque un equipamiento">
-                                    <!-- Ignorar Errores -->
+                                    <input class="form-control" type="text" name="filterPost" [(ngModel)]="subfamilySearch" autocomplete="off" placeholder="Busque un equipamiento">
                                 </div>
                             </div>
                         </div>
@@ -53,14 +61,11 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                        <a (click)="idSubFamilia = ''; nombreSubFamilia = ''" class="nav-link active" data-toggle="tab" id="general-tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="multimedia-tab" data-toggle="tab" href="#multimedia" role="tab" aria-controls="multimedia" aria-selected="false">Multimedia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="sonido-tab" data-toggle="tab" href="#sonido" role="tab" aria-controls="sonido" aria-selected="false">Sonido</a>
-                    </li>
+                    <li *ngFor="let subfamilia of subfamily" role="presentation" class="nav-link active">
+                      <a (click)="nombreSubFamilia = subfamilia.nombreSubFamilia; idSubFamilia = subfamilia.idSubFamilia" aria-controls="one" role="tab" href="#one" id="nombreFamilia" data-toggle="tab">{{this.subfamilia.nombreSubFamilia}}</a>
+                  </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -70,8 +75,8 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Nombre del Congreso</th>
                                                 <th>Cantidad</th>
+                                                <th>Disponibles</th>
                                                 <th>Familia</th>
                                                 <th>Subfamilia</th>
                                                 <th>Producto</th>
@@ -83,10 +88,10 @@
                                                 <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let equipment of equipments">
+                                        <tbody *ngFor="let equipment of equipments | filterEquipments: subfamilySearch">
                                             <tr>
-                                                <td>{{equipment.nombreCongreso}}</td>
                                                 <td>{{equipment.cantidad}}</td>
+                                                <td>{{equipment.disponibilidad}}</td>
                                                 <td>{{equipment.familia}}</td>
                                                 <td>{{equipment.subfamilia}}</td>
                                                 <td>{{equipment.producto}}</td>
@@ -125,7 +130,7 @@
                         </div>
                     </div>
                     <!-- Multimedia-->
-                    <div class="tab-pane fade" id="multimedia" role="tabpanel" aria-labelledby="multimedia-tab">
+                    <div class="tab-pane fade active" role="tabpanel" id="one">
                         <!-- Multimedia-->
                         <div class="container-fluid">
                             <div class="row">
@@ -147,7 +152,7 @@
                                             </tr>
                                         </thead>
                                         <tbody *ngFor="let equipment of equipments">
-                                            <tr>
+                                        <tr *ngIf="nombreSubFamilia == equipment.familia">
                                                 <td>{{equipment.nombreCongreso}}</td>
                                                 <td>{{equipment.cantidad}}</td>
                                                 <td>{{equipment.familia}}</td>
@@ -180,76 +185,14 @@
                                                     </ng-template>
 
                                                 </td>
-                                            </tr>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="sonido" role="tabpanel" aria-labelledby="sonido-tab">
-                        <!-- Sonido -->
-                        <div class="container-fluid">
-                            <!-- Sonido -->
-                            <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre del Congreso</th>
-                                                <th>Cantidad</th>
-                                                <th>Familia</th>
-                                                <th>Subfamilia</th>
-                                                <th>Producto</th>
-                                                <th>Número serie</th>
-                                                <th>Descripción</th>
-                                                <th>Proovedor</th>
-                                                <th>Valor 1</th>
-                                                <th>Valor 2</th>
-                                                <th>&nbsp;<button class="btn bottonColor" type="button" data-toggle="modal" data-target="#modalEquipment">Nuevo Equipamiento</button></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody *ngFor="let equipment of equipments">
-                                            <tr>
-                                                <td>{{equipment.nombreCongreso}}</td>
-                                                <td>{{equipment.cantidad}}</td>
-                                                <td>{{equipment.familia}}</td>
-                                                <td>{{equipment.subfamilia}}</td>
-                                                <td>{{equipment.producto}}</td>
-                                                <td>{{equipment.numeroSerie}}</td>
-                                                <td>{{equipment.descripcion}}</td>
-                                                <td>{{equipment.proveedor}}</td>
-                                                <td>{{equipment.valor1}}</td>
-                                                <td>{{equipment.valor2}}</td>
 
-                                                <td class="d-flex justify-content-center">
-
-                                                    <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
-                                                        <button class="btn btn-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
-                                                    </div>
-
-                                                    <ng-template #noOwner>
-                                                        <button class="btn btn-secondary" disabled="true"><i class="fas fa-pen"></i></button>
-                                                    </ng-template>
-
-
-                                                    <div *ngIf="isAdmin == true; else noAdmin">
-                                                        <button class="btn btn-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
-                                                    </div>
-
-
-                                                    <ng-template #noAdmin>
-                                                        <button class="btn btn-danger" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
-                                                    </ng-template>
-
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
