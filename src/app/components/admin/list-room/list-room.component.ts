@@ -81,4 +81,8 @@ export class ListRoomComponent implements OnInit {
       return false;
     }
   }
+  salaSeleccionada(){
+
+
+  }
 }

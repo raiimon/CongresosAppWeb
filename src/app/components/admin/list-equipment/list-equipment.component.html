@@ -20,16 +20,16 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
                                 <form #roomForm="ngForm" (ngSubmit)="onSaveSubfamily(roomForm)">
                                     <div class="input-group">
-
-                                        <input type="hidden" name="id">
-                                        <!-- Almacenar la ID del libro. -->
-
-                                        <input type="hidden" name="userUid" [value]="userUid">
-
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-plus"></i></button>
                                         </div>
-                                        <input type="text" name="nombreSubFamilia" id="nombreSubFamilia" [(ngModel)]="nombreSubFamilia" placeholder="Añade la familia">
+
+                                        <input type="hidden" name="id" class="espa">
+
+                                        <input type="hidden" name="userUid" [value]="userUid" class="espa">
+
+                                        <input type="text" name="nombreSubFamilia" id="nombreSubFamilia" [(ngModel)]="nombreSubFamilia" placeholder="Añade la familia" class="espa">
+
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-success" type="submit" (ngSubmit)="onSaveSubfamily(roomForm)"><i class="fas fa-pen"></i></button>
                                             <button class="btn btn-outline-danger" type="button" (click)="onDeleteSubFamily()"><i class="fas fa-trash-alt"></i></button>
