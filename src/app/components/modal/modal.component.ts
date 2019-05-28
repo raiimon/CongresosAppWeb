@@ -11,6 +11,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {CalendarService} from '../../services/calendar.service';
 import {SalaInterface} from '../../models/sala';
 import {EquipamientoService} from '../../services/equipamiento.service';
+import {EquipamientoInterface} from '../../models/equipamiento';
 
 @Component({
   selector: 'app-modal',
@@ -30,6 +31,10 @@ export class ModalComponent implements OnInit {
   // Variables para añadir los valores de los congresos.
   private congress: CongresoInterface[];
   private rooms: SalaInterface[];
+  private equipments: EquipamientoInterface[];
+  private saveEquipments: EquipamientoInterface[];
+  private cantidadEquipamiento: any;
+  private checked: boolean = false;
 
   // Variables para almacenar los nombres de congreso y sala.
   public nombreCongresoSeleccionado: string;
@@ -57,6 +62,7 @@ export class ModalComponent implements OnInit {
     this.getListCongress();
     this.getListRooms();
     this.getCongressName();
+    this.getListEquipments();
   }
 
   getListCongress() {
@@ -68,6 +74,12 @@ export class ModalComponent implements OnInit {
   getListRooms() {
     this.dataRoom.getAllRooms().subscribe(rooms => {
       this.rooms = rooms;
+    });
+  }
+
+  getListEquipments() {
+    this.dataEquipment.getAllEquipments().subscribe( equipamiento => {
+        this.equipments = equipamiento;
     });
   }
 
@@ -250,5 +262,19 @@ export class ModalComponent implements OnInit {
     // Para obtener la ruta del fichero.
     task.snapshotChanges().pipe( finalize(() => this.urlImage = ref.getDownloadURL()))
       .subscribe();
+  }
+
+
+  toggleEditable(event, wareHouseForm) {
+
+    this.saveEquipments = wareHouseForm;
+
+    this.cantidadEquipamiento = wareHouseForm.cantidad;
+
+    if (event.target.checked) {
+      this.checked = true;
+    } else {
+      this.checked = false;
+    }
   }
 }

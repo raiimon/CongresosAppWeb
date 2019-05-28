@@ -67,6 +67,9 @@
                                     <button class="btn btn-outline-success" type="button" (click)="onPreUpdateRooms(room)" data-toggle="modal" data-target="#modalRoom"><i class="fas fa-pen"></i></button>
                                 </div>
 
+                              <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner">
+                                <button class="btn btn-outline-primary" type="button" (click)="onPreUpdateRooms(room)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
+                              </div>
 
                                 <ng-template #noOwner>
                                     <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
