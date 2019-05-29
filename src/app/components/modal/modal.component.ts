@@ -213,7 +213,6 @@ export class ModalComponent implements OnInit {
           // Obtenemos y almacenamos el id del usuario.
           congressForm.value.userUid = this.userUid;
           congressForm.value.nombreSala = this.nombreSalaSeleccionado;
-          console.log(congressForm.value);
           this.dataRoomEquipment.addSubfamily(congressForm.value);
 
         } else {
