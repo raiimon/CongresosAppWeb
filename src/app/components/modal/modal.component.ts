@@ -12,6 +12,8 @@ import {CalendarService} from '../../services/calendar.service';
 import {SalaInterface} from '../../models/sala';
 import {EquipamientoService} from '../../services/equipamiento.service';
 import {EquipamientoInterface} from '../../models/equipamiento';
+import {SalaEquipmentApiService} from '../../services/sala-equipment-api.service';
+import {SalaEquipmentInterface} from '../../models/salaEquipment';
 
 @Component({
   selector: 'app-modal',
@@ -20,20 +22,21 @@ import {EquipamientoInterface} from '../../models/equipamiento';
 })
 export class ModalComponent implements OnInit {
 
+  private cantidad: any;
+
   constructor(private storage: AngularFireStorage,
               private dataCongress: CongresoApiService,
               private dataEquipment: EquipamientoService,
               private dataGuest: InvitadoApiService,
               private dataRoom: SalaApiService,
               private sinaptic: SinapticoApiService,
+              private dataRoomEquipment: SalaEquipmentApiService,
               private dataEvent: CalendarService) { }
 
   // Variables para añadir los valores de los congresos.
   private congress: CongresoInterface[];
   private rooms: SalaInterface[];
   private equipments: EquipamientoInterface[];
-  private saveEquipments: EquipamientoInterface[];
-  private cantidadEquipamiento: any;
   private checked: boolean = false;
 
   // Variables para almacenar los nombres de congreso y sala.
@@ -57,7 +60,7 @@ export class ModalComponent implements OnInit {
   @ViewChild('btnCloseRoom') btnCloseRoom: ElementRef;
   @ViewChild('btnCloseEvents') btnCloseEvents: ElementRef;
   @ViewChild('btnCloseEquipment') btnCloseEquipment: ElementRef;
-
+  @ViewChild('btnCloseSaveEquipments') btnCloseSaveEquipments: ElementRef;
   ngOnInit() {
     this.getListCongress();
     this.getListRooms();
@@ -203,6 +206,21 @@ export class ModalComponent implements OnInit {
         }
         break;
 
+      case 'roomEquipment':
+
+          if (congressForm.value.id == null) {
+          // POST
+          // Obtenemos y almacenamos el id del usuario.
+          congressForm.value.userUid = this.userUid;
+          congressForm.value.nombreSala = this.nombreSalaSeleccionado;
+          console.log(congressForm.value);
+          this.dataRoomEquipment.addSubfamily(congressForm.value);
+
+        } else {
+          // PUT
+          this.dataRoomEquipment.updateSubfamily(congressForm.value);
+        }
+          break;
       case 'evento':
 
         // congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
@@ -265,11 +283,7 @@ export class ModalComponent implements OnInit {
   }
 
 
-  toggleEditable(event, wareHouseForm) {
-
-    this.saveEquipments = wareHouseForm;
-
-    this.cantidadEquipamiento = wareHouseForm.cantidad;
+  toggleEditable(event) {
 
     if (event.target.checked) {
       this.checked = true;

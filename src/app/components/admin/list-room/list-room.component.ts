@@ -4,7 +4,8 @@ import {CongresoInterface} from '../../../models/congreso';
 import {SalaApiService} from '../../../services/sala-api.service';
 import {SalaInterface} from '../../../models/sala';
 import {CongresoApiService} from '../../../services/congreso-api.service';
-
+import {SalaEquipmentApiService} from '../../../services/sala-equipment-api.service';
+import {SalaEquipmentInterface} from '../../../models/salaEquipment';
 @Component({
   selector: 'app-list-room',
   templateUrl: './list-room.component.html',
@@ -12,24 +13,26 @@ import {CongresoApiService} from '../../../services/congreso-api.service';
 })
 export class ListRoomComponent implements OnInit {
 
-  constructor(private dataApi: SalaApiService, private authService: AuthenticationService, private dataCongress: CongresoApiService) { }
+  constructor(private dataApi: SalaApiService, private dataEquipmentRoom: SalaEquipmentApiService, private authService: AuthenticationService, private dataCongress: CongresoApiService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private rooms: SalaInterface[];
   private congress: CongresoInterface[];
+  private roomEquipments: SalaEquipmentInterface[];
   nombreCongresoSeleccionado: any;
   nombreSalaFiltro = '';
+  nombreSala: string;
+  seleccionarSala: boolean = false;
 
   // Usuarios de los roles.
   public isAdmin: any = null;
   public userUid: string = null;
-
-  checkSameValue = 0;
 
   ngOnInit() {
     this.getListCongress();
     this.getCurrentUser();
     this.getListRooms();
     this.obtenerNombreCongreso();
+    this.getListEquipments();
   }
 
   getListRooms() {
@@ -41,6 +44,12 @@ export class ListRoomComponent implements OnInit {
   getListCongress() {
     this.dataCongress.getAllCongress().subscribe( congreso => {
       this.congress = congreso;
+    });
+  }
+
+  getListEquipments() {
+    this.dataEquipmentRoom.getAllSubFamilies().subscribe(roomEquipments => {
+      this.roomEquipments = roomEquipments;
     });
   }
 
@@ -74,15 +83,25 @@ export class ListRoomComponent implements OnInit {
     this.nombreCongresoSeleccionado = localStorage.getItem('nombreCongreso');
   }
 
-  showElementByUserID(elementValue) {
-    if (this.userUid === elementValue.userUid) {
-      return true;
+  seleccionarHerramientas(nombreSala) {
+    if (this.seleccionarSala) {
+      this.nombreSala = '';
+      this.seleccionarSala = false;
     } else {
-      return false;
+      this.nombreSala = nombreSala;
+      this.seleccionarSala = true;
     }
   }
-  salaSeleccionada(){
 
+  onDeleteRoomEquipment(idRoomEquipment) {
+    const confirmacion = confirm('¿Deseas eliminar esta familia del almacen?');
 
+    if (confirmacion) {
+      this.dataEquipmentRoom.deleteSubfamily(idRoomEquipment);
+    }
+  }
+
+  onUpdateRoomEquipments(roomEquipment) {
+    this.dataEquipmentRoom.select = Object.assign({}, roomEquipment);
   }
 }

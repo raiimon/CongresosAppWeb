@@ -107,9 +107,17 @@
                                                         <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
                                                     </div>
 
-                                                    <ng-template #noOwner>
-                                                        <button class="btn btn-outline-secondary" disabled="true"><i class="fas fa-pen"></i></button>
-                                                    </ng-template>
+                                                  <div *ngIf="(equipment.userUid == userUid || isAdmin == true) && equipment.cantidad > 0; else disabledOption">
+                                                    <button class="btn btn-outline-primary" type="button"  (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
+                                                  </div>
+
+                                                  <ng-template #disabledOption>
+                                                    <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-warehouse"></i></button>
+                                                  </ng-template>
+
+                                                  <ng-template #noOwner>
+                                                    <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-pen"></i></button>
+                                                   </ng-template>
 
 
                                                     <div *ngIf="isAdmin == true; else noAdmin">
@@ -167,6 +175,10 @@
 
                                                     <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
                                                         <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <div *ngIf="equipment.userUid == userUid || equipment.cantidad <= 0; else noOwner || isAdmin == true; else noOwner">
+                                                      <button class="btn btn-outline-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
                                                     </div>
 
                                                     <ng-template #noOwner>

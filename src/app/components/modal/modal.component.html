@@ -343,60 +343,221 @@
 
 <!-- Modal para el equipamiento en las salas -->
 
-<div class="modal fade" id="wareHouseForm" tabindex="-1" role="dialog" aria-labelledby="wareHouseForm" aria-hidden="true">
+<div class="modal fade" id="modalEquipment" tabindex="-1" role="dialog" aria-labelledby="modalEquipment" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="tituloModalEquipamiento">Equipamiento para salas</h5>
+        <h5 class="modal-title" id="tituloModalEquipamiento">
+          {{ !this.dataEquipment.selectedEquipamiento.idEquipamiento ? 'Nuevo Equipamiento' : 'Actualizar Equipamiento'}}
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <body ng-app="myapp" ng-controller="ListController">
-      <div class="container">
-        <div class="row" ng-hide="!personalDetails.length">
-          <div class="col-md-12">
-            <h5 class="modal-title" id="tituloModalEvento6">Seleccione el material para la sala</h5>
-            <table class="table table-striped table-bordered">
-              <thead>
-              <tr>
-                <th></th>
-                <th>Cantidad</th>
-                <th>Familia</th>
-                <th>Subfamilia</th>
-                <th>Producto</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let equipamiento of equipments">
-                <td>
-                  <input class="form-check-input" type="checkbox" [name]="checked" (change)="toggleEditable($event, equipamiento)">
-                </td>
-                <td>{{equipamiento.cantidad}}</td>
-                <td>{{equipamiento.familia}}</td>
-                <td>{{equipamiento.subfamilia}}</td>
-                <td>{{equipamiento.producto}}</td>
-              </tr>
-              </tbody>
-            </table>
+      <div class="modal-body">
+        <form #congressForm="ngForm" (ngSubmit)="onSaveCongress(congressForm, 'equipamiento')">
+
+          <input type="hidden" name="idEquipamiento" [(ngModel)]="this.dataEquipment.selectedEquipamiento.idEquipamiento">
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="nombreCongreso" class="col-form-label">Nombre del Congreso:</label>
+            <input type="text" class="form-control" name="nombreCongreso" [(ngModel)]="this.dataEquipment.selectedEquipamiento.nombreCongreso" placeholder="{{nombreCongresoSeleccionado}}" disabled>
           </div>
-        </div>
-      </div>
 
-      <br>
-      <div *ngIf="checked">
-        <div class="form-group">
-          <label for="cantidad" class="col-form-label">Seleccione una cantidad</label>
-          <input type="number" class="form-control" name="cantidad"  min="0" [max]="cantidadEquipamiento" [value]="0">
-       </div>
-      </div>
+          <div class="form-group">
+            <label for="cantidad" class="col-form-label">Cantidad:</label>
+            <input type="number" class="form-control" name="cantidad" min="0" [(ngModel)]="this.dataEquipment.selectedEquipamiento.cantidad" placeholder="10">
+          </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseEvents>Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="familia">Familia</label>
+              <input type="text" name="familia" class="form-control" placeholder="TV" [(ngModel)]="this.dataEquipment.selectedEquipamiento.familia">
+            </div>
 
-      </body>
+            <div class="form-group">
+              <label for="subfamilia">Subfamilia</label>
+              <input type="text" name="subfamilia" class="form-control" placeholder="Monitor Hanss HW246HBB" [(ngModel)]="this.dataEquipment.selectedEquipamiento.subfamilia">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="producto">Producto</label>
+              <input type="text" name="producto" class="form-control" placeholder="HSG1269" [(ngModel)]="this.dataEquipment.selectedEquipamiento.producto">
+            </div>
+
+            <div class="form-group">
+              <label for="numeroSerie">Número de serie</label>
+              <input type="text" name="numeroSerie" class="form-control" placeholder="4347Q3C500197" [(ngModel)]="this.dataEquipment.selectedEquipamiento.numeroSerie">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input type="text" name="descripcion" class="form-control" placeholder="HSG1269" [(ngModel)]="this.dataEquipment.selectedEquipamiento.descripcion">
+          </div>
+
+          <div class="form-group">
+            <label for="proveedor">Proveedor</label>
+            <input type="text" name="proveedor" class="form-control" placeholder="PYMEMATICA" [(ngModel)]="this.dataEquipment.selectedEquipamiento.proveedor">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="valor1">Primer Valor</label>
+              <input type="number" name="valor1" class="form-control" placeholder="115" min="0" [(ngModel)]="this.dataEquipment.selectedEquipamiento.valor1">
+            </div>
+
+            <div class="form-group">
+              <label for="valor2">Segundo Valor</label>
+              <input type="number" name="valor2" class="form-control" placeholder="70" min="0" [(ngModel)]="this.dataEquipment.selectedEquipamiento.valor2">
+            </div>
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseEquipment>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Evento</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para almacenar los equipamientos en las salas -->
+
+
+<!-- Modal para el equipamiento en las salas -->
+<div class="modal fade" id="wareHouseForm" tabindex="-1" role="dialog" aria-labelledby="wareHouseForm" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloModalEquipamiento">
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #congressForm="ngForm" (ngSubmit)="onSaveCongress(congressForm, 'roomEquipment')">
+
+          <input type="hidden" name="id" [(ngModel)]="this.dataRoomEquipment.select.id">
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="nombreCongreso" class="col-form-label">Nombre del Congreso:</label>
+            <input type="text" class="form-control" name="nombreCongreso" [(ngModel)]="this.dataEquipment.selectedEquipamiento.nombreCongreso" placeholder="{{nombreCongresoSeleccionado}}" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="nombreSala" class="col-form-label">Nombre de la sala</label>
+            <select class="form-control select" (change)="obtenerNombreSala($event)" name="nombreSala"><!-- Modificar para mañana -->
+              <option value="">Seleccione la sala</option>
+              <ng-container *ngFor="let room of rooms">
+                <option  *ngIf="room.nombreCongreso == nombreCongresoSeleccionado" name="nombreSala" value="{{room.title}}">{{room.title}}</option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cantidad" class="col-form-label">Cantidad:</label>
+            <input type="text" class="form-control" name="cantidad" min="0" [(ngModel)]="this.dataEquipment.selectedEquipamiento.cantidad" placeholder="10">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="familia">Familia</label>
+              <input type="text" name="familia" class="form-control" placeholder="TV" [(ngModel)]="this.dataEquipment.selectedEquipamiento.familia">
+            </div>
+
+            <div class="form-group">
+              <label for="subfamilia">Subfamilia</label>
+              <input type="text" name="subfamilia" class="form-control" placeholder="Monitor Hanss HW246HBB" [(ngModel)]="this.dataEquipment.selectedEquipamiento.subfamilia">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numeroSerie">Número de serie</label>
+              <input type="text" name="numeroSerie" class="form-control" placeholder="4347Q3C500197" [(ngModel)]="this.dataEquipment.selectedEquipamiento.numeroSerie">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseEquipment>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Evento</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateRoomEquipment" tabindex="-1" role="dialog" aria-labelledby="updateRoomEquipment" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloModalEquipamiento">
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #updateRoomEquipments="ngForm" (ngSubmit)="onSaveCongress(updateRoomEquipments, 'roomEquipment')">
+
+          <input type="hidden" name="id" [(ngModel)]="this.dataRoomEquipment.select.id">
+
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <div class="form-group">
+            <label for="nombreCongreso" class="col-form-label">Nombre del Congreso:</label>
+            <input type="text" class="form-control" name="nombreCongreso" [(ngModel)]="this.dataRoomEquipment.select.nombreCongreso" placeholder="{{nombreCongresoSeleccionado}}" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="nombreSala" class="col-form-label">Nombre del Sala:</label>
+            <input type="text" class="form-control" name="nombreSala" [(ngModel)]="this.dataRoomEquipment.select.nombreSala" placeholder="{{nombreSalaSeleccionado}}" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="cantidad" class="col-form-label">Cantidad:</label>
+            <input type="text" class="form-control" name="cantidad" min="0" [(ngModel)]="this.dataRoomEquipment.select.cantidad" placeholder="10">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="familia">Familia</label>
+              <input type="text" name="familia" class="form-control" placeholder="TV" [(ngModel)]="this.dataRoomEquipment.select.familia">
+            </div>
+
+            <div class="form-group">
+              <label for="subfamilia">Subfamilia</label>
+              <input type="text" name="subfamilia" class="form-control" placeholder="Monitor Hanss HW246HBB" [(ngModel)]="this.dataRoomEquipment.select.subfamilia">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numeroSerie">Número de serie</label>
+              <input type="text" name="numeroSerie" class="form-control" placeholder="4347Q3C500197" [(ngModel)]="this.dataRoomEquipment.select.numeroSerie">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCloseEquipment>Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Evento</button>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
 </div>
