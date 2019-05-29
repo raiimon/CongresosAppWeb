@@ -467,25 +467,25 @@
 
           <div class="form-group">
             <label for="cantidad" class="col-form-label">Cantidad:</label>
-            <input type="text" class="form-control" name="cantidad" min="0" [(ngModel)]="this.dataEquipment.selectedEquipamiento.cantidad" placeholder="10">
+            <input type="number" class="form-control" name="cantidad" min="0" [max]="this.dataEquipment.selectedEquipamiento.cantidad" [(ngModel)]="this.dataEquipment.selectedEquipamiento.cantidad" placeholder="10">
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="familia">Familia</label>
-              <input type="text" name="familia" class="form-control" placeholder="TV" [(ngModel)]="this.dataEquipment.selectedEquipamiento.familia">
+              <input type="text" name="familia" class="form-control"  [(ngModel)]="this.dataEquipment.selectedEquipamiento.familia">
             </div>
 
             <div class="form-group">
               <label for="subfamilia">Subfamilia</label>
-              <input type="text" name="subfamilia" class="form-control" placeholder="Monitor Hanss HW246HBB" [(ngModel)]="this.dataEquipment.selectedEquipamiento.subfamilia">
+              <input type="text" name="subfamilia" class="form-control"  [(ngModel)]="this.dataEquipment.selectedEquipamiento.subfamilia">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="numeroSerie">Número de serie</label>
-              <input type="text" name="numeroSerie" class="form-control" placeholder="4347Q3C500197" [(ngModel)]="this.dataEquipment.selectedEquipamiento.numeroSerie">
+              <input type="text" name="numeroSerie" class="form-control" [(ngModel)]="this.dataEquipment.selectedEquipamiento.numeroSerie">
             </div>
           </div>
 

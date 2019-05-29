@@ -44,7 +44,6 @@ export class SalaEquipmentApiService {
 
   // Método para actualizar.
   updateSubfamily(salaEquipamiento: SalaEquipmentInterface): void {
-    console.log(salaEquipamiento);
     this.afs.doc('salaEquipamiento/' + salaEquipamiento.id).update(salaEquipamiento);
 
   }

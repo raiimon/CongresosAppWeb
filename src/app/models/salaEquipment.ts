@@ -2,7 +2,7 @@ export interface SalaEquipmentInterface {
   id?: string;
   nombreSala?: string;
   nombreCongreso?: string;
-  cantidad?: string;
+  cantidad?: number;
   familia?: string;
   subfamilia?: string;
   numeroSerie?: string;
