@@ -71,13 +71,13 @@
                                     <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
                                 </ng-template>
 
-                              <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner2">
-                                <button class="btn btn-outline-success" type="button" (click)="seleccionarHerramientas(room.title)"><i class="fas fa-address-book"></i></button>
-                              </div>
+                                <div *ngIf="room.userUid == userUid || isAdmin == true; else noOwner2">
+                                    <button class="btn btn-outline-info" type="button" (click)="seleccionarHerramientas(room.title)"><i class="fas fa-tools"></i><a href="#footer"></a></button>
+                                </div>
 
-                              <ng-template #noOwner2>
-                                <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
-                              </ng-template>
+                                <ng-template #noOwner2>
+                                    <button class="btn btn-outline-secondary" disabled><i class="fas fa-tools"></i></button>
+                                </ng-template>
 
 
                                 <div *ngIf="isAdmin == true; else noAdmin">
@@ -92,93 +92,110 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- Tabla del inventario -->
-                <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3" *ngIf="seleccionarSala">
+                <div class="alert alert-info" role="alert" *ngIf="seleccionarSala">
+                    Estas en la sala ******
+                </div>
 
-                    <h1 class="text-center">Herramienta del congreso</h1>
+                <!-- Equipamientos -->
 
-                    <table class="table table-bordered table-striped mb-0">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar mt-4" *ngIf="seleccionarSala" id="#footer">
+
+                    <h1 class="text-center">Almacén</h1>
+
+                    <table class="table  table-striped mb-0">
                         <thead class="theadColor">
                             <tr>
-                                <th scope="col">Familia</th>
-                                <th scope="col">Subfamilia</th>
-                                <th scope="col">Número de serie</th>
-                                <th scope="col">Cantidad</th>
-                                <th>&nbsp;<button class="btn btn-outline-light " type="button" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-plus"></i> Equipamiento</button></th>
+                                <th>Cantidad</th>
+                                <th>Disponibles</th>
+                                <th>Familia</th>
+                                <th>Subfamilia</th>
+                                <th>Producto</th>
+                                <th>Número serie</th>
+                                <th>Descripción</th>
+                                <th>Proovedor</th>
+                                <th>Valor 1</th>
+                                <th>Valor 2</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let roomEquipment of roomEquipments">
-                            <tr *ngIf="roomEquipment.nombreSala === nombreSala">
-                                <td>{{roomEquipment.familia}}</td>
-                                <td>{{roomEquipment.subfamilia}}</td>
-                                <td>{{roomEquipment.numeroSerie}}</td>
-                                <td>{{roomEquipment.cantidad}}</td>
-                                <td class="d-flex justify-content-center">
-
-                                <div *ngIf="roomEquipment.userUid == userUid || isAdmin == true; else noOwner">
-                                  <button class="btn btn-outline-success" type="button" (click)="onUpdateRoomEquipments(roomEquipment,roomEquipment.cantidad, roomEquipment.idEquipamiento)" data-toggle="modal" data-target="#updateRoomEquipment"><i class="fas fa-pen"></i></button>
-                                </div>
-
-                                <ng-template #noOwner>
-                                  <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
-                                </ng-template>
-
-                                <div *ngIf="isAdmin == true; else noAdmin">
-                                  <button class="btn btn-outline-danger" type="button" (click)="onDeleteRoomEquipment(roomEquipment.id, roomEquipment.idEquipamiento, roomEquipment.cantidad)"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-
-
-                                <ng-template #noAdmin>
-                                  <button class="btn btn-outline-secondary" type="button" disabled><i class="fas fa-trash-alt"></i></button>
-                                </ng-template>
-                              </td>
+                        <tbody *ngFor="let equipment of equipments">
+                            <tr *ngIf="equipment.nombreCongreso === nombreCongresoSeleccionado">
+                                <td>{{equipment.cantidad}}</td>
+                                <td>{{equipment.disponibles}}</td>
+                                <td>{{equipment.familia}}</td>
+                                <td>{{equipment.subfamilia}}</td>
+                                <td>{{equipment.producto}}</td>
+                                <td>{{equipment.numeroSerie}}</td>
+                                <td>{{equipment.descripcion}}</td>
+                                <td>{{equipment.proveedor}}</td>
+                                <td>{{equipment.valor1}}</td>
+                                <td>{{equipment.valor2}}</td>
                             </tr>
                         </tbody>
                     </table>
 
                 </div>
+                <!-- Tabla del inventario -->
+                <div *ngIf="seleccionarSala" class="mt-4">
+
+                    <h1 class="text-center">Herramienta del congreso</h1>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
+                        <table class="table table-striped mb-0">
+                            <thead class="theadColor">
+                                <tr>
+                                    <th scope="col">Familia</th>
+                                    <th scope="col">Subfamilia</th>
+                                    <th scope="col">Número de serie</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th>&nbsp;<button class="btn btn-outline-light " type="button" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-plus"></i> Equipamiento</button></th>
+                                </tr>
+                            </thead>
+
+                            <tbody *ngFor="let roomEquipment of roomEquipments">
+                                <tr *ngIf="roomEquipment.nombreSala === nombreSala">
+                                    <td>{{roomEquipment.familia}}</td>
+                                    <td>{{roomEquipment.subfamilia}}</td>
+                                    <td>{{roomEquipment.numeroSerie}}</td>
+                                    <td>{{roomEquipment.cantidad}}</td>
+                                    <td class="d-flex justify-content-center">
+
+                                        <div *ngIf="roomEquipment.userUid == userUid || isAdmin == true; else noOwner">
+                                            <button class="btn btn-outline-success" type="button" (click)="onUpdateRoomEquipments(roomEquipment,roomEquipment.cantidad, roomEquipment.idEquipamiento)" data-toggle="modal" data-target="#updateRoomEquipment"><i class="fas fa-pen"></i></button>
+                                        </div>
+
+                                        <ng-template #noOwner>
+                                            <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
+                                        </ng-template>
+
+                                        <div *ngIf="isAdmin == true; else noAdmin">
+                                            <button class="btn btn-outline-danger" type="button" (click)="onDeleteRoomEquipment(roomEquipment.id, roomEquipment.idEquipamiento, roomEquipment.cantidad)"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+
+
+                                        <ng-template #noAdmin>
+                                            <button class="btn btn-outline-secondary" type="button" disabled><i class="fas fa-trash-alt"></i></button>
+                                        </ng-template>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            $('a[href^="#"]').click(function() {
+                var destino = $(this.hash);
+                $('html, body').animate({
+                    scrollTop: destino.offset().top
+                }, 700);
+                return false;
+            });
+        });
+    </script>
 
-  <!-- Equipamientos -->
-
-  <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3" *ngIf="seleccionarSala">
-
-    <h1 class="text-center">Almacén</h1>
-
-    <table class="table table-bordered table-striped mb-0">
-      <thead>
-      <tr>
-        <th>Cantidad</th>
-        <th>Disponibles</th>
-        <th>Familia</th>
-        <th>Subfamilia</th>
-        <th>Producto</th>
-        <th>Número serie</th>
-        <th>Descripción</th>
-        <th>Proovedor</th>
-        <th>Valor 1</th>
-        <th>Valor 2</th>
-      </tr>
-      </thead>
-      <tbody *ngFor="let equipment of equipments">
-      <tr *ngIf="equipment.nombreCongreso === nombreCongresoSeleccionado">
-        <td>{{equipment.cantidad}}</td>
-        <td>{{equipment.disponibles}}</td>
-        <td>{{equipment.familia}}</td>
-        <td>{{equipment.subfamilia}}</td>
-        <td>{{equipment.producto}}</td>
-        <td>{{equipment.numeroSerie}}</td>
-        <td>{{equipment.descripcion}}</td>
-        <td>{{equipment.proveedor}}</td>
-        <td>{{equipment.valor1}}</td>
-        <td>{{equipment.valor2}}</td>
-      </tr>
-      </tbody>
-    </table>
-
-  </div>
 </section>
 <app-modal [userUid]="userUid"></app-modal>
