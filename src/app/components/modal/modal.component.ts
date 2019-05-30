@@ -23,7 +23,6 @@ export class ModalComponent implements OnInit {
 
   private cantidad: any;
   private idEquipamiento: any;
-  private cantidadOriginal: any;
 
   // Variables para añadir los valores de los congresos.
   private congress: CongresoInterface[];
@@ -55,15 +54,6 @@ export class ModalComponent implements OnInit {
 
   @ViewChild('btnClose') btnClose: ElementRef;
   @Input() userUid: string;
-
-  @ViewChild('btnCloseCongreso') btnCloseCongreso: ElementRef;
-  @ViewChild('btnCloseInvitado') btnCloseInvitado: ElementRef;
-  @ViewChild('btnCloseSinaptic') btnCloseSinaptic: ElementRef;
-  @ViewChild('btnCloseRoom') btnCloseRoom: ElementRef;
-  @ViewChild('btnCloseEvents') btnCloseEvents: ElementRef;
-  @ViewChild('btnCloseEquipment') btnCloseEquipment: ElementRef;
-  @ViewChild('btnCloseSaveEquipments') btnCloseSaveEquipments: ElementRef;
-  @ViewChild('btnCloseUpdateRoomEquipment') btnCloseUpdateRoomEquipment: ElementRef;
 
   ngOnInit() {
     this.idEquipamiento = localStorage.getItem('idEquipamiento');
@@ -216,7 +206,7 @@ export class ModalComponent implements OnInit {
           // Obtenemos y almacenamos el id del usuario.
           congressForm.value.userUid = this.userUid;
           congressForm.value.nombreSala = this.nombreSalaSeleccionado;
-          this.dataRoomEquipment.addSubfamily(congressForm.value);
+          this.dataRoomEquipment.addRoomEquipment(congressForm.value);
 
         } else {
           // PUT
@@ -227,12 +217,12 @@ export class ModalComponent implements OnInit {
 
               cantidadTotal = congressForm.value.cantidad - cantidadOriginal;
               this.updateEquipment(this.idEquipamiento, cantidadTotal, 'restar');
-              this.dataRoomEquipment.updateSubfamily(congressForm.value);
+              this.dataRoomEquipment.updateRoomEquipment(congressForm.value);
 
             } else if (congressForm.value.cantidad < cantidadOriginal) {
               cantidadTotal = cantidadOriginal - congressForm.value.cantidad;
               this.updateEquipment(this.idEquipamiento, cantidadTotal, 'sumar');
-              this.dataRoomEquipment.updateSubfamily(congressForm.value);
+              this.dataRoomEquipment.updateRoomEquipment(congressForm.value);
             }
 
             localStorage.removeItem('cantidadOriginal');
@@ -267,12 +257,7 @@ export class ModalComponent implements OnInit {
     congressForm.resetForm();
 
     // Eventos de cerrar el botón cuando guarde.
-    this.btnCloseCongreso.nativeElement.click();
-    this.btnCloseInvitado.nativeElement.click();
-    this.btnCloseSinaptic.nativeElement.click();
-    this.btnCloseRoom.nativeElement.click();
-    this.btnCloseCongreso.nativeElement.click();
-    this.btnCloseUpdateRoomEquipment.nativeElement.click();
+    this.btnClose.nativeElement.click();
   }
 
   subirImagenSinoptico(imagen) {

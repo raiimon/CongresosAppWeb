@@ -12,8 +12,7 @@ export class Page404Component implements OnInit {
   constructor(private authService: AuthenticationService,
               private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   // Método que comprubeba si esta el usuario autenticado, si lo esta lo dirige al principal en caso contrario al login.
   checkLink() {
       if (this.authService.userData) {

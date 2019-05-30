@@ -12,7 +12,6 @@ import {EquipamientoService} from '../../../services/equipamiento.service';
   selector: 'app-list-room',
   templateUrl: './list-room.component.html',
   styleUrls: ['./list-room.component.css'],
-  
 })
 export class ListRoomComponent implements OnInit {
 
@@ -54,7 +53,7 @@ export class ListRoomComponent implements OnInit {
   }
 
   getListEquipments() {
-    this.dataEquipmentRoom.getAllSubFamilies().subscribe(roomEquipments => {
+    this.dataEquipmentRoom.getAllRoomEquipments().subscribe(roomEquipments => {
       this.roomEquipments = roomEquipments;
     });
   }
@@ -116,7 +115,7 @@ export class ListRoomComponent implements OnInit {
     this.updateEquipment(idEquipamiento, cantidad, 'sumar');
 
     if (confirmacion) {
-      this.dataEquipmentRoom.deleteSubfamily(idRoomEquipment);
+      this.dataEquipmentRoom.deleteRoomEquipment(idRoomEquipment);
     }
   }
 

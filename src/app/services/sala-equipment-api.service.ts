@@ -24,7 +24,7 @@ export class SalaEquipmentApiService {
   // Modificar los nombres.
 
   // Método para obtener todos las subfamilias.
-  getAllSubFamilies() {
+  getAllRoomEquipments() {
     this.salasCollection = this.afs.collection<SalaEquipmentInterface>('salaEquipamiento');
 
     return this.salas = this.salasCollection.snapshotChanges()
@@ -40,17 +40,17 @@ export class SalaEquipmentApiService {
   }
 
   // Método para añadir.
-  addSubfamily(salaEquipamiento: SalaEquipmentInterface) {
+  addRoomEquipment(salaEquipamiento: SalaEquipmentInterface) {
     return this.afs.collection('salaEquipamiento').add(salaEquipamiento);
   }
 
   // Método para actualizar.
-  updateSubfamily(salaEquipamiento: SalaEquipmentInterface): void {
+  updateRoomEquipment(salaEquipamiento: SalaEquipmentInterface): void {
     this.afs.doc('salaEquipamiento/' + salaEquipamiento.id).update(salaEquipamiento);
 
   }
 
-  deleteSubfamily(idSalaEquipamiento: string): void {
+  deleteRoomEquipment(idSalaEquipamiento: string): void {
     this.afs.doc('salaEquipamiento/' + idSalaEquipamiento).delete();
   }
 
