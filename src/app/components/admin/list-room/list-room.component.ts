@@ -16,12 +16,14 @@ import {EquipamientoService} from '../../../services/equipamiento.service';
 export class ListRoomComponent implements OnInit {
 
   constructor(private dataApi: SalaApiService, private dataEquipmentRoom: SalaEquipmentApiService, private authService: AuthenticationService, private dataCongress: CongresoApiService, public dataEquipment: EquipamientoService) { }
-  // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
+
   private rooms: SalaInterface[];
   private congress: CongresoInterface[];
   private roomEquipments: SalaEquipmentInterface[];
   private equipments: EquipamientoInterface[];
   private uniqueEquipments: EquipamientoInterface;
+
+  // Variables
   nombreCongresoSeleccionado: any;
   nombreSalaFiltro = '';
   nombreSala: string;
