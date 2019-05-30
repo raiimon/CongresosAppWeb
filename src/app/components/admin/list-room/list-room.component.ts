@@ -6,6 +6,8 @@ import {SalaInterface} from '../../../models/sala';
 import {CongresoApiService} from '../../../services/congreso-api.service';
 import {SalaEquipmentApiService} from '../../../services/sala-equipment-api.service';
 import {SalaEquipmentInterface} from '../../../models/salaEquipment';
+import {EquipamientoInterface} from '../../../models/equipamiento';
+import {EquipamientoService} from '../../../services/equipamiento.service';
 @Component({
   selector: 'app-list-room',
   templateUrl: './list-room.component.html',
@@ -13,11 +15,12 @@ import {SalaEquipmentInterface} from '../../../models/salaEquipment';
 })
 export class ListRoomComponent implements OnInit {
 
-  constructor(private dataApi: SalaApiService, private dataEquipmentRoom: SalaEquipmentApiService, private authService: AuthenticationService, private dataCongress: CongresoApiService) { }
+  constructor(private dataApi: SalaApiService, private dataEquipmentRoom: SalaEquipmentApiService, private authService: AuthenticationService, private dataCongress: CongresoApiService, public dataEquipment: EquipamientoService) { }
   // Ignoramos los errores que muestre en Webstorm, en caso contrario no mostrará las listas de los libros.
   private rooms: SalaInterface[];
   private congress: CongresoInterface[];
   private roomEquipments: SalaEquipmentInterface[];
+  private uniqueEquipments: EquipamientoInterface;
   nombreCongresoSeleccionado: any;
   nombreSalaFiltro = '';
   nombreSala: string;
@@ -93,8 +96,13 @@ export class ListRoomComponent implements OnInit {
     }
   }
 
-  onDeleteRoomEquipment(idRoomEquipment) {
+  onDeleteRoomEquipment(idRoomEquipment, idEquipamiento, cantidad) {
+
     const confirmacion = confirm('¿Deseas eliminar esta familia del almacen?');
+
+    console.log(cantidad);
+
+    this.updateEquipment(idEquipamiento, cantidad, 'sumar');
 
     if (confirmacion) {
       this.dataEquipmentRoom.deleteSubfamily(idRoomEquipment);
@@ -105,5 +113,18 @@ export class ListRoomComponent implements OnInit {
     this.dataEquipmentRoom.select = Object.assign({}, roomEquipment);
     localStorage.setItem('cantidadOriginal', cantidadOriginal);
     localStorage.setItem('idEquipamiento', idEquipamiento);
+  }
+
+  updateEquipment(idEquipamiento, cantidad, condicion): void {
+    let contador = 0;
+
+    this.dataEquipment.getOneEquipment(idEquipamiento, cantidad, condicion).subscribe(equipment => {
+      this.uniqueEquipments = equipment;
+
+      if (contador === 0) {
+        this.dataEquipment.updateEquipment(this.uniqueEquipments);
+        contador++;
+      }
+    });
   }
 }

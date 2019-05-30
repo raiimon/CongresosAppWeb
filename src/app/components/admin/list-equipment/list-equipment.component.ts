@@ -106,12 +106,13 @@ export class ListEquipmentComponent implements OnInit {
     }
   }
 
-  onDeleteSubFamily() {
-    const confirmacion = confirm('¿Deseas eliminar esta familia del almacen?');
+  onDeleteSubFamily(idEquipamiento, cantidad) {
+
+    console.log(cantidad);
+    const confirmacion = confirm('¿Deseas eliminar esta elemento del almacen?');
 
     if (confirmacion) {
       this.subFamilyApi.deleteSubfamily(this.idSubFamilia);
     }
   }
-
 }

@@ -124,7 +124,7 @@
                                 </ng-template>
 
                                 <div *ngIf="isAdmin == true; else noAdmin">
-                                  <button class="btn btn-outline-danger" type="button" (click)="onDeleteRoomEquipment(roomEquipment.id)"><i class="fas fa-trash-alt"></i></button>
+                                  <button class="btn btn-outline-danger" type="button" (click)="onDeleteRoomEquipment(roomEquipment.id, roomEquipment.idEquipamiento, roomEquipment.cantidad)"><i class="fas fa-trash-alt"></i></button>
                                 </div>
 
 

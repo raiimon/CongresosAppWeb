@@ -54,8 +54,6 @@ export class EquipamientoService {
         const data = action.payload.data() as EquipamientoInterface;
         data.idEquipamiento = action.payload.id;
         if (condicion === 'sumar') {
-          console.log('Base de datos', data.disponibles);
-          console.log('Cantidad', cantidad);
           data.disponibles = data.disponibles + cantidad;
         } else if (condicion === 'restar') {
           data.disponibles = data.disponibles - cantidad;
