@@ -104,7 +104,7 @@
                                 <th scope="col">Subfamilia</th>
                                 <th scope="col">Número de serie</th>
                                 <th scope="col">Cantidad</th>
-                                <th>&nbsp;<button class="btn btn-outline-light " type="button" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-plus"></i> Equipamiento</button></th>
+                                <th>&nbsp;<button class="btn btn-outline-light " type="button" data-toggle="modal"  data-target="#wareHouseForm"><i class="fas fa-plus"></i> Equipamiento</button></th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let roomEquipment of roomEquipments">
@@ -175,6 +175,17 @@
         <td>{{equipment.proveedor}}</td>
         <td>{{equipment.valor1}}</td>
         <td>{{equipment.valor2}}</td>
+        <td class="d-flex justify-content-center">
+
+          <div *ngIf="(equipment.userUid == userUid || isAdmin == true) && equipment.cantidad > 0; else disabledOption">
+            <button class="btn btn-outline-primary" type="button"  (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
+          </div>
+
+          <ng-template #disabledOption>
+            <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
+          </ng-template>
+
+        </td>
       </tr>
       </tbody>
     </table>

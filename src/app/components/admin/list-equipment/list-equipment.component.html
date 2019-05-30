@@ -172,29 +172,29 @@
                                               <td>{{equipment.valor2}}</td>
 
                                                 <td class="d-flex justify-content-center">
-
                                                     <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
                                                         <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
                                                     </div>
 
-                                                    <div *ngIf="equipment.userUid == userUid || equipment.disponibles <= 0; else noOwner || isAdmin == true; else noOwner">
+                                                  <div *ngIf="(equipment.userUid == userUid || isAdmin == true) && equipment.cantidad > 0; else disabledOption">
                                                       <button class="btn btn-outline-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
-                                                    </div>
+                                                  </div>
 
-                                                    <ng-template #noOwner>
-                                                        <button class="btn btn-outline-secondary" disabled="true"><i class="fas fa-pen"></i></button>
-                                                    </ng-template>
+                                                  <ng-template #disabledOption>
+                                                    <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-warehouse"></i></button>
+                                                  </ng-template>
 
+                                                  <ng-template #noOwner>
+                                                    <button class="btn btn-outline-secondary" disabled="true"><i class="fas fa-pen"></i></button>
+                                                  </ng-template>
 
-                                                    <div *ngIf="isAdmin == true; else noAdmin">
-                                                        <button class="btn btn-outline-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
-                                                    </div>
+                                                  <div *ngIf="isAdmin == true; else noAdmin">
+                                                    <button class="btn btn-outline-danger" type="button" (click)="onDeleteEquipment(equipment.idEquipamiento)"><i class="fas fa-trash-alt"></i></button>
+                                                  </div>
 
-
-                                                    <ng-template #noAdmin>
-                                                        <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
-                                                    </ng-template>
-
+                                                  <ng-template #noAdmin>
+                                                    <button class="btn btn-outline-secondary" type="button" disabled="true"><i class="fas fa-trash-alt"></i></button>
+                                                  </ng-template>
                                                 </td>
                                             </tr>
                                         </tbody>
