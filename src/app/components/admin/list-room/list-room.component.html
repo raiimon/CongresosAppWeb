@@ -98,13 +98,13 @@
                     <h1 class="text-center">Herramienta del congreso</h1>
 
                     <table class="table table-bordered table-striped mb-0">
-                        <thead>
+                        <thead class="theadColor">
                             <tr>
                                 <th scope="col">Familia</th>
                                 <th scope="col">Subfamilia</th>
                                 <th scope="col">Número de serie</th>
                                 <th scope="col">Cantidad</th>
-                                <th scope="col">Acciones</th>
+                                <th>&nbsp;<button class="btn btn-outline-light " type="button" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-plus"></i> Equipamiento</button></th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let roomEquipment of roomEquipments">
@@ -140,5 +140,45 @@
             </div>
         </div>
     </div>
+
+
+  <!-- Equipamientos -->
+
+  <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3" *ngIf="seleccionarSala">
+
+    <h1 class="text-center">Almacén</h1>
+
+    <table class="table table-bordered table-striped mb-0">
+      <thead>
+      <tr>
+        <th>Cantidad</th>
+        <th>Disponibles</th>
+        <th>Familia</th>
+        <th>Subfamilia</th>
+        <th>Producto</th>
+        <th>Número serie</th>
+        <th>Descripción</th>
+        <th>Proovedor</th>
+        <th>Valor 1</th>
+        <th>Valor 2</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let equipment of equipments">
+      <tr *ngIf="equipment.nombreCongreso === nombreCongresoSeleccionado">
+        <td>{{equipment.cantidad}}</td>
+        <td>{{equipment.disponibles}}</td>
+        <td>{{equipment.familia}}</td>
+        <td>{{equipment.subfamilia}}</td>
+        <td>{{equipment.producto}}</td>
+        <td>{{equipment.numeroSerie}}</td>
+        <td>{{equipment.descripcion}}</td>
+        <td>{{equipment.proveedor}}</td>
+        <td>{{equipment.valor1}}</td>
+        <td>{{equipment.valor2}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
 </section>
 <app-modal [userUid]="userUid"></app-modal>

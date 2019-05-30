@@ -177,7 +177,7 @@
                                                         <button class="btn btn-outline-success" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#modalEquipment"><i class="fas fa-pen"></i></button>
                                                     </div>
 
-                                                    <div *ngIf="equipment.userUid == userUid || equipment.cantidad <= 0; else noOwner || isAdmin == true; else noOwner">
+                                                    <div *ngIf="equipment.userUid == userUid || equipment.disponibles <= 0; else noOwner || isAdmin == true; else noOwner">
                                                       <button class="btn btn-outline-primary" type="button" (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
                                                     </div>
 

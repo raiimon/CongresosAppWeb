@@ -20,6 +20,7 @@ export class ListRoomComponent implements OnInit {
   private rooms: SalaInterface[];
   private congress: CongresoInterface[];
   private roomEquipments: SalaEquipmentInterface[];
+  private equipments: EquipamientoInterface[];
   private uniqueEquipments: EquipamientoInterface;
   nombreCongresoSeleccionado: any;
   nombreSalaFiltro = '';
@@ -36,6 +37,7 @@ export class ListRoomComponent implements OnInit {
     this.getListRooms();
     this.obtenerNombreCongreso();
     this.getListEquipments();
+    this.getListEquipmentsWarehouse();
   }
 
   getListRooms() {
@@ -53,6 +55,12 @@ export class ListRoomComponent implements OnInit {
   getListEquipments() {
     this.dataEquipmentRoom.getAllSubFamilies().subscribe(roomEquipments => {
       this.roomEquipments = roomEquipments;
+    });
+  }
+
+  getListEquipmentsWarehouse() {
+    this.dataEquipment.getAllEquipments().subscribe(equipamientos => {
+      this.equipments = equipamientos;
     });
   }
 
