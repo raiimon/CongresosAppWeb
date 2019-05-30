@@ -10,7 +10,7 @@
 #box-2 {
     height: 50vh;
     width: 100%;
-    background-image: url(assets/img/r.jpg);
+    background-image: url(assets/img/fotosExterior/r.jpg);
     background-size: cover;
     display: table;
     background-attachment: fixed;
@@ -54,15 +54,15 @@ div.jumbotron.carousel-hero {
 }
 
 div.jumbotron.hero-nature {
-    background-image: url('assets/img/architect-at-the-construction.jpg');
+    background-image: url('assets/img/fotosExterior/architect-at-the-construction.jpg');
 }
 
 div.jumbotron.hero-photography {
-    background-image: url('assets/img/architects-and-worker.jpg');
+    background-image: url('assets/img/fotosExterior/architects-and-worker.jpg');
 }
 
 div.jumbotron.hero-technology {
-    background-image: url('assets/img/young-college-students.jpg');
+    background-image: url('assets/img/fotosExterior/young-college-students.jpg');
 }
 
 h1.hero-title,
@@ -259,7 +259,7 @@ span {
 .tech-slideshow>div {
     height: 100%;
     width: 7000px;
-    background: url(assets/img/collage.png);
+    background: url(assets/img/fotosExterior/collage.png);
     position: absolute;
     top: 0;
     left: 0;
