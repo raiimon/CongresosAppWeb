@@ -39,11 +39,7 @@ export class ModalComponent implements OnInit {
               private dataRoom: SalaApiService,
               private sinaptic: SinapticoApiService,
               private dataRoomEquipment: SalaEquipmentApiService,
-              private dataEvent: CalendarService) {
-
-
-  }
-
+              private dataEvent: CalendarService) {}
 
   // Variables para almacenar los nombres de congreso y sala.
   public nombreCongresoSeleccionado: string;
@@ -128,7 +124,6 @@ export class ModalComponent implements OnInit {
     switch (modal) {
       case 'congreso':
 
-        // congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
         // Convertir la fecha de entrada y salida para Firebase.
         const fechaEntradaCongreso = new Date(congressForm.value.fechaInicioCongreso);
         const fechaSalidaCongreso = new Date(congressForm.value.fechaSalidaCongreso);
@@ -186,7 +181,6 @@ export class ModalComponent implements OnInit {
 
         congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
 
-
         if (congressForm.value.idInvitado == null) {
 
           congressForm.value.userUid = this.userUid;
@@ -222,7 +216,6 @@ export class ModalComponent implements OnInit {
           // Obtenemos y almacenamos el id del usuario.
           congressForm.value.userUid = this.userUid;
           congressForm.value.nombreSala = this.nombreSalaSeleccionado;
-          console.log(congressForm.value);
           this.dataRoomEquipment.addSubfamily(congressForm.value);
 
         } else {
@@ -247,7 +240,6 @@ export class ModalComponent implements OnInit {
           break;
       case 'evento':
 
-        // congressForm.value.nombreCongreso = this.nombreCongresoSeleccionado;
         // Convertir la fecha de entrada y salida para Firebase.
         const fechaEntrada = new Date(congressForm.value.start);
         const fechaSalida = new Date(congressForm.value.end);

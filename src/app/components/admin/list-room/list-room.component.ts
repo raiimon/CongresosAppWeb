@@ -136,4 +136,8 @@ export class ListRoomComponent implements OnInit {
       }
     });
   }
+
+  onPreUpdateEquipments(equipments: EquipamientoInterface) {
+    this.dataEquipment.selectedEquipamiento = Object.assign({}, equipments);
+  }
 }
