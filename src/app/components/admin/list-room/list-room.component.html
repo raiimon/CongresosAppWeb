@@ -136,6 +136,16 @@
                                 <td>{{equipment.proveedor}}</td>
                                 <td>{{equipment.valor1}}</td>
                                 <td>{{equipment.valor2}}</td>
+                                <td class="d-flex justify-content-center">
+
+                                  <div *ngIf="equipment.userUid == userUid || isAdmin == true; else noOwner">
+                                    <button class="btn btn-outline-primary" type="button"  (click)="onPreUpdateEquipments(equipment)" data-toggle="modal" data-target="#wareHouseForm"><i class="fas fa-warehouse"></i></button>
+                                  </div>
+
+                                  <ng-template #noOwner>
+                                    <button class="btn btn-outline-secondary" disabled><i class="fas fa-pen"></i></button>
+                                  </ng-template>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
