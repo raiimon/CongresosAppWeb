@@ -32,13 +32,7 @@
             </div>
         </div>
 
-
-        <div class="container-fluid mt-5">
-            <div class="row d-flex justify-content-end mr-4">
-                <button class="btn btn btn-outline-secondary mb-4" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents">Pintar Nuevo Evento</button>
-            </div>
-        </div>
-        <div class="container-fluid ">
+        <div class="container-fluid mt-5 ">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -48,7 +42,7 @@
                                 <th>Hora Comienzo</th>
                                 <th>Hora Finalización</th>
                                 <th>Leyenda</th>
-                                <th></th>
+                                <th> <button class="btn btn-outline-light" data-toggle="modal" (click)="ngOnInit()" data-target="#modalEvents"><i class="fas fa-plus"></i> Eventos</button></th>
 
                             </tr>
                         </thead>
