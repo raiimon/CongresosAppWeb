@@ -95,10 +95,14 @@ export class ListRoomComponent implements OnInit {
   }
 
   seleccionarHerramientas(nombreSala) {
+
     if (this.seleccionarSala) {
+
       this.nombreSala = '';
       this.seleccionarSala = false;
+
     } else {
+
       this.nombreSala = nombreSala;
       this.seleccionarSala = true;
     }
@@ -107,8 +111,6 @@ export class ListRoomComponent implements OnInit {
   onDeleteRoomEquipment(idRoomEquipment, idEquipamiento, cantidad) {
 
     const confirmacion = confirm('¿Deseas eliminar esta familia del almacen?');
-
-    console.log(cantidad);
 
     this.updateEquipment(idEquipamiento, cantidad, 'sumar');
 
