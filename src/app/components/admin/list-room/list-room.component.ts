@@ -11,7 +11,8 @@ import {EquipamientoService} from '../../../services/equipamiento.service';
 @Component({
   selector: 'app-list-room',
   templateUrl: './list-room.component.html',
-  styleUrls: ['./list-room.component.css']
+  styleUrls: ['./list-room.component.css'],
+  
 })
 export class ListRoomComponent implements OnInit {
 
