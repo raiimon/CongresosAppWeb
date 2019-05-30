@@ -101,7 +101,9 @@ export class ListRoomComponent implements OnInit {
     }
   }
 
-  onUpdateRoomEquipments(roomEquipment) {
+  onUpdateRoomEquipments(roomEquipment, cantidadOriginal, idEquipamiento) {
     this.dataEquipmentRoom.select = Object.assign({}, roomEquipment);
+    localStorage.setItem('cantidadOriginal', cantidadOriginal);
+    localStorage.setItem('idEquipamiento', idEquipamiento);
   }
 }

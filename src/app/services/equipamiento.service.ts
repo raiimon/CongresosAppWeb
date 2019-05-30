@@ -43,7 +43,7 @@ export class EquipamientoService {
   }
 
   // Método para obtener un único equipamiento.
-  getOneEquipment(idEquipamiento: string) {
+  getOneEquipment(idEquipamiento: string, cantidad: any, condicion: string) {
 
     this.equipamientoDoc = this.afs.doc<EquipamientoInterface>(`equipamiento/${idEquipamiento}`);
 
@@ -53,6 +53,13 @@ export class EquipamientoService {
       } else {
         const data = action.payload.data() as EquipamientoInterface;
         data.idEquipamiento = action.payload.id;
+        if (condicion === 'sumar') {
+          console.log('Base de datos', data.disponibles);
+          console.log('Cantidad', cantidad);
+          data.disponibles = data.disponibles + cantidad;
+        } else if (condicion === 'restar') {
+          data.disponibles = data.disponibles - cantidad;
+        }
         return data;
       }
     }));
@@ -67,7 +74,6 @@ export class EquipamientoService {
 
   // Método para actualizar un equipamiento.
   updateEquipment(equipamiento: EquipamientoInterface): void {
-
     // Obtenemos la ID desde lo obtenido.
     const idEquipamiento = equipamiento.idEquipamiento;
 

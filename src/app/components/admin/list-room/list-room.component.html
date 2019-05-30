@@ -116,7 +116,7 @@
                                 <td class="d-flex justify-content-center">
 
                                 <div *ngIf="roomEquipment.userUid == userUid || isAdmin == true; else noOwner">
-                                  <button class="btn btn-outline-success" type="button" (click)="onUpdateRoomEquipments(roomEquipment)" data-toggle="modal" data-target="#updateRoomEquipment"><i class="fas fa-pen"></i></button>
+                                  <button class="btn btn-outline-success" type="button" (click)="onUpdateRoomEquipments(roomEquipment,roomEquipment.cantidad, roomEquipment.idEquipamiento)" data-toggle="modal" data-target="#updateRoomEquipment"><i class="fas fa-pen"></i></button>
                                 </div>
 
                                 <ng-template #noOwner>

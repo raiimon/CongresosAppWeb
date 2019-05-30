@@ -21,6 +21,8 @@ export class SalaEquipmentApiService {
   constructor(private afs: AngularFirestore) {
   }
 
+  // Modificar los nombres.
+
   // Método para obtener todos las subfamilias.
   getAllSubFamilies() {
     this.salasCollection = this.afs.collection<SalaEquipmentInterface>('salaEquipamiento');

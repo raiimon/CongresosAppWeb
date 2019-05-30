@@ -13,7 +13,6 @@ import {SalaInterface} from '../../models/sala';
 import {EquipamientoService} from '../../services/equipamiento.service';
 import {EquipamientoInterface} from '../../models/equipamiento';
 import {SalaEquipmentApiService} from '../../services/sala-equipment-api.service';
-import {SalaEquipmentInterface} from '../../models/salaEquipment';
 
 @Component({
   selector: 'app-modal',
@@ -23,6 +22,15 @@ import {SalaEquipmentInterface} from '../../models/salaEquipment';
 export class ModalComponent implements OnInit {
 
   private cantidad: any;
+  private idEquipamiento: any;
+  private cantidadOriginal: any;
+
+  // Variables para añadir los valores de los congresos.
+  private congress: CongresoInterface[];
+  private rooms: SalaInterface[];
+  private equipments: EquipamientoInterface[];
+  private uniqueEquipments: EquipamientoInterface;
+  private cantidadEquipamientoSala: number;
 
   constructor(private storage: AngularFireStorage,
               private dataCongress: CongresoApiService,
@@ -31,13 +39,11 @@ export class ModalComponent implements OnInit {
               private dataRoom: SalaApiService,
               private sinaptic: SinapticoApiService,
               private dataRoomEquipment: SalaEquipmentApiService,
-              private dataEvent: CalendarService) { }
+              private dataEvent: CalendarService) {
 
-  // Variables para añadir los valores de los congresos.
-  private congress: CongresoInterface[];
-  private rooms: SalaInterface[];
-  private equipments: EquipamientoInterface[];
-  private checked: boolean = false;
+
+  }
+
 
   // Variables para almacenar los nombres de congreso y sala.
   public nombreCongresoSeleccionado: string;
@@ -61,7 +67,10 @@ export class ModalComponent implements OnInit {
   @ViewChild('btnCloseEvents') btnCloseEvents: ElementRef;
   @ViewChild('btnCloseEquipment') btnCloseEquipment: ElementRef;
   @ViewChild('btnCloseSaveEquipments') btnCloseSaveEquipments: ElementRef;
+  @ViewChild('btnCloseUpdateRoomEquipment') btnCloseUpdateRoomEquipment: ElementRef;
+
   ngOnInit() {
+    this.idEquipamiento = localStorage.getItem('idEquipamiento');
     this.getListCongress();
     this.getListRooms();
     this.getCongressName();
@@ -213,11 +222,27 @@ export class ModalComponent implements OnInit {
           // Obtenemos y almacenamos el id del usuario.
           congressForm.value.userUid = this.userUid;
           congressForm.value.nombreSala = this.nombreSalaSeleccionado;
+          console.log(congressForm.value);
           this.dataRoomEquipment.addSubfamily(congressForm.value);
 
         } else {
           // PUT
-          this.dataRoomEquipment.updateSubfamily(congressForm.value);
+            // tslint:disable-next-line:radix
+            const cantidadOriginal = parseInt(localStorage.getItem('cantidadOriginal'));
+            let cantidadTotal = 0;
+            if (congressForm.value.cantidad > cantidadOriginal) {
+
+              cantidadTotal = congressForm.value.cantidad - cantidadOriginal;
+              this.updateEquipment(this.idEquipamiento, cantidadTotal, 'restar');
+              this.dataRoomEquipment.updateSubfamily(congressForm.value);
+
+            } else if (congressForm.value.cantidad < cantidadOriginal) {
+              cantidadTotal = cantidadOriginal - congressForm.value.cantidad;
+              this.updateEquipment(this.idEquipamiento, cantidadTotal, 'sumar');
+              this.dataRoomEquipment.updateSubfamily(congressForm.value);
+            }
+
+            localStorage.removeItem('cantidadOriginal');
         }
           break;
       case 'evento':
@@ -255,6 +280,7 @@ export class ModalComponent implements OnInit {
     this.btnCloseSinaptic.nativeElement.click();
     this.btnCloseRoom.nativeElement.click();
     this.btnCloseCongreso.nativeElement.click();
+    this.btnCloseUpdateRoomEquipment.nativeElement.click();
   }
 
   subirImagenSinoptico(imagen) {
@@ -281,13 +307,16 @@ export class ModalComponent implements OnInit {
       .subscribe();
   }
 
+  updateEquipment(idEquipamiento, cantidad, condicion): void {
+    let contador = 0;
 
-  toggleEditable(event) {
+    this.dataEquipment.getOneEquipment(idEquipamiento, cantidad, condicion).subscribe(equipment => {
+      this.uniqueEquipments = equipment;
 
-    if (event.target.checked) {
-      this.checked = true;
-    } else {
-      this.checked = false;
-    }
+      if (contador === 0) {
+        this.dataEquipment.updateEquipment(this.uniqueEquipments);
+        contador++;
+      }
+    });
   }
 }
