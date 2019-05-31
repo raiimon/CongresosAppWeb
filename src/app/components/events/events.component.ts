@@ -13,7 +13,6 @@ import { AuthenticationService } from '../../services/auth.service';
 import {CongresoApiService} from '../../services/congreso-api.service';
 import 'rxjs-compat/add/operator/map';
 import {SalaApiService} from '../../services/sala-api.service';
-import {SalaInterface} from '../../models/sala';
 
 
 @Component({
